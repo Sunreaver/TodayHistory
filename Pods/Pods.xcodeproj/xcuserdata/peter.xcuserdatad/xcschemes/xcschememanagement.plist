@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>SchemeUserState</key>
+	<dict>
+		<key>AFNetworking.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>JSONKit.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>MJRefresh.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>Pods.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>ionicons.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+	</dict>
+	<key>SuppressBuildableAutocreation</key>
+	<dict>
+		<key>00343459A5743FD0B74EB2B41A43C563</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>0DBB3D30F280CEDFE03B7474B23873A4</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>7DCA7A4D61147E412FAD810E072C258E</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>8B63463FE3CCE70D4086C6C203E3A2B6</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>C4F490DF011E9F1FBA7D4865227E8FFA</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+	</dict>
+</dict>
+</plist>
