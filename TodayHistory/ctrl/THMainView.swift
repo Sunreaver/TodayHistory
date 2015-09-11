@@ -71,8 +71,12 @@ class THMainView: UIViewController, UITableViewDelegate, UITableViewDataSource, 
     func hideLoaddingPage()
     {
         let maskView = self.view.viewWithTag(1999)
-        maskView?.removeFromSuperview()
-        self.navigationController?.setNavigationBarHidden(false, animated: true)
+        UIView.animateWithDuration(0.666, animations: { () -> Void in
+            maskView?.alpha = 0.0
+            }) { (finish) -> Void in
+                maskView?.removeFromSuperview()
+                self.navigationController?.setNavigationBarHidden(false, animated: true)
+        }
     }
 
     // MARK: - Table view data source
@@ -178,6 +182,7 @@ class THMainView: UIViewController, UITableViewDelegate, UITableViewDataSource, 
         }
         self.dayNum = 0
         self.createRight2Btn()
+        self.header?.endRefreshing()
         
         let delayTime = dispatch_time(DISPATCH_TIME_NOW, Int64(0.1 * Double(NSEC_PER_SEC)))
         dispatch_after(delayTime, dispatch_get_main_queue()) { () -> Void in
