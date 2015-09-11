@@ -35,6 +35,7 @@ class THMainView: UITableViewController {
         {
             self.header?.beginRefreshing();
         }
+        
     }
     
     override func viewDidAppear(animated: Bool) {
