@@ -11,6 +11,11 @@
 		D01E88091BA1708900DE9BE1 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = D01E88081BA1708900DE9BE1 /* Colors.swift */; };
 		D01E880B1BA17FCD00DE9BE1 /* Globle.swift in Sources */ = {isa = PBXBuildFile; fileRef = D01E880A1BA17FCD00DE9BE1 /* Globle.swift */; };
 		D01E880D1BA1927300DE9BE1 /* THMainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D01E880C1BA1927300DE9BE1 /* THMainView.swift */; };
+		D01E880F1BA2704000DE9BE1 /* THLoaddingPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = D01E880E1BA2704000DE9BE1 /* THLoaddingPage.swift */; };
+		D01E88151BA271B300DE9BE1 /* ArcLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D01E88111BA271B300DE9BE1 /* ArcLayer.swift */; };
+		D01E88161BA271B300DE9BE1 /* OvalLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D01E88121BA271B300DE9BE1 /* OvalLayer.swift */; };
+		D01E88171BA271B300DE9BE1 /* RectangleLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D01E88131BA271B300DE9BE1 /* RectangleLayer.swift */; };
+		D01E88181BA271B300DE9BE1 /* TriangleLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D01E88141BA271B300DE9BE1 /* TriangleLayer.swift */; };
 		D0219D311BA116FE0007F00E /* THMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0219D301BA116FE0007F00E /* THMode.swift */; };
 		D0219D341BA11D1F0007F00E /* THData.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0219D331BA11D1F0007F00E /* THData.swift */; };
 		D0219D371BA12B410007F00E /* THCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0219D361BA12B410007F00E /* THCell.swift */; };
@@ -42,6 +47,11 @@
 		D01E88081BA1708900DE9BE1 /* Colors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
 		D01E880A1BA17FCD00DE9BE1 /* Globle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Globle.swift; sourceTree = "<group>"; };
 		D01E880C1BA1927300DE9BE1 /* THMainView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = THMainView.swift; sourceTree = "<group>"; };
+		D01E880E1BA2704000DE9BE1 /* THLoaddingPage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = THLoaddingPage.swift; sourceTree = "<group>"; };
+		D01E88111BA271B300DE9BE1 /* ArcLayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArcLayer.swift; sourceTree = "<group>"; };
+		D01E88121BA271B300DE9BE1 /* OvalLayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OvalLayer.swift; sourceTree = "<group>"; };
+		D01E88131BA271B300DE9BE1 /* RectangleLayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RectangleLayer.swift; sourceTree = "<group>"; };
+		D01E88141BA271B300DE9BE1 /* TriangleLayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TriangleLayer.swift; sourceTree = "<group>"; };
 		D0219D301BA116FE0007F00E /* THMode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = THMode.swift; sourceTree = "<group>"; };
 		D0219D331BA11D1F0007F00E /* THData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = THData.swift; sourceTree = "<group>"; };
 		D0219D361BA12B410007F00E /* THCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = THCell.swift; sourceTree = "<group>"; };
@@ -102,6 +112,17 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		D01E88101BA271B300DE9BE1 /* layers */ = {
+			isa = PBXGroup;
+			children = (
+				D01E88111BA271B300DE9BE1 /* ArcLayer.swift */,
+				D01E88121BA271B300DE9BE1 /* OvalLayer.swift */,
+				D01E88131BA271B300DE9BE1 /* RectangleLayer.swift */,
+				D01E88141BA271B300DE9BE1 /* TriangleLayer.swift */,
+			);
+			path = layers;
+			sourceTree = "<group>";
+		};
 		D0219D2F1BA116DD0007F00E /* mode */ = {
 			isa = PBXGroup;
 			children = (
@@ -121,7 +142,9 @@
 		D0219D351BA12B0B0007F00E /* view */ = {
 			isa = PBXGroup;
 			children = (
+				D01E88101BA271B300DE9BE1 /* layers */,
 				D0219D361BA12B410007F00E /* THCell.swift */,
+				D01E880E1BA2704000DE9BE1 /* THLoaddingPage.swift */,
 			);
 			path = view;
 			sourceTree = "<group>";
@@ -350,10 +373,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				D0219D311BA116FE0007F00E /* THMode.swift in Sources */,
+				D01E88171BA271B300DE9BE1 /* RectangleLayer.swift in Sources */,
 				D01E88091BA1708900DE9BE1 /* Colors.swift in Sources */,
 				D01E880B1BA17FCD00DE9BE1 /* Globle.swift in Sources */,
 				D0FF635F1BA029F700A00BAB /* NetWorkManager.swift in Sources */,
+				D01E88151BA271B300DE9BE1 /* ArcLayer.swift in Sources */,
+				D01E88161BA271B300DE9BE1 /* OvalLayer.swift in Sources */,
 				D0219D421BA156930007F00E /* PushViewController+UINavigationController.m in Sources */,
+				D01E880F1BA2704000DE9BE1 /* THLoaddingPage.swift in Sources */,
 				D0219D411BA156930007F00E /* GetViewCtrlFromStoryboard.m in Sources */,
 				D0FF635D1BA027F000A00BAB /* JsonTw.m in Sources */,
 				D01E880D1BA1927300DE9BE1 /* THMainView.swift in Sources */,
@@ -361,6 +388,7 @@
 				D0219D371BA12B410007F00E /* THCell.swift in Sources */,
 				D0FF63371BA020F600A00BAB /* AppDelegate.swift in Sources */,
 				D0219D3C1BA1560E0007F00E /* THWebView.swift in Sources */,
+				D01E88181BA271B300DE9BE1 /* TriangleLayer.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

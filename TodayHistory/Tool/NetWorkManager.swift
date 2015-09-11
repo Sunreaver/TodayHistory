@@ -14,6 +14,8 @@ import UIKit
 }
 
 class NetWorkManager: NSObject {
+    /// 超时
+    static let TimeOutInterval:NSTimeInterval = 10.0
     weak var delegate:NetWorkManagerDelegate?
     var afnetworks = NSMutableArray()
     
@@ -25,11 +27,19 @@ class NetWorkManager: NSObject {
         }
     }
     
+    /**
+    获取历史今天
+    
+    - parameter day:   日
+    - parameter month: 月
+    - parameter page:  分页
+    */
     func getTodayHistoryWithDay(day:Int, month:Int, page:Int)
     {
         let sPage = page
         let manager = AFHTTPRequestOperationManager()
         manager.responseSerializer = AFHTTPResponseSerializer()
+        manager.requestSerializer.timeoutInterval = NetWorkManager.TimeOutInterval
         
         var pagesize = Globle.PageSize
         var p = page

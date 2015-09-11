@@ -8,8 +8,9 @@
 
 import UIKit
 
-class THMainView: UITableViewController {
+class THMainView: UIViewController, UITableViewDelegate, UITableViewDataSource, HolderViewDelegate {
     
+    @IBOutlet weak var tableView: UITableView!
     var header:MJRefreshHeader?
     var footer:MJRefreshFooter?
     private var data:THData!
@@ -28,6 +29,7 @@ class THMainView: UITableViewController {
         data = THData()
         self.createHeaderAndFooter()
         self.createRight2Btn()
+        self.showLoaddingPage()
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -35,7 +37,6 @@ class THMainView: UITableViewController {
         {
             self.header?.beginRefreshing();
         }
-        
     }
     
     override func viewDidAppear(animated: Bool) {
@@ -51,10 +52,32 @@ class THMainView: UITableViewController {
         page = 0
         dayNum = 0
     }
+    
+    func showLoaddingPage()
+    {
+        let maskView: UIView = NSBundle.mainBundle().loadNibNamed("LaunchScreen", owner: self, options: nil).last as! UIView
+        let rt: CGRect = UIScreen.mainScreen().bounds
+        maskView.frame = rt
+        maskView.tag = 1999
+        let loadding = THLoaddingPage(frame: CGRectMake((rt.size.width-100)/2, (rt.size.height-100)/2, 100, 100))
+        loadding.parentFrame = rt
+        loadding.delegate = self
+        maskView.insertSubview(loadding, atIndex: 0)
+        self.view.addSubview(maskView)
+        self.navigationController?.navigationBarHidden = true
+        loadding.addOval()
+    }
+    
+    func hideLoaddingPage()
+    {
+        let maskView = self.view.viewWithTag(1999)
+        maskView?.removeFromSuperview()
+        self.navigationController?.setNavigationBarHidden(false, animated: true)
+    }
 
     // MARK: - Table view data source
 
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete method implementation.
         // Return the number of rows in the section.
         
@@ -62,7 +85,7 @@ class THMainView: UITableViewController {
     }
 
     
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("THCell", forIndexPath: indexPath) as! UITableViewCell
 
         // Configure the cell...
@@ -72,7 +95,7 @@ class THMainView: UITableViewController {
         return cell
     }
     
-    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         
         var vc: THWebView = GetViewCtrlFromStoryboard.ViewCtrlWithStoryboard("Main", identifier: "THWebView") as! THWebView
         vc.url = (self.data.list[indexPath.row] as! THMode).url
@@ -80,6 +103,10 @@ class THMainView: UITableViewController {
         self.navigationController?.pushViewController(vc, transitionType: "cube", subType: "fromRight")
         
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
+    }
+    
+    func animateOver() {
+        self.hideLoaddingPage()
     }
 
     /*
@@ -180,16 +207,19 @@ class THMainView: UITableViewController {
                 {
                     self.loadDataOver(true, page: 0, newLine: Int.max)
                     self.header?.endRefreshing()
+                    self.hideLoaddingPage()
                     return
                 }
                 else if (page%5 == 0)
                 {
                     self.tableView.reloadData()
+                    self.hideLoaddingPage()
                 }
                 self.refreshStart(page + 1)
             }
             else
             {
+                self.hideLoaddingPage()
                 self.loadDataOver(true, page: 1, newLine: 0)
                 self.header?.endRefreshing()
             }
