@@ -150,6 +150,47 @@
             </objects>
             <point key="canvasLocation" x="1593" y="923"/>
         </scene>
+        <!--TestVC-->
+        <scene sceneID="ecK-0h-dAH">
+            <objects>
+                <viewController id="uwG-a0-6Gc" customClass="THTestVC" customModule="TodayHistory" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="B1a-yV-ApP"/>
+                        <viewControllerLayoutGuide type="bottom" id="34Y-J6-IQq"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="3gj-hm-TbD">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="13" translatesAutoresizingMaskIntoConstraints="NO" id="IVR-Es-Bpv">
+                                <rect key="frame" x="107" y="187" width="106" height="106"/>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <gestureRecognizers/>
+                        <constraints>
+                            <constraint firstAttribute="centerX" secondItem="IVR-Es-Bpv" secondAttribute="centerX" id="moP-rR-Ld4"/>
+                            <constraint firstAttribute="centerY" secondItem="IVR-Es-Bpv" secondAttribute="centerY" id="ngj-fG-hCA"/>
+                        </constraints>
+                        <connections>
+                            <outletCollection property="gestureRecognizers" destination="v5y-XR-kyI" appends="YES" id="erf-9y-plw"/>
+                        </connections>
+                    </view>
+                    <navigationItem key="navigationItem" id="ysl-6i-Vpf"/>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics"/>
+                    <connections>
+                        <outlet property="iv_1" destination="IVR-Es-Bpv" id="o78-gh-sCa"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="84A-Jc-atB" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="v5y-XR-kyI">
+                    <connections>
+                        <action selector="OnTap:" destination="uwG-a0-6Gc" id="4Ge-G0-ao2"/>
+                    </connections>
+                </tapGestureRecognizer>
+            </objects>
+            <point key="canvasLocation" x="1213" y="382"/>
+        </scene>
         <!--Navigation Controller-->
         <scene sceneID="tdp-4Y-rQ5">
             <objects>
@@ -169,6 +210,28 @@
             </objects>
             <point key="canvasLocation" x="793" y="923"/>
         </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="Ptv-9C-RWv">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="KEt-me-0cK" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="Q7z-tt-ssm">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="uwG-a0-6Gc" kind="relationship" relationship="rootViewController" id="svO-sk-JJC"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Ghk-qg-mQO" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="793" y="382"/>
+        </scene>
     </scenes>
+    <resources>
+        <image name="13" width="106" height="106"/>
+    </resources>
     <color key="tintColor" red="0.32549019610000002" green="0.75686274509999996" blue="0.29803921570000003" alpha="1" colorSpace="calibratedRGB"/>
 </document>

@@ -16,6 +16,7 @@
 		D01E88161BA271B300DE9BE1 /* OvalLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D01E88121BA271B300DE9BE1 /* OvalLayer.swift */; };
 		D01E88171BA271B300DE9BE1 /* RectangleLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D01E88131BA271B300DE9BE1 /* RectangleLayer.swift */; };
 		D01E88181BA271B300DE9BE1 /* TriangleLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D01E88141BA271B300DE9BE1 /* TriangleLayer.swift */; };
+		D01E881A1BA6785900DE9BE1 /* THTestVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D01E88191BA6785900DE9BE1 /* THTestVC.swift */; };
 		D0219D311BA116FE0007F00E /* THMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0219D301BA116FE0007F00E /* THMode.swift */; };
 		D0219D341BA11D1F0007F00E /* THData.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0219D331BA11D1F0007F00E /* THData.swift */; };
 		D0219D371BA12B410007F00E /* THCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0219D361BA12B410007F00E /* THCell.swift */; };
@@ -52,6 +53,7 @@
 		D01E88121BA271B300DE9BE1 /* OvalLayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OvalLayer.swift; sourceTree = "<group>"; };
 		D01E88131BA271B300DE9BE1 /* RectangleLayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RectangleLayer.swift; sourceTree = "<group>"; };
 		D01E88141BA271B300DE9BE1 /* TriangleLayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TriangleLayer.swift; sourceTree = "<group>"; };
+		D01E88191BA6785900DE9BE1 /* THTestVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = THTestVC.swift; sourceTree = "<group>"; };
 		D0219D301BA116FE0007F00E /* THMode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = THMode.swift; sourceTree = "<group>"; };
 		D0219D331BA11D1F0007F00E /* THData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = THData.swift; sourceTree = "<group>"; };
 		D0219D361BA12B410007F00E /* THCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = THCell.swift; sourceTree = "<group>"; };
@@ -154,6 +156,7 @@
 			children = (
 				D01E880C1BA1927300DE9BE1 /* THMainView.swift */,
 				D0219D3B1BA1560E0007F00E /* THWebView.swift */,
+				D01E88191BA6785900DE9BE1 /* THTestVC.swift */,
 			);
 			path = ctrl;
 			sourceTree = "<group>";
@@ -376,6 +379,7 @@
 				D01E88171BA271B300DE9BE1 /* RectangleLayer.swift in Sources */,
 				D01E88091BA1708900DE9BE1 /* Colors.swift in Sources */,
 				D01E880B1BA17FCD00DE9BE1 /* Globle.swift in Sources */,
+				D01E881A1BA6785900DE9BE1 /* THTestVC.swift in Sources */,
 				D0FF635F1BA029F700A00BAB /* NetWorkManager.swift in Sources */,
 				D01E88151BA271B300DE9BE1 /* ArcLayer.swift in Sources */,
 				D01E88161BA271B300DE9BE1 /* OvalLayer.swift in Sources */,

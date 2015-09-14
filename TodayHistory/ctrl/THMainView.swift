@@ -11,11 +11,19 @@ import UIKit
 class THMainView: UIViewController, UITableViewDelegate, UITableViewDataSource, HolderViewDelegate {
     
     @IBOutlet weak var tableView: UITableView!
-    var header:MJRefreshHeader?
-    var footer:MJRefreshFooter?
-    private var data:THData!
-    var page:Int = 0
-    var dayNum = 0
+    private lazy var header:MJRefreshHeader = {
+        let tmp:MJRefreshHeader = self.tableView.addLegendHeaderWithRefreshingTarget(self, refreshingAction: "refreshStart")
+        tmp.textColor = Colors.main
+        return tmp
+    }()
+    private lazy var footer:MJRefreshFooter = {
+        let tmp:MJRefreshFooter = self.tableView.addLegendFooterWithRefreshingTarget(self, refreshingAction: "loadMoreData")
+        tmp.textColor = Colors.main
+        return tmp
+    }()
+    private lazy var data:THData = THData()
+    private var page:Int = 0
+    private var dayNum = 0
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,8 +34,6 @@ class THMainView: UIViewController, UITableViewDelegate, UITableViewDataSource, 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
         
-        data = THData()
-        self.createHeaderAndFooter()
         self.createRight2Btn()
         self.showLoaddingPage()
     }
@@ -35,7 +41,7 @@ class THMainView: UIViewController, UITableViewDelegate, UITableViewDataSource, 
     override func viewWillAppear(animated: Bool) {
         if (data.list.count == 0)
         {
-            self.header?.beginRefreshing();
+            self.header.beginRefreshing();
         }
     }
     
@@ -150,7 +156,7 @@ class THMainView: UIViewController, UITableViewDelegate, UITableViewDataSource, 
         
         let delayTime = dispatch_time(DISPATCH_TIME_NOW, Int64(0.1 * Double(NSEC_PER_SEC)))
         dispatch_after(delayTime, dispatch_get_main_queue()) { () -> Void in
-            self.header?.beginRefreshing()
+            self.header.beginRefreshing()
         }
     }
     
@@ -170,7 +176,7 @@ class THMainView: UIViewController, UITableViewDelegate, UITableViewDataSource, 
         
         let delayTime = dispatch_time(DISPATCH_TIME_NOW, Int64(0.1 * Double(NSEC_PER_SEC)))
         dispatch_after(delayTime, dispatch_get_main_queue()) { () -> Void in
-            self.header?.beginRefreshing()
+            self.header.beginRefreshing()
         }
     }
     
@@ -182,20 +188,12 @@ class THMainView: UIViewController, UITableViewDelegate, UITableViewDataSource, 
         }
         self.dayNum = 0
         self.createRight2Btn()
-        self.header?.endRefreshing()
+        self.header.endRefreshing()
         
         let delayTime = dispatch_time(DISPATCH_TIME_NOW, Int64(0.1 * Double(NSEC_PER_SEC)))
         dispatch_after(delayTime, dispatch_get_main_queue()) { () -> Void in
-            self.header?.beginRefreshing()
+            self.header.beginRefreshing()
         }
-    }
-    
-    func createHeaderAndFooter()
-    {
-        self.header = self.tableView.addLegendHeaderWithRefreshingTarget(self, refreshingAction: "refreshStart")
-        self.header?.textColor = Colors.main
-        self.footer = self.tableView.addLegendFooterWithRefreshingTarget(self, refreshingAction: "loadMoreData")
-        self.footer?.textColor = Colors.main
     }
     
     func refreshStart()
@@ -211,7 +209,7 @@ class THMainView: UIViewController, UITableViewDelegate, UITableViewDataSource, 
                 if (page == Globle.AutoPageLoadTag + Globle.PageSize - 1)
                 {
                     self.loadDataOver(true, page: 0, newLine: Int.max)
-                    self.header?.endRefreshing()
+                    self.header.endRefreshing()
                     self.hideLoaddingPage()
                     return
                 }
@@ -226,7 +224,7 @@ class THMainView: UIViewController, UITableViewDelegate, UITableViewDataSource, 
             {
                 self.hideLoaddingPage()
                 self.loadDataOver(true, page: 1, newLine: 0)
-                self.header?.endRefreshing()
+                self.header.endRefreshing()
             }
         })
     }
@@ -235,7 +233,7 @@ class THMainView: UIViewController, UITableViewDelegate, UITableViewDataSource, 
     {
         data.getTodayHistory(page+1, dayNum: self.dayNum, refresh: { (success, page, newLine) -> Void in
             self.loadDataOver(success, page: page, newLine: newLine)
-            self.footer?.endRefreshing()
+            self.footer.endRefreshing()
         })
     }
     
@@ -251,13 +249,13 @@ class THMainView: UIViewController, UITableViewDelegate, UITableViewDataSource, 
             if newLine < Globle.PageSize
             {
                 dispatch_async(dispatch_get_main_queue(), { () -> Void in
-                    self.footer?.noticeNoMoreData()
+                    self.footer.noticeNoMoreData()
                 })
             }
             else if newLine > Globle.PageSize
             {
                 dispatch_async(dispatch_get_main_queue(), { () -> Void in
-                    self.footer?.resetNoMoreData()
+                    self.footer.resetNoMoreData()
                 })
             }
             
