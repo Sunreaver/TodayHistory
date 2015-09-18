@@ -23,6 +23,9 @@
 		D0219D3C1BA1560E0007F00E /* THWebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0219D3B1BA1560E0007F00E /* THWebView.swift */; };
 		D0219D411BA156930007F00E /* GetViewCtrlFromStoryboard.m in Sources */ = {isa = PBXBuildFile; fileRef = D0219D3E1BA156930007F00E /* GetViewCtrlFromStoryboard.m */; };
 		D0219D421BA156930007F00E /* PushViewController+UINavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = D0219D401BA156930007F00E /* PushViewController+UINavigationController.m */; };
+		D0FD1E161BABE9A800A94B73 /* CollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0FD1E151BABE9A800A94B73 /* CollectionViewController.swift */; settings = {ASSET_TAGS = (); }; };
+		D0FD1E181BABECDC00A94B73 /* THCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0FD1E171BABECDC00A94B73 /* THCollectionViewCell.swift */; settings = {ASSET_TAGS = (); }; };
+		D0FD1E1A1BABF14800A94B73 /* THCollectionViewLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0FD1E191BABF14800A94B73 /* THCollectionViewLayout.swift */; settings = {ASSET_TAGS = (); }; };
 		D0FF63371BA020F600A00BAB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0FF63361BA020F600A00BAB /* AppDelegate.swift */; };
 		D0FF633C1BA020F600A00BAB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D0FF633A1BA020F600A00BAB /* Main.storyboard */; };
 		D0FF633E1BA020F600A00BAB /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D0FF633D1BA020F600A00BAB /* Images.xcassets */; };
@@ -62,6 +65,9 @@
 		D0219D3E1BA156930007F00E /* GetViewCtrlFromStoryboard.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GetViewCtrlFromStoryboard.m; sourceTree = "<group>"; };
 		D0219D3F1BA156930007F00E /* PushViewController+UINavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "PushViewController+UINavigationController.h"; sourceTree = "<group>"; };
 		D0219D401BA156930007F00E /* PushViewController+UINavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "PushViewController+UINavigationController.m"; sourceTree = "<group>"; };
+		D0FD1E151BABE9A800A94B73 /* CollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionViewController.swift; sourceTree = "<group>"; };
+		D0FD1E171BABECDC00A94B73 /* THCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = THCollectionViewCell.swift; sourceTree = "<group>"; };
+		D0FD1E191BABF14800A94B73 /* THCollectionViewLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = THCollectionViewLayout.swift; sourceTree = "<group>"; };
 		D0FF63311BA020F600A00BAB /* TodayHistory.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TodayHistory.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D0FF63351BA020F600A00BAB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D0FF63361BA020F600A00BAB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -147,6 +153,8 @@
 				D01E88101BA271B300DE9BE1 /* layers */,
 				D0219D361BA12B410007F00E /* THCell.swift */,
 				D01E880E1BA2704000DE9BE1 /* THLoaddingPage.swift */,
+				D0FD1E171BABECDC00A94B73 /* THCollectionViewCell.swift */,
+				D0FD1E191BABF14800A94B73 /* THCollectionViewLayout.swift */,
 			);
 			path = view;
 			sourceTree = "<group>";
@@ -157,6 +165,7 @@
 				D01E880C1BA1927300DE9BE1 /* THMainView.swift */,
 				D0219D3B1BA1560E0007F00E /* THWebView.swift */,
 				D01E88191BA6785900DE9BE1 /* THTestVC.swift */,
+				D0FD1E151BABE9A800A94B73 /* CollectionViewController.swift */,
 			);
 			path = ctrl;
 			sourceTree = "<group>";
@@ -286,7 +295,9 @@
 		D0FF63291BA020F600A00BAB /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0640;
+				LastSwiftMigration = 0700;
+				LastSwiftUpdateCheck = 0700;
+				LastUpgradeCheck = 0700;
 				ORGANIZATIONNAME = "谭伟";
 				TargetAttributes = {
 					D0FF63301BA020F600A00BAB = {
@@ -383,15 +394,18 @@
 				D0FF635F1BA029F700A00BAB /* NetWorkManager.swift in Sources */,
 				D01E88151BA271B300DE9BE1 /* ArcLayer.swift in Sources */,
 				D01E88161BA271B300DE9BE1 /* OvalLayer.swift in Sources */,
+				D0FD1E181BABECDC00A94B73 /* THCollectionViewCell.swift in Sources */,
 				D0219D421BA156930007F00E /* PushViewController+UINavigationController.m in Sources */,
 				D01E880F1BA2704000DE9BE1 /* THLoaddingPage.swift in Sources */,
 				D0219D411BA156930007F00E /* GetViewCtrlFromStoryboard.m in Sources */,
 				D0FF635D1BA027F000A00BAB /* JsonTw.m in Sources */,
+				D0FD1E161BABE9A800A94B73 /* CollectionViewController.swift in Sources */,
 				D01E880D1BA1927300DE9BE1 /* THMainView.swift in Sources */,
 				D0219D341BA11D1F0007F00E /* THData.swift in Sources */,
 				D0219D371BA12B410007F00E /* THCell.swift in Sources */,
 				D0FF63371BA020F600A00BAB /* AppDelegate.swift in Sources */,
 				D0219D3C1BA1560E0007F00E /* THWebView.swift in Sources */,
+				D0FD1E1A1BABF14800A94B73 /* THCollectionViewLayout.swift in Sources */,
 				D01E88181BA271B300DE9BE1 /* TriangleLayer.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -455,6 +469,7 @@
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -523,6 +538,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				INFOPLIST_FILE = TodayHistory/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.yeeuu.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "TodayHistory/Tool/TodayHistory-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -537,6 +553,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				INFOPLIST_FILE = TodayHistory/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.yeeuu.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "TodayHistory/Tool/TodayHistory-Bridging-Header.h";
 			};
@@ -556,6 +573,7 @@
 				);
 				INFOPLIST_FILE = TodayHistoryTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.yeeuu.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/TodayHistory.app/TodayHistory";
 			};
@@ -571,6 +589,7 @@
 				);
 				INFOPLIST_FILE = TodayHistoryTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.yeeuu.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/TodayHistory.app/TodayHistory";
 			};

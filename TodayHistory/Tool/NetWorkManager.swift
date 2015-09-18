@@ -34,21 +34,20 @@ class NetWorkManager: NSObject {
     - parameter month: 月
     - parameter page:  分页
     */
-    func getTodayHistoryWithDay(day:Int, month:Int, page:Int)
+    func getTodayHistoryWithDay(day:Int, month:Int, var page:Int)
     {
         let sPage = page
         let manager = AFHTTPRequestOperationManager()
         manager.responseSerializer = AFHTTPResponseSerializer()
         manager.requestSerializer.timeoutInterval = NetWorkManager.TimeOutInterval
-        
+
         var pagesize = Globle.PageSize
-        var p = page
         if (page > Globle.AutoPageLoadTag)
         {
             pagesize = 1
-            p -= Globle.AutoPageLoadTag
+            page -= Globle.AutoPageLoadTag
         }
-        let params = ["m":"content","c":"index","a":"json_event","page":p,"pagesize":pagesize,"month":month,"day":day]
+        let params = ["m":"content","c":"index","a":"json_event","page":page,"pagesize":pagesize,"month":month,"day":day]
         
         manager.GET("http://www.todayonhistory.com/index.php",
             parameters: params,
@@ -57,21 +56,23 @@ class NetWorkManager: NSObject {
                 
                 self.afnetworks.removeObject(manager)
                 
-                let responseData = responseObject as! NSData!
-                let responseDict: AnyObject! = responseData.objectFromJSONData()
-                if (responseDict == nil)
+                if let responseData = responseObject as? NSData,
+                    let responseDict = responseData.objectFromJSONData(),
+                    let _ = responseDict as? NSArray
                 {
-                    self.delegate?.todayHistoryRequestData!(NSArray(), page: sPage, sender: self)
+                    self.delegate?.todayHistoryRequestData?(responseDict as! NSArray, page: sPage, sender: self)
                 }
                 else
                 {
-                    self.delegate?.todayHistoryRequestData!(responseDict as! NSArray, page: sPage, sender: self)
+                    self.delegate?.todayHistoryRequestData?(NSArray(), page: sPage, sender: self)
                 }
+
                 
             },
             failure:
             { (operation: AFHTTPRequestOperation!, error: NSError!) in
                 self.afnetworks.removeObject(manager)
+                self.delegate?.todayHistoryRequestData?(NSArray(), page: sPage, sender: self)
         })
         
         afnetworks.addObject(manager)

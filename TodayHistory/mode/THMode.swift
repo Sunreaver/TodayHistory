@@ -26,7 +26,7 @@ class THMode: NSObject {
     
     static func makeArrayWithData(arr: NSArray) -> NSArray
     {
-        var mArr = NSMutableArray()
+        let mArr = NSMutableArray()
         for dic in arr
         {
             mArr.addObject(THMode(data: dic as! NSDictionary))

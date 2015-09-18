@@ -38,13 +38,13 @@ class THData: NSObject, NetWorkManagerDelegate {
     func getTodayHistory(page: Int, dayNum:Int, refresh: netDataRefreshOver)
     {
         let cal = NSCalendar.currentCalendar()
-        let flags: NSCalendarUnit = .CalendarUnitMonth | .CalendarUnitDay
+        let flags: NSCalendarUnit = [.Month, .Day]
         
         let secs = Double(dayNum)*24*60*60
-        var date = NSDate(timeIntervalSinceNow: secs)
+        let date = NSDate(timeIntervalSinceNow: secs)
         let nowCom = cal.components(flags, fromDate: date)
         
-        var net = NetWorkManager()
+        let net = NetWorkManager()
         net.delegate = self
         net.getTodayHistoryWithDay(nowCom.day, month: nowCom.month, page: page);
         

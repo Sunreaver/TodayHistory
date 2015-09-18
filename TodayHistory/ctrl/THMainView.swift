@@ -7,8 +7,12 @@
 //
 
 import UIKit
+import SafariServices
 
-class THMainView: UIViewController, UITableViewDelegate, UITableViewDataSource, HolderViewDelegate {
+class THMainView: UIViewController,
+UITableViewDelegate,
+UITableViewDataSource,
+HolderViewDelegate {
     
     @IBOutlet weak var tableView: UITableView!
     private lazy var header:MJRefreshHeader = {
@@ -46,7 +50,7 @@ class THMainView: UIViewController, UITableViewDelegate, UITableViewDataSource, 
     }
     
     override func viewDidAppear(animated: Bool) {
-        var df = NSDateFormatter()
+        let df = NSDateFormatter()
         df.dateFormat = "yyyy-MM-dd"
         title = df.stringFromDate(NSDate(timeIntervalSinceNow: Double(dayNum)*24*60*60))
     }
@@ -96,7 +100,7 @@ class THMainView: UIViewController, UITableViewDelegate, UITableViewDataSource, 
 
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("THCell", forIndexPath: indexPath) as! UITableViewCell
+        let cell = tableView.dequeueReusableCellWithIdentifier("THCell", forIndexPath: indexPath) 
 
         // Configure the cell...
         
@@ -105,13 +109,22 @@ class THMainView: UIViewController, UITableViewDelegate, UITableViewDataSource, 
         return cell
     }
     
+    
+//    @available(iOS 9.0, *)
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         
-        var vc: THWebView = GetViewCtrlFromStoryboard.ViewCtrlWithStoryboard("Main", identifier: "THWebView") as! THWebView
-        vc.url = (self.data.list[indexPath.row] as! THMode).url
+        var vc: UIViewController?
+        
+        let url:NSURL = NSURL(string: (self.data.list[indexPath.row] as! THMode).url!)!
+        if #available(iOS 9.0, *) {
+            vc = SFSafariViewController(URL: url)
+        } else {
+            vc = GetViewCtrlFromStoryboard.ViewCtrlWithStoryboard("Main", identifier: "THWebView") as! THWebView
+            (vc as! THWebView).url = (self.data.list[indexPath.row] as! THMode).url
+        }
+//        var vc = GetViewCtrlFromStoryboard.ViewCtrlWithStoryboard("Main", identifier: "THTestVC")
         
         self.navigationController?.pushViewController(vc, transitionType: "cube", subType: "fromRight")
-        
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
     }
     
@@ -132,10 +145,10 @@ class THMainView: UIViewController, UITableViewDelegate, UITableViewDataSource, 
     func createRight2Btn()
     {
         let addImg = IonIcons.imageWithIcon(ion_ios_plus, size: 27.0, color: Colors.main)
-        var add = UIBarButtonItem(image: addImg, style: .Plain, target: self, action: "addDay")
+        let add = UIBarButtonItem(image: addImg, style: .Plain, target: self, action: "addDay")
         
         let reduceImg = IonIcons.imageWithIcon(ion_ios_minus, size: 27.0, color: Colors.main)
-        var reduce = UIBarButtonItem(image: reduceImg, style: .Plain, target: self, action: "reduceDay")
+        let reduce = UIBarButtonItem(image: reduceImg, style: .Plain, target: self, action: "reduceDay")
         
         self.navigationItem.setRightBarButtonItems([add, reduce], animated: true)
     }
@@ -146,7 +159,7 @@ class THMainView: UIViewController, UITableViewDelegate, UITableViewDataSource, 
         if(self.dayNum == 5)
         {
             let reduceImg = IonIcons.imageWithIcon(ion_ios_minus, size: 27.0, color: Colors.main)
-            var reduce = UIBarButtonItem(image: reduceImg, style: .Plain, target: self, action: "reduceDay")
+            let reduce = UIBarButtonItem(image: reduceImg, style: .Plain, target: self, action: "reduceDay")
             self.navigationItem.setRightBarButtonItems([reduce], animated: true)
         }
         else if (self.dayNum == -4)
@@ -166,7 +179,7 @@ class THMainView: UIViewController, UITableViewDelegate, UITableViewDataSource, 
         if(self.dayNum == -5)
         {
             let addImg = IonIcons.imageWithIcon(ion_ios_plus, size: 27.0, color: Colors.main)
-            var add = UIBarButtonItem(image: addImg, style: .Plain, target: self, action: "addDay")
+            let add = UIBarButtonItem(image: addImg, style: .Plain, target: self, action: "addDay")
             self.navigationItem.setRightBarButtonItems([add], animated: true)
         }
         else if (self.dayNum == 4)

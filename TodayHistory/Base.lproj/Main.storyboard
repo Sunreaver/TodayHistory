@@ -1,9 +1,57 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14E46" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="F6X-y4-268">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="8191" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="p7N-Pp-FIc">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8154"/>
     </dependencies>
     <scenes>
+        <!--Collection View Controller-->
+        <scene sceneID="jeY-hN-fVg">
+            <objects>
+                <collectionViewController storyboardIdentifier="CollectionViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="blL-1g-acb" customClass="CollectionViewController" customModule="TodayHistory" customModuleProvider="target" sceneMemberID="viewController">
+                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="mlh-12-fEf">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <collectionViewLayout key="collectionViewLayout" id="4MS-X4-Uad" customClass="THCollectionViewLayout" customModule="TodayHistory" customModuleProvider="target"/>
+                        <cells>
+                            <collectionViewCell clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="THCollectionViewCell" id="Okc-XN-OV1" customClass="THCollectionViewCell" customModule="TodayHistory" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="64" width="79" height="141"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                    <rect key="frame" x="0.0" y="0.0" width="79" height="141"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Ykq-sU-KQK">
+                                            <rect key="frame" x="-1" y="0.0" width="80" height="141"/>
+                                        </imageView>
+                                    </subviews>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                </view>
+                                <constraints>
+                                    <constraint firstItem="Ykq-sU-KQK" firstAttribute="centerX" secondItem="Okc-XN-OV1" secondAttribute="centerX" id="aFZ-Er-aYk"/>
+                                    <constraint firstItem="Ykq-sU-KQK" firstAttribute="centerY" secondItem="Okc-XN-OV1" secondAttribute="centerY" id="ihT-Xl-0qk"/>
+                                    <constraint firstItem="Ykq-sU-KQK" firstAttribute="height" secondItem="Okc-XN-OV1" secondAttribute="height" id="jNw-3T-UxG"/>
+                                    <constraint firstItem="Ykq-sU-KQK" firstAttribute="width" secondItem="Okc-XN-OV1" secondAttribute="width" id="wS0-rf-p6j"/>
+                                </constraints>
+                                <size key="customSize" width="79" height="141"/>
+                                <connections>
+                                    <outlet property="iv_bg" destination="Ykq-sU-KQK" id="zWz-Bq-s41"/>
+                                </connections>
+                            </collectionViewCell>
+                        </cells>
+                        <connections>
+                            <outlet property="dataSource" destination="blL-1g-acb" id="vMj-wh-cBh"/>
+                            <outlet property="delegate" destination="blL-1g-acb" id="WKj-PB-ngG"/>
+                        </connections>
+                    </collectionView>
+                    <navigationItem key="navigationItem" id="beI-m7-qPy"/>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics"/>
+                </collectionViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="cRK-rj-qRF" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1213" y="1541"/>
+        </scene>
         <!--Main View-->
         <scene sceneID="FEp-wO-wL2">
             <objects>
@@ -21,9 +69,10 @@
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="THCell" rowHeight="70" id="Vqi-H5-3HB" customClass="THCell" customModule="TodayHistory" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                                        <rect key="frame" x="0.0" y="22" width="320" height="70"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Vqi-H5-3HB" id="9xd-pH-Moz">
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="69"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="d2i-uk-rDq">
@@ -153,7 +202,7 @@
         <!--TestVC-->
         <scene sceneID="ecK-0h-dAH">
             <objects>
-                <viewController id="uwG-a0-6Gc" customClass="THTestVC" customModule="TodayHistory" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="THTestVC" wantsFullScreenLayout="YES" useStoryboardIdentifierAsRestorationIdentifier="YES" id="uwG-a0-6Gc" customClass="THTestVC" customModule="TodayHistory" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="B1a-yV-ApP"/>
                         <viewControllerLayoutGuide type="bottom" id="34Y-J6-IQq"/>
@@ -166,17 +215,18 @@
                                 <rect key="frame" x="107" y="187" width="106" height="106"/>
                             </imageView>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="0.32549019610000002" green="0.75686274509999996" blue="0.29803921570000003" alpha="1" colorSpace="calibratedRGB"/>
                         <gestureRecognizers/>
                         <constraints>
                             <constraint firstAttribute="centerX" secondItem="IVR-Es-Bpv" secondAttribute="centerX" id="moP-rR-Ld4"/>
-                            <constraint firstAttribute="centerY" secondItem="IVR-Es-Bpv" secondAttribute="centerY" id="ngj-fG-hCA"/>
+                            <constraint firstItem="IVR-Es-Bpv" firstAttribute="centerY" secondItem="3gj-hm-TbD" secondAttribute="centerY" id="nge-sf-OO3"/>
                         </constraints>
                         <connections>
                             <outletCollection property="gestureRecognizers" destination="v5y-XR-kyI" appends="YES" id="erf-9y-plw"/>
                         </connections>
                     </view>
                     <navigationItem key="navigationItem" id="ysl-6i-Vpf"/>
+                    <nil key="simulatedTopBarMetrics"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics"/>
                     <connections>
                         <outlet property="iv_1" destination="IVR-Es-Bpv" id="o78-gh-sCa"/>
@@ -228,6 +278,25 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ghk-qg-mQO" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="793" y="382"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="jQt-wC-bWl">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="p7N-Pp-FIc" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="lR8-zr-Ju3">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="blL-1g-acb" kind="relationship" relationship="rootViewController" id="Hbg-18-EMd"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="vsb-jb-1CA" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="793" y="1541"/>
         </scene>
     </scenes>
     <resources>

@@ -14,9 +14,6 @@ class THWebView: UIViewController, UIWebViewDelegate {
     @IBOutlet weak var loadding: UIActivityIndicatorView!
     
     override func viewDidLoad() {
-        super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
         self.web.delegate = self
     }
 
