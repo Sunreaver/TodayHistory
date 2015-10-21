@@ -23,6 +23,7 @@
 		D0219D3C1BA1560E0007F00E /* THWebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0219D3B1BA1560E0007F00E /* THWebView.swift */; };
 		D0219D411BA156930007F00E /* GetViewCtrlFromStoryboard.m in Sources */ = {isa = PBXBuildFile; fileRef = D0219D3E1BA156930007F00E /* GetViewCtrlFromStoryboard.m */; };
 		D0219D421BA156930007F00E /* PushViewController+UINavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = D0219D401BA156930007F00E /* PushViewController+UINavigationController.m */; };
+		D0BD74871BAFEC7500017D36 /* NetWorkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0BD74861BAFEC7500017D36 /* NetWorkManager.swift */; settings = {ASSET_TAGS = (); }; };
 		D0FD1E161BABE9A800A94B73 /* CollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0FD1E151BABE9A800A94B73 /* CollectionViewController.swift */; settings = {ASSET_TAGS = (); }; };
 		D0FD1E181BABECDC00A94B73 /* THCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0FD1E171BABECDC00A94B73 /* THCollectionViewCell.swift */; settings = {ASSET_TAGS = (); }; };
 		D0FD1E1A1BABF14800A94B73 /* THCollectionViewLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0FD1E191BABF14800A94B73 /* THCollectionViewLayout.swift */; settings = {ASSET_TAGS = (); }; };
@@ -31,8 +32,6 @@
 		D0FF633E1BA020F600A00BAB /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D0FF633D1BA020F600A00BAB /* Images.xcassets */; };
 		D0FF63411BA020F600A00BAB /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = D0FF633F1BA020F600A00BAB /* LaunchScreen.xib */; };
 		D0FF634D1BA020F600A00BAB /* TodayHistoryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0FF634C1BA020F600A00BAB /* TodayHistoryTests.swift */; };
-		D0FF635D1BA027F000A00BAB /* JsonTw.m in Sources */ = {isa = PBXBuildFile; fileRef = D0FF635C1BA027F000A00BAB /* JsonTw.m */; };
-		D0FF635F1BA029F700A00BAB /* NetWorkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0FF635E1BA029F700A00BAB /* NetWorkManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -65,6 +64,7 @@
 		D0219D3E1BA156930007F00E /* GetViewCtrlFromStoryboard.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GetViewCtrlFromStoryboard.m; sourceTree = "<group>"; };
 		D0219D3F1BA156930007F00E /* PushViewController+UINavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "PushViewController+UINavigationController.h"; sourceTree = "<group>"; };
 		D0219D401BA156930007F00E /* PushViewController+UINavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "PushViewController+UINavigationController.m"; sourceTree = "<group>"; };
+		D0BD74861BAFEC7500017D36 /* NetWorkManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetWorkManager.swift; sourceTree = "<group>"; };
 		D0FD1E151BABE9A800A94B73 /* CollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionViewController.swift; sourceTree = "<group>"; };
 		D0FD1E171BABECDC00A94B73 /* THCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = THCollectionViewCell.swift; sourceTree = "<group>"; };
 		D0FD1E191BABF14800A94B73 /* THCollectionViewLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = THCollectionViewLayout.swift; sourceTree = "<group>"; };
@@ -78,9 +78,6 @@
 		D0FF634B1BA020F600A00BAB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D0FF634C1BA020F600A00BAB /* TodayHistoryTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayHistoryTests.swift; sourceTree = "<group>"; };
 		D0FF635A1BA027F000A00BAB /* TodayHistory-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "TodayHistory-Bridging-Header.h"; sourceTree = "<group>"; };
-		D0FF635B1BA027F000A00BAB /* JsonTw.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JsonTw.h; sourceTree = "<group>"; };
-		D0FF635C1BA027F000A00BAB /* JsonTw.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JsonTw.m; sourceTree = "<group>"; };
-		D0FF635E1BA029F700A00BAB /* NetWorkManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetWorkManager.swift; sourceTree = "<group>"; };
 		DF36065530964A90584C2393 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -239,10 +236,8 @@
 				D0219D3E1BA156930007F00E /* GetViewCtrlFromStoryboard.m */,
 				D0219D3F1BA156930007F00E /* PushViewController+UINavigationController.h */,
 				D0219D401BA156930007F00E /* PushViewController+UINavigationController.m */,
-				D0FF635B1BA027F000A00BAB /* JsonTw.h */,
-				D0FF635C1BA027F000A00BAB /* JsonTw.m */,
 				D0FF635A1BA027F000A00BAB /* TodayHistory-Bridging-Header.h */,
-				D0FF635E1BA029F700A00BAB /* NetWorkManager.swift */,
+				D0BD74861BAFEC7500017D36 /* NetWorkManager.swift */,
 				D01E88081BA1708900DE9BE1 /* Colors.swift */,
 				D01E880A1BA17FCD00DE9BE1 /* Globle.swift */,
 			);
@@ -386,19 +381,18 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D0BD74871BAFEC7500017D36 /* NetWorkManager.swift in Sources */,
 				D0219D311BA116FE0007F00E /* THMode.swift in Sources */,
 				D01E88171BA271B300DE9BE1 /* RectangleLayer.swift in Sources */,
 				D01E88091BA1708900DE9BE1 /* Colors.swift in Sources */,
 				D01E880B1BA17FCD00DE9BE1 /* Globle.swift in Sources */,
 				D01E881A1BA6785900DE9BE1 /* THTestVC.swift in Sources */,
-				D0FF635F1BA029F700A00BAB /* NetWorkManager.swift in Sources */,
 				D01E88151BA271B300DE9BE1 /* ArcLayer.swift in Sources */,
 				D01E88161BA271B300DE9BE1 /* OvalLayer.swift in Sources */,
 				D0FD1E181BABECDC00A94B73 /* THCollectionViewCell.swift in Sources */,
 				D0219D421BA156930007F00E /* PushViewController+UINavigationController.m in Sources */,
 				D01E880F1BA2704000DE9BE1 /* THLoaddingPage.swift in Sources */,
 				D0219D411BA156930007F00E /* GetViewCtrlFromStoryboard.m in Sources */,
-				D0FF635D1BA027F000A00BAB /* JsonTw.m in Sources */,
 				D0FD1E161BABE9A800A94B73 /* CollectionViewController.swift in Sources */,
 				D01E880D1BA1927300DE9BE1 /* THMainView.swift in Sources */,
 				D0219D341BA11D1F0007F00E /* THData.swift in Sources */,
@@ -536,8 +530,19 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"${PODS_ROOT}/Headers/Public\"",
+					"\"${PODS_ROOT}/Headers/Public/AFNetworking\"",
+					"\"${PODS_ROOT}/Headers/Public/JSONKit\"",
+					"\"${PODS_ROOT}/Headers/Public/MJRefresh\"",
+					"\"${PODS_ROOT}/Headers/Public/ionicons\"",
+					"$(SRCROOT)/NetManager/NetManager",
+				);
 				INFOPLIST_FILE = TodayHistory/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.yeeuu.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "TodayHistory/Tool/TodayHistory-Bridging-Header.h";
@@ -551,8 +556,19 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"${PODS_ROOT}/Headers/Public\"",
+					"\"${PODS_ROOT}/Headers/Public/AFNetworking\"",
+					"\"${PODS_ROOT}/Headers/Public/JSONKit\"",
+					"\"${PODS_ROOT}/Headers/Public/MJRefresh\"",
+					"\"${PODS_ROOT}/Headers/Public/ionicons\"",
+					"$(SRCROOT)/NetManager/NetManager",
+				);
 				INFOPLIST_FILE = TodayHistory/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.yeeuu.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "TodayHistory/Tool/TodayHistory-Bridging-Header.h";

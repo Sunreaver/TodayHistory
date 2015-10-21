@@ -46,7 +46,7 @@ class THData: NSObject, NetWorkManagerDelegate {
         
         let net = NetWorkManager()
         net.delegate = self
-        net.getTodayHistoryWithDay(nowCom.day, month: nowCom.month, page: page);
+        net.getTodayHistoryWithDay(Day: nowCom.day, Month: nowCom.month, page: page)
         
         nets.addObject(net)
         self.refresh = refresh
@@ -72,7 +72,7 @@ class THData: NSObject, NetWorkManagerDelegate {
             if todays.count == 0
             {
                 self.refresh?(success: true, page: page, newLine:todays.count)
-                return;
+                return
             }
             lastPage = page
             let modes = THMode.makeArrayWithData(todays)

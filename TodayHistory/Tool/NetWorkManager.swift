@@ -21,10 +21,11 @@ class NetWorkManager: NSObject {
     
     func stopLoad()
     {
-        for af in afnetworks
-        {
-            (af as! AFHTTPRequestOperationManager).operationQueue.cancelAllOperations()
-        }
+//        for af in afnetworks
+//        {
+//            (af as! AFHTTPRequestOperationManager).operationQueue.cancelAllOperations()
+//        }
+        afnetworks.map{ ($0 as? AFHTTPRequestOperationManager)?.operationQueue.cancelAllOperations() }
     }
     
     /**
@@ -34,7 +35,7 @@ class NetWorkManager: NSObject {
     - parameter month: 月
     - parameter page:  分页
     */
-    func getTodayHistoryWithDay(day:Int, month:Int, var page:Int)
+    func getTodayHistoryWithDay(Day d:Int, Month m:Int, var page:Int)
     {
         let sPage = page
         let manager = AFHTTPRequestOperationManager()
@@ -47,7 +48,7 @@ class NetWorkManager: NSObject {
             pagesize = 1
             page -= Globle.AutoPageLoadTag
         }
-        let params = ["m":"content","c":"index","a":"json_event","page":page,"pagesize":pagesize,"month":month,"day":day]
+        let params = ["m":"content","c":"index","a":"json_event","page":page,"pagesize":pagesize,"month":m,"day":d]
         
         manager.GET("http://www.todayonhistory.com/index.php",
             parameters: params,
@@ -66,8 +67,6 @@ class NetWorkManager: NSObject {
                 {
                     self.delegate?.todayHistoryRequestData?(NSArray(), page: sPage, sender: self)
                 }
-
-                
             },
             failure:
             { (operation: AFHTTPRequestOperation!, error: NSError!) in
