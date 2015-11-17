@@ -11,6 +11,7 @@ import UIKit
 @objc protocol NetWorkManagerDelegate:class
 {
     optional func todayHistoryRequestData(todays:NSArray, page:Int, sender:NetWorkManager)
+    optional func dictionaryRequestData(word:NSDictionary, sender:NetWorkManager)
 }
 
 class NetWorkManager: NSObject {
@@ -72,6 +73,55 @@ class NetWorkManager: NSObject {
             { (operation: AFHTTPRequestOperation!, error: NSError!) in
                 self.afnetworks.removeObject(manager)
                 self.delegate?.todayHistoryRequestData?(NSArray(), page: sPage, sender: self)
+        })
+        
+        afnetworks.addObject(manager)
+    }
+    
+    
+    /**
+     获取词典
+     
+     - parameter day:   日
+     - parameter month: 月
+     - parameter page:  分页
+     */
+    func getDictionaryWithWords(Words w:NSString)
+    {
+        let manager = AFHTTPRequestOperationManager()
+        manager.responseSerializer = AFHTTPResponseSerializer()
+        manager.requestSerializer.timeoutInterval = NetWorkManager.TimeOutInterval
+        
+        var url = "http://brisk.eu.org/api/xhzd.php"
+        if w.length > 1
+        {
+            url = "http://brisk.eu.org/api/hycd.php"
+        }
+        
+        let params = ["word":w]
+        
+        manager.GET(url,
+            parameters: params,
+            success:
+            { (operation: AFHTTPRequestOperation!, responseObject: AnyObject!) in
+                
+                self.afnetworks.removeObject(manager)
+                
+                if let responseData = responseObject as? NSData,
+                    let responseDict = responseData.objectFromJSONData(),
+                    let _ = responseDict as? NSDictionary
+                {
+                    self.delegate?.dictionaryRequestData?(responseDict as! NSDictionary, sender: self)
+                }
+                else
+                {
+                    self.delegate?.dictionaryRequestData?(NSDictionary(), sender: self)
+                }
+            },
+            failure:
+            { (operation: AFHTTPRequestOperation!, error: NSError!) in
+                self.afnetworks.removeObject(manager)
+                self.delegate?.dictionaryRequestData?(NSDictionary(), sender: self)
         })
         
         afnetworks.addObject(manager)

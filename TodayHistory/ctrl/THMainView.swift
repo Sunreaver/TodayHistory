@@ -52,7 +52,7 @@ HolderViewDelegate {
     override func viewDidAppear(animated: Bool) {
         let df = NSDateFormatter()
         df.dateFormat = "yyyy-MM-dd"
-        title = df.stringFromDate(NSDate(timeIntervalSinceNow: Double(dayNum)*24*60*60))
+        self.navigationItem.title = df.stringFromDate(NSDate(timeIntervalSinceNow: Double(dayNum)*24*60*60))
     }
 
     override func didReceiveMemoryWarning() {
@@ -124,6 +124,7 @@ HolderViewDelegate {
         }
 //        var vc = GetViewCtrlFromStoryboard.ViewCtrlWithStoryboard("Main", identifier: "THTestVC")
         
+        vc?.hidesBottomBarWhenPushed = true
         self.navigationController?.pushViewController(vc, transitionType: "cube", subType: "fromRight")
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
     }

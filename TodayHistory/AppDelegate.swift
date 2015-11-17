@@ -15,6 +15,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
+        let tabbarCtrl = self.window!.rootViewController
+        let vc0 = tabbarCtrl?.childViewControllers[0]
+        let vc1 = tabbarCtrl?.childViewControllers[1]
+        vc0?.tabBarItem.image = IonIcons.imageWithIcon(ion_ios_book_outline, size: 27.0, color: UIColor.blackColor())
+        vc0?.tabBarItem.selectedImage = IonIcons.imageWithIcon(ion_ios_book_outline, size: 27.0, color: Colors.main)
+        vc0?.tabBarItem.title = "词典"
+        
+        vc1?.tabBarItem.image = IonIcons.imageWithIcon(ion_calendar, size: 27.0, color: UIColor.blackColor())
+        vc1?.tabBarItem.selectedImage = IonIcons.imageWithIcon(ion_calendar, size: 27.0, color: Colors.main)
+        vc1?.tabBarItem.title = "历史今天"
         return true
     }
 

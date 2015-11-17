@@ -13,22 +13,19 @@ class THWebView: UIViewController, UIWebViewDelegate {
     @IBOutlet weak var web: UIWebView!
     @IBOutlet weak var loadding: UIActivityIndicatorView!
     
-    override func viewDidLoad() {
-        self.web.delegate = self
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    override func viewWillAppear(animated: Bool) {
+        self.navigationController?.setNavigationBarHidden(false, animated: true)
     }
     
-    override func viewWillAppear(animated: Bool) {
-        let request = NSURLRequest(URL: NSURL(string: url!)!)
+    override func viewDidAppear(animated: Bool) {
+        let urlEncode = url?.URLEncodedString()
+        let request = NSURLRequest(URL: NSURL(string: urlEncode!)!)
         self.web.loadRequest(request)
     }
     
     func webView(webView: UIWebView, shouldStartLoadWithRequest request: NSURLRequest, navigationType: UIWebViewNavigationType) -> Bool {
-        if (request.URL?.host == "www.todayonhistory.com")
+        if (request.URL?.host == "www.todayonhistory.com" ||
+            request.URL?.host == "m.zdic.net")
         {
             return true
         }
@@ -52,4 +49,35 @@ class THWebView: UIViewController, UIWebViewDelegate {
     }
     */
 
+}
+
+extension String {
+    func URLEncodedString() -> String? {
+        let customAllowedSet =  NSCharacterSet.URLQueryAllowedCharacterSet()
+        let escapedString = self.stringByAddingPercentEncodingWithAllowedCharacters(customAllowedSet)
+        return escapedString
+    }
+    static func queryStringFromParameters(parameters: Dictionary<String,String>) -> String? {
+        if (parameters.count == 0)
+        {
+            return nil
+        }
+        var queryString : String? = nil
+        for (key, value) in parameters {
+            if let encodedKey = key.URLEncodedString() {
+                if let encodedValue = value.URLEncodedString() {
+                    if queryString == nil
+                    {
+                        queryString = "?"
+                    }
+                    else
+                    {
+                        queryString! += "&"
+                    }
+                    queryString! += encodedKey + "=" + encodedValue
+                }
+            }
+        }
+        return queryString
+    }
 }

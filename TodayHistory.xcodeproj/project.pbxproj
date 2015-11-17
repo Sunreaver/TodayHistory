@@ -23,26 +23,18 @@
 		D0219D3C1BA1560E0007F00E /* THWebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0219D3B1BA1560E0007F00E /* THWebView.swift */; };
 		D0219D411BA156930007F00E /* GetViewCtrlFromStoryboard.m in Sources */ = {isa = PBXBuildFile; fileRef = D0219D3E1BA156930007F00E /* GetViewCtrlFromStoryboard.m */; };
 		D0219D421BA156930007F00E /* PushViewController+UINavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = D0219D401BA156930007F00E /* PushViewController+UINavigationController.m */; };
-		D0BD74871BAFEC7500017D36 /* NetWorkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0BD74861BAFEC7500017D36 /* NetWorkManager.swift */; settings = {ASSET_TAGS = (); }; };
-		D0FD1E161BABE9A800A94B73 /* CollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0FD1E151BABE9A800A94B73 /* CollectionViewController.swift */; settings = {ASSET_TAGS = (); }; };
-		D0FD1E181BABECDC00A94B73 /* THCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0FD1E171BABECDC00A94B73 /* THCollectionViewCell.swift */; settings = {ASSET_TAGS = (); }; };
-		D0FD1E1A1BABF14800A94B73 /* THCollectionViewLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0FD1E191BABF14800A94B73 /* THCollectionViewLayout.swift */; settings = {ASSET_TAGS = (); }; };
+		D04011531BFB0FD200656161 /* THDictionaryVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D04011521BFB0FD200656161 /* THDictionaryVC.swift */; };
+		D04011551BFB127F00656161 /* THDictionaryDetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D04011541BFB127F00656161 /* THDictionaryDetailVC.swift */; };
+		D04011581BFB1C6500656161 /* THDictionaryData.m in Sources */ = {isa = PBXBuildFile; fileRef = D04011571BFB1C6500656161 /* THDictionaryData.m */; };
+		D0BD74871BAFEC7500017D36 /* NetWorkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0BD74861BAFEC7500017D36 /* NetWorkManager.swift */; };
+		D0FD1E161BABE9A800A94B73 /* CollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0FD1E151BABE9A800A94B73 /* CollectionViewController.swift */; };
+		D0FD1E181BABECDC00A94B73 /* THCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0FD1E171BABECDC00A94B73 /* THCollectionViewCell.swift */; };
+		D0FD1E1A1BABF14800A94B73 /* THCollectionViewLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0FD1E191BABF14800A94B73 /* THCollectionViewLayout.swift */; };
 		D0FF63371BA020F600A00BAB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0FF63361BA020F600A00BAB /* AppDelegate.swift */; };
 		D0FF633C1BA020F600A00BAB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D0FF633A1BA020F600A00BAB /* Main.storyboard */; };
 		D0FF633E1BA020F600A00BAB /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D0FF633D1BA020F600A00BAB /* Images.xcassets */; };
 		D0FF63411BA020F600A00BAB /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = D0FF633F1BA020F600A00BAB /* LaunchScreen.xib */; };
-		D0FF634D1BA020F600A00BAB /* TodayHistoryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0FF634C1BA020F600A00BAB /* TodayHistoryTests.swift */; };
 /* End PBXBuildFile section */
-
-/* Begin PBXContainerItemProxy section */
-		D0FF63471BA020F600A00BAB /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = D0FF63291BA020F600A00BAB /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = D0FF63301BA020F600A00BAB;
-			remoteInfo = TodayHistory;
-		};
-/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		04CB89F5C0747680FB16308D /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -64,6 +56,10 @@
 		D0219D3E1BA156930007F00E /* GetViewCtrlFromStoryboard.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GetViewCtrlFromStoryboard.m; sourceTree = "<group>"; };
 		D0219D3F1BA156930007F00E /* PushViewController+UINavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "PushViewController+UINavigationController.h"; sourceTree = "<group>"; };
 		D0219D401BA156930007F00E /* PushViewController+UINavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "PushViewController+UINavigationController.m"; sourceTree = "<group>"; };
+		D04011521BFB0FD200656161 /* THDictionaryVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = THDictionaryVC.swift; sourceTree = "<group>"; };
+		D04011541BFB127F00656161 /* THDictionaryDetailVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = THDictionaryDetailVC.swift; sourceTree = "<group>"; };
+		D04011561BFB1C6500656161 /* THDictionaryData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THDictionaryData.h; sourceTree = "<group>"; };
+		D04011571BFB1C6500656161 /* THDictionaryData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THDictionaryData.m; sourceTree = "<group>"; };
 		D0BD74861BAFEC7500017D36 /* NetWorkManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetWorkManager.swift; sourceTree = "<group>"; };
 		D0FD1E151BABE9A800A94B73 /* CollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionViewController.swift; sourceTree = "<group>"; };
 		D0FD1E171BABECDC00A94B73 /* THCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = THCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -74,9 +70,6 @@
 		D0FF633B1BA020F600A00BAB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		D0FF633D1BA020F600A00BAB /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		D0FF63401BA020F600A00BAB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
-		D0FF63461BA020F600A00BAB /* TodayHistoryTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TodayHistoryTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		D0FF634B1BA020F600A00BAB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		D0FF634C1BA020F600A00BAB /* TodayHistoryTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayHistoryTests.swift; sourceTree = "<group>"; };
 		D0FF635A1BA027F000A00BAB /* TodayHistory-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "TodayHistory-Bridging-Header.h"; sourceTree = "<group>"; };
 		DF36065530964A90584C2393 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -87,13 +80,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				869721CF890EF72F17B6A699 /* libPods.a in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		D0FF63431BA020F600A00BAB /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -140,6 +126,8 @@
 			isa = PBXGroup;
 			children = (
 				D0219D331BA11D1F0007F00E /* THData.swift */,
+				D04011561BFB1C6500656161 /* THDictionaryData.h */,
+				D04011571BFB1C6500656161 /* THDictionaryData.m */,
 			);
 			path = data;
 			sourceTree = "<group>";
@@ -163,6 +151,8 @@
 				D0219D3B1BA1560E0007F00E /* THWebView.swift */,
 				D01E88191BA6785900DE9BE1 /* THTestVC.swift */,
 				D0FD1E151BABE9A800A94B73 /* CollectionViewController.swift */,
+				D04011521BFB0FD200656161 /* THDictionaryVC.swift */,
+				D04011541BFB127F00656161 /* THDictionaryDetailVC.swift */,
 			);
 			path = ctrl;
 			sourceTree = "<group>";
@@ -171,7 +161,6 @@
 			isa = PBXGroup;
 			children = (
 				D0FF63331BA020F600A00BAB /* TodayHistory */,
-				D0FF63491BA020F600A00BAB /* TodayHistoryTests */,
 				D0FF63321BA020F600A00BAB /* Products */,
 				A87AE29D66561ABD0B927EFA /* Pods */,
 				89D85FB4E8F4720C464C5DED /* Frameworks */,
@@ -182,7 +171,6 @@
 			isa = PBXGroup;
 			children = (
 				D0FF63311BA020F600A00BAB /* TodayHistory.app */,
-				D0FF63461BA020F600A00BAB /* TodayHistoryTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -208,23 +196,6 @@
 			isa = PBXGroup;
 			children = (
 				D0FF63351BA020F600A00BAB /* Info.plist */,
-			);
-			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
-		D0FF63491BA020F600A00BAB /* TodayHistoryTests */ = {
-			isa = PBXGroup;
-			children = (
-				D0FF634C1BA020F600A00BAB /* TodayHistoryTests.swift */,
-				D0FF634A1BA020F600A00BAB /* Supporting Files */,
-			);
-			path = TodayHistoryTests;
-			sourceTree = "<group>";
-		};
-		D0FF634A1BA020F600A00BAB /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
-				D0FF634B1BA020F600A00BAB /* Info.plist */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -266,24 +237,6 @@
 			productReference = D0FF63311BA020F600A00BAB /* TodayHistory.app */;
 			productType = "com.apple.product-type.application";
 		};
-		D0FF63451BA020F600A00BAB /* TodayHistoryTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = D0FF63531BA020F600A00BAB /* Build configuration list for PBXNativeTarget "TodayHistoryTests" */;
-			buildPhases = (
-				D0FF63421BA020F600A00BAB /* Sources */,
-				D0FF63431BA020F600A00BAB /* Frameworks */,
-				D0FF63441BA020F600A00BAB /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				D0FF63481BA020F600A00BAB /* PBXTargetDependency */,
-			);
-			name = TodayHistoryTests;
-			productName = TodayHistoryTests;
-			productReference = D0FF63461BA020F600A00BAB /* TodayHistoryTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -297,10 +250,6 @@
 				TargetAttributes = {
 					D0FF63301BA020F600A00BAB = {
 						CreatedOnToolsVersion = 6.4;
-					};
-					D0FF63451BA020F600A00BAB = {
-						CreatedOnToolsVersion = 6.4;
-						TestTargetID = D0FF63301BA020F600A00BAB;
 					};
 				};
 			};
@@ -318,7 +267,6 @@
 			projectRoot = "";
 			targets = (
 				D0FF63301BA020F600A00BAB /* TodayHistory */,
-				D0FF63451BA020F600A00BAB /* TodayHistoryTests */,
 			);
 		};
 /* End PBXProject section */
@@ -331,13 +279,6 @@
 				D0FF633C1BA020F600A00BAB /* Main.storyboard in Resources */,
 				D0FF63411BA020F600A00BAB /* LaunchScreen.xib in Resources */,
 				D0FF633E1BA020F600A00BAB /* Images.xcassets in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		D0FF63441BA020F600A00BAB /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -388,6 +329,7 @@
 				D01E880B1BA17FCD00DE9BE1 /* Globle.swift in Sources */,
 				D01E881A1BA6785900DE9BE1 /* THTestVC.swift in Sources */,
 				D01E88151BA271B300DE9BE1 /* ArcLayer.swift in Sources */,
+				D04011551BFB127F00656161 /* THDictionaryDetailVC.swift in Sources */,
 				D01E88161BA271B300DE9BE1 /* OvalLayer.swift in Sources */,
 				D0FD1E181BABECDC00A94B73 /* THCollectionViewCell.swift in Sources */,
 				D0219D421BA156930007F00E /* PushViewController+UINavigationController.m in Sources */,
@@ -396,31 +338,17 @@
 				D0FD1E161BABE9A800A94B73 /* CollectionViewController.swift in Sources */,
 				D01E880D1BA1927300DE9BE1 /* THMainView.swift in Sources */,
 				D0219D341BA11D1F0007F00E /* THData.swift in Sources */,
+				D04011531BFB0FD200656161 /* THDictionaryVC.swift in Sources */,
 				D0219D371BA12B410007F00E /* THCell.swift in Sources */,
 				D0FF63371BA020F600A00BAB /* AppDelegate.swift in Sources */,
 				D0219D3C1BA1560E0007F00E /* THWebView.swift in Sources */,
 				D0FD1E1A1BABF14800A94B73 /* THCollectionViewLayout.swift in Sources */,
+				D04011581BFB1C6500656161 /* THDictionaryData.m in Sources */,
 				D01E88181BA271B300DE9BE1 /* TriangleLayer.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		D0FF63421BA020F600A00BAB /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				D0FF634D1BA020F600A00BAB /* TodayHistoryTests.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		D0FF63481BA020F600A00BAB /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = D0FF63301BA020F600A00BAB /* TodayHistory */;
-			targetProxy = D0FF63471BA020F600A00BAB /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		D0FF633A1BA020F600A00BAB /* Main.storyboard */ = {
@@ -575,42 +503,6 @@
 			};
 			name = Release;
 		};
-		D0FF63541BA020F600A00BAB /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-				);
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
-					"$(inherited)",
-				);
-				INFOPLIST_FILE = TodayHistoryTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.yeeuu.$(PRODUCT_NAME:rfc1034identifier)";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/TodayHistory.app/TodayHistory";
-			};
-			name = Debug;
-		};
-		D0FF63551BA020F600A00BAB /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-				);
-				INFOPLIST_FILE = TodayHistoryTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.yeeuu.$(PRODUCT_NAME:rfc1034identifier)";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/TodayHistory.app/TodayHistory";
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -628,15 +520,6 @@
 			buildConfigurations = (
 				D0FF63511BA020F600A00BAB /* Debug */,
 				D0FF63521BA020F600A00BAB /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		D0FF63531BA020F600A00BAB /* Build configuration list for PBXNativeTarget "TodayHistoryTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				D0FF63541BA020F600A00BAB /* Debug */,
-				D0FF63551BA020F600A00BAB /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
