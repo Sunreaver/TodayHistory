@@ -51,7 +51,7 @@ UITextFieldDelegate>
     {
         NSDateFormatter *df = [[NSDateFormatter alloc] init];
         df.dateFormat = @"yyyyMMdd";
-        _dm = [DMDate newWithStartDate:[df dateFromString:@"20150530"] Day:INT_MAX];
+        _dm = [DMDate newWithStartDate:[df dateFromString:@"20150530"] EndDate:[NSDate date]];
     }
     return _dm;
 }

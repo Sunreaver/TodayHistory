@@ -23,15 +23,8 @@
 {
     DMDate *dm = [[DMDate alloc] init];
     dm.startDate = s.earlyInTheMorning;
+    dm.endDate = [NSDate dateWithTimeInterval:d*24*3600 sinceDate:dm.startDate].earlyInTheMorning;
     dm.iDay = d;
-    if (d == INT_MAX)
-    {
-        dm.endDate = [NSDate date].earlyInTheMorning;
-    }
-    else
-    {
-        dm.endDate = [NSDate dateWithTimeInterval:d*24*3600 sinceDate:dm.startDate].earlyInTheMorning;
-    }
     return dm;
 }
 
