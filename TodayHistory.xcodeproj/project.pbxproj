@@ -24,6 +24,7 @@
 		D0219D3C1BA1560E0007F00E /* THWebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0219D3B1BA1560E0007F00E /* THWebView.swift */; };
 		D0219D411BA156930007F00E /* GetViewCtrlFromStoryboard.m in Sources */ = {isa = PBXBuildFile; fileRef = D0219D3E1BA156930007F00E /* GetViewCtrlFromStoryboard.m */; };
 		D0219D421BA156930007F00E /* PushViewController+UINavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = D0219D401BA156930007F00E /* PushViewController+UINavigationController.m */; };
+		D03711B01BFC7E2900014DFD /* UserDef.m in Sources */ = {isa = PBXBuildFile; fileRef = D03711AF1BFC7E2900014DFD /* UserDef.m */; };
 		D04011531BFB0FD200656161 /* THDictionaryVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D04011521BFB0FD200656161 /* THDictionaryVC.swift */; };
 		D04011551BFB127F00656161 /* THDictionaryDetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D04011541BFB127F00656161 /* THDictionaryDetailVC.swift */; };
 		D04011581BFB1C6500656161 /* THDictionaryData.m in Sources */ = {isa = PBXBuildFile; fileRef = D04011571BFB1C6500656161 /* THDictionaryData.m */; };
@@ -62,6 +63,9 @@
 		D0219D3E1BA156930007F00E /* GetViewCtrlFromStoryboard.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GetViewCtrlFromStoryboard.m; sourceTree = "<group>"; };
 		D0219D3F1BA156930007F00E /* PushViewController+UINavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "PushViewController+UINavigationController.h"; sourceTree = "<group>"; };
 		D0219D401BA156930007F00E /* PushViewController+UINavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "PushViewController+UINavigationController.m"; sourceTree = "<group>"; };
+		D03711AE1BFC7E2900014DFD /* UserDef.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserDef.h; sourceTree = "<group>"; };
+		D03711AF1BFC7E2900014DFD /* UserDef.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserDef.m; sourceTree = "<group>"; };
+		D03711B11BFC7EA500014DFD /* TodayHistory.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = TodayHistory.entitlements; sourceTree = "<group>"; };
 		D04011521BFB0FD200656161 /* THDictionaryVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = THDictionaryVC.swift; sourceTree = "<group>"; };
 		D04011541BFB127F00656161 /* THDictionaryDetailVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = THDictionaryDetailVC.swift; sourceTree = "<group>"; };
 		D04011561BFB1C6500656161 /* THDictionaryData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THDictionaryData.h; sourceTree = "<group>"; };
@@ -215,6 +219,7 @@
 		D0FF63341BA020F600A00BAB /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				D03711B11BFC7EA500014DFD /* TodayHistory.entitlements */,
 				D0FF63351BA020F600A00BAB /* Info.plist */,
 			);
 			name = "Supporting Files";
@@ -223,6 +228,8 @@
 		D0FF63571BA025DE00A00BAB /* Tool */ = {
 			isa = PBXGroup;
 			children = (
+				D03711AE1BFC7E2900014DFD /* UserDef.h */,
+				D03711AF1BFC7E2900014DFD /* UserDef.m */,
 				D068C5061BFC0A2D00D69907 /* NSDate+EarlyInTheMorning.h */,
 				D068C5071BFC0A2D00D69907 /* NSDate+EarlyInTheMorning.m */,
 				D068C5081BFC0A2D00D69907 /* NSString+DateValue.h */,
@@ -275,7 +282,11 @@
 				TargetAttributes = {
 					D0FF63301BA020F600A00BAB = {
 						CreatedOnToolsVersion = 6.4;
+						DevelopmentTeam = EF8Y32ZK92;
 						SystemCapabilities = {
+							com.apple.ApplicationGroups.iOS = {
+								enabled = 1;
+							};
 							com.apple.BackgroundModes = {
 								enabled = 0;
 							};
@@ -377,6 +388,7 @@
 				D01E88151BA271B300DE9BE1 /* ArcLayer.swift in Sources */,
 				D04011551BFB127F00656161 /* THDictionaryDetailVC.swift in Sources */,
 				D01E88161BA271B300DE9BE1 /* OvalLayer.swift in Sources */,
+				D03711B01BFC7E2900014DFD /* UserDef.m in Sources */,
 				D0FD1E181BABECDC00A94B73 /* THCollectionViewCell.swift in Sources */,
 				D068C5051BFC0A1100D69907 /* DMDate.m in Sources */,
 				D0219D421BA156930007F00E /* PushViewController+UINavigationController.m in Sources */,
@@ -507,6 +519,9 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = TodayHistory/TodayHistory.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -526,6 +541,7 @@
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = com.yeeuu.SwissArmyKnife;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "TodayHistory/Tool/TodayHistory-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
@@ -537,6 +553,9 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = TodayHistory/TodayHistory.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -556,6 +575,7 @@
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = com.yeeuu.SwissArmyKnife;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "TodayHistory/Tool/TodayHistory-Bridging-Header.h";
 			};
 			name = Release;
