@@ -12,7 +12,7 @@
 #import "NSString+DateValue.h"
 #import <IonIcons.h>
 
-#define GLOBAL_COLOR [UIColor orangeColor]
+#define GLOBAL_COLOR [UIColor lightGrayColor]
 
 @interface RootTVC ()<THDatePickerDelegate,
 UITextFieldDelegate>
