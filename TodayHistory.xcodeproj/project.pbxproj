@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		869721CF890EF72F17B6A699 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 04CB89F5C0747680FB16308D /* libPods.a */; };
+		918E8FD9454D9254B42FE513 /* libPods-TodayHistory.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 94BB33B87D5E33855377FB19 /* libPods-TodayHistory.a */; };
 		D01E88091BA1708900DE9BE1 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = D01E88081BA1708900DE9BE1 /* Colors.swift */; };
 		D01E880B1BA17FCD00DE9BE1 /* Globle.swift in Sources */ = {isa = PBXBuildFile; fileRef = D01E880A1BA17FCD00DE9BE1 /* Globle.swift */; };
 		D01E880D1BA1927300DE9BE1 /* THMainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D01E880C1BA1927300DE9BE1 /* THMainView.swift */; };
@@ -26,6 +27,10 @@
 		D04011531BFB0FD200656161 /* THDictionaryVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D04011521BFB0FD200656161 /* THDictionaryVC.swift */; };
 		D04011551BFB127F00656161 /* THDictionaryDetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D04011541BFB127F00656161 /* THDictionaryDetailVC.swift */; };
 		D04011581BFB1C6500656161 /* THDictionaryData.m in Sources */ = {isa = PBXBuildFile; fileRef = D04011571BFB1C6500656161 /* THDictionaryData.m */; };
+		D068C5021BFC09FB00D69907 /* RootTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = D068C5011BFC09FB00D69907 /* RootTVC.m */; };
+		D068C5051BFC0A1100D69907 /* DMDate.m in Sources */ = {isa = PBXBuildFile; fileRef = D068C5041BFC0A1100D69907 /* DMDate.m */; };
+		D068C50A1BFC0A2D00D69907 /* NSDate+EarlyInTheMorning.m in Sources */ = {isa = PBXBuildFile; fileRef = D068C5071BFC0A2D00D69907 /* NSDate+EarlyInTheMorning.m */; };
+		D068C50B1BFC0A2D00D69907 /* NSString+DateValue.m in Sources */ = {isa = PBXBuildFile; fileRef = D068C5091BFC0A2D00D69907 /* NSString+DateValue.m */; };
 		D0BD74871BAFEC7500017D36 /* NetWorkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0BD74861BAFEC7500017D36 /* NetWorkManager.swift */; };
 		D0FD1E161BABE9A800A94B73 /* CollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0FD1E151BABE9A800A94B73 /* CollectionViewController.swift */; };
 		D0FD1E181BABECDC00A94B73 /* THCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0FD1E171BABECDC00A94B73 /* THCollectionViewCell.swift */; };
@@ -39,6 +44,7 @@
 /* Begin PBXFileReference section */
 		04CB89F5C0747680FB16308D /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		36D4AFF0CB6692B9B6D3CF26 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
+		94BB33B87D5E33855377FB19 /* libPods-TodayHistory.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-TodayHistory.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D01E88081BA1708900DE9BE1 /* Colors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
 		D01E880A1BA17FCD00DE9BE1 /* Globle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Globle.swift; sourceTree = "<group>"; };
 		D01E880C1BA1927300DE9BE1 /* THMainView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = THMainView.swift; sourceTree = "<group>"; };
@@ -60,6 +66,14 @@
 		D04011541BFB127F00656161 /* THDictionaryDetailVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = THDictionaryDetailVC.swift; sourceTree = "<group>"; };
 		D04011561BFB1C6500656161 /* THDictionaryData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THDictionaryData.h; sourceTree = "<group>"; };
 		D04011571BFB1C6500656161 /* THDictionaryData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THDictionaryData.m; sourceTree = "<group>"; };
+		D068C5001BFC09FB00D69907 /* RootTVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RootTVC.h; sourceTree = "<group>"; };
+		D068C5011BFC09FB00D69907 /* RootTVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RootTVC.m; sourceTree = "<group>"; };
+		D068C5031BFC0A1100D69907 /* DMDate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DMDate.h; sourceTree = "<group>"; };
+		D068C5041BFC0A1100D69907 /* DMDate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DMDate.m; sourceTree = "<group>"; };
+		D068C5061BFC0A2D00D69907 /* NSDate+EarlyInTheMorning.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+EarlyInTheMorning.h"; sourceTree = "<group>"; };
+		D068C5071BFC0A2D00D69907 /* NSDate+EarlyInTheMorning.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+EarlyInTheMorning.m"; sourceTree = "<group>"; };
+		D068C5081BFC0A2D00D69907 /* NSString+DateValue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+DateValue.h"; sourceTree = "<group>"; };
+		D068C5091BFC0A2D00D69907 /* NSString+DateValue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+DateValue.m"; sourceTree = "<group>"; };
 		D0BD74861BAFEC7500017D36 /* NetWorkManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetWorkManager.swift; sourceTree = "<group>"; };
 		D0FD1E151BABE9A800A94B73 /* CollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionViewController.swift; sourceTree = "<group>"; };
 		D0FD1E171BABECDC00A94B73 /* THCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = THCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -80,6 +94,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				869721CF890EF72F17B6A699 /* libPods.a in Frameworks */,
+				918E8FD9454D9254B42FE513 /* libPods-TodayHistory.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -90,6 +105,7 @@
 			isa = PBXGroup;
 			children = (
 				04CB89F5C0747680FB16308D /* libPods.a */,
+				94BB33B87D5E33855377FB19 /* libPods-TodayHistory.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -125,6 +141,8 @@
 		D0219D321BA11CFA0007F00E /* data */ = {
 			isa = PBXGroup;
 			children = (
+				D068C5031BFC0A1100D69907 /* DMDate.h */,
+				D068C5041BFC0A1100D69907 /* DMDate.m */,
 				D0219D331BA11D1F0007F00E /* THData.swift */,
 				D04011561BFB1C6500656161 /* THDictionaryData.h */,
 				D04011571BFB1C6500656161 /* THDictionaryData.m */,
@@ -147,6 +165,8 @@
 		D0219D3A1BA155F70007F00E /* ctrl */ = {
 			isa = PBXGroup;
 			children = (
+				D068C5001BFC09FB00D69907 /* RootTVC.h */,
+				D068C5011BFC09FB00D69907 /* RootTVC.m */,
 				D01E880C1BA1927300DE9BE1 /* THMainView.swift */,
 				D0219D3B1BA1560E0007F00E /* THWebView.swift */,
 				D01E88191BA6785900DE9BE1 /* THTestVC.swift */,
@@ -203,6 +223,10 @@
 		D0FF63571BA025DE00A00BAB /* Tool */ = {
 			isa = PBXGroup;
 			children = (
+				D068C5061BFC0A2D00D69907 /* NSDate+EarlyInTheMorning.h */,
+				D068C5071BFC0A2D00D69907 /* NSDate+EarlyInTheMorning.m */,
+				D068C5081BFC0A2D00D69907 /* NSString+DateValue.h */,
+				D068C5091BFC0A2D00D69907 /* NSString+DateValue.m */,
 				D0219D3D1BA156930007F00E /* GetViewCtrlFromStoryboard.h */,
 				D0219D3E1BA156930007F00E /* GetViewCtrlFromStoryboard.m */,
 				D0219D3F1BA156930007F00E /* PushViewController+UINavigationController.h */,
@@ -227,6 +251,7 @@
 				D0FF632E1BA020F600A00BAB /* Frameworks */,
 				D0FF632F1BA020F600A00BAB /* Resources */,
 				974EEF98D5EDF235F0F9596A /* Copy Pods Resources */,
+				65102AF371D10DCB362A605F /* Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -300,6 +325,21 @@
 			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
+		65102AF371D10DCB362A605F /* Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-frameworks.sh\"";
+			showEnvVarsInLog = 0;
+		};
 		974EEF98D5EDF235F0F9596A /* Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -328,13 +368,16 @@
 				D01E88091BA1708900DE9BE1 /* Colors.swift in Sources */,
 				D01E880B1BA17FCD00DE9BE1 /* Globle.swift in Sources */,
 				D01E881A1BA6785900DE9BE1 /* THTestVC.swift in Sources */,
+				D068C50A1BFC0A2D00D69907 /* NSDate+EarlyInTheMorning.m in Sources */,
 				D01E88151BA271B300DE9BE1 /* ArcLayer.swift in Sources */,
 				D04011551BFB127F00656161 /* THDictionaryDetailVC.swift in Sources */,
 				D01E88161BA271B300DE9BE1 /* OvalLayer.swift in Sources */,
 				D0FD1E181BABECDC00A94B73 /* THCollectionViewCell.swift in Sources */,
+				D068C5051BFC0A1100D69907 /* DMDate.m in Sources */,
 				D0219D421BA156930007F00E /* PushViewController+UINavigationController.m in Sources */,
 				D01E880F1BA2704000DE9BE1 /* THLoaddingPage.swift in Sources */,
 				D0219D411BA156930007F00E /* GetViewCtrlFromStoryboard.m in Sources */,
+				D068C5021BFC09FB00D69907 /* RootTVC.m in Sources */,
 				D0FD1E161BABE9A800A94B73 /* CollectionViewController.swift in Sources */,
 				D01E880D1BA1927300DE9BE1 /* THMainView.swift in Sources */,
 				D0219D341BA11D1F0007F00E /* THData.swift in Sources */,
@@ -345,6 +388,7 @@
 				D0FD1E1A1BABF14800A94B73 /* THCollectionViewLayout.swift in Sources */,
 				D04011581BFB1C6500656161 /* THDictionaryData.m in Sources */,
 				D01E88181BA271B300DE9BE1 /* TriangleLayer.swift in Sources */,
+				D068C50B1BFC0A2D00D69907 /* NSString+DateValue.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -458,6 +502,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"${PODS_ROOT}/Headers/Public\"",
@@ -471,7 +519,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.yeeuu.$(PRODUCT_NAME:rfc1034identifier)";
+				PRODUCT_BUNDLE_IDENTIFIER = com.yeeuu.SwissArmyKnife;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "TodayHistory/Tool/TodayHistory-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -484,6 +532,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"${PODS_ROOT}/Headers/Public\"",
@@ -497,7 +549,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.yeeuu.$(PRODUCT_NAME:rfc1034identifier)";
+				PRODUCT_BUNDLE_IDENTIFIER = com.yeeuu.SwissArmyKnife;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "TodayHistory/Tool/TodayHistory-Bridging-Header.h";
 			};

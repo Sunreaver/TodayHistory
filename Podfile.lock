@@ -20,20 +20,26 @@ PODS:
   - AFNetworking/UIKit (2.5.4):
     - AFNetworking/NSURLConnection
     - AFNetworking/NSURLSession
-  - ionicons (2.0.1)
+  - ionicons (2.0.3)
   - JSONKit (1.5pre)
+  - KNSemiModalViewController_hons82 (0.4.4)
   - MJRefresh (1.4.7)
+  - THCalendarDatePicker (1.2.5):
+    - KNSemiModalViewController_hons82 (~> 0.4.3)
 
 DEPENDENCIES:
   - AFNetworking (~> 2.5.1)
   - ionicons
   - JSONKit (~> 1.5pre)
   - MJRefresh (~> 1.4.0)
+  - THCalendarDatePicker (~> 1.2.0)
 
 SPEC CHECKSUMS:
   AFNetworking: 05edc0ac4c4c8cf57bcf4b84be5b0744b6d8e71e
-  ionicons: c7b0867373392e85c17f613d19ade04ccfbe5a7c
+  ionicons: ec1e86e6c3316bd9942a7f024080dd75c70dd6a5
   JSONKit: bae313ce6a6c444f40489a6c0b023f399888871f
+  KNSemiModalViewController_hons82: 22aead5ef5d8ca749bc1babb43fa7d6f14b030a3
   MJRefresh: 6b140993028fa30f1fcb88e82925a7c7911415cf
+  THCalendarDatePicker: 65c63c1814d1a27defc89f4b72ec7a1d01d5503d
 
-COCOAPODS: 0.38.2
+COCOAPODS: 0.39.0
