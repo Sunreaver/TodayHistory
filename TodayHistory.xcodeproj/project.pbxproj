@@ -25,6 +25,11 @@
 		D0219D411BA156930007F00E /* GetViewCtrlFromStoryboard.m in Sources */ = {isa = PBXBuildFile; fileRef = D0219D3E1BA156930007F00E /* GetViewCtrlFromStoryboard.m */; };
 		D0219D421BA156930007F00E /* PushViewController+UINavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = D0219D401BA156930007F00E /* PushViewController+UINavigationController.m */; };
 		D03711B01BFC7E2900014DFD /* UserDef.m in Sources */ = {isa = PBXBuildFile; fileRef = D03711AF1BFC7E2900014DFD /* UserDef.m */; };
+		D03711BA1BFD991800014DFD /* NotificationCenter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D03711B91BFD991800014DFD /* NotificationCenter.framework */; };
+		D03711C11BFD991800014DFD /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D03711BF1BFD991800014DFD /* MainInterface.storyboard */; };
+		D03711C51BFD991800014DFD /* TodayBirthday.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = D03711B81BFD991800014DFD /* TodayBirthday.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		D03711CC1BFD9E0F00014DFD /* TodayTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = D03711CB1BFD9E0F00014DFD /* TodayTVC.m */; };
+		D03711CD1BFDA2FC00014DFD /* UserDef.m in Sources */ = {isa = PBXBuildFile; fileRef = D03711AF1BFC7E2900014DFD /* UserDef.m */; };
 		D04011531BFB0FD200656161 /* THDictionaryVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D04011521BFB0FD200656161 /* THDictionaryVC.swift */; };
 		D04011551BFB127F00656161 /* THDictionaryDetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D04011541BFB127F00656161 /* THDictionaryDetailVC.swift */; };
 		D04011581BFB1C6500656161 /* THDictionaryData.m in Sources */ = {isa = PBXBuildFile; fileRef = D04011571BFB1C6500656161 /* THDictionaryData.m */; };
@@ -41,6 +46,30 @@
 		D0FF633E1BA020F600A00BAB /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D0FF633D1BA020F600A00BAB /* Images.xcassets */; };
 		D0FF63411BA020F600A00BAB /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = D0FF633F1BA020F600A00BAB /* LaunchScreen.xib */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		D03711C31BFD991800014DFD /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D0FF63291BA020F600A00BAB /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = D03711B71BFD991800014DFD;
+			remoteInfo = TodayBirthday;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		D03711C91BFD991800014DFD /* Embed App Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				D03711C51BFD991800014DFD /* TodayBirthday.appex in Embed App Extensions */,
+			);
+			name = "Embed App Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		04CB89F5C0747680FB16308D /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -66,6 +95,12 @@
 		D03711AE1BFC7E2900014DFD /* UserDef.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserDef.h; sourceTree = "<group>"; };
 		D03711AF1BFC7E2900014DFD /* UserDef.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserDef.m; sourceTree = "<group>"; };
 		D03711B11BFC7EA500014DFD /* TodayHistory.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = TodayHistory.entitlements; sourceTree = "<group>"; };
+		D03711B81BFD991800014DFD /* TodayBirthday.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = TodayBirthday.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		D03711B91BFD991800014DFD /* NotificationCenter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NotificationCenter.framework; path = System/Library/Frameworks/NotificationCenter.framework; sourceTree = SDKROOT; };
+		D03711C01BFD991800014DFD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MainInterface.storyboard; sourceTree = "<group>"; };
+		D03711C21BFD991800014DFD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D03711CA1BFD9E0F00014DFD /* TodayTVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TodayTVC.h; sourceTree = "<group>"; };
+		D03711CB1BFD9E0F00014DFD /* TodayTVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TodayTVC.m; sourceTree = "<group>"; };
 		D04011521BFB0FD200656161 /* THDictionaryVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = THDictionaryVC.swift; sourceTree = "<group>"; };
 		D04011541BFB127F00656161 /* THDictionaryDetailVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = THDictionaryDetailVC.swift; sourceTree = "<group>"; };
 		D04011561BFB1C6500656161 /* THDictionaryData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THDictionaryData.h; sourceTree = "<group>"; };
@@ -93,6 +128,14 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		D03711B51BFD991800014DFD /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D03711BA1BFD991800014DFD /* NotificationCenter.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		D0FF632E1BA020F600A00BAB /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -110,6 +153,7 @@
 			children = (
 				04CB89F5C0747680FB16308D /* libPods.a */,
 				94BB33B87D5E33855377FB19 /* libPods-TodayHistory.a */,
+				D03711B91BFD991800014DFD /* NotificationCenter.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -181,10 +225,22 @@
 			path = ctrl;
 			sourceTree = "<group>";
 		};
+		D03711BB1BFD991800014DFD /* TodayBirthday */ = {
+			isa = PBXGroup;
+			children = (
+				D03711CA1BFD9E0F00014DFD /* TodayTVC.h */,
+				D03711CB1BFD9E0F00014DFD /* TodayTVC.m */,
+				D03711BF1BFD991800014DFD /* MainInterface.storyboard */,
+				D03711C21BFD991800014DFD /* Info.plist */,
+			);
+			path = TodayBirthday;
+			sourceTree = "<group>";
+		};
 		D0FF63281BA020F600A00BAB = {
 			isa = PBXGroup;
 			children = (
 				D0FF63331BA020F600A00BAB /* TodayHistory */,
+				D03711BB1BFD991800014DFD /* TodayBirthday */,
 				D0FF63321BA020F600A00BAB /* Products */,
 				A87AE29D66561ABD0B927EFA /* Pods */,
 				89D85FB4E8F4720C464C5DED /* Frameworks */,
@@ -195,6 +251,7 @@
 			isa = PBXGroup;
 			children = (
 				D0FF63311BA020F600A00BAB /* TodayHistory.app */,
+				D03711B81BFD991800014DFD /* TodayBirthday.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -249,6 +306,23 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		D03711B71BFD991800014DFD /* TodayBirthday */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D03711C81BFD991800014DFD /* Build configuration list for PBXNativeTarget "TodayBirthday" */;
+			buildPhases = (
+				D03711B41BFD991800014DFD /* Sources */,
+				D03711B51BFD991800014DFD /* Frameworks */,
+				D03711B61BFD991800014DFD /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = TodayBirthday;
+			productName = TodayBirthday;
+			productReference = D03711B81BFD991800014DFD /* TodayBirthday.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
 		D0FF63301BA020F600A00BAB /* TodayHistory */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = D0FF63501BA020F600A00BAB /* Build configuration list for PBXNativeTarget "TodayHistory" */;
@@ -259,10 +333,12 @@
 				D0FF632F1BA020F600A00BAB /* Resources */,
 				974EEF98D5EDF235F0F9596A /* Copy Pods Resources */,
 				65102AF371D10DCB362A605F /* Embed Pods Frameworks */,
+				D03711C91BFD991800014DFD /* Embed App Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				D03711C41BFD991800014DFD /* PBXTargetDependency */,
 			);
 			name = TodayHistory;
 			productName = TodayHistory;
@@ -280,6 +356,10 @@
 				LastUpgradeCheck = 0700;
 				ORGANIZATIONNAME = "谭伟";
 				TargetAttributes = {
+					D03711B71BFD991800014DFD = {
+						CreatedOnToolsVersion = 7.1.1;
+						DevelopmentTeam = EF8Y32ZK92;
+					};
 					D0FF63301BA020F600A00BAB = {
 						CreatedOnToolsVersion = 6.4;
 						DevelopmentTeam = EF8Y32ZK92;
@@ -288,6 +368,9 @@
 								enabled = 1;
 							};
 							com.apple.BackgroundModes = {
+								enabled = 0;
+							};
+							com.apple.VPNLite = {
 								enabled = 0;
 							};
 						};
@@ -308,11 +391,20 @@
 			projectRoot = "";
 			targets = (
 				D0FF63301BA020F600A00BAB /* TodayHistory */,
+				D03711B71BFD991800014DFD /* TodayBirthday */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		D03711B61BFD991800014DFD /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D03711C11BFD991800014DFD /* MainInterface.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		D0FF632F1BA020F600A00BAB /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -374,6 +466,15 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		D03711B41BFD991800014DFD /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D03711CD1BFDA2FC00014DFD /* UserDef.m in Sources */,
+				D03711CC1BFD9E0F00014DFD /* TodayTVC.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		D0FF632D1BA020F600A00BAB /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -411,7 +512,23 @@
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXTargetDependency section */
+		D03711C41BFD991800014DFD /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = D03711B71BFD991800014DFD /* TodayBirthday */;
+			targetProxy = D03711C31BFD991800014DFD /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
 /* Begin PBXVariantGroup section */
+		D03711BF1BFD991800014DFD /* MainInterface.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				D03711C01BFD991800014DFD /* Base */,
+			);
+			name = MainInterface.storyboard;
+			sourceTree = "<group>";
+		};
 		D0FF633A1BA020F600A00BAB /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -431,6 +548,35 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		D03711C61BFD991800014DFD /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				INFOPLIST_FILE = TodayBirthday/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.yeeuu.SwissArmyKnife.TodayBirthday;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		D03711C71BFD991800014DFD /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				INFOPLIST_FILE = TodayBirthday/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.yeeuu.SwissArmyKnife.TodayBirthday;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Release;
+		};
 		D0FF634E1BA020F600A00BAB /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -583,6 +729,14 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		D03711C81BFD991800014DFD /* Build configuration list for PBXNativeTarget "TodayBirthday" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D03711C61BFD991800014DFD /* Debug */,
+				D03711C71BFD991800014DFD /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
 		D0FF632C1BA020F600A00BAB /* Build configuration list for PBXProject "TodayHistory" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

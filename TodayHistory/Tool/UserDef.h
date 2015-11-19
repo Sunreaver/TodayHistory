@@ -13,6 +13,7 @@
 
 #define DelayExamples(T) (T)
 
+#define BadgeNumberDate @"BadgeNumberDate.peter"
 #define CoffeeTimeCount @"CoffeeTimeCount.peter"
 #define NoCoffeeTimeCount @"NoCoffeeTimeCount.peter"
 

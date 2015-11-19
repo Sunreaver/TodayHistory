@@ -4,6 +4,11 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
+		<key>TodayBirthday.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>8</integer>
+		</dict>
 		<key>TodayHistory.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
@@ -12,6 +17,11 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
+		<key>D03711B71BFD991800014DFD</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>D0FF63301BA020F600A00BAB</key>
 		<dict>
 			<key>primary</key>

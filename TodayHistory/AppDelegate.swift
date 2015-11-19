@@ -43,6 +43,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func applicationWillResignActive(application: UIApplication) {
         // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
         // Use this method to pause ongoing tasks, disable timers, and throttle down OpenGL ES frame rates. Games should use this method to pause the game.
+        let date = UserDef.getUserDefValue(BadgeNumberDate)
+        if let _ = date
+        {
+            application.applicationIconBadgeNumber = self.calculateBadgeNum(date as! String)
+        }
     }
 
     func applicationDidEnterBackground(application: UIApplication) {
@@ -58,7 +63,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func applicationDidBecomeActive(application: UIApplication) {
         // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
-        application.applicationIconBadgeNumber = self.calculateBadgeNum()
+//        application.applicationIconBadgeNumber = self.calculateBadgeNum()
     }
 
     func applicationWillTerminate(application: UIApplication) {
@@ -66,30 +71,36 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func application(application: UIApplication, handleActionWithIdentifier identifier: String?, forLocalNotification notification: UILocalNotification, completionHandler: () -> Void) {
-        if identifier == "refreshDay"
+        if let _ = identifier
         {
-            application.applicationIconBadgeNumber = self.calculateBadgeNum()
-        }
-        else if identifier == "Drinkcoffee"
-        {
-            if let count = UserDef.getUserDefValue(CoffeeTimeCount)
+            let refreshDay:NSString = "refreshDay_"
+            let ide:NSString = identifier!
+            if ide.hasPrefix(refreshDay as String)
             {
-                UserDef.setUserDefValue((count.integerValue + 1), keyName: CoffeeTimeCount)
+                UserDef.setUserDefValue(ide.substringFromIndex(refreshDay.length), keyName: BadgeNumberDate)
+                application.applicationIconBadgeNumber = self.calculateBadgeNum(ide.substringFromIndex(refreshDay.length))
             }
-            else
+            else if identifier == "Drinkcoffee"
             {
-                UserDef.setUserDefValue((1), keyName: CoffeeTimeCount)
+                if let count = UserDef.getUserDefValue(CoffeeTimeCount)
+                {
+                    UserDef.setUserDefValue((count.integerValue + 1), keyName: CoffeeTimeCount)
+                }
+                else
+                {
+                    UserDef.setUserDefValue((1), keyName: CoffeeTimeCount)
+                }
             }
-        }
-        else if identifier == "NoDrinkcoffee"
-        {
-            if let count = UserDef.getUserDefValue(NoCoffeeTimeCount)
+            else if identifier == "NoDrinkcoffee"
             {
-                UserDef.setUserDefValue((count.integerValue + 1), keyName: NoCoffeeTimeCount)
-            }
-            else
-            {
-                UserDef.setUserDefValue((1), keyName: NoCoffeeTimeCount)
+                if let count = UserDef.getUserDefValue(NoCoffeeTimeCount)
+                {
+                    UserDef.setUserDefValue((count.integerValue + 1), keyName: NoCoffeeTimeCount)
+                }
+                else
+                {
+                    UserDef.setUserDefValue((1), keyName: NoCoffeeTimeCount)
+                }
             }
         }
     }
@@ -113,28 +124,32 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func regNotification()
     {
         //注册消息
-        let action:UIMutableUserNotificationAction = UIMutableUserNotificationAction()
-        action.title = "刷新"
-        action.identifier = "refreshDay"
-        action.activationMode = UIUserNotificationActivationMode.Background
+        let action01:UIMutableUserNotificationAction = UIMutableUserNotificationAction()
+        action01.title = "轩轩"
+        action01.identifier = "refreshDay_20150530"
+        action01.activationMode = UIUserNotificationActivationMode.Background
+        let action03:UIMutableUserNotificationAction = UIMutableUserNotificationAction()
+        action03.title = "小北"
+        action03.identifier = "refreshDay_20091115"
+        action03.activationMode = UIUserNotificationActivationMode.Background
         
-        let categorys:UIMutableUserNotificationCategory = UIMutableUserNotificationCategory()
-        categorys.identifier = "DateCalculate"
-        categorys.setActions([action], forContext: UIUserNotificationActionContext.Default)
-        //创建UIUserNotificationSettings，并设置消息的显示类类型
-        let uns:UIUserNotificationSettings = UIUserNotificationSettings(forTypes: [.Badge], categories: NSSet(object: categorys) as? Set<UIUserNotificationCategory>)
-        UIApplication.sharedApplication().registerUserNotificationSettings(uns)
+        let categorys0:UIMutableUserNotificationCategory = UIMutableUserNotificationCategory()
+        categorys0.identifier = "DateCalculate"
+        categorys0.setActions([action01, action03], forContext: UIUserNotificationActionContext.Default)
         
-        action.title = "喝过啦"
-        action.identifier = "Drinkcoffee"
-        action.activationMode = UIUserNotificationActivationMode.Background
+        let action0:UIMutableUserNotificationAction = UIMutableUserNotificationAction()
+        action0.title = "喝过啦"
+        action0.identifier = "Drinkcoffee"
+        action0.activationMode = UIUserNotificationActivationMode.Background
         let action1:UIMutableUserNotificationAction = UIMutableUserNotificationAction()
         action1.title = "今天不喝"
         action1.identifier = "NoDrinkcoffee"
         action1.activationMode = UIUserNotificationActivationMode.Background
-        categorys.identifier = "CoffeeTime"
-        categorys.setActions([action, action1], forContext: UIUserNotificationActionContext.Default)
-        let unsCoffee:UIUserNotificationSettings = UIUserNotificationSettings(forTypes: [.Sound, .Alert], categories: NSSet(object: categorys) as? Set<UIUserNotificationCategory>)
+        
+        let categorys1:UIMutableUserNotificationCategory = UIMutableUserNotificationCategory()
+        categorys1.identifier = "CoffeeTime"
+        categorys1.setActions([action0, action1], forContext: UIUserNotificationActionContext.Default)
+        let unsCoffee:UIUserNotificationSettings = UIUserNotificationSettings(forTypes: [.Sound], categories: NSSet(array: [categorys0, categorys1]) as? Set<UIUserNotificationCategory>)
         UIApplication.sharedApplication().registerUserNotificationSettings(unsCoffee)
         
         //取消已经添加的DateCalculate提醒
@@ -153,18 +168,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         var ds0:NSString = df.stringFromDate(NSDate())
         df.dateFormat = "yyyyMMdd HH:mm:ss"
         let notification:UILocalNotification = UILocalNotification()
-        var fireString:String = ds0.stringByAppendingString(" 08:00:00")
+        var fireString:String = ds0.stringByAppendingString(" 13:22:40")
         notification.fireDate = df.dateFromString(fireString)
         notification.repeatInterval = NSCalendarUnit.Day;//循环次数，kCFCalendarUnitWeekday一周一次
-        notification.soundName = UILocalNotificationDefaultSoundName;//声音，可以换成alarm.soundName = @"myMusic.caf"
+        notification.soundName = "";//声音，可以换成alarm.soundName = @"myMusic.caf"
         notification.alertTitle = "日期该更新啦";//提示信息 弹出提示框
         notification.alertBody = "美好生活，从这里开始";//提示信息 弹出提示框
 //        notification.alertAction = "刷新日期";  //提示框按钮
 //        notification.hasAction = true; //是否显示额外的按钮，为no时alertAction消失
-        notification.category = "DateCalculate";
+        notification.category = "DateCalculate"
         notification.userInfo = ["type":"DateCalculate"]
         UIApplication.sharedApplication().scheduleLocalNotification(notification)
-        
         
         //创建消息
         df.dateFormat = "yyyyMMdd"
@@ -183,11 +197,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         UIApplication.sharedApplication().scheduleLocalNotification(notification1)
     }
     
-    func calculateBadgeNum () ->NSInteger
+    func calculateBadgeNum (birthday:String) ->NSInteger
     {
         let df:NSDateFormatter = NSDateFormatter()
         df.dateFormat = "yyyyMMdd"
-        let start:NSDate = df.dateFromString("20150530")!
+        let start:NSDate = df.dateFromString(birthday)!
         let end:NSDate = df.dateFromString(df.stringFromDate(NSDate()))!
         var ti:NSTimeInterval = end.timeIntervalSince1970 - start.timeIntervalSince1970
         ti += ti > 0 ? 3600 : -3600
