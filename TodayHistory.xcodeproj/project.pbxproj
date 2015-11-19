@@ -101,6 +101,7 @@
 		D03711C21BFD991800014DFD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D03711CA1BFD9E0F00014DFD /* TodayTVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TodayTVC.h; sourceTree = "<group>"; };
 		D03711CB1BFD9E0F00014DFD /* TodayTVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TodayTVC.m; sourceTree = "<group>"; };
+		D03711CE1BFDBA9C00014DFD /* TodayBirthday.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = TodayBirthday.entitlements; sourceTree = "<group>"; };
 		D04011521BFB0FD200656161 /* THDictionaryVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = THDictionaryVC.swift; sourceTree = "<group>"; };
 		D04011541BFB127F00656161 /* THDictionaryDetailVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = THDictionaryDetailVC.swift; sourceTree = "<group>"; };
 		D04011561BFB1C6500656161 /* THDictionaryData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THDictionaryData.h; sourceTree = "<group>"; };
@@ -228,6 +229,7 @@
 		D03711BB1BFD991800014DFD /* TodayBirthday */ = {
 			isa = PBXGroup;
 			children = (
+				D03711CE1BFDBA9C00014DFD /* TodayBirthday.entitlements */,
 				D03711CA1BFD9E0F00014DFD /* TodayTVC.h */,
 				D03711CB1BFD9E0F00014DFD /* TodayTVC.m */,
 				D03711BF1BFD991800014DFD /* MainInterface.storyboard */,
@@ -359,6 +361,11 @@
 					D03711B71BFD991800014DFD = {
 						CreatedOnToolsVersion = 7.1.1;
 						DevelopmentTeam = EF8Y32ZK92;
+						SystemCapabilities = {
+							com.apple.ApplicationGroups.iOS = {
+								enabled = 1;
+							};
+						};
 					};
 					D0FF63301BA020F600A00BAB = {
 						CreatedOnToolsVersion = 6.4;
@@ -551,6 +558,7 @@
 		D03711C61BFD991800014DFD /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = TodayBirthday/TodayBirthday.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEBUG_INFORMATION_FORMAT = dwarf;
@@ -559,6 +567,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.yeeuu.SwissArmyKnife.TodayBirthday;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				SKIP_INSTALL = YES;
 			};
 			name = Debug;
@@ -566,6 +575,7 @@
 		D03711C71BFD991800014DFD /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = TodayBirthday/TodayBirthday.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = TodayBirthday/Info.plist;
@@ -573,6 +583,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.yeeuu.SwissArmyKnife.TodayBirthday;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				SKIP_INSTALL = YES;
 			};
 			name = Release;

@@ -185,7 +185,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         ds0 = df.stringFromDate(NSDate())
         df.dateFormat = "yyyyMMdd HH:mm:ss"
         let notification1:UILocalNotification = UILocalNotification()
-        fireString = ds0.stringByAppendingString(" 16:00:00")
+        fireString = ds0.stringByAppendingString(" 16:06:00")
         notification1.fireDate = df.dateFromString(fireString)
         notification1.repeatInterval = NSCalendarUnit.Day;//循环次数，kCFCalendarUnitWeekday一周一次
         notification.soundName = UILocalNotificationDefaultSoundName;//声音，可以换成alarm.soundName = @"myMusic.caf"
