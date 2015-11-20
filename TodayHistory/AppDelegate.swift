@@ -9,9 +9,13 @@
 import UIKit
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate {
+class AppDelegate: UIResponder, UIApplicationDelegate, UIAlertViewDelegate {
 
     var window: UIWindow?
+    let health:HealthStoreManager = {
+        let h = HealthStoreManager()
+        return h
+    }()
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
@@ -37,6 +41,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         vc2?.tabBarItem.setTitleTextAttributes([NSForegroundColorAttributeName:Colors.main], forState: UIControlState.Selected)
         vc2?.tabBarItem.setTitleTextAttributes([NSForegroundColorAttributeName:UIColor.blackColor()], forState: UIControlState.Normal)
         
+        self.health.regHealthData()
         return true
     }
 
@@ -82,43 +87,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             }
             else if identifier == "Drinkcoffee"
             {
-                if let count = UserDef.getUserDefValue(CoffeeTimeCount)
-                {
-                    UserDef.setUserDefValue((count.integerValue + 1), keyName: CoffeeTimeCount)
-                }
-                else
-                {
-                    UserDef.setUserDefValue((1), keyName: CoffeeTimeCount)
-                }
+                self.health.setCoffeeWithDay(NSDate(), quantity: 0.03, block: { (success, g) -> Void in
+                    
+                });
             }
             else if identifier == "NoDrinkcoffee"
             {
-                if let count = UserDef.getUserDefValue(NoCoffeeTimeCount)
-                {
-                    UserDef.setUserDefValue((count.integerValue + 1), keyName: NoCoffeeTimeCount)
-                }
-                else
-                {
-                    UserDef.setUserDefValue((1), keyName: NoCoffeeTimeCount)
-                }
+                let av:UIAlertView = UIAlertView(title: "今天多少", message: "加油", delegate: self, cancelButtonTitle: "0mg", otherButtonTitles: "10mg", "20mg", "40mg", "50mg");
+                av.tag = 999
+                av.show()
             }
         }
-    }
-    
-    func application(application: UIApplication, didReceiveLocalNotification notification: UILocalNotification) {
-        
-        if let type = notification.userInfo?["type"] where
-            type as! String == "coffeetime"
-        {
-            if let count = UserDef.getUserDefValue(NoCoffeeTimeCount)
-            {
-                UserDef.setUserDefValue((count.integerValue + 1), keyName: NoCoffeeTimeCount)
-            }
-            else
-            {
-                UserDef.setUserDefValue((1), keyName: NoCoffeeTimeCount)
-            }
-        }
+        completionHandler()
     }
     
     func regNotification()
@@ -138,21 +118,24 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         categorys0.setActions([action01, action03], forContext: UIUserNotificationActionContext.Default)
         
         let action0:UIMutableUserNotificationAction = UIMutableUserNotificationAction()
-        action0.title = "喝过啦"
+        action0.title = "30mg"
         action0.identifier = "Drinkcoffee"
         action0.activationMode = UIUserNotificationActivationMode.Background
         let action1:UIMutableUserNotificationAction = UIMutableUserNotificationAction()
-        action1.title = "今天不喝"
+        action1.title = "其它"
         action1.identifier = "NoDrinkcoffee"
-        action1.activationMode = UIUserNotificationActivationMode.Background
+        action1.activationMode = UIUserNotificationActivationMode.Foreground
+        action1.authenticationRequired = false
+        action1.destructive = true
         
         let categorys1:UIMutableUserNotificationCategory = UIMutableUserNotificationCategory()
         categorys1.identifier = "CoffeeTime"
         categorys1.setActions([action0, action1], forContext: UIUserNotificationActionContext.Default)
-        let unsCoffee:UIUserNotificationSettings = UIUserNotificationSettings(forTypes: [.Sound], categories: NSSet(array: [categorys0, categorys1]) as? Set<UIUserNotificationCategory>)
+        let unsCoffee:UIUserNotificationSettings = UIUserNotificationSettings(forTypes: [.Sound, .Badge], categories: NSSet(array: [categorys0, categorys1]) as? Set<UIUserNotificationCategory>)
         UIApplication.sharedApplication().registerUserNotificationSettings(unsCoffee)
         
         //取消已经添加的DateCalculate提醒
+        /*
         for notification in UIApplication.sharedApplication().scheduledLocalNotifications!
         {
             if let type = notification.userInfo?["type"] where
@@ -161,6 +144,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 UIApplication.sharedApplication().cancelLocalNotification(notification)
             }
         }
+        */
+        UIApplication.sharedApplication().cancelAllLocalNotifications()
         
         //创建消息
         let df:NSDateFormatter = NSDateFormatter()
@@ -168,10 +153,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         var ds0:NSString = df.stringFromDate(NSDate())
         df.dateFormat = "yyyyMMdd HH:mm:ss"
         let notification:UILocalNotification = UILocalNotification()
-        var fireString:String = ds0.stringByAppendingString(" 13:22:40")
+        var fireString:String = ds0.stringByAppendingString(" 08:00:00")
         notification.fireDate = df.dateFromString(fireString)
         notification.repeatInterval = NSCalendarUnit.Day;//循环次数，kCFCalendarUnitWeekday一周一次
-        notification.soundName = "";//声音，可以换成alarm.soundName = @"myMusic.caf"
+        notification.soundName = "nosound.caf";//声音，可以换成alarm.soundName = @"myMusic.caf"
         notification.alertTitle = "日期该更新啦";//提示信息 弹出提示框
         notification.alertBody = "美好生活，从这里开始";//提示信息 弹出提示框
 //        notification.alertAction = "刷新日期";  //提示框按钮
@@ -185,10 +170,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         ds0 = df.stringFromDate(NSDate())
         df.dateFormat = "yyyyMMdd HH:mm:ss"
         let notification1:UILocalNotification = UILocalNotification()
-        fireString = ds0.stringByAppendingString(" 16:06:00")
+        fireString = ds0.stringByAppendingString(" 16:00:00")
         notification1.fireDate = df.dateFromString(fireString)
-        notification1.repeatInterval = NSCalendarUnit.Day;//循环次数，kCFCalendarUnitWeekday一周一次
-        notification.soundName = UILocalNotificationDefaultSoundName;//声音，可以换成alarm.soundName = @"myMusic.caf"
+        notification1.repeatInterval = NSCalendarUnit.Day//循环次数，kCFCalendarUnitWeekday一周一次
+        notification1.soundName = "No05.caf";//声音，可以换成alarm.soundName = @"myMusic.caf"
         notification1.alertTitle = "Rest Awhile Fat BOY!"
         notification1.alertBody = "Coffee Time";//提示信息 弹出提示框
 //        notification1.hasAction = true
@@ -208,7 +193,31 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let iDay:NSInteger = NSInteger(floor(ti/3600.0/24.0))
         return iDay
     }
-
+    
+    func alertView(alertView: UIAlertView, clickedButtonAtIndex buttonIndex: Int) {
+        if alertView.tag == 999
+        {
+            var g = 0.0
+            if buttonIndex == 1
+            {
+                g = 0.01
+            }
+            else if buttonIndex == 2
+            {
+                g = 0.02
+            }
+            else if buttonIndex == 3
+            {
+                g = 0.04
+            }
+            else if buttonIndex == 5
+            {
+                g = 0.05
+            }
+            self.health.setCoffeeWithDay(NSDate(timeIntervalSinceNow: -2*60), quantity: g, block: { (s, g) -> Void in
+            })
+        }
+    }
 
 }
 

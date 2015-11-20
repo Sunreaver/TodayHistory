@@ -20,6 +20,7 @@ PODS:
   - AFNetworking/UIKit (2.5.4):
     - AFNetworking/NSURLConnection
     - AFNetworking/NSURLSession
+  - EGOCache (2.1.3)
   - ionicons (2.0.3)
   - JSONKit (1.5pre)
   - KNSemiModalViewController_hons82 (0.4.4)
@@ -29,6 +30,7 @@ PODS:
 
 DEPENDENCIES:
   - AFNetworking (~> 2.5.1)
+  - EGOCache (~> 2.1.3)
   - ionicons
   - JSONKit (~> 1.5pre)
   - MJRefresh (~> 1.4.0)
@@ -36,6 +38,7 @@ DEPENDENCIES:
 
 SPEC CHECKSUMS:
   AFNetworking: 05edc0ac4c4c8cf57bcf4b84be5b0744b6d8e71e
+  EGOCache: f0295dbe041156acabd39021354ad1045ee49e72
   ionicons: ec1e86e6c3316bd9942a7f024080dd75c70dd6a5
   JSONKit: bae313ce6a6c444f40489a6c0b023f399888871f
   KNSemiModalViewController_hons82: 22aead5ef5d8ca749bc1babb43fa7d6f14b030a3

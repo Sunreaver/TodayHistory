@@ -11,6 +11,7 @@
 #import "DMDate.h"
 #import "NSString+DateValue.h"
 #import <IonIcons.h>
+#import "HealthStoreManager.h"
 
 #define GLOBAL_COLOR [UIColor lightGrayColor]
 
@@ -23,6 +24,7 @@ UITextFieldDelegate>
 
 @property (nonatomic, retain) DMDate *dm;
 @property (nonatomic, strong) THDatePickerViewController *datePicker;
+
 @end
 
 @implementation RootTVC
@@ -217,5 +219,4 @@ UITextFieldDelegate>
         self.datePicker = nil;
     }];
 }
-
 @end

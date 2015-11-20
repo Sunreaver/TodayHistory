@@ -33,7 +33,7 @@
                                                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="refresh" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Vh4-lF-dkE">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="万岁" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Vh4-lF-dkE">
                                                     <rect key="frame" x="205" y="11" width="107" height="21"/>
                                                     <animations/>
                                                     <fontDescription key="fontDescription" type="system" weight="ultraLight" pointSize="17"/>
@@ -66,7 +66,7 @@
                                                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="refresh" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Vdo-y9-IiJ">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="万万岁" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Vdo-y9-IiJ">
                                                     <rect key="frame" x="205" y="11" width="107" height="21"/>
                                                     <animations/>
                                                     <fontDescription key="fontDescription" type="system" weight="ultraLight" pointSize="17"/>
@@ -99,11 +99,11 @@
                                                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="refresh" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Vw9-mj-Kz0">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0.mg" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Vw9-mj-Kz0">
                                                     <rect key="frame" x="205" y="11" width="107" height="21"/>
                                                     <animations/>
                                                     <fontDescription key="fontDescription" type="system" weight="ultraLight" pointSize="17"/>
-                                                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <color key="textColor" red="1" green="0.5" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
@@ -118,6 +118,67 @@
                                         </tableViewCellContentView>
                                         <animations/>
                                     </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="64" id="yMJ-gq-8Ld">
+                                        <rect key="frame" x="0.0" y="132" width="320" height="64"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="yMJ-gq-8Ld" id="3Dk-KX-raa">
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="63"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <button opaque="NO" clipsSubviews="YES" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aG9-Yn-v5k">
+                                                    <rect key="frame" x="15" y="10" width="81" height="44"/>
+                                                    <animations/>
+                                                    <color key="backgroundColor" red="0.32549019610000002" green="0.75686274509999996" blue="0.29803921570000003" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="44" id="WYO-vR-XNl"/>
+                                                    </constraints>
+                                                    <state key="normal" title="🖕🏼Safe🖕🏼"/>
+                                                    <state key="disabled">
+                                                        <color key="titleColor" red="0.34901960780000002" green="0.42745098040000001" blue="0.43137254899999999" alpha="1" colorSpace="calibratedRGB"/>
+                                                    </state>
+                                                    <connections>
+                                                        <action selector="OnAdd:" destination="QwF-7Z-0Xl" eventType="touchUpInside" id="pZ4-Vm-KEz"/>
+                                                    </connections>
+                                                </button>
+                                                <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WTW-I1-VHe">
+                                                    <rect key="frame" x="104" y="10" width="73" height="44"/>
+                                                    <animations/>
+                                                    <color key="backgroundColor" red="0.98823529409999999" green="0.16078431369999999" blue="0.39607843139999999" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="44" id="8zB-U7-E7b"/>
+                                                    </constraints>
+                                                    <state key="normal" title="🖕🏼Unfe🖕🏼">
+                                                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                    </state>
+                                                    <state key="disabled">
+                                                        <color key="titleColor" red="0.34901960780000002" green="0.42745098040000001" blue="0.43137254899999999" alpha="1" colorSpace="calibratedRGB"/>
+                                                    </state>
+                                                    <connections>
+                                                        <action selector="OnAdd:" destination="QwF-7Z-0Xl" eventType="touchUpInside" id="28U-WQ-3Xq"/>
+                                                    </connections>
+                                                </button>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0-0-0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BbI-kt-T0l">
+                                                    <rect key="frame" x="205" y="21" width="107" height="21"/>
+                                                    <animations/>
+                                                    <fontDescription key="fontDescription" type="system" weight="ultraLight" pointSize="17"/>
+                                                    <color key="textColor" red="1" green="0.5" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <animations/>
+                                            <gestureRecognizers/>
+                                            <constraints>
+                                                <constraint firstAttribute="trailingMargin" secondItem="BbI-kt-T0l" secondAttribute="trailing" id="1XN-uq-pRJ"/>
+                                                <constraint firstItem="BbI-kt-T0l" firstAttribute="width" secondItem="3Dk-KX-raa" secondAttribute="width" multiplier="1:3" id="E1d-23-QTp"/>
+                                                <constraint firstItem="aG9-Yn-v5k" firstAttribute="centerY" secondItem="3Dk-KX-raa" secondAttribute="centerY" id="OWT-hM-niP"/>
+                                                <constraint firstItem="aG9-Yn-v5k" firstAttribute="leading" secondItem="3Dk-KX-raa" secondAttribute="leading" constant="15" id="Oy1-VT-H29"/>
+                                                <constraint firstItem="WTW-I1-VHe" firstAttribute="leading" secondItem="aG9-Yn-v5k" secondAttribute="trailing" constant="8" id="Zao-4f-vSd"/>
+                                                <constraint firstItem="WTW-I1-VHe" firstAttribute="centerY" secondItem="aG9-Yn-v5k" secondAttribute="centerY" id="kH6-7P-xXw"/>
+                                                <constraint firstItem="BbI-kt-T0l" firstAttribute="centerY" secondItem="3Dk-KX-raa" secondAttribute="centerY" id="sh3-PB-75o"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <animations/>
+                                    </tableViewCell>
                                 </cells>
                             </tableViewSection>
                         </sections>
@@ -128,8 +189,11 @@
                     </tableView>
                     <nil key="simulatedStatusBarMetrics"/>
                     <connections>
+                        <outlet property="btn_safe" destination="aG9-Yn-v5k" id="iga-oi-Lnw"/>
+                        <outlet property="btn_unsafe" destination="WTW-I1-VHe" id="dhH-cS-M4k"/>
                         <outlet property="lb_coffee" destination="Vw9-mj-Kz0" id="bAc-Um-ayM"/>
                         <outlet property="lb_love" destination="Vdo-y9-IiJ" id="v8n-DX-bGL"/>
+                        <outlet property="lb_thing1" destination="BbI-kt-T0l" id="o84-vl-iOq"/>
                         <outlet property="lb_xuan" destination="Vh4-lF-dkE" id="n6h-dK-xEm"/>
                     </connections>
                 </tableViewController>

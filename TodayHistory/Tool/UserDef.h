@@ -14,8 +14,6 @@
 #define DelayExamples(T) (T)
 
 #define BadgeNumberDate @"BadgeNumberDate.peter"
-#define CoffeeTimeCount @"CoffeeTimeCount.peter"
-#define NoCoffeeTimeCount @"NoCoffeeTimeCount.peter"
 
 //获取沙盒文件
 #define File_Path(filePath) ([[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSAllDomainsMask, YES) objectAtIndex:0] stringByAppendingPathComponent:filePath])

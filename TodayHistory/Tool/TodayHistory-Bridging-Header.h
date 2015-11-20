@@ -11,3 +11,4 @@
 #import "IonIcons.h"
 #import "RootTVC.h"
 #import "UserDef.h"
+#import "HealthStoreManager.h"
