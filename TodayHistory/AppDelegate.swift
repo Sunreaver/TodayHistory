@@ -41,7 +41,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UIAlertViewDelegate {
         vc2?.tabBarItem.setTitleTextAttributes([NSForegroundColorAttributeName:Colors.main], forState: UIControlState.Selected)
         vc2?.tabBarItem.setTitleTextAttributes([NSForegroundColorAttributeName:UIColor.blackColor()], forState: UIControlState.Normal)
         
-        self.health.regHealthData()
+        self.health.regHealthData { (success) -> Void in
+        }
         return true
     }
 
@@ -210,7 +211,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UIAlertViewDelegate {
             {
                 g = 0.04
             }
-            else if buttonIndex == 5
+            else if buttonIndex == 4
             {
                 g = 0.05
             }
