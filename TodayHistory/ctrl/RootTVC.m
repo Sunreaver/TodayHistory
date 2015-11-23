@@ -11,7 +11,6 @@
 #import "DMDate.h"
 #import "NSString+DateValue.h"
 #import <IonIcons.h>
-#import "HealthStoreManager.h"
 
 #define GLOBAL_COLOR [UIColor lightGrayColor]
 

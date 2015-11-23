@@ -7,7 +7,6 @@
 #import "MJRefresh/MJRefresh.h"
 #import "GetViewCtrlFromStoryboard.h"
 #import "PushViewController+UINavigationController.h"
-#import "THDictionaryData.h"
 #import "IonIcons.h"
 #import "RootTVC.h"
 #import "UserDef.h"

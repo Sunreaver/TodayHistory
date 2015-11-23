@@ -34,7 +34,6 @@
 		D03711D11BFDD0B900014DFD /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D03711CF1BFDC38C00014DFD /* HealthKit.framework */; };
 		D04011531BFB0FD200656161 /* THDictionaryVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D04011521BFB0FD200656161 /* THDictionaryVC.swift */; };
 		D04011551BFB127F00656161 /* THDictionaryDetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D04011541BFB127F00656161 /* THDictionaryDetailVC.swift */; };
-		D04011581BFB1C6500656161 /* THDictionaryData.m in Sources */ = {isa = PBXBuildFile; fileRef = D04011571BFB1C6500656161 /* THDictionaryData.m */; };
 		D068C5021BFC09FB00D69907 /* RootTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = D068C5011BFC09FB00D69907 /* RootTVC.m */; };
 		D068C5051BFC0A1100D69907 /* DMDate.m in Sources */ = {isa = PBXBuildFile; fileRef = D068C5041BFC0A1100D69907 /* DMDate.m */; };
 		D068C50A1BFC0A2D00D69907 /* NSDate+EarlyInTheMorning.m in Sources */ = {isa = PBXBuildFile; fileRef = D068C5071BFC0A2D00D69907 /* NSDate+EarlyInTheMorning.m */; };
@@ -43,6 +42,7 @@
 		D07ADA5F1BFEAFAC003C91ED /* nosound.caf in Resources */ = {isa = PBXBuildFile; fileRef = D07ADA5E1BFEAFAC003C91ED /* nosound.caf */; };
 		D07ADA621BFEB691003C91ED /* HealthStoreManager.m in Sources */ = {isa = PBXBuildFile; fileRef = D07ADA611BFEB691003C91ED /* HealthStoreManager.m */; };
 		D07ADA631BFEB6A4003C91ED /* HealthStoreManager.m in Sources */ = {isa = PBXBuildFile; fileRef = D07ADA611BFEB691003C91ED /* HealthStoreManager.m */; };
+		D0ACECDD1C02F4DA00EB6E14 /* NSDate+EarlyInTheMorning.m in Sources */ = {isa = PBXBuildFile; fileRef = D068C5071BFC0A2D00D69907 /* NSDate+EarlyInTheMorning.m */; };
 		D0BD74871BAFEC7500017D36 /* NetWorkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0BD74861BAFEC7500017D36 /* NetWorkManager.swift */; };
 		D0FD1E161BABE9A800A94B73 /* CollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0FD1E151BABE9A800A94B73 /* CollectionViewController.swift */; };
 		D0FD1E181BABECDC00A94B73 /* THCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0FD1E171BABECDC00A94B73 /* THCollectionViewCell.swift */; };
@@ -111,8 +111,6 @@
 		D03711CF1BFDC38C00014DFD /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = System/Library/Frameworks/HealthKit.framework; sourceTree = SDKROOT; };
 		D04011521BFB0FD200656161 /* THDictionaryVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = THDictionaryVC.swift; sourceTree = "<group>"; };
 		D04011541BFB127F00656161 /* THDictionaryDetailVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = THDictionaryDetailVC.swift; sourceTree = "<group>"; };
-		D04011561BFB1C6500656161 /* THDictionaryData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THDictionaryData.h; sourceTree = "<group>"; };
-		D04011571BFB1C6500656161 /* THDictionaryData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THDictionaryData.m; sourceTree = "<group>"; };
 		D068C5001BFC09FB00D69907 /* RootTVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RootTVC.h; sourceTree = "<group>"; };
 		D068C5011BFC09FB00D69907 /* RootTVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RootTVC.m; sourceTree = "<group>"; };
 		D068C5031BFC0A1100D69907 /* DMDate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DMDate.h; sourceTree = "<group>"; };
@@ -207,8 +205,6 @@
 				D068C5031BFC0A1100D69907 /* DMDate.h */,
 				D068C5041BFC0A1100D69907 /* DMDate.m */,
 				D0219D331BA11D1F0007F00E /* THData.swift */,
-				D04011561BFB1C6500656161 /* THDictionaryData.h */,
-				D04011571BFB1C6500656161 /* THDictionaryData.m */,
 				D07ADA601BFEB691003C91ED /* HealthStoreManager.h */,
 				D07ADA611BFEB691003C91ED /* HealthStoreManager.m */,
 			);
@@ -421,7 +417,6 @@
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
-				en,
 				Base,
 			);
 			mainGroup = D0FF63281BA020F600A00BAB;
@@ -513,6 +508,7 @@
 			files = (
 				D03711CD1BFDA2FC00014DFD /* UserDef.m in Sources */,
 				D03711CC1BFD9E0F00014DFD /* TodayTVC.m in Sources */,
+				D0ACECDD1C02F4DA00EB6E14 /* NSDate+EarlyInTheMorning.m in Sources */,
 				D07ADA631BFEB6A4003C91ED /* HealthStoreManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -547,7 +543,6 @@
 				D0FF63371BA020F600A00BAB /* AppDelegate.swift in Sources */,
 				D0219D3C1BA1560E0007F00E /* THWebView.swift in Sources */,
 				D0FD1E1A1BABF14800A94B73 /* THCollectionViewLayout.swift in Sources */,
-				D04011581BFB1C6500656161 /* THDictionaryData.m in Sources */,
 				D01E88181BA271B300DE9BE1 /* TriangleLayer.swift in Sources */,
 				D068C50B1BFC0A2D00D69907 /* NSString+DateValue.m in Sources */,
 			);

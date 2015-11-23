@@ -13,7 +13,7 @@
  *  @param success 是否成功
  *  @param count   次数
  */
-typedef void(^SexualActivityResultBlock)(BOOL success, NSInteger count, NSInteger safe, NSInteger unsafe);
+typedef void(^SexualActivityResultBlock)(BOOL success, NSInteger count, NSInteger safe, NSInteger unsafe, NSInteger today);
 
 /**
  *  咖啡因
@@ -21,7 +21,7 @@ typedef void(^SexualActivityResultBlock)(BOOL success, NSInteger count, NSIntege
  *  @param success 是否成功
  *  @param g       克
  */
-typedef void(^CoffeeResultBlock)(BOOL success, double g);
+typedef void(^CoffeeResultBlock)(BOOL success, double today, double sum);
 
 typedef void(^HealthStoreCompetence)(BOOL success);
 
@@ -35,7 +35,7 @@ typedef enum : NSUInteger {
 -(void)getSexualActivityWithDay:(NSDate*)start EndDay:(NSDate*)end Block:(SexualActivityResultBlock)block;
 -(void)getCoffeeWithDay:(NSDate*)start EndDay:(NSDate*)end Block:(CoffeeResultBlock)block;
 
--(void)setSexualActivityWithDay:(NSDate*)date EndDay:(NSDate*)end isSafe:(SexualActivity_Type)type Block:(SexualActivityResultBlock)block;
+-(void)setSexualActivityWithDay:(NSDate*)date isSafe:(SexualActivity_Type)type Block:(SexualActivityResultBlock)block;
 -(void)setCoffeeWithDay:(NSDate*)date quantity:(double)g Block:(CoffeeResultBlock)block;
 
 @end

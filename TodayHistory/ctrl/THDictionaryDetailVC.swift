@@ -45,7 +45,6 @@ class THDictionaryDetailVC: UIViewController, NetWorkManagerDelegate {
     func dictionaryRequestData(word: NSDictionary, sender: NetWorkManager) {
         self.aiv_loadding.stopAnimating()
         
-        self.tv_text.text = THDictionaryData.getStringWithDictionary(word as [NSObject : AnyObject])
     }
     
 

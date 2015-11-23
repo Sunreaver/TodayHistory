@@ -8,6 +8,7 @@
 
 #import "HealthStoreManager.h"
 #import <HealthKit/HealthKit.h>
+#import "NSDate+EarlyInTheMorning.h"
 
 @interface HealthStoreManager()
 @property (nonatomic, retain) HKHealthStore *health;
@@ -55,7 +56,7 @@
      {
          if (!success)
          {
-             block(NO, 0, 0, 0);
+             block(NO, 0, 0, 0, 0);
              return ;
          }
          NSPredicate *predicate = [HKQuery predicateForSamplesWithStartDate:start endDate:end options:HKQueryOptionNone];
@@ -66,7 +67,7 @@
               limit:HKObjectQueryNoLimit
               sortDescriptors:@[sort]
               resultsHandler:^(HKSampleQuery * _Nonnull query, NSArray<__kindof HKSample *> * _Nullable results, NSError * _Nullable error) {
-                  NSInteger safe = 0, unsafe = 0;
+                  NSInteger safe = 0, unsafe = 0, today = 0;
                   for (HKCategorySample *sam in results)
                   {
                       if ([sam.metadata[@"HKSexualActivityProtectionUsed"] integerValue] == SexualActivity_Safe)
@@ -77,15 +78,18 @@
                       {
                           ++unsafe;
                       }
+                      
+                      if (sam.startDate.timeIntervalSinceNow > -24 * 3600) {
+                          ++today;
+                      }
                   }
-                  block(YES, results.count, safe, unsafe);
+                  block(YES, results.count, safe, unsafe, today);
               }];
          [self.health executeQuery:sexual];
      }];
 }
 
 -(void)setSexualActivityWithDay:(NSDate*)date
-                         EndDay:(NSDate*)end
                          isSafe:(SexualActivity_Type)type
                           Block:(SexualActivityResultBlock)block
 {
@@ -101,7 +105,7 @@
     [self.health requestAuthorizationToShareTypes:w readTypes:nil completion:^(BOOL success, NSError * _Nullable error)
      {
          if (!success) {
-             block(NO, 0, safe, unsafe);
+             block(NO, 0, safe, unsafe, 0);
          }
          HKCategorySample *quan = [HKCategorySample
                                    categorySampleWithType:[HKCategoryType categoryTypeForIdentifier:HKCategoryTypeIdentifierSexualActivity]
@@ -110,7 +114,7 @@
                                    endDate:[NSDate date]
                                    metadata:@{@"HKSexualActivityProtectionUsed":@(type), @"HKWasUserEntered":@(1)}];
          [self.health saveObject:quan withCompletion:^(BOOL success, NSError * _Nullable error) {
-             block(success, 0, safe, unsafe);
+             block(success, 0, safe, unsafe, 1);
          }];
      }];
 }
@@ -128,25 +132,28 @@
      {
          if (!success)
          {
-             block(NO, 0);
+             block(NO, 0, 0);
              return ;
          }
          NSPredicate *predicate = [HKQuery predicateForSamplesWithStartDate:start endDate:end options:HKQueryOptionNone];
          NSSortDescriptor *sort = [[NSSortDescriptor alloc] initWithKey:HKSampleSortIdentifierStartDate ascending:YES];
          
          HKSampleQuery *caffee = [[HKSampleQuery alloc]
-                                  initWithSampleType:[HKQuantityType quantityTypeForIdentifier:HKQuantityTypeIdentifierDietaryCaffeine]
-                                  predicate:predicate
-                                  limit:HKObjectQueryNoLimit
-                                  sortDescriptors:@[sort]
-                                  resultsHandler:^(HKSampleQuery * _Nonnull query, NSArray<__kindof HKSample *> * _Nullable results, NSError * _Nullable error) {
-                                      double g = 0.0;
-                                      for (HKQuantitySample *sam in results)
-                                      {
-                                          g += [sam.quantity doubleValueForUnit:[HKUnit gramUnit]];
-                                      }
-                                      block(YES, g);
-                                  }];
+              initWithSampleType:[HKQuantityType quantityTypeForIdentifier:HKQuantityTypeIdentifierDietaryCaffeine]
+              predicate:predicate
+              limit:HKObjectQueryNoLimit
+              sortDescriptors:@[sort]
+              resultsHandler:^(HKSampleQuery * _Nonnull query, NSArray<__kindof HKSample *> * _Nullable results, NSError * _Nullable error) {
+                  double g = 0.0, sum = 0.0;
+                  for (HKQuantitySample *sam in results)
+                  {
+                      sum += [sam.quantity doubleValueForUnit:[HKUnit gramUnit]];
+                      if (sam.startDate.timeIntervalSinceNow > -24 * 3600) {
+                          g += [sam.quantity doubleValueForUnit:[HKUnit gramUnit]];
+                      }
+                  }
+                  block(YES, g, sum);
+              }];
          [self.health executeQuery:caffee];
      }];
 }
@@ -165,7 +172,7 @@
     [self.health requestAuthorizationToShareTypes:w readTypes:nil completion:^(BOOL success, NSError * _Nullable error)
      {
          if (!success) {
-             block(NO, 0);
+             block(NO, 0, 0);
          }
          HKQuantity *q = [HKQuantity quantityWithUnit:[HKUnit gramUnit] doubleValue:g];
          HKQuantitySample *quan = [HKQuantitySample
@@ -175,7 +182,7 @@
            endDate:date
            metadata:@{@"HKWasUserEntered":@(1)}];
          [self.health saveObject:quan withCompletion:^(BOOL success, NSError * _Nullable error) {
-             block(success, 1);
+             block(success, 1, 1);
          }];
      }];
 }

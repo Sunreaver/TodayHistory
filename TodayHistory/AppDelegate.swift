@@ -49,11 +49,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UIAlertViewDelegate {
     func applicationWillResignActive(application: UIApplication) {
         // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
         // Use this method to pause ongoing tasks, disable timers, and throttle down OpenGL ES frame rates. Games should use this method to pause the game.
-        let date = UserDef.getUserDefValue(BadgeNumberDate)
-        if let _ = date
-        {
-            application.applicationIconBadgeNumber = self.calculateBadgeNum(date as! String)
-        }
     }
 
     func applicationDidEnterBackground(application: UIApplication) {
@@ -61,6 +56,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UIAlertViewDelegate {
         // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
         
         self.regNotification()
+        
+        let date = UserDef.getUserDefValue(BadgeNumberDate)
+        if let _ = date
+        {
+            application.applicationIconBadgeNumber = self.calculateBadgeNum(date as! String)
+        }
     }
 
     func applicationWillEnterForeground(application: UIApplication) {
@@ -76,6 +77,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UIAlertViewDelegate {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
     
+    func application(application: UIApplication, openURL url: NSURL, sourceApplication: String?, annotation: AnyObject) -> Bool {
+        if url.absoluteString.hasPrefix("SwissArmyKnifeToday://action=refreshBadgeNumber")
+        {
+            application.applicationIconBadgeNumber = 1;
+//            let date = UserDef.getUserDefValue(BadgeNumberDate)
+//            if let _ = date
+//            {
+//                application.applicationIconBadgeNumber = self.calculateBadgeNum(date as! String)
+//            }
+        }
+        return false;
+    }
+    
     func application(application: UIApplication, handleActionWithIdentifier identifier: String?, forLocalNotification notification: UILocalNotification, completionHandler: () -> Void) {
         if let _ = identifier
         {
@@ -88,7 +102,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UIAlertViewDelegate {
             }
             else if identifier == "Drinkcoffee"
             {
-                self.health.setCoffeeWithDay(NSDate(), quantity: 0.03, block: { (success, g) -> Void in
+                self.health.setCoffeeWithDay(NSDate(), quantity: 0.03, block: { (success, g, sum) -> Void in
                     
                 });
             }
@@ -215,7 +229,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UIAlertViewDelegate {
             {
                 g = 0.05
             }
-            self.health.setCoffeeWithDay(NSDate(timeIntervalSinceNow: -2*60), quantity: g, block: { (s, g) -> Void in
+            self.health.setCoffeeWithDay(NSDate(timeIntervalSinceNow: -2*60), quantity: g, block: { (s, g, sum) -> Void in
             })
         }
     }

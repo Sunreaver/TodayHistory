@@ -12,15 +12,15 @@
 -(NSDate*)earlyInTheMorning
 {
     NSDateFormatter *df = [[NSDateFormatter alloc] init];
-    df.dateFormat = @"yyyy-MM-dd";
+    df.dateFormat = @"yyyyMMdd";
     NSString *dateStr = [df stringFromDate:self];
     return [df dateFromString:dateStr];
 }
 
--(NSString*)stringValue
+-(NSString*)yyyyMMddStringValue
 {
     NSDateFormatter *df = [[NSDateFormatter alloc] init];
-    df.dateFormat = @"yyyy-MM-dd";
+    df.dateFormat = @"yyyyMMdd";
     return [df stringFromDate:self];
 }
 
