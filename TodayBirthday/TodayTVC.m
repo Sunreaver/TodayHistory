@@ -10,6 +10,7 @@
 #import "UserDef.h"
 #import <NotificationCenter/NotificationCenter.h>
 #import "HealthStoreManager.h"
+#import "NSDate+EarlyInTheMorning.h"
 
 @interface TodayTVC ()<NCWidgetProviding>
 @property (weak, nonatomic) IBOutlet UILabel *lb_xuan;
@@ -115,11 +116,23 @@
 - (IBAction)OnAddCoffee:(UIButton *)sender
 {
     __weak __typeof(self)wself = self;
-    [self.health setCoffeeWithDay:[NSDate date]quantity:0.01 Block:^(BOOL success, double today, double sum) {
+    [self.health setCoffeeWithDay:[NSDate date] quantity:0.01 Block:^(BOOL success, NSInteger today, NSInteger sum) {
         __typeof(wself)sself = wself;
-        if (sself)
+        if (sself && success)
         {
-            [sself refreshNewData];
+            NSString *nomg = [sself.lb_coffee.text substringToIndex:sself.lb_coffee.text.length - 2];
+            NSArray *ar = [nomg componentsSeparatedByString:@"/"];
+            NSInteger t = [ar[0] integerValue] + today;
+            NSInteger s = [ar[1] integerValue] + today;
+            [sself performSelectorOnMainThread:@selector(setCoffeeDataWithNum:)
+                                    withObject:[NSString stringWithFormat:@"%@/%@mg", @(t), @(s)]
+                                 waitUntilDone:NO];
+        }
+        else if (sself)
+        {
+            [sself performSelectorOnMainThread:@selector(setCoffeeDataWithNum:)
+                                    withObject:nil
+                                 waitUntilDone:NO];
         }
     }];
 }
@@ -159,11 +172,9 @@
 
 -(void)refreshNewData
 {
-    NSDateFormatter *df = [[NSDateFormatter alloc] init];
-    df.dateFormat = @"yyyyMMdd";
-    NSDate *xuan = [df dateFromString:@"20150530"];
-    NSDate *love = [df dateFromString:@"20091115"];
-    NSDate *end = [df dateFromString:[df stringFromDate:[NSDate date]]];
+    NSDate *xuan = [@"20150530" yyyyMMddString2Date];
+    NSDate *love = [@"20091115" yyyyMMddString2Date];
+    NSDate *end = [[NSDate date] earlyInTheMorning];
     
     NSTimeInterval ti = end.timeIntervalSince1970 - xuan.timeIntervalSince1970;
     ti += ti > 0 ? 3600 : -3600;
@@ -177,12 +188,12 @@
     
     __weak __typeof(self)wself = self;
     [self.health getCoffeeWithDay:[NSDate dateWithTimeIntervalSinceNow:-14 * 24 * 3600] EndDay:[NSDate date]
-        Block:^(BOOL success, double today, double sum) {
+        Block:^(BOOL success, NSInteger today, NSInteger sum) {
             __typeof(wself)sself = wself;
             if (sself && success)
             {
                 [sself performSelectorOnMainThread:@selector(setCoffeeDataWithNum:)
-                                        withObject:[NSString stringWithFormat:@"%@/%@mg", @(today*1000), @(sum*1000)]
+                                        withObject:[NSString stringWithFormat:@"%@/%@mg", @(today), @(sum)]
                                      waitUntilDone:NO];
             }
             else if(sself)

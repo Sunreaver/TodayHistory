@@ -14,3 +14,9 @@
 -(NSString*)yyyyMMddStringValue;
 
 @end
+
+@interface NSString (EarlyInTheMorning)
+
+-(NSDate*)yyyyMMddString2Date;
+
+@end

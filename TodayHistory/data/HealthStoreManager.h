@@ -7,21 +7,35 @@
 //
 
 #import <Foundation/Foundation.h>
+
 /**
  *  SexualActivity结果
  *
- *  @param success 是否成功
- *  @param count   次数
+ *  @param success 成功与否
+ *  @param count   总数
+ *  @param safe    safe次数
+ *  @param unsafe  unsafe次数
+ *  @param today   24h内次数
  */
 typedef void(^SexualActivityResultBlock)(BOOL success, NSInteger count, NSInteger safe, NSInteger unsafe, NSInteger today);
 
 /**
  *  咖啡因
  *
- *  @param success 是否成功
- *  @param g       克
+ *  @param success 成功与否
+ *  @param today   24h内量(mg)
+ *  @param sum     总量(mg)
  */
-typedef void(^CoffeeResultBlock)(BOOL success, double today, double sum);
+typedef void(^CoffeeResultBlock)(BOOL success, NSInteger today, NSInteger sum);
+
+/**
+ *  走路
+ *
+ *  @param success 成功与否
+ *  @param today   24h内量（分钟）
+ *  @param sum     总量(分钟)
+ */
+typedef void(^WorkoutWalkingResultBlock)(BOOL success, NSInteger today, NSInteger sum);
 
 typedef void(^HealthStoreCompetence)(BOOL success);
 
@@ -37,5 +51,9 @@ typedef enum : NSUInteger {
 
 -(void)setSexualActivityWithDay:(NSDate*)date isSafe:(SexualActivity_Type)type Block:(SexualActivityResultBlock)block;
 -(void)setCoffeeWithDay:(NSDate*)date quantity:(double)g Block:(CoffeeResultBlock)block;
+
+-(void)getWorkoutWalkingWithDay:(NSDate*)start EndDay:(NSDate*)end Block:(WorkoutWalkingResultBlock)block;
+-(void)setWorkoutWalkingWithDay:(NSDate*)date Block:(WorkoutWalkingResultBlock)block;
+
 
 @end

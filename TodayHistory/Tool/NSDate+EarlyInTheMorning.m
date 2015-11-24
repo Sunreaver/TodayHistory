@@ -25,3 +25,14 @@
 }
 
 @end
+
+@implementation NSString (EarlyInTheMorning)
+
+-(NSDate*)yyyyMMddString2Date
+{
+    NSDateFormatter *df = [[NSDateFormatter alloc] init];
+    df.dateFormat = @"yyyyMMdd";
+    return [df dateFromString:self];
+}
+
+@end

@@ -35,6 +35,7 @@
     NSMutableSet *w = [NSMutableSet set];
     [w addObject:[HKCategoryType categoryTypeForIdentifier:HKCategoryTypeIdentifierSexualActivity]];
     [w addObject:[HKQuantityType quantityTypeForIdentifier:HKQuantityTypeIdentifierDietaryCaffeine]];
+    [w addObject:[HKWorkoutType workoutType]];
     
     [self.health requestAuthorizationToShareTypes:[w copy] readTypes:[w copy] completion:^(BOOL success, NSError * _Nullable error)
      {
@@ -46,6 +47,7 @@
 -(void)getSexualActivityWithDay:(NSDate*)start EndDay:(NSDate*)end Block:(SexualActivityResultBlock)block
 {
     if (![HKHealthStore isHealthDataAvailable]) {
+        block(NO, 0, 0, 0, 0);
         return;
     }
     
@@ -94,6 +96,7 @@
                           Block:(SexualActivityResultBlock)block
 {
     if (![HKHealthStore isHealthDataAvailable]) {
+        block(NO, 0, 0, 0, 0);
         return;
     }
     
@@ -106,6 +109,7 @@
      {
          if (!success) {
              block(NO, 0, safe, unsafe, 0);
+             return ;
          }
          HKCategorySample *quan = [HKCategorySample
                                    categorySampleWithType:[HKCategoryType categoryTypeForIdentifier:HKCategoryTypeIdentifierSexualActivity]
@@ -122,11 +126,12 @@
 -(void)getCoffeeWithDay:(NSDate*)start EndDay:(NSDate*)end Block:(CoffeeResultBlock)block
 {
     if (![HKHealthStore isHealthDataAvailable]) {
+        block(NO, 0, 0);
         return;
     }
     
     NSMutableSet *w = [NSMutableSet set];
-    [w addObject:[HKCategoryType categoryTypeForIdentifier:HKCategoryTypeIdentifierSexualActivity]];
+    [w addObject:[HKQuantityType quantityTypeForIdentifier:HKQuantityTypeIdentifierDietaryCaffeine]];
     
     [self.health requestAuthorizationToShareTypes:nil readTypes:w completion:^(BOOL success, NSError * _Nullable error)
      {
@@ -152,7 +157,7 @@
                           g += [sam.quantity doubleValueForUnit:[HKUnit gramUnit]];
                       }
                   }
-                  block(YES, g, sum);
+                  block(YES, g*1000, sum*1000);
               }];
          [self.health executeQuery:caffee];
      }];
@@ -163,6 +168,7 @@
                   Block:(CoffeeResultBlock)block
 {
     if (![HKHealthStore isHealthDataAvailable]) {
+        block(NO, 0.01, 0.01);
         return;
     }
     
@@ -182,7 +188,80 @@
            endDate:date
            metadata:@{@"HKWasUserEntered":@(1)}];
          [self.health saveObject:quan withCompletion:^(BOOL success, NSError * _Nullable error) {
-             block(success, 1, 1);
+             block(success, 10, 10);
+         }];
+     }];
+}
+
+-(void)getWorkoutWalkingWithDay:(NSDate*)start EndDay:(NSDate*)end Block:(WorkoutWalkingResultBlock)block
+{
+    if (![HKHealthStore isHealthDataAvailable]) {
+        block(NO, 0, 0);
+        return;
+    }
+    
+    NSMutableSet *w = [NSMutableSet set];
+    [w addObject:[HKWorkoutType workoutType]];
+    
+    [self.health requestAuthorizationToShareTypes:nil readTypes:w completion:^(BOOL success, NSError * _Nullable error)
+     {
+         if (!success)
+         {
+             block(NO, 0, 0);
+             return ;
+         }
+         NSPredicate *predicate = [HKQuery predicateForSamplesWithStartDate:start endDate:end options:HKQueryOptionNone];
+         NSSortDescriptor *sort = [[NSSortDescriptor alloc] initWithKey:HKSampleSortIdentifierStartDate ascending:YES];
+         HKSampleQuery *sexual = [[HKSampleQuery alloc]
+              initWithSampleType:[HKWorkoutType workoutType]
+              predicate:predicate
+              limit:HKObjectQueryNoLimit
+              sortDescriptors:@[sort]
+              resultsHandler:^(HKSampleQuery * _Nonnull query, NSArray<__kindof HKSample *> * _Nullable results, NSError * _Nullable error) {
+                  double time = 0.0, today = 0.0;
+                  for (HKWorkout *sam in results)
+                  {
+                      if (sam.workoutActivityType == HKWorkoutActivityTypeWalking) {
+                          time += sam.duration;
+                          if (sam.startDate.timeIntervalSinceNow > -24 * 3600) {
+                              today += sam.duration;
+                          }
+                      }
+                  }
+                  block(YES, today/60.0, time/60.0);
+              }];
+         [self.health executeQuery:sexual];
+     }];
+}
+
+-(void)setWorkoutWalkingWithDay:(NSDate*)date
+                          Block:(WorkoutWalkingResultBlock)block
+{
+    if (![HKHealthStore isHealthDataAvailable]) {
+        block(NO, 0, 0);
+        return ;
+    }
+    
+    NSMutableSet *w = [NSMutableSet set];
+    [w addObject:[HKWorkoutType workoutType]];
+    
+    [self.health requestAuthorizationToShareTypes:w readTypes:nil completion:^(BOOL success, NSError * _Nullable error)
+     {
+         if (!success) {
+             block(NO, 0, 0);
+             return ;
+         }
+         HKWorkout *wo = [HKWorkout
+              workoutWithActivityType:HKWorkoutActivityTypeWalking
+              startDate:date
+              endDate:[date dateByAddingTimeInterval:1*3600]
+              duration:0
+              totalEnergyBurned:[HKQuantity quantityWithUnit:[HKUnit kilocalorieUnit] doubleValue:234.0]
+              totalDistance:[HKQuantity quantityWithUnit:[HKUnit meterUnit] doubleValue:4700.0]
+              metadata:@{@"回家":@"今天走回家"}];
+         
+         [self.health saveObject:wo withCompletion:^(BOOL success, NSError * _Nullable error) {
+             block(success, 60, 0);
          }];
      }];
 }

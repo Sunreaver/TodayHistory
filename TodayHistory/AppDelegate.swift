@@ -13,8 +13,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UIAlertViewDelegate {
 
     var window: UIWindow?
     let health:HealthStoreManager = {
-        let h = HealthStoreManager()
-        return h
+        return HealthStoreManager()
     }()
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
@@ -23,6 +22,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UIAlertViewDelegate {
         let vc0 = tabbarCtrl?.childViewControllers[0]
         let vc1 = tabbarCtrl?.childViewControllers[1]
         let vc2 = tabbarCtrl?.childViewControllers[2]
+        let vc3 = tabbarCtrl?.childViewControllers[3]
         vc0?.tabBarItem.image = IonIcons.imageWithIcon(ion_ios_calculator, size: 27.0, color: UIColor.blackColor())
         vc0?.tabBarItem.selectedImage = IonIcons.imageWithIcon(ion_ios_calculator, size: 27.0, color: Colors.main)
         vc0?.tabBarItem.title = "日期计算"
@@ -40,6 +40,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UIAlertViewDelegate {
         vc2?.tabBarItem.title = "词典"
         vc2?.tabBarItem.setTitleTextAttributes([NSForegroundColorAttributeName:Colors.main], forState: UIControlState.Selected)
         vc2?.tabBarItem.setTitleTextAttributes([NSForegroundColorAttributeName:UIColor.blackColor()], forState: UIControlState.Normal)
+        
+        vc3?.tabBarItem.image = IonIcons.imageWithIcon(ion_ios_body, size: 27.0, color: UIColor.blackColor())
+        vc3?.tabBarItem.selectedImage = IonIcons.imageWithIcon(ion_ios_body, size: 27.0, color: Colors.main)
+        vc3?.tabBarItem.title = "健康"
+        vc3?.tabBarItem.setTitleTextAttributes([NSForegroundColorAttributeName:Colors.main], forState: UIControlState.Selected)
+        vc3?.tabBarItem.setTitleTextAttributes([NSForegroundColorAttributeName:UIColor.blackColor()], forState: UIControlState.Normal)
+        
+        (tabbarCtrl as! UITabBarController).selectedIndex = 3
         
         self.health.regHealthData { (success) -> Void in
         }
@@ -80,12 +88,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UIAlertViewDelegate {
     func application(application: UIApplication, openURL url: NSURL, sourceApplication: String?, annotation: AnyObject) -> Bool {
         if url.absoluteString.hasPrefix("SwissArmyKnifeToday://action=refreshBadgeNumber")
         {
-            application.applicationIconBadgeNumber = 1;
-//            let date = UserDef.getUserDefValue(BadgeNumberDate)
-//            if let _ = date
-//            {
-//                application.applicationIconBadgeNumber = self.calculateBadgeNum(date as! String)
-//            }
+            let date = UserDef.getUserDefValue(BadgeNumberDate)
+            if let _ = date
+            {
+                application.applicationIconBadgeNumber = self.calculateBadgeNum(date as! String)
+            }
         }
         return false;
     }
@@ -112,13 +119,25 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UIAlertViewDelegate {
                 av.tag = 999
                 av.show()
             }
+            else if identifier == "WalkHome"
+            {
+                let df = NSDateFormatter();
+                df.dateFormat = "yyyyMMddHHmm";
+                var date = df.dateFromString(NSDate().yyyyMMddStringValue().stringByAppendingString("1840"))
+                if (date?.timeIntervalSinceNow > 0)
+                {
+                    date = NSDate(timeInterval: -24*3600, sinceDate: date!)
+                }
+                self.health.setWorkoutWalkingWithDay(date, block: { (success, today, sum) -> Void in
+                })
+            }
         }
         completionHandler()
     }
     
     func regNotification()
     {
-        //注册消息
+        //DateCalculate 消息类型
         let action01:UIMutableUserNotificationAction = UIMutableUserNotificationAction()
         action01.title = "轩轩"
         action01.identifier = "refreshDay_20150530"
@@ -132,6 +151,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UIAlertViewDelegate {
         categorys0.identifier = "DateCalculate"
         categorys0.setActions([action01, action03], forContext: UIUserNotificationActionContext.Default)
         
+        //CoffeeTime 消息类型
         let action0:UIMutableUserNotificationAction = UIMutableUserNotificationAction()
         action0.title = "30mg"
         action0.identifier = "Drinkcoffee"
@@ -146,7 +166,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UIAlertViewDelegate {
         let categorys1:UIMutableUserNotificationCategory = UIMutableUserNotificationCategory()
         categorys1.identifier = "CoffeeTime"
         categorys1.setActions([action0, action1], forContext: UIUserNotificationActionContext.Default)
-        let unsCoffee:UIUserNotificationSettings = UIUserNotificationSettings(forTypes: [.Sound, .Badge], categories: NSSet(array: [categorys0, categorys1]) as? Set<UIUserNotificationCategory>)
+        
+        //WorkoutWalk 消息类型
+        let action001:UIMutableUserNotificationAction = UIMutableUserNotificationAction()
+        action001.title = "走回家了？"
+        action001.identifier = "WalkHome"
+        action001.activationMode = UIUserNotificationActivationMode.Background
+        
+        let categorys001:UIMutableUserNotificationCategory = UIMutableUserNotificationCategory()
+        categorys001.identifier = "WorkoutWalk"
+        categorys001.setActions([action001], forContext: UIUserNotificationActionContext.Default)
+        
+        let unsCoffee:UIUserNotificationSettings = UIUserNotificationSettings(forTypes: [.Sound, .Badge], categories: NSSet(array: [categorys0, categorys1, categorys001]) as? Set<UIUserNotificationCategory>)
         UIApplication.sharedApplication().registerUserNotificationSettings(unsCoffee)
         
         //取消已经添加的DateCalculate提醒
@@ -162,7 +193,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UIAlertViewDelegate {
         */
         UIApplication.sharedApplication().cancelAllLocalNotifications()
         
-        //创建消息
+        //注册DateCalculate
         let df:NSDateFormatter = NSDateFormatter()
         df.dateFormat = "yyyyMMdd"
         var ds0:NSString = df.stringFromDate(NSDate())
@@ -180,7 +211,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UIAlertViewDelegate {
         notification.userInfo = ["type":"DateCalculate"]
         UIApplication.sharedApplication().scheduleLocalNotification(notification)
         
-        //创建消息
+        //注册CoffeeTime
         df.dateFormat = "yyyyMMdd"
         ds0 = df.stringFromDate(NSDate())
         df.dateFormat = "yyyyMMdd HH:mm:ss"
@@ -195,6 +226,21 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UIAlertViewDelegate {
         notification1.userInfo = ["type":"CoffeeTime"]
         notification1.category = "CoffeeTime"
         UIApplication.sharedApplication().scheduleLocalNotification(notification1)
+        
+        //注册WorkoutWalk
+        df.dateFormat = "yyyyMMdd"
+        ds0 = df.stringFromDate(NSDate())
+        df.dateFormat = "yyyyMMdd HH:mm:ss"
+        let notification2:UILocalNotification = UILocalNotification()
+        fireString = ds0.stringByAppendingString(" 19:20:10")
+        notification2.fireDate = df.dateFromString(fireString)
+        notification2.repeatInterval = NSCalendarUnit.Day//循环次数，kCFCalendarUnitWeekday一周一次
+        notification2.soundName = "nosound.caf";//声音，可以换成alarm.soundName = @"myMusic.caf"
+        notification2.alertTitle = "今天走回家了吗？"
+        notification2.alertBody = "Commmmme on Boy!";//提示信息 弹出提示框
+        notification2.userInfo = ["type":"WorkoutWalk"]
+        notification2.category = "WorkoutWalk"
+        UIApplication.sharedApplication().scheduleLocalNotification(notification2)
     }
     
     func calculateBadgeNum (birthday:String) ->NSInteger
