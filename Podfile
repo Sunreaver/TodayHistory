@@ -6,3 +6,5 @@ pod 'JSONKit', '~> 1.5pre'
 pod 'ionicons'
 pod 'THCalendarDatePicker', '~> 1.2.0'
 pod 'EGOCache', '~> 2.1.3'
+pod 'MBProgressHUD', '~> 0.9.1'
+

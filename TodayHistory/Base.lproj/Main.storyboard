@@ -467,7 +467,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ut5-V1-dXs" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="632" y="2159"/>
+            <point key="canvasLocation" x="-20" y="2172"/>
         </scene>
         <!--HealthTVC-->
         <scene sceneID="NCp-hJ-360">
@@ -626,6 +626,75 @@
                                         </tableViewCellContentView>
                                         <animations/>
                                     </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="0gu-M4-ILj">
+                                        <rect key="frame" x="0.0" y="414" width="320" height="66"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="0gu-M4-ILj" id="7Q1-0p-MGV">
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="65"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <button opaque="NO" clipsSubviews="YES" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TSW-n8-my6">
+                                                    <rect key="frame" x="15" y="18" width="91" height="30"/>
+                                                    <animations/>
+                                                    <color key="backgroundColor" red="0.80000000000000004" green="1" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="30" id="hZN-3X-DFf"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" name="TimesNewRomanPSMT" family="Times New Roman" pointSize="18"/>
+                                                    <state key="normal" title="🎮WOW🎮"/>
+                                                    <state key="disabled">
+                                                        <color key="titleColor" red="0.34901960780000002" green="0.42745098040000001" blue="0.43137254899999999" alpha="1" colorSpace="calibratedRGB"/>
+                                                    </state>
+                                                    <connections>
+                                                        <action selector="OnStartWow:" destination="62k-KR-iaR" eventType="touchUpInside" id="k3A-oQ-uaC"/>
+                                                    </connections>
+                                                </button>
+                                                <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dlB-hE-XY9">
+                                                    <rect key="frame" x="135" y="18" width="40" height="30"/>
+                                                    <animations/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="40" id="H05-1o-Qqj"/>
+                                                    </constraints>
+                                                    <connections>
+                                                        <action selector="OnChangeWowTime:" destination="62k-KR-iaR" eventType="touchUpInside" id="EgF-f6-0nv"/>
+                                                    </connections>
+                                                </button>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="30min" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="q8y-r2-HUG">
+                                                    <rect key="frame" x="190" y="22" width="60" height="21"/>
+                                                    <animations/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="60" id="Hhp-0x-mXd"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="W47-ZY-ejI">
+                                                    <rect key="frame" x="265" y="18" width="40" height="30"/>
+                                                    <animations/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="40" id="6t4-P2-lXD"/>
+                                                    </constraints>
+                                                    <connections>
+                                                        <action selector="OnChangeWowTime:" destination="62k-KR-iaR" eventType="touchUpInside" id="gAy-7T-htK"/>
+                                                    </connections>
+                                                </button>
+                                            </subviews>
+                                            <animations/>
+                                            <constraints>
+                                                <constraint firstItem="TSW-n8-my6" firstAttribute="centerY" secondItem="7Q1-0p-MGV" secondAttribute="centerY" id="8WU-Uq-hpX"/>
+                                                <constraint firstItem="q8y-r2-HUG" firstAttribute="centerY" secondItem="7Q1-0p-MGV" secondAttribute="centerY" id="Glr-a9-6ew"/>
+                                                <constraint firstItem="W47-ZY-ejI" firstAttribute="centerY" secondItem="q8y-r2-HUG" secondAttribute="centerY" id="WW8-Dv-6uc"/>
+                                                <constraint firstItem="q8y-r2-HUG" firstAttribute="centerY" secondItem="dlB-hE-XY9" secondAttribute="centerY" id="WeR-TY-O0G"/>
+                                                <constraint firstItem="q8y-r2-HUG" firstAttribute="leading" secondItem="dlB-hE-XY9" secondAttribute="trailing" constant="15" id="aTv-oj-x4U"/>
+                                                <constraint firstItem="TSW-n8-my6" firstAttribute="leading" secondItem="7Q1-0p-MGV" secondAttribute="leading" constant="15" id="gbJ-bg-udY"/>
+                                                <constraint firstItem="W47-ZY-ejI" firstAttribute="leading" secondItem="q8y-r2-HUG" secondAttribute="trailing" constant="15" id="hjC-zP-KCz"/>
+                                                <constraint firstAttribute="trailing" secondItem="W47-ZY-ejI" secondAttribute="trailing" constant="15" id="jsZ-4Z-3qk"/>
+                                                <constraint firstItem="W47-ZY-ejI" firstAttribute="centerY" secondItem="7Q1-0p-MGV" secondAttribute="centerY" id="qBO-Cl-4im"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <animations/>
+                                    </tableViewCell>
                                 </cells>
                             </tableViewSection>
                         </sections>
@@ -637,18 +706,22 @@
                     <navigationItem key="navigationItem" id="Ree-Ev-zVF"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics"/>
                     <connections>
+                        <outlet property="btn_addwowtime" destination="dlB-hE-XY9" id="glh-5k-lih"/>
                         <outlet property="btn_coffee" destination="r8M-Mb-JfL" id="5eU-w6-jVX"/>
+                        <outlet property="btn_reducewowtime" destination="W47-ZY-ejI" id="5UU-WQ-0bz"/>
                         <outlet property="btn_safe" destination="w18-qW-suV" id="uxw-fz-rdN"/>
                         <outlet property="btn_unsafe" destination="w4o-oB-csK" id="c3B-VO-CZy"/>
                         <outlet property="btn_walk" destination="vCc-YZ-WGG" id="Qxh-Ou-kkc"/>
+                        <outlet property="btn_wow" destination="TSW-n8-my6" id="gJB-ZK-GyE"/>
                         <outlet property="lb_coffee" destination="DY7-rp-ddY" id="j6N-qQ-iFi"/>
                         <outlet property="lb_thing1" destination="T4y-kv-rJI" id="KtE-jo-Y6a"/>
                         <outlet property="lb_walk" destination="QNT-gI-vk7" id="EAn-8a-9el"/>
+                        <outlet property="lb_wowtime" destination="q8y-r2-HUG" id="QaX-uM-lxR"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3Dn-A6-LEV" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1016" y="2159"/>
+            <point key="canvasLocation" x="364" y="2172"/>
         </scene>
     </scenes>
     <resources>

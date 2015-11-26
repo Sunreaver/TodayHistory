@@ -9,6 +9,9 @@
 #import "HealthTVC.h"
 #import "HealthStoreManager.h"
 #import "NSDate+EarlyInTheMorning.h"
+#import <EventKit/EventKit.h>
+#import <IonIcons.h>
+#import <MBProgressHUD.h>
 
 @interface HealthTVC ()
 @property (weak, nonatomic) IBOutlet UIButton *btn_safe;
@@ -19,7 +22,15 @@
 @property (weak, nonatomic) IBOutlet UILabel *lb_thing1;
 @property (weak, nonatomic) IBOutlet UILabel *lb_walk;
 
+@property (weak, nonatomic) IBOutlet UIButton *btn_wow;
+@property (weak, nonatomic) IBOutlet UIButton *btn_addwowtime;
+@property (weak, nonatomic) IBOutlet UIButton *btn_reducewowtime;
+@property (weak, nonatomic) IBOutlet UILabel *lb_wowtime;
+
+
 @property (nonatomic, retain) HealthStoreManager *health;
+@property (nonatomic, assign) NSInteger iWowTime;
+@property (nonatomic, retain) EKEventStore* eventStore;
 @end
 
 @implementation HealthTVC
@@ -30,6 +41,21 @@
         _health = [[HealthStoreManager alloc] init];
     }
     return _health;
+}
+
+-(void)setIWowTime:(NSInteger)iWowTime
+{
+    self.lb_wowtime.text = [NSString stringWithFormat:@"%@min", @(iWowTime)];
+    _iWowTime = iWowTime;
+}
+
+-(EKEventStore*)eventStore
+{
+    if (!_eventStore)
+    {
+        _eventStore = [[EKEventStore alloc] init];
+    }
+    return _eventStore;
 }
 
 - (void)viewDidLoad {
@@ -44,6 +70,12 @@
     self.btn_unsafe.layer.cornerRadius = 5;
     self.btn_coffee.layer.cornerRadius = 5;
     self.btn_walk.layer.cornerRadius = 5;
+    self.btn_wow.layer.cornerRadius = 5;
+    
+    [self.btn_addwowtime setImage:[IonIcons imageWithIcon:ion_plus size:27 color:[UIColor redColor]]
+                         forState:UIControlStateNormal];
+    [self.btn_reducewowtime setImage:[IonIcons imageWithIcon:ion_minus size:27 color:[UIColor redColor]]
+                            forState:UIControlStateNormal];
     
     self.navigationItem.title = @"健康";
 }
@@ -54,6 +86,7 @@
     
     self.lb_thing1.textColor = [UIColor grayColor];
     self.lb_coffee.textColor = [UIColor grayColor];
+
     [self refreshNewData];
 }
 
@@ -66,7 +99,7 @@
                 __typeof(wself)sself = wself;
                 if (sself && success)
                 {
-                    NSArray *ar = [sself.lb_thing1.text componentsSeparatedByCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:@",|"]];
+                    NSArray *ar = [sself.lb_thing1.text componentsSeparatedByCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:@"-|"]];
                     NSInteger c = [ar[0] integerValue] + 1;
                     NSInteger s = [ar[1] integerValue] + safe;
                     NSInteger us = [ar[2] integerValue] + unsafe;
@@ -148,6 +181,67 @@
         }];
 }
 
+- (IBAction)OnStartWow:(UIButton *)sender
+{
+    __weak __typeof(self)wself = self;
+    [self.eventStore requestAccessToEntityType:EKEntityTypeReminder
+           completion:^(BOOL granted, NSError * _Nullable error) {
+               __typeof(wself)sself = wself;
+               if (!granted)
+               {
+                   [sself showAlertWithTip:@"没权限"];
+                   return ;
+               }
+               else if (sself)
+               {
+                   [sself performSelectorInBackground:@selector(setWowEvent) withObject:nil];
+               }
+           }];
+}
+
+- (IBAction)OnChangeWowTime:(UIButton *)sender
+{
+    NSInteger i = self.iWowTime;
+    if (sender.tag == 1)
+    {//add
+        i += 30;
+        i = i > 120 ? 120 : i;
+    }
+    else if (sender.tag == 2)
+    {//reduce
+        i -= 30;
+        i = i < 30 ? 30 : i;
+    }
+    self.iWowTime = i;
+}
+
+-(void)setWowEvent
+{
+    EKReminder *reminder = [EKReminder reminderWithEventStore:self.eventStore];
+    reminder.title = @"Wow Time!";
+    reminder.priority = 3;
+    reminder.calendar = self.eventStore.defaultCalendarForNewReminders;
+    [reminder addAlarm:[EKAlarm alarmWithAbsoluteDate:[NSDate dateWithTimeIntervalSinceNow:self.iWowTime * 60]]];
+    NSError *err;
+    [self.eventStore saveReminder:reminder commit:YES error:&err];
+//    EKEvent *event  = [EKEvent eventWithEventStore:self.eventStore];
+//    event.title     = @"Wow Time!";
+//    event.startDate = [NSDate date];
+//    event.endDate   = [NSDate dateWithTimeIntervalSinceNow:self.iWowTime * 60];
+//    [event addAlarm:[EKAlarm alarmWithRelativeOffset:self.iWowTime * 60]];
+//    [event setCalendar:[self.eventStore defaultCalendarForNewEvents]];
+//    NSError *err;
+//    [self.eventStore saveEvent:event span:EKSpanThisEvent error:&err];
+    if (err)
+    {
+        [self performSelectorOnMainThread:@selector(showAlertWithTip:) withObject:@"创建失败" waitUntilDone:NO];
+    }
+    else
+    {
+        [self performSelectorOnMainThread:@selector(showAlertWithTip:) withObject:@"Enjoy" waitUntilDone:NO];
+    }
+}
+
 -(void)setHealthDataWithString:(NSString*)str
 {
     if (str)
@@ -189,6 +283,8 @@
 
 -(void)refreshNewData
 {
+    self.iWowTime = 90;
+
     __weak __typeof(self)wself = self;
     [self.health getCoffeeWithDay:[NSDate dateWithTimeIntervalSinceNow:-14 * 24 * 3600] EndDay:[NSDate date]
             Block:^(BOOL success, NSInteger today, NSInteger sum) {
@@ -235,6 +331,15 @@
                     [self performSelectorOnMainThread:@selector(setWalkingDataWithNum:) withObject:nil waitUntilDone:NO];
                 }
             }];
+}
+
+-(void)showAlertWithTip:(NSString*)tip
+{
+    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.navigationController.view animated:YES];
+    hud.labelText = tip;
+    hud.detailsLabelText = @"提醒项目";
+    hud.mode = MBProgressHUDModeText;
+    [hud hide:YES afterDelay:1.0];
 }
 
 @end

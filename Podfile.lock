@@ -24,6 +24,7 @@ PODS:
   - ionicons (2.0.3)
   - JSONKit (1.5pre)
   - KNSemiModalViewController_hons82 (0.4.4)
+  - MBProgressHUD (0.9.1)
   - MJRefresh (1.4.7)
   - THCalendarDatePicker (1.2.5):
     - KNSemiModalViewController_hons82 (~> 0.4.3)
@@ -33,6 +34,7 @@ DEPENDENCIES:
   - EGOCache (~> 2.1.3)
   - ionicons
   - JSONKit (~> 1.5pre)
+  - MBProgressHUD (~> 0.9.1)
   - MJRefresh (~> 1.4.0)
   - THCalendarDatePicker (~> 1.2.0)
 
@@ -42,6 +44,7 @@ SPEC CHECKSUMS:
   ionicons: ec1e86e6c3316bd9942a7f024080dd75c70dd6a5
   JSONKit: bae313ce6a6c444f40489a6c0b023f399888871f
   KNSemiModalViewController_hons82: 22aead5ef5d8ca749bc1babb43fa7d6f14b030a3
+  MBProgressHUD: c47f2c166c126cf2ce36498d80f33e754d4e93ad
   MJRefresh: 6b140993028fa30f1fcb88e82925a7c7911415cf
   THCalendarDatePicker: 65c63c1814d1a27defc89f4b72ec7a1d01d5503d
 
