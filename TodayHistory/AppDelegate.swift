@@ -48,9 +48,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UIAlertViewDelegate {
         vc3?.tabBarItem.setTitleTextAttributes([NSForegroundColorAttributeName:UIColor.blackColor()], forState: UIControlState.Normal)
         
         (tabbarCtrl as! UITabBarController).selectedIndex = 3
-        
-        self.health.regHealthData { (success) -> Void in
-        }
+
         return true
     }
 
@@ -62,9 +60,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UIAlertViewDelegate {
     func applicationDidEnterBackground(application: UIApplication) {
         // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
         // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
-        
-        self.regNotification()
-        
+
         let date = UserDef.getUserDefValue(BadgeNumberDate)
         if let _ = date
         {
@@ -79,6 +75,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UIAlertViewDelegate {
     func applicationDidBecomeActive(application: UIApplication) {
         // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
 //        application.applicationIconBadgeNumber = self.calculateBadgeNum()
+        self.regNotification()
     }
 
     func applicationWillTerminate(application: UIApplication) {
@@ -255,7 +252,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UIAlertViewDelegate {
         return iDay
     }
     
-    func alertView(alertView: UIAlertView, clickedButtonAtIndex buttonIndex: Int) {
+    func alertView(alertView: UIAlertView, clickedButtonAtIndex buttonIndex: Int)
+    {
         if alertView.tag == 999
         {
             var g = 0.0
@@ -276,6 +274,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UIAlertViewDelegate {
                 g = 0.05
             }
             self.health.setCoffeeWithDay(NSDate(timeIntervalSinceNow: -2*60), quantity: g, block: { (s, g, sum) -> Void in
+                if s,
+                let tabbarCtrl = self.window?.rootViewController,
+                let rootvc = tabbarCtrl.childViewControllers[3] as? UINavigationController,
+                let roottvc = rootvc.topViewController as? UITableViewController
+                {
+                    roottvc.viewDidAppear(false)
+                }
             })
         }
     }

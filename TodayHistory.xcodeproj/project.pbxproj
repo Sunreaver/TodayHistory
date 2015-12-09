@@ -34,6 +34,7 @@
 		D03711D11BFDD0B900014DFD /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D03711CF1BFDC38C00014DFD /* HealthKit.framework */; };
 		D04011531BFB0FD200656161 /* THDictionaryVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D04011521BFB0FD200656161 /* THDictionaryVC.swift */; };
 		D04011551BFB127F00656161 /* THDictionaryDetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D04011541BFB127F00656161 /* THDictionaryDetailVC.swift */; };
+		D04431D11C07F94F00F4EEFB /* giveu.caf in Resources */ = {isa = PBXBuildFile; fileRef = D04431D01C07F94F00F4EEFB /* giveu.caf */; };
 		D068C5021BFC09FB00D69907 /* RootTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = D068C5011BFC09FB00D69907 /* RootTVC.m */; };
 		D068C5051BFC0A1100D69907 /* DMDate.m in Sources */ = {isa = PBXBuildFile; fileRef = D068C5041BFC0A1100D69907 /* DMDate.m */; };
 		D068C50A1BFC0A2D00D69907 /* NSDate+EarlyInTheMorning.m in Sources */ = {isa = PBXBuildFile; fileRef = D068C5071BFC0A2D00D69907 /* NSDate+EarlyInTheMorning.m */; };
@@ -42,6 +43,7 @@
 		D07ADA5F1BFEAFAC003C91ED /* nosound.caf in Resources */ = {isa = PBXBuildFile; fileRef = D07ADA5E1BFEAFAC003C91ED /* nosound.caf */; };
 		D07ADA621BFEB691003C91ED /* HealthStoreManager.m in Sources */ = {isa = PBXBuildFile; fileRef = D07ADA611BFEB691003C91ED /* HealthStoreManager.m */; };
 		D07ADA631BFEB6A4003C91ED /* HealthStoreManager.m in Sources */ = {isa = PBXBuildFile; fileRef = D07ADA611BFEB691003C91ED /* HealthStoreManager.m */; };
+		D08B69DF1C113CE700CD1023 /* THHabitMode.m in Sources */ = {isa = PBXBuildFile; fileRef = D08B69DE1C113CE700CD1023 /* THHabitMode.m */; };
 		D0ACECDD1C02F4DA00EB6E14 /* NSDate+EarlyInTheMorning.m in Sources */ = {isa = PBXBuildFile; fileRef = D068C5071BFC0A2D00D69907 /* NSDate+EarlyInTheMorning.m */; };
 		D0BD74871BAFEC7500017D36 /* NetWorkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0BD74861BAFEC7500017D36 /* NetWorkManager.swift */; };
 		D0C33E631C03F8B00084F84A /* HealthTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = D0C33E621C03F8B00084F84A /* HealthTVC.m */; };
@@ -112,6 +114,7 @@
 		D03711CF1BFDC38C00014DFD /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = System/Library/Frameworks/HealthKit.framework; sourceTree = SDKROOT; };
 		D04011521BFB0FD200656161 /* THDictionaryVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = THDictionaryVC.swift; sourceTree = "<group>"; };
 		D04011541BFB127F00656161 /* THDictionaryDetailVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = THDictionaryDetailVC.swift; sourceTree = "<group>"; };
+		D04431D01C07F94F00F4EEFB /* giveu.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = giveu.caf; sourceTree = "<group>"; };
 		D068C5001BFC09FB00D69907 /* RootTVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RootTVC.h; sourceTree = "<group>"; };
 		D068C5011BFC09FB00D69907 /* RootTVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RootTVC.m; sourceTree = "<group>"; };
 		D068C5031BFC0A1100D69907 /* DMDate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DMDate.h; sourceTree = "<group>"; };
@@ -124,6 +127,8 @@
 		D07ADA5E1BFEAFAC003C91ED /* nosound.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = nosound.caf; sourceTree = "<group>"; };
 		D07ADA601BFEB691003C91ED /* HealthStoreManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HealthStoreManager.h; sourceTree = "<group>"; };
 		D07ADA611BFEB691003C91ED /* HealthStoreManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HealthStoreManager.m; sourceTree = "<group>"; };
+		D08B69DD1C113CE700CD1023 /* THHabitMode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THHabitMode.h; sourceTree = "<group>"; };
+		D08B69DE1C113CE700CD1023 /* THHabitMode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THHabitMode.m; sourceTree = "<group>"; };
 		D0BD74861BAFEC7500017D36 /* NetWorkManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetWorkManager.swift; sourceTree = "<group>"; };
 		D0C33E611C03F8B00084F84A /* HealthTVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HealthTVC.h; sourceTree = "<group>"; };
 		D0C33E621C03F8B00084F84A /* HealthTVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HealthTVC.m; sourceTree = "<group>"; };
@@ -198,6 +203,8 @@
 			isa = PBXGroup;
 			children = (
 				D0219D301BA116FE0007F00E /* THMode.swift */,
+				D08B69DD1C113CE700CD1023 /* THHabitMode.h */,
+				D08B69DE1C113CE700CD1023 /* THHabitMode.m */,
 			);
 			path = mode;
 			sourceTree = "<group>";
@@ -258,6 +265,7 @@
 		D07ADA521BFEABB2003C91ED /* src */ = {
 			isa = PBXGroup;
 			children = (
+				D04431D01C07F94F00F4EEFB /* giveu.caf */,
 				D07ADA5E1BFEAFAC003C91ED /* nosound.caf */,
 				D07ADA571BFEAD78003C91ED /* No05.caf */,
 			);
@@ -449,6 +457,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D0FF633C1BA020F600A00BAB /* Main.storyboard in Resources */,
+				D04431D11C07F94F00F4EEFB /* giveu.caf in Resources */,
 				D0FF63411BA020F600A00BAB /* LaunchScreen.xib in Resources */,
 				D07ADA581BFEAD78003C91ED /* No05.caf in Resources */,
 				D07ADA5F1BFEAFAC003C91ED /* nosound.caf in Resources */,
@@ -529,6 +538,7 @@
 				D01E880B1BA17FCD00DE9BE1 /* Globle.swift in Sources */,
 				D01E881A1BA6785900DE9BE1 /* THTestVC.swift in Sources */,
 				D068C50A1BFC0A2D00D69907 /* NSDate+EarlyInTheMorning.m in Sources */,
+				D08B69DF1C113CE700CD1023 /* THHabitMode.m in Sources */,
 				D01E88151BA271B300DE9BE1 /* ArcLayer.swift in Sources */,
 				D04011551BFB127F00656161 /* THDictionaryDetailVC.swift in Sources */,
 				D01E88161BA271B300DE9BE1 /* OvalLayer.swift in Sources */,

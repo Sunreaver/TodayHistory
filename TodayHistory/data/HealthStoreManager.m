@@ -153,7 +153,7 @@
                   for (HKQuantitySample *sam in results)
                   {
                       sum += [sam.quantity doubleValueForUnit:[HKUnit gramUnit]];
-                      if (sam.startDate.timeIntervalSinceNow > -24 * 3600) {
+                      if ([[sam.startDate yyyyMMddStringValue] isEqualToString:[[NSDate date] yyyyMMddStringValue]]) {
                           g += [sam.quantity doubleValueForUnit:[HKUnit gramUnit]];
                       }
                   }
@@ -218,17 +218,17 @@
               limit:HKObjectQueryNoLimit
               sortDescriptors:@[sort]
               resultsHandler:^(HKSampleQuery * _Nonnull query, NSArray<__kindof HKSample *> * _Nullable results, NSError * _Nullable error) {
-                  double time = 0.0, today = 0.0;
+                  NSInteger time = 0, today = 0;
                   for (HKWorkout *sam in results)
                   {
                       if (sam.workoutActivityType == HKWorkoutActivityTypeWalking) {
-                          time += sam.duration;
-                          if (sam.startDate.timeIntervalSinceNow > -24 * 3600) {
-                              today += sam.duration;
+                          ++time;
+                          if (-sam.startDate.timeIntervalSinceNow < 7 * 24 * 3600) {
+                              ++today;
                           }
                       }
                   }
-                  block(YES, today/60.0, time/60.0);
+                  block(YES, today, time);
               }];
          [self.health executeQuery:sexual];
      }];
@@ -261,7 +261,7 @@
               metadata:@{@"回家":@"今天走回家"}];
          
          [self.health saveObject:wo withCompletion:^(BOOL success, NSError * _Nullable error) {
-             block(success, 60, 0);
+             block(success, 1, 0);
          }];
      }];
 }

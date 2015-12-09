@@ -85,41 +85,6 @@
                                         </tableViewCellContentView>
                                         <animations/>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="ite-4g-d3W">
-                                        <rect key="frame" x="0.0" y="88" width="320" height="44"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="ite-4g-d3W" id="xEM-UC-6ho">
-                                            <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <button opaque="NO" clipsSubviews="YES" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2cG-qs-gZq">
-                                                    <rect key="frame" x="15" y="7" width="290" height="30"/>
-                                                    <animations/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="height" constant="30" id="ZWB-8P-sTb"/>
-                                                    </constraints>
-                                                    <state key="normal" title="刷  新"/>
-                                                    <state key="disabled">
-                                                        <color key="titleColor" red="0.34901960780000002" green="0.42745098040000001" blue="0.43137254899999999" alpha="1" colorSpace="calibratedRGB"/>
-                                                    </state>
-                                                    <state key="highlighted">
-                                                        <color key="titleColor" red="0.32549019610000002" green="0.75686274509999996" blue="0.29803921570000003" alpha="1" colorSpace="calibratedRGB"/>
-                                                    </state>
-                                                    <connections>
-                                                        <action selector="OnRefresh:" destination="QwF-7Z-0Xl" eventType="touchUpInside" id="9cI-N6-9wH"/>
-                                                    </connections>
-                                                </button>
-                                            </subviews>
-                                            <animations/>
-                                            <gestureRecognizers/>
-                                            <constraints>
-                                                <constraint firstItem="2cG-qs-gZq" firstAttribute="centerY" secondItem="xEM-UC-6ho" secondAttribute="centerY" id="70M-4x-AQ9"/>
-                                                <constraint firstAttribute="trailing" secondItem="2cG-qs-gZq" secondAttribute="trailing" constant="15" id="wS3-41-v1M"/>
-                                                <constraint firstItem="2cG-qs-gZq" firstAttribute="leading" secondItem="xEM-UC-6ho" secondAttribute="leading" constant="15" id="zpJ-Y8-l8t"/>
-                                            </constraints>
-                                        </tableViewCellContentView>
-                                        <animations/>
-                                    </tableViewCell>
                                 </cells>
                             </tableViewSection>
                         </sections>
@@ -130,7 +95,6 @@
                     </tableView>
                     <nil key="simulatedStatusBarMetrics"/>
                     <connections>
-                        <outlet property="btn_refresh" destination="2cG-qs-gZq" id="cCf-zh-x4K"/>
                         <outlet property="lb_love" destination="Vdo-y9-IiJ" id="v8n-DX-bGL"/>
                         <outlet property="lb_xuan" destination="Vh4-lF-dkE" id="n6h-dK-xEm"/>
                     </connections>

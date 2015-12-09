@@ -12,6 +12,7 @@
 #import <EventKit/EventKit.h>
 #import <IonIcons.h>
 #import <MBProgressHUD.h>
+#import <MJRefresh.h>
 
 @interface HealthTVC ()
 @property (weak, nonatomic) IBOutlet UIButton *btn_safe;
@@ -31,6 +32,7 @@
 @property (nonatomic, retain) HealthStoreManager *health;
 @property (nonatomic, assign) NSInteger iWowTime;
 @property (nonatomic, retain) EKEventStore* eventStore;
+@property (nonatomic, retain) MJRefreshHeader *header;
 @end
 
 @implementation HealthTVC
@@ -45,7 +47,7 @@
 
 -(void)setIWowTime:(NSInteger)iWowTime
 {
-    self.lb_wowtime.text = [NSString stringWithFormat:@"%@min", @(iWowTime)];
+    self.lb_wowtime.text = [NSString stringWithFormat:@"%0.1lfh", (double)iWowTime/60.0];
     _iWowTime = iWowTime;
 }
 
@@ -78,6 +80,16 @@
                             forState:UIControlStateNormal];
     
     self.navigationItem.title = @"健康";
+    
+    __weak __typeof(self)wself = self;
+    self.header = [self.tableView addLegendHeaderWithRefreshingBlock:^{
+        __typeof(wself)sself = wself;
+        if (sself) {
+            [sself refreshNewData];
+            [sself.header endRefreshing];
+        }
+    }];
+    self.header.dateKey = @"health_date_todayhistory";
 }
 
 -(void)viewDidAppear:(BOOL)animated
@@ -107,6 +119,7 @@
                     [sself performSelectorOnMainThread:@selector(setHealthDataWithString:)
                                             withObject:[NSString stringWithFormat:@"%@-%@-%@|%@", @(c), @(s), @(us), @(to)]
                                          waitUntilDone:NO];
+                    [sself performSelectorOnMainThread:@selector(showAlertWithTip:) withObject:@"贤者" waitUntilDone:NO];
                 }
                 else if (sself)
                 {
@@ -135,6 +148,7 @@
             [sself performSelectorOnMainThread:@selector(setCoffeeDataWithNum:)
                                     withObject:[NSString stringWithFormat:@"%@/%@mg", @(t), @(s)]
                                  waitUntilDone:NO];
+            [sself performSelectorOnMainThread:@selector(showAlertWithTip:) withObject:@"休息一下" waitUntilDone:NO];
         }
         else if (sself)
         {
@@ -169,8 +183,9 @@
                 t += today;
                 s += today;
                 [sself performSelectorOnMainThread:@selector(setWalkingDataWithNum:)
-                                        withObject:[NSString stringWithFormat:@"%@/%@min", @(t), @(s)]
+                                        withObject:[NSString stringWithFormat:@"%@/%@NoT", @(t), @(s)]
                                      waitUntilDone:NO];
+                [sself performSelectorOnMainThread:@selector(showAlertWithTip:) withObject:@"Come On" waitUntilDone:NO];
             }
             else if (sself)
             {
@@ -205,33 +220,34 @@
     if (sender.tag == 1)
     {//add
         i += 30;
-        i = i > 120 ? 120 : i;
+        i = MIN(120, i);
     }
     else if (sender.tag == 2)
     {//reduce
         i -= 30;
-        i = i < 30 ? 30 : i;
+        i = MAX(30, i);
     }
     self.iWowTime = i;
 }
 
 -(void)setWowEvent
 {
-    EKReminder *reminder = [EKReminder reminderWithEventStore:self.eventStore];
-    reminder.title = @"Wow Time!";
-    reminder.priority = 3;
-    reminder.calendar = self.eventStore.defaultCalendarForNewReminders;
-    [reminder addAlarm:[EKAlarm alarmWithAbsoluteDate:[NSDate dateWithTimeIntervalSinceNow:self.iWowTime * 60]]];
-    NSError *err;
-    [self.eventStore saveReminder:reminder commit:YES error:&err];
-//    EKEvent *event  = [EKEvent eventWithEventStore:self.eventStore];
-//    event.title     = @"Wow Time!";
-//    event.startDate = [NSDate date];
-//    event.endDate   = [NSDate dateWithTimeIntervalSinceNow:self.iWowTime * 60];
-//    [event addAlarm:[EKAlarm alarmWithRelativeOffset:self.iWowTime * 60]];
-//    [event setCalendar:[self.eventStore defaultCalendarForNewEvents]];
+//    EKReminder *reminder = [EKReminder reminderWithEventStore:self.eventStore];
+//    reminder.title = @"Wow Time!";
+//    reminder.priority = 3;
+//    reminder.calendar = self.eventStore.defaultCalendarForNewReminders;
+//    [reminder addAlarm:[EKAlarm alarmWithAbsoluteDate:[NSDate dateWithTimeIntervalSinceNow:self.iWowTime * 60]]];
 //    NSError *err;
-//    [self.eventStore saveEvent:event span:EKSpanThisEvent error:&err];
+//    [self.eventStore saveReminder:reminder commit:YES error:&err];
+    /*
+    EKEvent *event  = [EKEvent eventWithEventStore:self.eventStore];
+    event.title     = @"Wow Time!";
+    event.startDate = [NSDate date];
+    event.endDate   = [NSDate dateWithTimeIntervalSinceNow:self.iWowTime * 60];
+    [event addAlarm:[EKAlarm alarmWithRelativeOffset:self.iWowTime * 60]];
+    [event setCalendar:[self.eventStore defaultCalendarForNewEvents]];
+    NSError *err;
+    [self.eventStore saveEvent:event span:EKSpanThisEvent error:&err];
     if (err)
     {
         [self performSelectorOnMainThread:@selector(showAlertWithTip:) withObject:@"创建失败" waitUntilDone:NO];
@@ -240,9 +256,18 @@
     {
         [self performSelectorOnMainThread:@selector(showAlertWithTip:) withObject:@"Enjoy" waitUntilDone:NO];
     }
+     */
+    UILocalNotification *notification = [[UILocalNotification alloc] init];
+    notification.fireDate = [NSDate dateWithTimeIntervalSinceNow:self.iWowTime * 60];
+    notification.soundName = @"giveu.caf";
+    notification.repeatInterval = 0;
+    notification.alertTitle = @"Wow Time Over";
+    notification.alertBody = @"休息一下吧";
+    [[UIApplication sharedApplication] scheduleLocalNotification:notification];
+    [self performSelectorOnMainThread:@selector(showAlertWithTip:) withObject:@"Enjoy" waitUntilDone:NO];
 }
 
--(void)setHealthDataWithString:(NSString*)str
+-(void)setHealthDataWithString:(id)str
 {
     if (str)
     {
@@ -316,14 +341,14 @@
                 }
             }];
     
-    [self.health getWorkoutWalkingWithDay:[NSDate dateWithTimeIntervalSinceNow:-7 * 24 * 3600]
+    [self.health getWorkoutWalkingWithDay:[NSDate dateWithTimeIntervalSinceNow:-30 * 24 * 3600]
            EndDay:[NSDate dateWithTimeIntervalSinceNow:24 * 3600]
             Block:^(BOOL success, NSInteger today, NSInteger sum) {
                 __typeof(wself)sself = wself;
                 if (sself && success)
                 {
                     [self performSelectorOnMainThread:@selector(setWalkingDataWithNum:)
-                                           withObject:[NSString stringWithFormat:@"%@/%@min", @(today), @(sum)]
+                                           withObject:[NSString stringWithFormat:@"%@/%@NoT", @(today), @(sum)]
                                         waitUntilDone:NO];
                 }
                 else if(sself)
@@ -337,8 +362,9 @@
 {
     MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.navigationController.view animated:YES];
     hud.labelText = tip;
-    hud.detailsLabelText = @"提醒项目";
+    hud.detailsLabelText = @"提醒";
     hud.mode = MBProgressHUDModeText;
+    hud.labelFont = [UIFont boldSystemFontOfSize:30];
     [hud hide:YES afterDelay:1.0];
 }
 
