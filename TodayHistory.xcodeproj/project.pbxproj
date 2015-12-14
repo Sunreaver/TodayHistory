@@ -9,6 +9,12 @@
 /* Begin PBXBuildFile section */
 		869721CF890EF72F17B6A699 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 04CB89F5C0747680FB16308D /* libPods.a */; };
 		918E8FD9454D9254B42FE513 /* libPods-TodayHistory.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 94BB33B87D5E33855377FB19 /* libPods-TodayHistory.a */; };
+		D012CB311C1E995500872FB1 /* DGElasticPullToRefreshConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = D012CB2C1C1E995500872FB1 /* DGElasticPullToRefreshConstants.swift */; };
+		D012CB321C1E995500872FB1 /* DGElasticPullToRefreshExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D012CB2D1C1E995500872FB1 /* DGElasticPullToRefreshExtensions.swift */; };
+		D012CB331C1E995500872FB1 /* DGElasticPullToRefreshLoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D012CB2E1C1E995500872FB1 /* DGElasticPullToRefreshLoadingView.swift */; };
+		D012CB341C1E995500872FB1 /* DGElasticPullToRefreshLoadingViewCircle.swift in Sources */ = {isa = PBXBuildFile; fileRef = D012CB2F1C1E995500872FB1 /* DGElasticPullToRefreshLoadingViewCircle.swift */; };
+		D012CB351C1E995500872FB1 /* DGElasticPullToRefreshView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D012CB301C1E995500872FB1 /* DGElasticPullToRefreshView.swift */; };
+		D012CB391C1EA41B00872FB1 /* UINavCtrl.m in Sources */ = {isa = PBXBuildFile; fileRef = D012CB381C1EA41B00872FB1 /* UINavCtrl.m */; };
 		D01E88091BA1708900DE9BE1 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = D01E88081BA1708900DE9BE1 /* Colors.swift */; };
 		D01E880B1BA17FCD00DE9BE1 /* Globle.swift in Sources */ = {isa = PBXBuildFile; fileRef = D01E880A1BA17FCD00DE9BE1 /* Globle.swift */; };
 		D01E880D1BA1927300DE9BE1 /* THMainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D01E880C1BA1927300DE9BE1 /* THMainView.swift */; };
@@ -84,6 +90,13 @@
 		04CB89F5C0747680FB16308D /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		36D4AFF0CB6692B9B6D3CF26 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		94BB33B87D5E33855377FB19 /* libPods-TodayHistory.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-TodayHistory.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		D012CB2C1C1E995500872FB1 /* DGElasticPullToRefreshConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DGElasticPullToRefreshConstants.swift; sourceTree = "<group>"; };
+		D012CB2D1C1E995500872FB1 /* DGElasticPullToRefreshExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DGElasticPullToRefreshExtensions.swift; sourceTree = "<group>"; };
+		D012CB2E1C1E995500872FB1 /* DGElasticPullToRefreshLoadingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DGElasticPullToRefreshLoadingView.swift; sourceTree = "<group>"; };
+		D012CB2F1C1E995500872FB1 /* DGElasticPullToRefreshLoadingViewCircle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DGElasticPullToRefreshLoadingViewCircle.swift; sourceTree = "<group>"; };
+		D012CB301C1E995500872FB1 /* DGElasticPullToRefreshView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DGElasticPullToRefreshView.swift; sourceTree = "<group>"; };
+		D012CB371C1EA41B00872FB1 /* UINavCtrl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UINavCtrl.h; sourceTree = "<group>"; };
+		D012CB381C1EA41B00872FB1 /* UINavCtrl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UINavCtrl.m; sourceTree = "<group>"; };
 		D01E88081BA1708900DE9BE1 /* Colors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
 		D01E880A1BA17FCD00DE9BE1 /* Globle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Globle.swift; sourceTree = "<group>"; };
 		D01E880C1BA1927300DE9BE1 /* THMainView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = THMainView.swift; sourceTree = "<group>"; };
@@ -186,6 +199,18 @@
 				DF36065530964A90584C2393 /* Pods.release.xcconfig */,
 			);
 			name = Pods;
+			sourceTree = "<group>";
+		};
+		D012CB2B1C1E995500872FB1 /* DGElasticPullToRefresh */ = {
+			isa = PBXGroup;
+			children = (
+				D012CB2C1C1E995500872FB1 /* DGElasticPullToRefreshConstants.swift */,
+				D012CB2D1C1E995500872FB1 /* DGElasticPullToRefreshExtensions.swift */,
+				D012CB2E1C1E995500872FB1 /* DGElasticPullToRefreshLoadingView.swift */,
+				D012CB2F1C1E995500872FB1 /* DGElasticPullToRefreshLoadingViewCircle.swift */,
+				D012CB301C1E995500872FB1 /* DGElasticPullToRefreshView.swift */,
+			);
+			path = DGElasticPullToRefresh;
 			sourceTree = "<group>";
 		};
 		D01E88101BA271B300DE9BE1 /* layers */ = {
@@ -301,6 +326,8 @@
 				D0219D351BA12B0B0007F00E /* view */,
 				D0FF63571BA025DE00A00BAB /* Tool */,
 				D0FF63361BA020F600A00BAB /* AppDelegate.swift */,
+				D012CB371C1EA41B00872FB1 /* UINavCtrl.h */,
+				D012CB381C1EA41B00872FB1 /* UINavCtrl.m */,
 				D0FF633A1BA020F600A00BAB /* Main.storyboard */,
 				D0FF633D1BA020F600A00BAB /* Images.xcassets */,
 				D0FF633F1BA020F600A00BAB /* LaunchScreen.xib */,
@@ -322,6 +349,7 @@
 		D0FF63571BA025DE00A00BAB /* Tool */ = {
 			isa = PBXGroup;
 			children = (
+				D012CB2B1C1E995500872FB1 /* DGElasticPullToRefresh */,
 				D03711AE1BFC7E2900014DFD /* UserDef.h */,
 				D03711AF1BFC7E2900014DFD /* UserDef.m */,
 				D068C5061BFC0A2D00D69907 /* NSDate+EarlyInTheMorning.h */,
@@ -533,9 +561,11 @@
 			files = (
 				D0BD74871BAFEC7500017D36 /* NetWorkManager.swift in Sources */,
 				D0219D311BA116FE0007F00E /* THMode.swift in Sources */,
+				D012CB391C1EA41B00872FB1 /* UINavCtrl.m in Sources */,
 				D01E88171BA271B300DE9BE1 /* RectangleLayer.swift in Sources */,
 				D01E88091BA1708900DE9BE1 /* Colors.swift in Sources */,
 				D01E880B1BA17FCD00DE9BE1 /* Globle.swift in Sources */,
+				D012CB351C1E995500872FB1 /* DGElasticPullToRefreshView.swift in Sources */,
 				D01E881A1BA6785900DE9BE1 /* THTestVC.swift in Sources */,
 				D068C50A1BFC0A2D00D69907 /* NSDate+EarlyInTheMorning.m in Sources */,
 				D08B69DF1C113CE700CD1023 /* THHabitMode.m in Sources */,
@@ -547,6 +577,7 @@
 				D0FD1E181BABECDC00A94B73 /* THCollectionViewCell.swift in Sources */,
 				D068C5051BFC0A1100D69907 /* DMDate.m in Sources */,
 				D0219D421BA156930007F00E /* PushViewController+UINavigationController.m in Sources */,
+				D012CB321C1E995500872FB1 /* DGElasticPullToRefreshExtensions.swift in Sources */,
 				D01E880F1BA2704000DE9BE1 /* THLoaddingPage.swift in Sources */,
 				D0219D411BA156930007F00E /* GetViewCtrlFromStoryboard.m in Sources */,
 				D068C5021BFC09FB00D69907 /* RootTVC.m in Sources */,
@@ -560,7 +591,10 @@
 				D0219D3C1BA1560E0007F00E /* THWebView.swift in Sources */,
 				D0FD1E1A1BABF14800A94B73 /* THCollectionViewLayout.swift in Sources */,
 				D01E88181BA271B300DE9BE1 /* TriangleLayer.swift in Sources */,
+				D012CB341C1E995500872FB1 /* DGElasticPullToRefreshLoadingViewCircle.swift in Sources */,
+				D012CB311C1E995500872FB1 /* DGElasticPullToRefreshConstants.swift in Sources */,
 				D068C50B1BFC0A2D00D69907 /* NSString+DateValue.m in Sources */,
+				D012CB331C1E995500872FB1 /* DGElasticPullToRefreshLoadingView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

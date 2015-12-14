@@ -12,9 +12,9 @@
 #import <EventKit/EventKit.h>
 #import <IonIcons.h>
 #import <MBProgressHUD.h>
-#import <MJRefresh.h>
+#import "TodayHistory-Swift.h"
 
-@interface HealthTVC ()
+@interface HealthTVC ()<UINavigationControllerDelegate>
 @property (weak, nonatomic) IBOutlet UIButton *btn_safe;
 @property (weak, nonatomic) IBOutlet UIButton *btn_unsafe;
 @property (weak, nonatomic) IBOutlet UIButton *btn_coffee;
@@ -32,7 +32,6 @@
 @property (nonatomic, retain) HealthStoreManager *health;
 @property (nonatomic, assign) NSInteger iWowTime;
 @property (nonatomic, retain) EKEventStore* eventStore;
-@property (nonatomic, retain) MJRefreshHeader *header;
 @end
 
 @implementation HealthTVC
@@ -81,15 +80,23 @@
     
     self.navigationItem.title = @"健康";
     
+    //去除shadowImage
+    self.navigationController.view.backgroundColor = self.navigationController.navigationBar.barTintColor;
+    self.navigationController.navigationBar.clipsToBounds = YES;
+    
+    //下拉刷新
+    DGElasticPullToRefreshLoadingViewCircle *loading = [[DGElasticPullToRefreshLoadingViewCircle alloc] init];
+    [loading setTintColor:[UIColor whiteColor]];
+    
     __weak __typeof(self)wself = self;
-    self.header = [self.tableView addLegendHeaderWithRefreshingBlock:^{
+    [self.tableView dg_addPullToRefreshWithActionHandler:^{
         __typeof(wself)sself = wself;
         if (sself) {
             [sself refreshNewData];
-            [sself.header endRefreshing];
         }
-    }];
-    self.header.dateKey = @"health_date_todayhistory";
+    } loadingView:loading];
+    [self.tableView dg_setPullToRefreshBackgroundColor:self.tableView.backgroundColor];
+    [self.tableView dg_setPullToRefreshFillColor:self.navigationController.navigationBar.barTintColor];
 }
 
 -(void)viewDidAppear:(BOOL)animated
@@ -99,7 +106,12 @@
     self.lb_thing1.textColor = [UIColor grayColor];
     self.lb_coffee.textColor = [UIColor grayColor];
 
-    [self refreshNewData];
+    [self.tableView dg_startLoading];
+}
+
+-(UIStatusBarStyle)preferredStatusBarStyle
+{
+    return UIStatusBarStyleLightContent;
 }
 
 - (IBAction)OnAdd:(UIButton *)sender
@@ -356,6 +368,10 @@
                     [self performSelectorOnMainThread:@selector(setWalkingDataWithNum:) withObject:nil waitUntilDone:NO];
                 }
             }];
+    
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        [self.tableView dg_stopLoading];
+    });
 }
 
 -(void)showAlertWithTip:(NSString*)tip

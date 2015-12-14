@@ -46,8 +46,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UIAlertViewDelegate {
         vc3?.tabBarItem.title = "健康"
         vc3?.tabBarItem.setTitleTextAttributes([NSForegroundColorAttributeName:Colors.main], forState: UIControlState.Selected)
         vc3?.tabBarItem.setTitleTextAttributes([NSForegroundColorAttributeName:UIColor.blackColor()], forState: UIControlState.Normal)
-        
+                
         (tabbarCtrl as! UITabBarController).selectedIndex = 3
+        
+        self.window?.layer.masksToBounds = true
+        self.window?.layer.cornerRadius = 5.0
 
         return true
     }
