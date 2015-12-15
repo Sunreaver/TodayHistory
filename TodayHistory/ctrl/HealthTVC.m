@@ -10,11 +10,11 @@
 #import "HealthStoreManager.h"
 #import "NSDate+EarlyInTheMorning.h"
 #import <EventKit/EventKit.h>
-#import <IonIcons.h>
-#import <MBProgressHUD.h>
 #import "TodayHistory-Swift.h"
+#import "IonIcons.h"
+#import "MBProgressHUD.h"
 
-@interface HealthTVC ()<UINavigationControllerDelegate>
+@interface HealthTVC ()
 @property (weak, nonatomic) IBOutlet UIButton *btn_safe;
 @property (weak, nonatomic) IBOutlet UIButton *btn_unsafe;
 @property (weak, nonatomic) IBOutlet UIButton *btn_coffee;
@@ -80,9 +80,10 @@
     
     self.navigationItem.title = @"健康";
     
-    //去除shadowImage
     self.navigationController.view.backgroundColor = self.navigationController.navigationBar.barTintColor;
-    self.navigationController.navigationBar.clipsToBounds = YES;
+    //去除shadowImage
+    [self.navigationController.navigationBar setBackgroundImage:[UIImage new] forBarMetrics:UIBarMetricsDefault];
+    [self.navigationController.navigationBar setShadowImage:[UIImage new]];
     
     //下拉刷新
     DGElasticPullToRefreshLoadingViewCircle *loading = [[DGElasticPullToRefreshLoadingViewCircle alloc] init];

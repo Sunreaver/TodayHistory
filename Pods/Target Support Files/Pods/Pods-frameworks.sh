@@ -82,3 +82,26 @@ strip_invalid_archs() {
   fi
 }
 
+
+if [[ "$CONFIGURATION" == "Debug" ]]; then
+  install_framework "Pods/AFNetworking.framework"
+  install_framework "Pods/EGOCache.framework"
+  install_framework "Pods/JSONKit.framework"
+  install_framework "Pods/KNSemiModalViewController_hons82.framework"
+  install_framework "Pods/MBProgressHUD.framework"
+  install_framework "Pods/MJRefresh.framework"
+  install_framework "Pods/StarWars.framework"
+  install_framework "Pods/THCalendarDatePicker.framework"
+  install_framework "Pods/ionicons.framework"
+fi
+if [[ "$CONFIGURATION" == "Release" ]]; then
+  install_framework "Pods/AFNetworking.framework"
+  install_framework "Pods/EGOCache.framework"
+  install_framework "Pods/JSONKit.framework"
+  install_framework "Pods/KNSemiModalViewController_hons82.framework"
+  install_framework "Pods/MBProgressHUD.framework"
+  install_framework "Pods/MJRefresh.framework"
+  install_framework "Pods/StarWars.framework"
+  install_framework "Pods/THCalendarDatePicker.framework"
+  install_framework "Pods/ionicons.framework"
+fi

@@ -57,20 +57,6 @@ install_resource()
       ;;
   esac
 }
-if [[ "$CONFIGURATION" == "Debug" ]]; then
-  install_resource "MJRefresh/MJRefreshExample/MJRefreshExample/MJRefresh/MJRefresh.bundle"
-  install_resource "THCalendarDatePicker/THCalendarDatePicker/THDateDay.xib"
-  install_resource "THCalendarDatePicker/THCalendarDatePicker/THDatePickerViewController.xib"
-  install_resource "THCalendarDatePicker/THCalendarDatePicker/Images.xcassets"
-  install_resource "ionicons/ionicons/ionicons.bundle"
-fi
-if [[ "$CONFIGURATION" == "Release" ]]; then
-  install_resource "MJRefresh/MJRefreshExample/MJRefreshExample/MJRefresh/MJRefresh.bundle"
-  install_resource "THCalendarDatePicker/THCalendarDatePicker/THDateDay.xib"
-  install_resource "THCalendarDatePicker/THCalendarDatePicker/THDatePickerViewController.xib"
-  install_resource "THCalendarDatePicker/THCalendarDatePicker/Images.xcassets"
-  install_resource "ionicons/ionicons/ionicons.bundle"
-fi
 
 mkdir -p "${CONFIGURATION_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}"
 rsync -avr --copy-links --no-relative --exclude '*/.svn/*' --files-from="$RESOURCES_TO_COPY" / "${CONFIGURATION_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}"

@@ -14,7 +14,7 @@ class THWebView: UIViewController, UIWebViewDelegate {
     @IBOutlet weak var loadding: UIActivityIndicatorView!
     
     override func viewWillAppear(animated: Bool) {
-        self.navigationController?.setNavigationBarHidden(false, animated: true)
+//        self.navigationController?.setNavigationBarHidden(false, animated: true)
     }
     
     override func viewDidAppear(animated: Bool) {

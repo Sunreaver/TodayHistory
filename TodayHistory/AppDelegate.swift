@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import ionicons
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate, UIAlertViewDelegate {

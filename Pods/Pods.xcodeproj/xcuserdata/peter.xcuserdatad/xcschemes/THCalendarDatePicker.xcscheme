@@ -14,10 +14,10 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = 'primary'
-               BlueprintIdentifier = 'B063DC41987113A203A26C37'
+               BlueprintIdentifier = 'F433055672C147004169FF9D'
                BlueprintName = 'THCalendarDatePicker'
                ReferencedContainer = 'container:Pods.xcodeproj'
-               BuildableName = 'libTHCalendarDatePicker.a'>
+               BuildableName = 'THCalendarDatePicker.framework'>
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>

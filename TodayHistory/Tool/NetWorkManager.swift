@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import AFNetworking
+import JSONKit
 
 @objc protocol NetWorkManagerDelegate:class
 {

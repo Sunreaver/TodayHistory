@@ -8,18 +8,17 @@
 
 import UIKit
 import SafariServices
+import MJRefresh
+import ionicons
+import StarWars
 
 class THMainView: UIViewController,
 UITableViewDelegate,
 UITableViewDataSource,
-HolderViewDelegate {
+HolderViewDelegate,
+UIViewControllerTransitioningDelegate{
     
     @IBOutlet weak var tableView: UITableView!
-    private lazy var header:MJRefreshHeader = {
-        let tmp:MJRefreshHeader = self.tableView.addLegendHeaderWithRefreshingTarget(self, refreshingAction: "refreshStart")
-        tmp.textColor = Colors.main
-        return tmp
-    }()
     private lazy var footer:MJRefreshFooter = {
         let tmp:MJRefreshFooter = self.tableView.addLegendFooterWithRefreshingTarget(self, refreshingAction: "loadMoreData")
         tmp.textColor = Colors.main
@@ -39,20 +38,35 @@ HolderViewDelegate {
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
         
         self.createRight2Btn()
-        self.showLoaddingPage()
-    }
-    
-    override func viewWillAppear(animated: Bool) {
-        if (data.list.count == 0)
-        {
-            self.header.beginRefreshing();
-        }
+//        self.showLoaddingPage()
+        tableView.frame = self.view.bounds
+        tableView.autoresizingMask = [.FlexibleWidth, .FlexibleHeight]
+        
+        //下拉刷新
+        let loadingView = DGElasticPullToRefreshLoadingViewCircle()
+        loadingView.tintColor = UIColor.whiteColor()
+        self.tableView.dg_addPullToRefreshWithActionHandler({ [weak self] () -> Void in
+            self?.refreshStart()
+            }, loadingView: loadingView)
+        tableView.dg_setPullToRefreshFillColor((self.navigationController?.navigationBar.barTintColor)!)
+        tableView.dg_setPullToRefreshBackgroundColor(tableView.backgroundColor!)
+        
+        //去除shadowImage
+        navigationController?.navigationBar.setBackgroundImage(UIImage(), forBarMetrics: .Default)
+        navigationController?.navigationBar.shadowImage = UIImage()
+        
+        self.navigationController!.view.backgroundColor = self.navigationController!.navigationBar.barTintColor
     }
     
     override func viewDidAppear(animated: Bool) {
         let df = NSDateFormatter()
         df.dateFormat = "yyyy-MM-dd"
         self.navigationItem.title = df.stringFromDate(NSDate(timeIntervalSinceNow: Double(dayNum)*24*60*60))
+        
+        if (data.list.count == 0)
+        {
+            self.tableView.dg_startLoading()
+        }
     }
 
     override func didReceiveMemoryWarning() {
@@ -61,6 +75,10 @@ HolderViewDelegate {
         data.destroy()
         page = 0
         dayNum = 0
+    }
+    
+    override func preferredStatusBarStyle() -> UIStatusBarStyle {
+        return .LightContent
     }
     
     func showLoaddingPage()
@@ -74,7 +92,6 @@ HolderViewDelegate {
         loadding.delegate = self
         maskView.insertSubview(loadding, atIndex: 0)
         self.view.addSubview(maskView)
-        self.navigationController?.navigationBarHidden = true
         loadding.addOval()
     }
     
@@ -85,7 +102,6 @@ HolderViewDelegate {
             maskView?.alpha = 0.0
             }) { (finish) -> Void in
                 maskView?.removeFromSuperview()
-                self.navigationController?.setNavigationBarHidden(false, animated: true)
         }
     }
 
@@ -118,15 +134,24 @@ HolderViewDelegate {
         let url:NSURL = NSURL(string: (self.data.list[indexPath.row] as! THMode).url!)!
         if #available(iOS 9.0, *) {
             vc = SFSafariViewController(URL: url)
+            self.presentViewController(vc!, animated: true) { () -> Void in }
+            
         } else {
             vc = GetViewCtrlFromStoryboard.ViewCtrlWithStoryboard("Main", identifier: "THWebView") as! THWebView
             (vc as! THWebView).url = (self.data.list[indexPath.row] as! THMode).url
+            self.navigationController?.pushViewController(vc, transitionType: "cube", subType: "fromRight")
         }
-//        var vc = GetViewCtrlFromStoryboard.ViewCtrlWithStoryboard("Main", identifier: "THTestVC")
         
+        vc?.navigationController?.navigationBar.tintColor = UIColor.whiteColor()
         vc?.hidesBottomBarWhenPushed = true
-        self.navigationController?.pushViewController(vc, transitionType: "cube", subType: "fromRight")
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
+        
+        vc!.transitioningDelegate = self
+        
+    }
+    
+    func animationControllerForDismissedController(dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+        return StarWarsGLAnimator()
     }
     
     func animateOver() {
@@ -145,10 +170,10 @@ HolderViewDelegate {
     
     func createRight2Btn()
     {
-        let addImg = IonIcons.imageWithIcon(ion_ios_plus, size: 27.0, color: Colors.main)
+        let addImg = IonIcons.imageWithIcon(ion_ios_plus, size: 27.0, color: UIColor.whiteColor())
         let add = UIBarButtonItem(image: addImg, style: .Plain, target: self, action: "addDay")
         
-        let reduceImg = IonIcons.imageWithIcon(ion_ios_minus, size: 27.0, color: Colors.main)
+        let reduceImg = IonIcons.imageWithIcon(ion_ios_minus, size: 27.0, color: UIColor.whiteColor())
         let reduce = UIBarButtonItem(image: reduceImg, style: .Plain, target: self, action: "reduceDay")
         
         self.navigationItem.setRightBarButtonItems([add, reduce], animated: true)
@@ -170,7 +195,7 @@ HolderViewDelegate {
         
         let delayTime = dispatch_time(DISPATCH_TIME_NOW, Int64(0.1 * Double(NSEC_PER_SEC)))
         dispatch_after(delayTime, dispatch_get_main_queue()) { () -> Void in
-            self.header.beginRefreshing()
+            self.tableView.dg_startLoading()
         }
     }
     
@@ -190,7 +215,7 @@ HolderViewDelegate {
         
         let delayTime = dispatch_time(DISPATCH_TIME_NOW, Int64(0.1 * Double(NSEC_PER_SEC)))
         dispatch_after(delayTime, dispatch_get_main_queue()) { () -> Void in
-            self.header.beginRefreshing()
+            self.tableView.dg_startLoading()
         }
     }
     
@@ -202,11 +227,11 @@ HolderViewDelegate {
         }
         self.dayNum = 0
         self.createRight2Btn()
-        self.header.endRefreshing()
+        self.tableView.dg_stopLoading()
         
         let delayTime = dispatch_time(DISPATCH_TIME_NOW, Int64(0.1 * Double(NSEC_PER_SEC)))
         dispatch_after(delayTime, dispatch_get_main_queue()) { () -> Void in
-            self.header.beginRefreshing()
+            self.tableView.dg_startLoading()
         }
     }
     
@@ -223,7 +248,7 @@ HolderViewDelegate {
                 if (page == Globle.AutoPageLoadTag + Globle.PageSize - 1)
                 {
                     self.loadDataOver(true, page: 0, newLine: Int.max)
-                    self.header.endRefreshing()
+                    self.tableView.dg_stopLoading()
                     self.hideLoaddingPage()
                     return
                 }
@@ -238,7 +263,7 @@ HolderViewDelegate {
             {
                 self.hideLoaddingPage()
                 self.loadDataOver(true, page: 1, newLine: 0)
-                self.header.endRefreshing()
+                self.tableView.dg_stopLoading()
             }
         })
     }

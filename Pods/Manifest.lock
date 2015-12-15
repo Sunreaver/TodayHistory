@@ -26,6 +26,7 @@ PODS:
   - KNSemiModalViewController_hons82 (0.4.4)
   - MBProgressHUD (0.9.1)
   - MJRefresh (1.4.7)
+  - StarWars (1.0)
   - THCalendarDatePicker (1.2.5):
     - KNSemiModalViewController_hons82 (~> 0.4.3)
 
@@ -36,6 +37,7 @@ DEPENDENCIES:
   - JSONKit (~> 1.5pre)
   - MBProgressHUD (~> 0.9.1)
   - MJRefresh (~> 1.4.0)
+  - StarWars (~> 1.0)
   - THCalendarDatePicker (~> 1.2.0)
 
 SPEC CHECKSUMS:
@@ -46,6 +48,7 @@ SPEC CHECKSUMS:
   KNSemiModalViewController_hons82: 22aead5ef5d8ca749bc1babb43fa7d6f14b030a3
   MBProgressHUD: c47f2c166c126cf2ce36498d80f33e754d4e93ad
   MJRefresh: 6b140993028fa30f1fcb88e82925a7c7911415cf
+  StarWars: 01f1731789f738f64c6a9533c209213aaf465014
   THCalendarDatePicker: 65c63c1814d1a27defc89f4b72ec7a1d01d5503d
 
 COCOAPODS: 0.39.0

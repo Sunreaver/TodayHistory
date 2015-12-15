@@ -14,11 +14,11 @@
                         <viewControllerLayoutGuide type="bottom" id="aEn-t7-pMM"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="Tl6-t1-gWH">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                        <rect key="frame" x="0.0" y="64" width="320" height="416"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="70" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="pKF-fD-BD9">
-                                <rect key="frame" x="0.0" y="64" width="320" height="367"/>
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="367"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="THCell" rowHeight="70" id="Vqi-H5-3HB" customClass="THCell" customModule="TodayHistory" customModuleProvider="target">
@@ -42,7 +42,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="247" verticalHuggingPriority="251" text="1958" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8GM-Wu-Upn">
-                                                    <rect key="frame" x="272" y="7" width="40" height="17"/>
+                                                    <rect key="frame" x="272" y="8" width="40" height="17"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="40" id="uSg-tj-ZcY"/>
                                                     </constraints>
@@ -56,7 +56,7 @@
                                                 <constraint firstItem="d2i-uk-rDq" firstAttribute="top" secondItem="9xd-pH-Moz" secondAttribute="top" constant="8" id="M05-U1-B04"/>
                                                 <constraint firstItem="d2i-uk-rDq" firstAttribute="leading" secondItem="9xd-pH-Moz" secondAttribute="leading" constant="8" id="Vbr-86-Z24"/>
                                                 <constraint firstAttribute="trailing" secondItem="8GM-Wu-Upn" secondAttribute="trailing" constant="8" id="VnK-Gm-uvK"/>
-                                                <constraint firstItem="d2i-uk-rDq" firstAttribute="top" secondItem="8GM-Wu-Upn" secondAttribute="top" constant="1" id="fkD-qE-Z5W"/>
+                                                <constraint firstItem="d2i-uk-rDq" firstAttribute="top" secondItem="8GM-Wu-Upn" secondAttribute="top" id="fkD-qE-Z5W"/>
                                                 <constraint firstAttribute="trailing" secondItem="V1V-qe-xXJ" secondAttribute="trailing" constant="8" id="u4u-nl-Gaf"/>
                                                 <constraint firstItem="V1V-qe-xXJ" firstAttribute="top" secondItem="d2i-uk-rDq" secondAttribute="bottom" constant="1" id="utJ-KC-xaa"/>
                                                 <constraint firstItem="d2i-uk-rDq" firstAttribute="leading" secondItem="V1V-qe-xXJ" secondAttribute="leading" id="xmj-qu-0av"/>
@@ -77,15 +77,20 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="pKF-fD-BD9" firstAttribute="leading" secondItem="Tl6-t1-gWH" secondAttribute="leading" id="4UQ-Z6-ppi"/>
-                            <constraint firstAttribute="trailing" secondItem="pKF-fD-BD9" secondAttribute="trailing" id="DZi-If-8gf"/>
-                            <constraint firstItem="pKF-fD-BD9" firstAttribute="top" secondItem="gLt-fJ-HED" secondAttribute="bottom" id="QqX-CK-gni"/>
-                            <constraint firstItem="aEn-t7-pMM" firstAttribute="top" secondItem="pKF-fD-BD9" secondAttribute="bottom" id="q6O-s8-zue"/>
+                            <constraint firstItem="pKF-fD-BD9" firstAttribute="centerX" secondItem="Tl6-t1-gWH" secondAttribute="centerX" placeholder="YES" id="7WZ-vI-NG1"/>
+                            <constraint firstItem="pKF-fD-BD9" firstAttribute="top" secondItem="gLt-fJ-HED" secondAttribute="bottom" placeholder="YES" id="QqX-CK-gni"/>
+                            <constraint firstItem="pKF-fD-BD9" firstAttribute="width" secondItem="Tl6-t1-gWH" secondAttribute="width" placeholder="YES" id="SRT-Bt-wf7"/>
+                            <constraint firstItem="aEn-t7-pMM" firstAttribute="top" secondItem="pKF-fD-BD9" secondAttribute="bottom" placeholder="YES" id="q6O-s8-zue"/>
                         </constraints>
                     </view>
                     <toolbarItems/>
                     <navigationItem key="navigationItem" id="oDQ-hW-6vL">
-                        <barButtonItem key="leftBarButtonItem" title="今天" id="AqT-TO-bkb"/>
+                        <barButtonItem key="leftBarButtonItem" title="今天" id="AqT-TO-bkb">
+                            <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <connections>
+                                <action selector="OnGoToday:" destination="wyf-0I-95b" id="Gzv-sc-fdb"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics"/>
                     <connections>
@@ -222,13 +227,17 @@
         <!--历史今天-->
         <scene sceneID="tdp-4Y-rQ5">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="F6X-y4-268" sceneMemberID="viewController">
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="F6X-y4-268" customClass="UINavCtrl" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="历史今天" id="od8-Tg-9ox"/>
                     <toolbarItems/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="B8c-Oo-19E">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="B8c-Oo-19E">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="barTintColor" red="1" green="0.40000000600000002" blue="0.40000000600000002" alpha="1" colorSpace="calibratedRGB"/>
+                        <textAttributes key="titleTextAttributes">
+                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        </textAttributes>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
