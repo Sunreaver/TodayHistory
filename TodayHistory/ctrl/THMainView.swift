@@ -81,6 +81,11 @@ UIViewControllerTransitioningDelegate{
         return .LightContent
     }
     
+    deinit
+    {
+        self.tableView.dg_removePullToRefresh()
+    }
+    
     func showLoaddingPage()
     {
         let maskView: UIView = NSBundle.mainBundle().loadNibNamed("LaunchScreen", owner: self, options: nil).last as! UIView

@@ -48,7 +48,6 @@
 		D07ADA5F1BFEAFAC003C91ED /* nosound.caf in Resources */ = {isa = PBXBuildFile; fileRef = D07ADA5E1BFEAFAC003C91ED /* nosound.caf */; };
 		D07ADA621BFEB691003C91ED /* HealthStoreManager.m in Sources */ = {isa = PBXBuildFile; fileRef = D07ADA611BFEB691003C91ED /* HealthStoreManager.m */; };
 		D07ADA631BFEB6A4003C91ED /* HealthStoreManager.m in Sources */ = {isa = PBXBuildFile; fileRef = D07ADA611BFEB691003C91ED /* HealthStoreManager.m */; };
-		D08B69DF1C113CE700CD1023 /* THHabitMode.m in Sources */ = {isa = PBXBuildFile; fileRef = D08B69DE1C113CE700CD1023 /* THHabitMode.m */; };
 		D0ACECDD1C02F4DA00EB6E14 /* NSDate+EarlyInTheMorning.m in Sources */ = {isa = PBXBuildFile; fileRef = D068C5071BFC0A2D00D69907 /* NSDate+EarlyInTheMorning.m */; };
 		D0BD74871BAFEC7500017D36 /* NetWorkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0BD74861BAFEC7500017D36 /* NetWorkManager.swift */; };
 		D0C33E631C03F8B00084F84A /* HealthTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = D0C33E621C03F8B00084F84A /* HealthTVC.m */; };
@@ -139,8 +138,6 @@
 		D07ADA5E1BFEAFAC003C91ED /* nosound.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = nosound.caf; sourceTree = "<group>"; };
 		D07ADA601BFEB691003C91ED /* HealthStoreManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HealthStoreManager.h; sourceTree = "<group>"; };
 		D07ADA611BFEB691003C91ED /* HealthStoreManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HealthStoreManager.m; sourceTree = "<group>"; };
-		D08B69DD1C113CE700CD1023 /* THHabitMode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THHabitMode.h; sourceTree = "<group>"; };
-		D08B69DE1C113CE700CD1023 /* THHabitMode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THHabitMode.m; sourceTree = "<group>"; };
 		D0BD74861BAFEC7500017D36 /* NetWorkManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetWorkManager.swift; sourceTree = "<group>"; };
 		D0C33E611C03F8B00084F84A /* HealthTVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HealthTVC.h; sourceTree = "<group>"; };
 		D0C33E621C03F8B00084F84A /* HealthTVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HealthTVC.m; sourceTree = "<group>"; };
@@ -226,8 +223,6 @@
 			isa = PBXGroup;
 			children = (
 				D0219D301BA116FE0007F00E /* THMode.swift */,
-				D08B69DD1C113CE700CD1023 /* THHabitMode.h */,
-				D08B69DE1C113CE700CD1023 /* THHabitMode.m */,
 			);
 			path = mode;
 			sourceTree = "<group>";
@@ -566,7 +561,6 @@
 				D012CB351C1E995500872FB1 /* DGElasticPullToRefreshView.swift in Sources */,
 				D01E881A1BA6785900DE9BE1 /* THTestVC.swift in Sources */,
 				D068C50A1BFC0A2D00D69907 /* NSDate+EarlyInTheMorning.m in Sources */,
-				D08B69DF1C113CE700CD1023 /* THHabitMode.m in Sources */,
 				D01E88151BA271B300DE9BE1 /* ArcLayer.swift in Sources */,
 				D04011551BFB127F00656161 /* THDictionaryDetailVC.swift in Sources */,
 				D01E88161BA271B300DE9BE1 /* OvalLayer.swift in Sources */,
