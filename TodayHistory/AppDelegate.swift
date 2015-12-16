@@ -129,7 +129,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UIAlertViewDelegate {
                 {
                     date = NSDate(timeInterval: -24*3600, sinceDate: date!)
                 }
-                self.health.setWorkoutWalkingWithDay(date, block: { (success, today, sum) -> Void in
+                self.health.setWorkoutWalkingWithDay(date, block: { (success, today, sum, date) -> Void in
                 })
             }
         }

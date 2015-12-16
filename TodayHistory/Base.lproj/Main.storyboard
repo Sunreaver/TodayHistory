@@ -580,6 +580,12 @@
                                                         <action selector="OnSetWalk:" destination="62k-KR-iaR" eventType="touchUpInside" id="BoC-Oe-bm3"/>
                                                     </connections>
                                                 </button>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="20150511" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FN9-PW-erC">
+                                                    <rect key="frame" x="116" y="24" width="62" height="17"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0/0min" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QNT-gI-vk7">
                                                     <rect key="frame" x="251" y="22" width="54" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -590,6 +596,8 @@
                                             <constraints>
                                                 <constraint firstAttribute="trailing" secondItem="QNT-gI-vk7" secondAttribute="trailing" constant="15" id="EAf-h6-iNs"/>
                                                 <constraint firstItem="vCc-YZ-WGG" firstAttribute="leading" secondItem="oMT-tq-hs6" secondAttribute="leading" constant="15" id="Eso-nk-PnS"/>
+                                                <constraint firstItem="FN9-PW-erC" firstAttribute="centerY" secondItem="vCc-YZ-WGG" secondAttribute="centerY" id="NUT-cR-BDv"/>
+                                                <constraint firstItem="FN9-PW-erC" firstAttribute="leading" secondItem="vCc-YZ-WGG" secondAttribute="trailing" constant="10" id="odm-vV-vTr"/>
                                                 <constraint firstItem="QNT-gI-vk7" firstAttribute="centerY" secondItem="oMT-tq-hs6" secondAttribute="centerY" id="tWF-Os-h5n"/>
                                                 <constraint firstItem="vCc-YZ-WGG" firstAttribute="centerY" secondItem="oMT-tq-hs6" secondAttribute="centerY" id="tZ1-TN-pk1"/>
                                             </constraints>
@@ -680,6 +688,7 @@
                         <outlet property="lb_coffee" destination="DY7-rp-ddY" id="j6N-qQ-iFi"/>
                         <outlet property="lb_thing1" destination="T4y-kv-rJI" id="KtE-jo-Y6a"/>
                         <outlet property="lb_walk" destination="QNT-gI-vk7" id="EAn-8a-9el"/>
+                        <outlet property="lb_walktime" destination="FN9-PW-erC" id="DpZ-L7-a7N"/>
                         <outlet property="lb_wowtime" destination="q8y-r2-HUG" id="QaX-uM-lxR"/>
                     </connections>
                 </tableViewController>

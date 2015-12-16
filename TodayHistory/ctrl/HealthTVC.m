@@ -10,9 +10,10 @@
 #import "HealthStoreManager.h"
 #import "NSDate+EarlyInTheMorning.h"
 #import <EventKit/EventKit.h>
-#import "TodayHistory-Swift.h"
-#import "IonIcons.h"
-#import "MBProgressHUD.h"
+
+@import DGElasticPullToRefresh_CanStartLoading;
+@import ionicons;
+@import MBProgressHUD;
 
 @interface HealthTVC ()
 @property (weak, nonatomic) IBOutlet UIButton *btn_safe;
@@ -22,12 +23,12 @@
 @property (weak, nonatomic) IBOutlet UILabel *lb_coffee;
 @property (weak, nonatomic) IBOutlet UILabel *lb_thing1;
 @property (weak, nonatomic) IBOutlet UILabel *lb_walk;
+@property (weak, nonatomic) IBOutlet UILabel *lb_walktime;
 
 @property (weak, nonatomic) IBOutlet UIButton *btn_wow;
 @property (weak, nonatomic) IBOutlet UIButton *btn_addwowtime;
 @property (weak, nonatomic) IBOutlet UIButton *btn_reducewowtime;
 @property (weak, nonatomic) IBOutlet UILabel *lb_wowtime;
-
 
 @property (nonatomic, retain) HealthStoreManager *health;
 @property (nonatomic, assign) NSInteger iWowTime;
@@ -185,7 +186,7 @@
     }
     
     [self.health setWorkoutWalkingWithDay:date
-        Block:^(BOOL success, NSInteger today, NSInteger sum) {
+        Block:^(BOOL success, NSInteger today, NSInteger sum, NSDate *lastDate) {
             __typeof(wself)sself = wself;
             if (sself && success)
             {
@@ -198,12 +199,18 @@
                 [sself performSelectorOnMainThread:@selector(setWalkingDataWithNum:)
                                         withObject:[NSString stringWithFormat:@"%@/%@NoT", @(t), @(s)]
                                      waitUntilDone:NO];
+                [sself performSelectorOnMainThread:@selector(setWalkingDate:)
+                                        withObject:lastDate
+                                     waitUntilDone:NO];
                 [sself performSelectorOnMainThread:@selector(showAlertWithTip:) withObject:@"Come On" waitUntilDone:NO];
             }
             else if (sself)
             {
                 [sself performSelectorOnMainThread:@selector(setWalkingDataWithNum:)
                                         withObject:nil
+                                     waitUntilDone:NO];
+                [sself performSelectorOnMainThread:@selector(setWalkingDate:)
+                                        withObject:lastDate
                                      waitUntilDone:NO];
             }
         }];
@@ -319,6 +326,21 @@
     }
 }
 
+-(void)setWalkingDate:(NSDate*)date
+{
+    if (date)
+    {
+        NSInteger day = date.timeIntervalSinceNow/24/3600 - 1;
+        self.lb_walktime.text = [NSString stringWithFormat:@"%ld天前", -day];
+        self.lb_walktime.textColor = [UIColor blackColor];
+    }
+    else
+    {
+        self.lb_walktime.text = @"未知";
+        self.lb_walktime.textColor = [UIColor orangeColor];
+    }
+}
+
 -(void)refreshNewData
 {
     self.iWowTime = 90;
@@ -344,29 +366,35 @@
                 __typeof(wself)sself = wself;
                 if (sself && success)
                 {
-                    [self performSelectorOnMainThread:@selector(setHealthDataWithString:)
-                                           withObject:[NSString stringWithFormat:@"%@-%@-%@|%@", @(count), @(safe), @(unsafe), @(today)]
-                                        waitUntilDone:NO];
+                    [sself performSelectorOnMainThread:@selector(setHealthDataWithString:)
+                                            withObject:[NSString stringWithFormat:@"%@-%@-%@|%@", @(count), @(safe), @(unsafe), @(today)]
+                                         waitUntilDone:NO];
                 }
                 else if(sself)
                 {
-                    [self performSelectorOnMainThread:@selector(setHealthDataWithString:) withObject:nil waitUntilDone:NO];
+                    [sself performSelectorOnMainThread:@selector(setHealthDataWithString:) withObject:nil waitUntilDone:NO];
                 }
             }];
     
     [self.health getWorkoutWalkingWithDay:[NSDate dateWithTimeIntervalSinceNow:-30 * 24 * 3600]
            EndDay:[NSDate dateWithTimeIntervalSinceNow:24 * 3600]
-            Block:^(BOOL success, NSInteger today, NSInteger sum) {
+            Block:^(BOOL success, NSInteger today, NSInteger sum, NSDate *lastDate) {
                 __typeof(wself)sself = wself;
                 if (sself && success)
                 {
-                    [self performSelectorOnMainThread:@selector(setWalkingDataWithNum:)
+                    [sself performSelectorOnMainThread:@selector(setWalkingDataWithNum:)
                                            withObject:[NSString stringWithFormat:@"%@/%@NoT", @(today), @(sum)]
+                                        waitUntilDone:NO];
+                    [sself performSelectorOnMainThread:@selector(setWalkingDate:)
+                                           withObject:lastDate
                                         waitUntilDone:NO];
                 }
                 else if(sself)
                 {
-                    [self performSelectorOnMainThread:@selector(setWalkingDataWithNum:) withObject:nil waitUntilDone:NO];
+                    [sself performSelectorOnMainThread:@selector(setWalkingDataWithNum:) withObject:nil waitUntilDone:NO];
+                    [sself performSelectorOnMainThread:@selector(setWalkingDate:)
+                                            withObject:lastDate
+                                         waitUntilDone:NO];
                 }
             }];
     

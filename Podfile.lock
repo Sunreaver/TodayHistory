@@ -20,6 +20,7 @@ PODS:
   - AFNetworking/UIKit (2.5.4):
     - AFNetworking/NSURLConnection
     - AFNetworking/NSURLSession
+  - DGElasticPullToRefresh_CanStartLoading (1.0.3.1)
   - EGOCache (2.1.3)
   - ionicons (2.0.3)
   - JSONKit (1.5pre)
@@ -32,6 +33,7 @@ PODS:
 
 DEPENDENCIES:
   - AFNetworking (~> 2.5.1)
+  - DGElasticPullToRefresh_CanStartLoading
   - EGOCache (~> 2.1.3)
   - ionicons
   - JSONKit (~> 1.5pre)
@@ -42,6 +44,7 @@ DEPENDENCIES:
 
 SPEC CHECKSUMS:
   AFNetworking: 05edc0ac4c4c8cf57bcf4b84be5b0744b6d8e71e
+  DGElasticPullToRefresh_CanStartLoading: 25e4c7882a653bc30819dedf59c45bf73990ce7b
   EGOCache: f0295dbe041156acabd39021354ad1045ee49e72
   ionicons: ec1e86e6c3316bd9942a7f024080dd75c70dd6a5
   JSONKit: bae313ce6a6c444f40489a6c0b023f399888871f

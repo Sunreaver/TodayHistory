@@ -196,7 +196,7 @@
 -(void)getWorkoutWalkingWithDay:(NSDate*)start EndDay:(NSDate*)end Block:(WorkoutWalkingResultBlock)block
 {
     if (![HKHealthStore isHealthDataAvailable]) {
-        block(NO, 0, 0);
+        block(NO, 0, 0, nil);
         return;
     }
     
@@ -207,7 +207,7 @@
      {
          if (!success)
          {
-             block(NO, 0, 0);
+             block(NO, 0, 0, nil);
              return ;
          }
          NSPredicate *predicate = [HKQuery predicateForSamplesWithStartDate:start endDate:end options:HKQueryOptionNone];
@@ -219,6 +219,7 @@
               sortDescriptors:@[sort]
               resultsHandler:^(HKSampleQuery * _Nonnull query, NSArray<__kindof HKSample *> * _Nullable results, NSError * _Nullable error) {
                   NSInteger time = 0, today = 0;
+                  NSDate *lastDate = [NSDate dateWithTimeIntervalSince1970:0];
                   for (HKWorkout *sam in results)
                   {
                       if (sam.workoutActivityType == HKWorkoutActivityTypeWalking) {
@@ -226,9 +227,11 @@
                           if (-sam.startDate.timeIntervalSinceNow < 7 * 24 * 3600) {
                               ++today;
                           }
+                          
+                          lastDate = lastDate.timeIntervalSince1970 < sam.startDate.timeIntervalSince1970 ? sam.startDate : lastDate;
                       }
                   }
-                  block(YES, today, time);
+                  block(YES, today, time, lastDate);
               }];
          [self.health executeQuery:sexual];
      }];
@@ -238,7 +241,7 @@
                           Block:(WorkoutWalkingResultBlock)block
 {
     if (![HKHealthStore isHealthDataAvailable]) {
-        block(NO, 0, 0);
+        block(NO, 0, 0, nil);
         return ;
     }
     
@@ -248,7 +251,7 @@
     [self.health requestAuthorizationToShareTypes:w readTypes:nil completion:^(BOOL success, NSError * _Nullable error)
      {
          if (!success) {
-             block(NO, 0, 0);
+             block(NO, 0, 0, nil);
              return ;
          }
          HKWorkout *wo = [HKWorkout
@@ -261,7 +264,7 @@
               metadata:@{@"回家":@"今天走回家"}];
          
          [self.health saveObject:wo withCompletion:^(BOOL success, NSError * _Nullable error) {
-             block(success, 1, 0);
+             block(success, 1, 0, [NSDate date]);
          }];
      }];
 }

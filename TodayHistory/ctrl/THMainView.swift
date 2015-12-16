@@ -11,6 +11,7 @@ import SafariServices
 import MJRefresh
 import ionicons
 import StarWars
+import DGElasticPullToRefresh_CanStartLoading
 
 class THMainView: UIViewController,
 UITableViewDelegate,

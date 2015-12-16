@@ -9,6 +9,11 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>DGElasticPullToRefresh_CanStartLoading.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>EGOCache.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -57,27 +62,22 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
+		<key>187900E96F08BC30FC7C5A75E41FC3B8</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>1892213B8242D18974553DCC80A3C3FB</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>1CDDE57F34FE89C0542542081CDD681C</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>306598D9BEEC8229352F1C97A6756E7E</key>
+		<key>1DBB769B8B3CBC66413F47B70C052049</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
 		<key>52FBFC004142822C7822BE3D193496AC</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>667746112875604813AEF2B32E0A1A94</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -92,7 +92,17 @@
 			<key>primary</key>
 			<true/>
 		</dict>
+		<key>C80A72E22BD0903419B1DC4BB11C973E</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>C91A46012F8822DFDBAC8BC32FCC9001</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>D15CD83306AE1D7A316E1C819A761730</key>
 		<dict>
 			<key>primary</key>
 			<true/>

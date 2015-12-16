@@ -14,10 +14,10 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = 'primary'
-               BlueprintIdentifier = 'F5082290BD0ACE00F3CAE17D'
-               BlueprintName = 'JSONKit'
+               BlueprintIdentifier = '25659E2CF122F3D93D9C3E34'
+               BlueprintName = 'DGElasticPullToRefresh_CanStartLoading'
                ReferencedContainer = 'container:Pods.xcodeproj'
-               BuildableName = 'JSONKit.framework'>
+               BuildableName = 'DGElasticPullToRefresh_CanStartLoading.framework'>
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>

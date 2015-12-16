@@ -35,7 +35,7 @@ typedef void(^CoffeeResultBlock)(BOOL success, NSInteger today, NSInteger sum);
  *  @param today   24h内量（分钟）
  *  @param sum     总量(分钟)
  */
-typedef void(^WorkoutWalkingResultBlock)(BOOL success, NSInteger today, NSInteger sum);
+typedef void(^WorkoutWalkingResultBlock)(BOOL success, NSInteger today, NSInteger sum, NSDate *lastDate);
 
 typedef void(^HealthStoreCompetence)(BOOL success);
 
