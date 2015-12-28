@@ -44,6 +44,11 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>SWTableViewCell.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>StarWars.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -62,22 +67,22 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>187900E96F08BC30FC7C5A75E41FC3B8</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
 		<key>1892213B8242D18974553DCC80A3C3FB</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>1DBB769B8B3CBC66413F47B70C052049</key>
+		<key>3CEB202205ACE7C0B7A2039446826D3A</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
 		<key>52FBFC004142822C7822BE3D193496AC</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>571E3A56C933E0968B405CBEC941DB4A</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -102,17 +107,22 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>D15CD83306AE1D7A316E1C819A761730</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
 		<key>D473F4327E1EB20E65F171C7A818A663</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
 		<key>E61CE3B6DFA1FE6B3E296965C76C0E10</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>E955022BD2829295AEBEE2F5050002D7</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>EDC6C28A519001D265395B9DE251A5EC</key>
 		<dict>
 			<key>primary</key>
 			<true/>

@@ -10,7 +10,7 @@ import UIKit
 import ionicons
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate, UIAlertViewDelegate {
+class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
     let health:HealthStoreManager = {
@@ -24,6 +24,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UIAlertViewDelegate {
         let vc1 = tabbarCtrl?.childViewControllers[1]
         let vc2 = tabbarCtrl?.childViewControllers[2]
         let vc3 = tabbarCtrl?.childViewControllers[3]
+        let vc4 = tabbarCtrl?.childViewControllers[4]
         vc0?.tabBarItem.image = IonIcons.imageWithIcon(ion_ios_calculator, size: 27.0, color: UIColor.blackColor())
         vc0?.tabBarItem.selectedImage = IonIcons.imageWithIcon(ion_ios_calculator, size: 27.0, color: Colors.main)
         vc0?.tabBarItem.title = "日期计算"
@@ -49,6 +50,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UIAlertViewDelegate {
         vc3?.tabBarItem.setTitleTextAttributes([NSForegroundColorAttributeName:UIColor.blackColor()], forState: UIControlState.Normal)
                 
         (tabbarCtrl as! UITabBarController).selectedIndex = 3
+        
+        vc4?.tabBarItem.image = IonIcons.imageWithIcon(ion_arrow_graph_up_right, size: 27.0, color: UIColor.blackColor())
+        vc4?.tabBarItem.selectedImage = IonIcons.imageWithIcon(ion_arrow_graph_up_right, size: 27.0, color: Colors.main)
+        vc4?.tabBarItem.title = "读书"
+        vc4?.tabBarItem.setTitleTextAttributes([NSForegroundColorAttributeName:Colors.main], forState: UIControlState.Selected)
+        vc4?.tabBarItem.setTitleTextAttributes([NSForegroundColorAttributeName:UIColor.blackColor()], forState: UIControlState.Normal)
         
         self.window?.layer.masksToBounds = true
         self.window?.layer.cornerRadius = 5.0
@@ -116,8 +123,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UIAlertViewDelegate {
             }
             else if identifier == "NoDrinkcoffee"
             {
-                let av:UIAlertView = UIAlertView(title: "今天多少", message: "加油", delegate: self, cancelButtonTitle: "0mg", otherButtonTitles: "10mg", "20mg", "40mg", "50mg");
+                let av:UIAlertView = UIAlertView(title: "今天多少", message: "加油", delegate: nil, cancelButtonTitle: "0mg", otherButtonTitles: "10mg", "20mg", "40mg", "50mg");
                 av.tag = 999
+                let tabbarCtrl = self.window?.rootViewController
+                let rootvc = tabbarCtrl!.childViewControllers[3] as! UINavigationController
+                let roottvc:UIViewController = rootvc.topViewController!
+                av.delegate = roottvc
                 av.show()
             }
             else if identifier == "WalkHome"
@@ -254,39 +265,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UIAlertViewDelegate {
         ti += ti > 0 ? 3600 : -3600
         let iDay:NSInteger = NSInteger(floor(ti/3600.0/24.0))
         return iDay
-    }
-    
-    func alertView(alertView: UIAlertView, clickedButtonAtIndex buttonIndex: Int)
-    {
-        if alertView.tag == 999
-        {
-            var g = 0.0
-            if buttonIndex == 1
-            {
-                g = 0.01
-            }
-            else if buttonIndex == 2
-            {
-                g = 0.02
-            }
-            else if buttonIndex == 3
-            {
-                g = 0.04
-            }
-            else if buttonIndex == 4
-            {
-                g = 0.05
-            }
-            self.health.setCoffeeWithDay(NSDate(timeIntervalSinceNow: -2*60), quantity: g, block: { (s, g, sum) -> Void in
-                if s,
-                let tabbarCtrl = self.window?.rootViewController,
-                let rootvc = tabbarCtrl.childViewControllers[3] as? UINavigationController,
-                let roottvc = rootvc.topViewController as? UITableViewController
-                {
-                    roottvc.viewDidAppear(false)
-                }
-            })
-        }
     }
 
 }

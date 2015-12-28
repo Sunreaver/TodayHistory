@@ -14,7 +14,7 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = 'primary'
-               BlueprintIdentifier = '25659E2CF122F3D93D9C3E34'
+               BlueprintIdentifier = '02C6294EE2D2531F55F45CF1'
                BlueprintName = 'DGElasticPullToRefresh_CanStartLoading'
                ReferencedContainer = 'container:Pods.xcodeproj'
                BuildableName = 'DGElasticPullToRefresh_CanStartLoading.framework'>

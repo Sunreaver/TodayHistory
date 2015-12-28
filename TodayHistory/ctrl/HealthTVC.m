@@ -15,7 +15,7 @@
 @import ionicons;
 @import MBProgressHUD;
 
-@interface HealthTVC ()
+@interface HealthTVC () <UIAlertViewDelegate>
 @property (weak, nonatomic) IBOutlet UIButton *btn_safe;
 @property (weak, nonatomic) IBOutlet UIButton *btn_unsafe;
 @property (weak, nonatomic) IBOutlet UIButton *btn_coffee;
@@ -331,7 +331,7 @@
     if (date)
     {
         NSInteger day = date.timeIntervalSinceNow/24/3600 - 1;
-        self.lb_walktime.text = [NSString stringWithFormat:@"%ld天前", -day];
+        self.lb_walktime.text = [NSString stringWithFormat:@"%ld天前", (long)-day];
         self.lb_walktime.textColor = [UIColor blackColor];
     }
     else
@@ -411,6 +411,48 @@
     hud.mode = MBProgressHUDModeText;
     hud.labelFont = [UIFont boldSystemFontOfSize:30];
     [hud hide:YES afterDelay:1.0];
+}
+
+-(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if (alertView.tag == 999)
+    {
+        float g = 0.0;
+        if (buttonIndex == 1)
+        {
+            g = 0.01;
+        }
+        else if (buttonIndex == 2)
+        {
+            g = 0.02;
+        }
+        else if (buttonIndex == 3)
+        {
+            g = 0.04;
+        }
+        else if (buttonIndex == 4)
+        {
+            g = 0.05;
+        }
+        else
+        {
+            return;
+        }
+        
+        __weak __typeof(self)wself = self;
+        [self.health setCoffeeWithDay:[NSDate dateWithTimeIntervalSinceNow:-2*60] quantity:g Block:^(BOOL success, NSInteger today, NSInteger sum) {
+            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+                dispatch_sync(dispatch_get_main_queue(), ^{
+                    __typeof(wself)sself = wself;
+                    if (sself)
+                    {
+                        [sself.tableView dg_startLoading];
+                    }
+                });
+            });
+        }];
+    }
+
 }
 
 @end
