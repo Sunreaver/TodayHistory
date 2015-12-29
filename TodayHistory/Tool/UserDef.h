@@ -20,6 +20,8 @@
 #define Google_Color2 ([UIColor colorWithRed:251.0/255.0 green:188.0/255.0 blue:5.0/255.0 alpha:1.0f])
 #define Google_Color3 ([UIColor colorWithRed:52.0/255.0 green:168.0/255.0 blue:83.0/255.0 alpha:1.0f])
 
+#define WEAK_SELF(weakself) __weak __typeof(self)weakself = self;
+#define STRONG_SELF(weakself, strongself) __typeof(weakself)strongself = weakself;
 
 //获取沙盒文件
 #define File_Path(filePath) ([[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSAllDomainsMask, YES) objectAtIndex:0] stringByAppendingPathComponent:filePath])

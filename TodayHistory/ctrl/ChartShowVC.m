@@ -10,8 +10,13 @@
 #import "THRead.h"
 #import "THReadList.h"
 #import "TodayHistory-Swift.h"
+#import <AssetsLibrary/AssetsLibrary.h>
+#import "UserDef.h"
 
 @import Charts;
+@import ionicons;
+
+typedef void (^SaveImageCompletion)(NSError *error);
 
 @interface ChartShowVC()<ChartViewDelegate>
 @property (weak, nonatomic) IBOutlet LineChartView *chartView;
@@ -28,6 +33,16 @@
 -(void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    //左右按钮
+    UIImage *add = [IonIcons imageWithIcon:ion_ios_download_outline
+                                      size:27
+                                     color:[UIColor whiteColor]];
+    UIBarButtonItem *rightBar = [[UIBarButtonItem alloc] initWithImage:add
+                                                                 style:UIBarButtonItemStyleDone
+                                                                target:self
+                                                                action:@selector(AddData)];
+    self.navigationItem.rightBarButtonItem = rightBar;
     
     self.navigationController.navigationBar.tintColor = [UIColor whiteColor];
     self.chartView.backgroundColor = [UIColor clearColor];
@@ -52,11 +67,46 @@
     [self setData];
 }
 
+-(void)AddData
+{
+    UIImage *image = [self snapshot:self.view];
+    
+    NSArray *activityItems = @[image];
+    
+    UIActivityViewController *activityVC = [[UIActivityViewController alloc] initWithActivityItems:activityItems applicationActivities:nil];
+    
+    activityVC.excludedActivityTypes = @[UIActivityTypeAssignToContact,
+                                         UIActivityTypeAddToReadingList,
+                                         UIActivityTypePostToVimeo,
+                                         UIActivityTypeOpenInIBooks];
+    
+    WEAK_SELF(weakself);
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        dispatch_sync(dispatch_get_main_queue(), ^{
+            STRONG_SELF(weakself, sself);
+            //以模态的方式展现activityVC。
+            [sself presentViewController:activityVC animated:YES completion:nil];
+        });
+    });
+}
+
+#pragma mark - Private method
+- (UIImage *)snapshot:(UIView *)view
+{
+    CGRect rt = [view bounds];
+    UIGraphicsBeginImageContextWithOptions(rt.size, NO, 0.0);
+    [view drawViewHierarchyInRect:rt afterScreenUpdates:NO];
+    UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    
+    return image;
+}
+
 -(void)initChartView
 {
     _chartView.delegate = self;
     
-    _chartView.descriptionText = @"";
+    _chartView.descriptionText = [NSString stringWithFormat:@"《%@》", self.read.bookName];;
     _chartView.noDataTextDescription = @"无阅读数据.";
     
     _chartView.dragEnabled = YES;

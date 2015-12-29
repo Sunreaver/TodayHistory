@@ -43,6 +43,17 @@ UIAlertViewDelegate>
                                                                 action:@selector(AddData)];
     self.navigationItem.rightBarButtonItem = rightBar;
     
+    
+    //左右按钮
+    UIImage *share = [IonIcons imageWithIcon:ion_share
+                                      size:27
+                                     color:[UIColor whiteColor]];
+    UIBarButtonItem *leftbar = [[UIBarButtonItem alloc] initWithImage:share
+                                                                 style:UIBarButtonItemStyleDone
+                                                                target:self
+                                                                action:@selector(ShareData)];
+    self.navigationItem.leftBarButtonItem = leftbar;
+    
     //去除shadowImage
     [self.navigationController.navigationBar setBackgroundImage:[UIImage new] forBarMetrics:UIBarMetricsDefault];
     [self.navigationController.navigationBar setShadowImage:[UIImage new]];
@@ -86,6 +97,52 @@ UIAlertViewDelegate>
     self.needRefresh = YES;
     [self performSegueWithIdentifier:@"showAddBook" sender:self];
 }
+
+-(void)ShareData
+{
+    //添加数据
+    NSString *textToShare = [self makeShareData];
+    
+    NSArray *activityItems = @[textToShare];
+    
+    UIActivityViewController *activityVC = [[UIActivityViewController alloc] initWithActivityItems:activityItems applicationActivities:nil];
+    
+    activityVC.excludedActivityTypes = @[UIActivityTypeAssignToContact,
+                                         UIActivityTypeSaveToCameraRoll,
+                                         UIActivityTypeAddToReadingList,
+                                         UIActivityTypePostToFlickr,
+                                         UIActivityTypePostToVimeo,
+                                         UIActivityTypeOpenInIBooks,
+                                         UIActivityTypePostToTwitter,
+                                         UIActivityTypePostToFacebook,
+                                         UIActivityTypePostToWeibo,
+                                         UIActivityTypePostToTencentWeibo];
+    
+    WEAK_SELF(weakself);
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        dispatch_sync(dispatch_get_main_queue(), ^{
+            STRONG_SELF(weakself, sself);
+            //以模态的方式展现activityVC。
+            [sself presentViewController:activityVC animated:YES completion:nil];
+        });
+    });
+}
+
+-(NSString*)makeShareData
+{
+    NSString *data = @"读书进度:";
+    for (THRead *read in [THReadList data])
+    {
+        data = [data stringByAppendingString:@"\n\n"];
+        data = [data stringByAppendingString:[NSString stringWithFormat:@"《%@》共: ", read.bookName]];
+        data = [data stringByAppendingString:[NSString stringWithFormat:@"%@页; ", read.page]];
+        data = [data stringByAppendingString:[NSString stringWithFormat:@"当前读到: %@页\n", @([THReadList cuePageProgress:read.rID])]];
+        
+    }
+    return data;
+}
+
+#pragma mark -tableview
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
