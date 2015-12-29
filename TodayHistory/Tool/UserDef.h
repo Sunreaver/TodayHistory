@@ -15,6 +15,12 @@
 
 #define BadgeNumberDate @"BadgeNumberDate.peter"
 
+#define Google_Color0 ([UIColor colorWithRed:66.0/255.0 green:133.0/255.0 blue:244.0/255.0 alpha:1.0f])
+#define Google_Color1 ([UIColor colorWithRed:234.0/255.0 green:67.0/255.0 blue:53.0/255.0 alpha:1.0])
+#define Google_Color2 ([UIColor colorWithRed:251.0/255.0 green:188.0/255.0 blue:5.0/255.0 alpha:1.0f])
+#define Google_Color3 ([UIColor colorWithRed:52.0/255.0 green:168.0/255.0 blue:83.0/255.0 alpha:1.0f])
+
+
 //获取沙盒文件
 #define File_Path(filePath) ([[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSAllDomainsMask, YES) objectAtIndex:0] stringByAppendingPathComponent:filePath])
 #define AppGroup_Path(filePath) ([[[NSFileManager defaultManager] containerURLForSecurityApplicationGroupIdentifier:@"group.com.yeeuu.SwissArmyKnife"] URLByAppendingPathComponent:[NSString stringWithFormat:@"%@", filePath]])

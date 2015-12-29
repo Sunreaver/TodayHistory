@@ -9,15 +9,19 @@
 #import <Foundation/Foundation.h>
 
 @class THRead;
+@class THReadProgress;
 
 @interface THReadList : NSObject
 
 +(NSArray<THRead*> *)data;
 
 +(BOOL)AddData:(THRead*)read;
-+(BOOL)DelData:(NSString*)rID;
-+(BOOL)EditPage:(NSUInteger)page ReadID:(NSString*)rID;
++(BOOL)DelDataWithID:(NSString*)rID;
++(BOOL)DelData:(THRead *)read;
++(BOOL)EditPage:(NSUInteger)page Read:(THRead*)read;
 +(void)storageData;
++(BOOL)DelReadProgressDataForLast:(THRead*)read;
 
 +(NSUInteger)cuePageProgress:(NSString*)rID;
++(NSArray<THReadProgress*>*)getReadProgressFromReadID:(NSString*)rID;
 @end

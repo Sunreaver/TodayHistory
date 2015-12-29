@@ -13,8 +13,8 @@ class THDictionaryVC: UIViewController, UITextFieldDelegate {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
         // Do any additional setup after loading the view.
+        self.navigationController?.navigationBar.tintColor = Colors.red
     }
 
     override func didReceiveMemoryWarning() {
@@ -24,6 +24,10 @@ class THDictionaryVC: UIViewController, UITextFieldDelegate {
     
     override func viewWillAppear(animated: Bool) {
         self.navigationController?.setNavigationBarHidden(true, animated: true)
+    }
+    
+    override func viewWillDisappear(animated: Bool) {
+        self.navigationController?.setNavigationBarHidden(false, animated: true)
     }
     
     @IBAction func OnSearch(sender: UIButton) {

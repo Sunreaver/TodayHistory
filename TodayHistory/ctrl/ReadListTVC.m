@@ -9,15 +9,20 @@
 #import "ReadListTVC.h"
 #import "THReadList.h"
 #import "THRead.h"
+#import "ReadTableViewCell.h"
+#import "NSDate+EarlyInTheMorning.h"
+#import "UserDef.h"
+#import "ChartShowVC.h"
+#import "GetViewCtrlFromStoryboard.h"
 
 @import DGElasticPullToRefresh_CanStartLoading;
 @import ionicons;
 @import SWTableViewCell;
 
-@interface ReadListTVC()<SWTableViewCellDelegate>
-
-@property (nonatomic, retain) NSString *curRID;
-@property (nonatomic, assign) NSInteger curPage;
+@interface ReadListTVC()<SWTableViewCellDelegate,
+UIAlertViewDelegate>
+@property (nonatomic, retain) UITableViewCell *curCell;//删除记录
+@property (nonatomic, assign) BOOL needRefresh;
 
 @end
 
@@ -26,6 +31,7 @@
 -(void)viewDidLoad
 {
     [super viewDidLoad];
+    self.navigationItem.title = @"在读图书";
     
     //左右按钮
     UIImage *add = [IonIcons imageWithIcon:ion_ios_plus
@@ -36,16 +42,6 @@
                                                                 target:self
                                                                 action:@selector(AddData)];
     self.navigationItem.rightBarButtonItem = rightBar;
-    
-    
-    UIImage *graph = [IonIcons imageWithIcon:ion_arrow_graph_up_right
-                                       size:27
-                                      color:[UIColor whiteColor]];
-    UIBarButtonItem *leftBar = [[UIBarButtonItem alloc] initWithImage:graph
-                                                                 style:UIBarButtonItemStyleDone
-                                                                target:self
-                                                                action:@selector(AddData)];
-    self.navigationItem.leftBarButtonItem = leftBar;
     
     //去除shadowImage
     [self.navigationController.navigationBar setBackgroundImage:[UIImage new] forBarMetrics:UIBarMetricsDefault];
@@ -60,19 +56,24 @@
         if (sself) {
             [sself.tableView reloadData];
             
-            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
                 [sself.tableView dg_stopLoading];
             });
         }
     } loadingView:loading];
     [self.tableView dg_setPullToRefreshBackgroundColor:self.tableView.backgroundColor];
     [self.tableView dg_setPullToRefreshFillColor:self.navigationController.navigationBar.barTintColor];
+    
+    self.needRefresh = YES;
 }
 
 -(void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
-    [self.tableView dg_startLoading];
+    if (self.needRefresh) {
+        [self.tableView dg_startLoading];
+        self.needRefresh = NO;
+    }
 }
 
 -(UIStatusBarStyle)preferredStatusBarStyle
@@ -82,12 +83,8 @@
 
 -(void)AddData
 {
+    self.needRefresh = YES;
     [self performSegueWithIdentifier:@"showAddBook" sender:self];
-}
-
--(void)ShowGraph
-{
-    
 }
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -97,12 +94,17 @@
 
 -(UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    SWTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"read_cell" forIndexPath:indexPath];
+    ReadTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"read_cell" forIndexPath:indexPath];
     
     THRead *read = [THReadList data][indexPath.row];
     
-    [cell.textLabel setText:[NSString stringWithFormat:@"《%@》", read.bookName]];
-    [cell.detailTextLabel setText:[NSString stringWithFormat:@"%@/%@", @([THReadList cuePageProgress:read.rID]), read.page]];
+    [cell.lb_bookName setText:[NSString stringWithFormat:@"《%@》", read.bookName]];
+    [cell.lb_readPage setText:[NSString stringWithFormat:@"%@/%@", @([THReadList cuePageProgress:read.rID]), read.page]];
+    
+    cell.readProgress = (double)[THReadList cuePageProgress:read.rID] / [read.page doubleValue];
+    NSInteger day = [[NSDate date] earlyInTheMorning].timeIntervalSince1970 - read.startDate.timeIntervalSince1970;
+    day = day / 24 / 3600;
+    cell.timeProgress = (double)day / [read.deadline doubleValue];
     
     if (!(indexPath.row % 2))
     {
@@ -123,17 +125,13 @@
 - (NSArray *)rightButtons
 {
     NSMutableArray *rightUtilityButtons = [NSMutableArray new];
-    [rightUtilityButtons sw_addUtilityButtonWithColor:
-     [UIColor colorWithRed:153.0/255.0 green:241.0/255.0 blue:88.0/255.0 alpha:1.0f]
+    [rightUtilityButtons sw_addUtilityButtonWithColor:Google_Color0
                                                 title:@"+1"];
-    [rightUtilityButtons sw_addUtilityButtonWithColor:
-     [UIColor colorWithRed:160.0/255.0 green:216.0/255.0 blue:120.0/255.0 alpha:1.0]
+    [rightUtilityButtons sw_addUtilityButtonWithColor:Google_Color1
                                                 title:@"+10"];
-    [rightUtilityButtons sw_addUtilityButtonWithColor:
-     [UIColor colorWithRed:140.0/255.0 green:179.0/255.0 blue:62.0/255.0 alpha:1.0f]
+    [rightUtilityButtons sw_addUtilityButtonWithColor:Google_Color2
                                                 title:@"+100"];
-    [rightUtilityButtons sw_addUtilityButtonWithColor:
-     [UIColor colorWithRed:155.0/255.0 green:155.0/255.0 blue:6.0/255.0 alpha:1.0f]
+    [rightUtilityButtons sw_addUtilityButtonWithColor:Google_Color3
                                                 title:@"CA"];
     
     return rightUtilityButtons;
@@ -143,8 +141,12 @@
 {
     NSMutableArray *leftUtilityButtons = [NSMutableArray new];
     
-    [leftUtilityButtons sw_addUtilityButtonWithColor:[UIColor redColor]
+    [leftUtilityButtons sw_addUtilityButtonWithColor:Google_Color1
                                                 icon:[IonIcons imageWithIcon:ion_ios_trash size:27 color:[UIColor whiteColor]]];
+    [leftUtilityButtons sw_addUtilityButtonWithColor:Google_Color2
+                                                icon:[IonIcons imageWithIcon:ion_ios_undo_outline size:27 color:[UIColor whiteColor]]];
+    [leftUtilityButtons sw_addUtilityButtonWithColor:Google_Color0
+                                                icon:[IonIcons imageWithIcon:ion_arrow_graph_up_right size:27 color:[UIColor whiteColor]]];
     
     return leftUtilityButtons;
 }
@@ -158,49 +160,80 @@
 
 #pragma mark -SWTableviewCell
 - (void)swipeableTableViewCell:(SWTableViewCell *)cell didTriggerLeftUtilityButtonWithIndex:(NSInteger)index
-{//删除
-    [cell hideUtilityButtonsAnimated:YES];
-    
+{
     NSIndexPath *ip = [self.tableView indexPathForCell:cell];
     THRead *read = [THReadList data][ip.row];
-    [THReadList DelData:read.rID];
-    [self.tableView deleteRowsAtIndexPaths:@[ip] withRowAnimation:UITableViewRowAnimationAutomatic];
+    if (index == 0)
+    {//删除
+        [cell hideUtilityButtonsAnimated:YES];
+        UIAlertView *av = [[UIAlertView alloc] initWithTitle:@"删除"
+                                                     message:[NSString stringWithFormat:@"确认删除《%@》",read.bookName]
+                                                    delegate:self
+                                           cancelButtonTitle:@"取消"
+                                           otherButtonTitles:@"删除", nil];
+        [av show];
+        av.tag = 999;
+        self.curCell = cell;
+    }
+    else if (index == 1)
+    {//撤销本日阅读
+        [cell hideUtilityButtonsAnimated:YES];
+        [THReadList DelReadProgressDataForLast:read];
+        
+        NSUInteger curPage = [THReadList cuePageProgress:read.rID];
+        [((ReadTableViewCell*)cell).lb_readPage setText:[NSString stringWithFormat:@"%@/%@", @(curPage), read.page]];
+        ((ReadTableViewCell*)cell).readProgress = (double)(curPage) / [read.page doubleValue];
+    }
+    else if (index == 2)
+    {//查看阅读曲线
+        [cell hideUtilityButtonsAnimated:NO];
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            ChartShowVC *vc = (ChartShowVC*)StoryboardVC(@"Main", @"ChartShowVC");
+            vc.read = read;
+            [self.navigationController pushViewController:vc animated:YES];
+        });
+    }
 }
 
 - (void)swipeableTableViewCell:(SWTableViewCell *)cell didTriggerRightUtilityButtonWithIndex:(NSInteger)index
 {//
-    self.curPage += index == 0 ? 1 : (index == 1 ? 10 : 100);
+    NSIndexPath *ip = [self.tableView indexPathForCell:cell];
+    THRead *read = [THReadList data][ip.row];
+    
+    NSInteger curPage = [((ReadTableViewCell*)cell).lb_readPage.text integerValue];
+
+    curPage += index == 0 ? 1 : (index == 1 ? 10 : 100);
     
     if (index == 3) {
-        self.curPage = [THReadList cuePageProgress:self.curRID];
+        curPage = [THReadList cuePageProgress:read.rID];
     }
     
-    [cell.detailTextLabel setText:[NSString stringWithFormat:@"+%@", @(self.curPage)]];
+    [((ReadTableViewCell*)cell).lb_readPage setText:[NSString stringWithFormat:@"%@", @(curPage)]];
+    ((ReadTableViewCell*)cell).readProgress = (double)curPage / [read.page doubleValue];
 }
 
 - (void)swipeableTableViewCell:(SWTableViewCell *)cell scrollingToState:(SWCellState)state
 {
-    if (state == kCellStateRight)
+    static SWCellState preState = kCellStateLeft;
+    if (state == kCellStateCenter && preState == kCellStateRight)
+    {//有改变
+        NSIndexPath *ip = [self.tableView indexPathForCell:cell];
+        THRead *read = [THReadList data][ip.row];
+        
+        NSInteger curPage = [((ReadTableViewCell*)cell).lb_readPage.text integerValue];
+        if (curPage > 0) {
+            [THReadList EditPage:curPage Read:read];
+        }
+        [((ReadTableViewCell*)cell).lb_readPage setText:[NSString stringWithFormat:@"%@/%@", @(curPage), read.page]];
+        ((ReadTableViewCell*)cell).readProgress = (double)curPage / [read.page doubleValue];
+    }
+    else if(state == kCellStateRight)
     {
         NSIndexPath *ip = [self.tableView indexPathForCell:cell];
         THRead *read = [THReadList data][ip.row];
-        self.curRID = read.rID;
-        self.curPage = [THReadList cuePageProgress:read.rID];
+        [((ReadTableViewCell*)cell).lb_readPage setText:[NSString stringWithFormat:@"%@", @([THReadList cuePageProgress:read.rID])]];
     }
-    else if (state == kCellStateCenter && self.curRID)
-    {//有改变
-        if (self.curPage > 0) {
-            [THReadList EditPage:self.curPage ReadID:self.curRID];
-        }
-        [cell.detailTextLabel setText:[NSString stringWithFormat:@"%@/%@", @(self.curPage), @([THReadList cuePageProgress:self.curRID])]];
-        self.curRID = nil;
-        self.curPage = 0;
-    }
-    else
-    {
-        self.curRID = nil;
-        self.curPage = 0;
-    }
+    preState = state;
 }
 
 - (BOOL)swipeableTableViewCellShouldHideUtilityButtonsOnSwipe:(SWTableViewCell *)cell
@@ -208,4 +241,32 @@
     return YES;
 }
 
+-(BOOL)swipeableTableViewCell:(SWTableViewCell *)cell canSwipeToState:(SWCellState)state
+{
+    if (state == kCellStateRight)
+    {
+        NSIndexPath *ip = [self.tableView indexPathForCell:cell];
+        THRead *read = [THReadList data][ip.row];
+        if ([THReadList cuePageProgress:read.rID] >= read.page.unsignedIntegerValue)
+        {
+            return NO;
+        }
+    }
+    return YES;
+}
+
+#pragma mark -alertViewDelegate
+-(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if (alertView.tag == 999)
+    {
+        if (buttonIndex == 1)
+        {
+            NSIndexPath *ip = [self.tableView indexPathForCell:self.curCell];
+            THRead *read = [THReadList data][ip.row];
+            [THReadList DelData:read];
+            [self.tableView deleteRowsAtIndexPaths:@[ip] withRowAnimation:UITableViewRowAnimationAutomatic];
+        }
+    }
+}
 @end

@@ -9,6 +9,11 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>Charts.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>DGElasticPullToRefresh_CanStartLoading.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -72,7 +77,12 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>3CEB202205ACE7C0B7A2039446826D3A</key>
+		<key>24090FBCEF7A50AE384678B5C071804B</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>33A9CF360A5B216B50411BD1103BDE92</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -82,7 +92,7 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>571E3A56C933E0968B405CBEC941DB4A</key>
+		<key>64CAE8F6E344C94CFAC62F0C87A9B62B</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -93,6 +103,16 @@
 			<true/>
 		</dict>
 		<key>81FBB7E25FAC11BE4142745695ECF417</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>B13ED0112D79F42D903D7416B78851B1</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>B1F1ED426B48893FD591CF2809C18275</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -113,16 +133,6 @@
 			<true/>
 		</dict>
 		<key>E61CE3B6DFA1FE6B3E296965C76C0E10</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>E955022BD2829295AEBEE2F5050002D7</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>EDC6C28A519001D265395B9DE251A5EC</key>
 		<dict>
 			<key>primary</key>
 			<true/>

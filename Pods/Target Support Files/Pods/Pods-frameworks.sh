@@ -85,6 +85,7 @@ strip_invalid_archs() {
 
 if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_framework "Pods/AFNetworking.framework"
+  install_framework "Pods/Charts.framework"
   install_framework "Pods/DGElasticPullToRefresh_CanStartLoading.framework"
   install_framework "Pods/EGOCache.framework"
   install_framework "Pods/JSONKit.framework"
@@ -98,6 +99,7 @@ if [[ "$CONFIGURATION" == "Debug" ]]; then
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework "Pods/AFNetworking.framework"
+  install_framework "Pods/Charts.framework"
   install_framework "Pods/DGElasticPullToRefresh_CanStartLoading.framework"
   install_framework "Pods/EGOCache.framework"
   install_framework "Pods/JSONKit.framework"
