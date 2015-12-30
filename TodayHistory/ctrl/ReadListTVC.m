@@ -82,7 +82,7 @@ UIAlertViewDelegate>
 {
     [super viewDidAppear:animated];
     if (self.needRefresh) {
-        [self.tableView dg_startLoading];
+        [self.tableView reloadData];
         self.needRefresh = NO;
     }
 }
@@ -130,15 +130,15 @@ UIAlertViewDelegate>
 
 -(NSString*)makeShareData
 {
-    NSString *data = @"读书进度:";
+    NSMutableString *data = [NSMutableString stringWithFormat:@"\n************(%@)************", [[[NSDate date] earlyInTheMorning] yyyyMMddStringValue]];
     for (THRead *read in [THReadList data])
     {
-        data = [data stringByAppendingString:@"\n\n"];
-        data = [data stringByAppendingString:[NSString stringWithFormat:@"《%@》共: ", read.bookName]];
-        data = [data stringByAppendingString:[NSString stringWithFormat:@"%@页; ", read.page]];
-        data = [data stringByAppendingString:[NSString stringWithFormat:@"当前读到: %@页\n", @([THReadList cuePageProgress:read.rID])]];
-        
+        [data appendString:@"\n\n"];
+        [data appendFormat:@"《%@》（%@）\n", read.bookName, [read.startDate yyyyMMddStringValue]];
+        [data appendFormat:@"进度: %@/%@页;\n", @([THReadList cuePageProgress:read.rID]), read.page];
+        [data appendFormat:@"用时: %@/%@天; ", @([THReadList cueDayProgress:read.rID]), read.deadline];
     }
+    [data appendString:@"\n************************************"];
     return data;
 }
 
@@ -187,7 +187,7 @@ UIAlertViewDelegate>
     [rightUtilityButtons sw_addUtilityButtonWithColor:Google_Color1
                                                 title:@"+10"];
     [rightUtilityButtons sw_addUtilityButtonWithColor:Google_Color2
-                                                title:@"+100"];
+                                                title:@"+50"];
     [rightUtilityButtons sw_addUtilityButtonWithColor:Google_Color3
                                                 title:@"CA"];
     
@@ -259,7 +259,7 @@ UIAlertViewDelegate>
     
     NSInteger curPage = [((ReadTableViewCell*)cell).lb_readPage.text integerValue];
 
-    curPage += index == 0 ? 1 : (index == 1 ? 10 : 100);
+    curPage += index == 0 ? 1 : (index == 1 ? 10 : 50);
     
     if (index == 3) {
         curPage = [THReadList cuePageProgress:read.rID];

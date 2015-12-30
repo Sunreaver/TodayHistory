@@ -12,7 +12,7 @@
 @interface ReadTableViewCell()
 @property (weak, nonatomic) IBOutlet UIView *v_timeProgress;
 @property (weak, nonatomic) IBOutlet UIView *v_readProgress;
-
+@property (weak, nonatomic) IBOutlet UIImageView *iv_readover;
 
 @end
 
@@ -20,8 +20,11 @@
 
 -(void)awakeFromNib
 {
-    self.v_timeProgress.backgroundColor = [UIColor colorWithRed:234.0/255.0 green:67.0/255.0 blue:53.0/255.0 alpha:1.0];
-    self.v_readProgress.backgroundColor = [UIColor colorWithRed:52.0/255.0 green:168.0/255.0 blue:83.0/255.0 alpha:1.0f];
+    self.v_timeProgress.backgroundColor = Google_Color1;
+    self.v_readProgress.backgroundColor = Google_Color3;
+    
+    self.iv_readover.transform = CGAffineTransformMakeRotation(10.0*M_PI/180);
+    self.iv_readover.hidden = YES;
 }
 
 -(void)setReadProgress:(CGFloat)readProgress
@@ -36,6 +39,14 @@
     
     [self.contentView addConstraint:cns];
     [self setColorForView:self.v_readProgress WithProgress:_readProgress];
+    if (_readProgress >= 1.0)
+    {
+        self.iv_readover.hidden = NO;
+    }
+    else
+    {
+        self.iv_readover.hidden = YES;
+    }
 }
 
 -(void)setTimeProgress:(CGFloat)timeProgress

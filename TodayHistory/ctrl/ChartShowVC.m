@@ -12,6 +12,7 @@
 #import "TodayHistory-Swift.h"
 #import <AssetsLibrary/AssetsLibrary.h>
 #import "UserDef.h"
+#import "NSDate+EarlyInTheMorning.h"
 
 @import Charts;
 @import ionicons;
@@ -119,19 +120,26 @@ typedef void (^SaveImageCompletion)(NSError *error);
     _chartView.marker = marker;
     
     //右侧截止线
-    ChartLimitLine *llXAxis = [[ChartLimitLine alloc] initWithLimit:self.read.deadline.doubleValue label:@"止"];
+    ChartLimitLine *llXAxis = [[ChartLimitLine alloc] initWithLimit:self.read.deadline.doubleValue label:@""];
     llXAxis.lineWidth = 2.0;
     llXAxis.lineDashLengths = @[@(10.f), @(10.f), @(0.f)];
     llXAxis.labelPosition = ChartLimitLabelPositionRightBottom;
     llXAxis.valueFont = [UIFont systemFontOfSize:10.f];
-    
     [_chartView.xAxis addLimitLine:llXAxis];
     
+    //页数最大值
+    ChartLimitLine *ll1 = [[ChartLimitLine alloc] initWithLimit:self.read.page.doubleValue label:@"总页码"];
+    ll1.lineWidth = 2.0;
+    ll1.lineColor = UIColor.blackColor;
+    ll1.lineDashLengths = @[@5.f, @5.f];
+    ll1.labelPosition = ChartLimitLabelPositionLeftBottom;
+    ll1.valueFont = [UIFont systemFontOfSize:10.0];
     
     //配置x，y坐标属性
     ChartYAxis *leftAxis = _chartView.leftAxis;
     [leftAxis removeAllLimitLines];
-    leftAxis.customAxisMax = self.read.page.doubleValue;
+    [leftAxis addLimitLine:ll1];
+    leftAxis.customAxisMax = self.read.page.doubleValue * 1.1;
     leftAxis.customAxisMin = 0.0;
     leftAxis.startAtZeroEnabled = YES;
     leftAxis.gridLineDashLengths = @[@5.f, @5.f];
@@ -156,12 +164,20 @@ typedef void (^SaveImageCompletion)(NSError *error);
         return;
     }
     
-    NSUInteger curDay = data.lastObject.curDay.unsignedIntegerValue;
-    curDay = MAX(curDay + 2, self.read.deadline.unsignedIntegerValue + 2);
+    NSUInteger lastReadDay = data.lastObject.curDay.unsignedIntegerValue;
+    lastReadDay = MAX(lastReadDay + 2, self.read.deadline.unsignedIntegerValue + 2);
+    
+    NSUInteger today = ([[NSDate date] earlyInTheMorning].timeIntervalSince1970 - self.read.startDate.timeIntervalSince1970)/24/3600;
+    if (today == data.lastObject.curDay.unsignedIntegerValue ||
+        data.lastObject.curPage.unsignedIntegerValue >= self.read.page.unsignedIntegerValue)
+    {//今天已经有数据
+     //阅读已经完毕
+        today = NSUIntegerMax;
+    }
     
     NSMutableArray *xVals = [[NSMutableArray alloc] init];
     
-    for (int i = 0; i < curDay; i++)
+    for (int i = 0; i < lastReadDay; i++)
     {
         [xVals addObject:[@(i) stringValue]];
     }
@@ -174,28 +190,67 @@ typedef void (^SaveImageCompletion)(NSError *error);
                                                         xIndex:data[i].curDay.unsignedIntegerValue]];
     }
     
-    LineChartDataSet *set1 = [[LineChartDataSet alloc] initWithYVals:yVals label:@"阅读进度"];
+    if (today != NSUIntegerMax)
+    {
+        [yVals addObject:[[ChartDataEntry alloc] initWithValue:data.lastObject.curPage.unsignedIntegerValue
+                                                        xIndex:today]];
+    }
+    
+    LineChartDataSet *set1 = [[LineChartDataSet alloc] initWithYVals:yVals
+                                                               label:[NSString stringWithFormat:@"实际进度(%@)", [self.read.startDate yyyyMMddStringValue]]];
     
     set1.lineDashLengths = @[@5.f, @2.5f];
     set1.highlightLineDashLengths = @[@5.f, @2.5f];
-    [set1 setColor:UIColor.blackColor];
+    [set1 setColor:Google_Color1];
     [set1 setCircleColor:UIColor.blackColor];
-    set1.lineWidth = 1.0;
+    set1.lineWidth = 2.0;
     set1.circleRadius = 3.0;
     set1.drawCircleHoleEnabled = NO;
     set1.valueFont = [UIFont systemFontOfSize:9.f];
     set1.fillAlpha = 65/255.0;
     set1.fillColor = UIColor.blackColor;
     
+    NSMutableArray *yVals1 = [[NSMutableArray alloc] init];
+    //起始点
+    [yVals1 addObject:[[ChartDataEntry alloc] initWithValue:0.0
+                                                     xIndex:0.0]];
+    //今日应该到的点
+    today = ([[NSDate date] earlyInTheMorning].timeIntervalSince1970 - self.read.startDate.timeIntervalSince1970)/24/3600;
+    if (data.lastObject.curPage.unsignedIntegerValue < self.read.page.unsignedIntegerValue &&
+        today < self.read.deadline.integerValue)
+    {//阅读未完毕
+     //未超时
+        [yVals1 addObject:[[ChartDataEntry alloc] initWithValue:self.read.page.doubleValue * today / self.read.deadline.integerValue
+                                                         xIndex:today]];
+    }
+    
+    //完结点
+    [yVals1 addObject:[[ChartDataEntry alloc] initWithValue:self.read.page.doubleValue
+                                                     xIndex:self.read.deadline.integerValue]];
+    
+    LineChartDataSet *set2 = [[LineChartDataSet alloc] initWithYVals:yVals1
+                                                               label:@"理论进度"];
+    
+    set2.lineDashLengths = @[@5.f, @2.5f];
+    set2.highlightLineDashLengths = @[@5.f, @2.5f];
+    [set2 setColor:Google_Color2];
+    [set2 setCircleColor:Google_Color0];
+    set2.lineWidth = 1.0;
+    set2.circleRadius = 4.0;
+    set2.drawCircleHoleEnabled = NO;
+    set2.valueFont = [UIFont systemFontOfSize:9.f];
+    set2.fillAlpha = 65/255.0;
+    set2.fillColor = UIColor.blackColor;
+    
     NSMutableArray *dataSets = [[NSMutableArray alloc] init];
     [dataSets addObject:set1];
+    [dataSets addObject:set2];
     
     LineChartData *chartData = [[LineChartData alloc] initWithXVals:xVals dataSets:dataSets];
     
     _chartView.data = chartData;
     
-    [_chartView animateWithXAxisDuration:1.0];
-
+    [_chartView animateWithYAxisDuration:1.333 easingOption:ChartEasingOptionEaseInCubic];
 }
 
 @end

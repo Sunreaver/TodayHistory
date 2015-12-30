@@ -22,6 +22,7 @@
 +(void)storageData;
 +(BOOL)DelReadProgressDataForLast:(THRead*)read;
 
++(NSUInteger)cueDayProgress:(NSString*)rID;
 +(NSUInteger)cuePageProgress:(NSString*)rID;
 +(NSArray<THReadProgress*>*)getReadProgressFromReadID:(NSString*)rID;
 @end

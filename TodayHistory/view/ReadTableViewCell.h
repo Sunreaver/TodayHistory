@@ -6,7 +6,7 @@
 //  Copyright © 2015年 谭伟. All rights reserved.
 //
 
-#import <SWTableViewCell/SWTableViewCell.h>
+@import SWTableViewCell;
 
 @interface ReadTableViewCell : SWTableViewCell
 

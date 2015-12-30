@@ -66,6 +66,15 @@ static NSMutableDictionary *s_readProgress = nil;
 
 +(BOOL)AddData:(THRead *)read
 {
+    for (THRead *r in s_data)
+    {
+        if ([r.rID isEqualToString:read.rID])
+        {
+            THRead *rd = [THRead initWithBookName:[read.bookName stringByAppendingString:@"※"] PageNum:[read.page integerValue] Deadline:[read.deadline integerValue]];
+            [THReadList AddData:rd];
+            return YES;
+        }
+    }
     [s_data insertObject:read atIndex:0];
     s_bDataChange = YES;
     
@@ -146,6 +155,18 @@ static NSMutableDictionary *s_readProgress = nil;
     if (arr && arr.count > 0)
     {
         return [arr lastObject].curPage.unsignedIntegerValue;
+    }
+    
+    return 0;
+}
+
++(NSUInteger)cueDayProgress:(NSString*)rID
+{
+    NSArray<THReadProgress*> *arr = [THReadList readProgress][[NSString stringWithFormat:@"com.readlist.%@", rID]];
+    
+    if (arr && arr.count > 0)
+    {
+        return [arr lastObject].curDay.unsignedIntegerValue;
     }
     
     return 0;

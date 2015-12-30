@@ -4,7 +4,9 @@
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
         <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
     </dependencies>
     <scenes>
         <!--Main View-->
@@ -670,7 +672,7 @@
         <scene sceneID="jmj-VZ-SBn">
             <objects>
                 <tableViewController id="Isb-DN-jye" customClass="ReadListTVC" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="64" sectionHeaderHeight="28" sectionFooterHeight="28" id="fMf-xQ-3sT">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="64" sectionHeaderHeight="28" sectionFooterHeight="28" id="fMf-xQ-3sT">
                         <rect key="frame" x="0.0" y="64" width="320" height="416"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -682,6 +684,12 @@
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="64"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="read_over" translatesAutoresizingMaskIntoConstraints="NO" id="Bht-HF-EnO">
+                                            <rect key="frame" x="166" y="19" width="48" height="26"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" secondItem="Bht-HF-EnO" secondAttribute="height" multiplier="552:300" id="SLV-fL-jWM"/>
+                                            </constraints>
+                                        </imageView>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Lg7-w0-GfE">
                                             <rect key="frame" x="8" y="24" width="40" height="15"/>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -690,21 +698,21 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Bsa-an-kx2">
-                                            <rect key="frame" x="260" y="25" width="40" height="15"/>
+                                            <rect key="frame" x="254" y="25" width="40" height="15"/>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                             <fontDescription key="fontDescription" name="HiraginoSans-W3" family="Hiragino Sans" pointSize="15"/>
                                             <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cNV-9Q-rMR">
-                                            <rect key="frame" x="315" y="0.0" width="5" height="64"/>
+                                            <rect key="frame" x="312" y="0.0" width="8" height="64"/>
                                             <color key="backgroundColor" red="0.98823529409999999" green="0.16078431369999999" blue="0.39607843139999999" alpha="1" colorSpace="calibratedRGB"/>
                                             <constraints>
-                                                <constraint firstAttribute="width" constant="5" id="Q1b-xn-7Av"/>
+                                                <constraint firstAttribute="width" constant="8" id="Q1b-xn-7Av"/>
                                             </constraints>
                                         </view>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NUj-MQ-jNt">
-                                            <rect key="frame" x="310" y="0.0" width="5" height="64"/>
+                                            <rect key="frame" x="304" y="0.0" width="8" height="64"/>
                                             <color key="backgroundColor" red="0.0" green="0.40000000000000002" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         </view>
                                     </subviews>
@@ -713,16 +721,20 @@
                                         <constraint firstItem="cNV-9Q-rMR" firstAttribute="height" secondItem="ijX-CU-hTc" secondAttribute="height" multiplier="100:100" placeholder="YES" identifier="1002" id="KHb-aK-jYM"/>
                                         <constraint firstItem="cNV-9Q-rMR" firstAttribute="leading" secondItem="NUj-MQ-jNt" secondAttribute="trailing" id="NIi-d6-KQe"/>
                                         <constraint firstAttribute="trailing" secondItem="cNV-9Q-rMR" secondAttribute="trailing" id="Vk0-Nf-LS4"/>
+                                        <constraint firstItem="Bht-HF-EnO" firstAttribute="centerX" secondItem="ijX-CU-hTc" secondAttribute="centerX" constant="30" id="WyE-U3-d1b"/>
                                         <constraint firstItem="Lg7-w0-GfE" firstAttribute="centerY" secondItem="ijX-CU-hTc" secondAttribute="centerY" id="YVO-gn-OVk"/>
+                                        <constraint firstItem="Bht-HF-EnO" firstAttribute="width" secondItem="ijX-CU-hTc" secondAttribute="width" multiplier="15:100" id="fqo-5j-Do8"/>
                                         <constraint firstItem="NUj-MQ-jNt" firstAttribute="width" secondItem="cNV-9Q-rMR" secondAttribute="width" id="iN0-4z-cDM"/>
                                         <constraint firstAttribute="bottom" secondItem="cNV-9Q-rMR" secondAttribute="bottom" id="j3b-3z-R46"/>
                                         <constraint firstAttribute="bottom" secondItem="NUj-MQ-jNt" secondAttribute="bottom" id="kWc-UO-wK6"/>
                                         <constraint firstItem="NUj-MQ-jNt" firstAttribute="height" secondItem="ijX-CU-hTc" secondAttribute="height" multiplier="100:100" placeholder="YES" identifier="1001" id="swz-W0-S5q"/>
+                                        <constraint firstItem="Bht-HF-EnO" firstAttribute="centerY" secondItem="ijX-CU-hTc" secondAttribute="centerY" id="xIp-vz-EwI"/>
                                         <constraint firstItem="NUj-MQ-jNt" firstAttribute="leading" secondItem="Bsa-an-kx2" secondAttribute="trailing" constant="10" id="xjH-fn-pgL"/>
                                         <constraint firstAttribute="leadingMargin" secondItem="Lg7-w0-GfE" secondAttribute="leading" id="y2c-3B-Itd"/>
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>
+                                    <outlet property="iv_readover" destination="Bht-HF-EnO" id="lr2-Qs-G8g"/>
                                     <outlet property="lb_bookName" destination="Lg7-w0-GfE" id="OjU-HA-bpo"/>
                                     <outlet property="lb_readPage" destination="Bsa-an-kx2" id="MYq-py-Z2R"/>
                                     <outlet property="v_readProgress" destination="NUj-MQ-jNt" id="1PY-ef-vVH"/>
@@ -968,6 +980,7 @@
     </scenes>
     <resources>
         <image name="dic_logo" width="226" height="46"/>
+        <image name="read_over" width="184" height="100"/>
     </resources>
     <color key="tintColor" red="0.32549019610000002" green="0.75686274509999996" blue="0.29803921570000003" alpha="1" colorSpace="calibratedRGB"/>
 </document>
