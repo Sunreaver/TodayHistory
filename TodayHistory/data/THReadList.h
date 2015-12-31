@@ -13,7 +13,7 @@
 
 @interface THReadList : NSObject
 
-+(NSArray<THRead*> *)data;
++(NSArray<THRead*> *)books;
 
 +(BOOL)AddData:(THRead*)read;
 +(BOOL)DelDataWithID:(NSString*)rID;

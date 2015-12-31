@@ -19,7 +19,7 @@ static NSMutableDictionary *s_readProgress = nil;
 
 @implementation THReadList
 
-+(NSArray<THRead*> *)data
++(NSArray<THRead*> *)books
 {
     if (!s_data)
     {
@@ -66,6 +66,9 @@ static NSMutableDictionary *s_readProgress = nil;
 
 +(BOOL)AddData:(THRead *)read
 {
+    if (read.page.integerValue == 0 || read.deadline.integerValue == 0) {
+        return NO;
+    }
     for (THRead *r in s_data)
     {
         if ([r.rID isEqualToString:read.rID])
@@ -85,8 +88,8 @@ static NSMutableDictionary *s_readProgress = nil;
 
 +(BOOL)DelDataWithID:(NSString *)rID
 {
-    for (int i = 0; i < [THReadList data].count; ++i) {
-        THRead *read = [THReadList data][i];
+    for (int i = 0; i < [THReadList books].count; ++i) {
+        THRead *read = [THReadList books][i];
         if ([read.rID isEqualToString:rID])
         {
             [s_data removeObjectAtIndex:i];

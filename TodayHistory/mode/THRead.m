@@ -8,7 +8,7 @@
 
 #import "THRead.h"
 #import "NSDate+EarlyInTheMorning.h"
-#import "MD5Encode.h"
+#import "NSString+NSData+md5sha1.h"
 
 @implementation THRead
 
@@ -19,7 +19,7 @@
     read.page = @(page);
     read.startDate = [[NSDate date] earlyInTheMorning];
     read.deadline = @(day);
-    read.rID = [MD5Encode md5_32:[NSString stringWithFormat:@"%@+%@", read.bookName, read.page]];
+    read.rID = [[NSString stringWithFormat:@"%@+%@", read.bookName, read.page] md5_32];
     
     return read;
 }

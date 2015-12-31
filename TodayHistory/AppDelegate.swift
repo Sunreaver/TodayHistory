@@ -253,6 +253,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         notification2.userInfo = ["type":"WorkoutWalk"]
         notification2.category = "WorkoutWalk"
         UIApplication.sharedApplication().scheduleLocalNotification(notification2)
+        
+        //注册读书提醒
+        df.dateFormat = "yyyyMMdd"
+        ds0 = df.stringFromDate(NSDate())
+        df.dateFormat = "yyyyMMdd HH:mm:ss"
+        let notification3:UILocalNotification = UILocalNotification()
+        fireString = ds0.stringByAppendingString(" 22:40:10")
+        notification3.fireDate = df.dateFromString(fireString)
+        notification3.repeatInterval = NSCalendarUnit.Day//循环次数，kCFCalendarUnitWeekday一周一次
+        notification3.soundName = "nosound.caf";//声音，可以换成alarm.soundName = @"myMusic.caf"
+        notification3.alertTitle = "阅读了没？"
+        notification3.alertBody = "每日一读!";//提示信息 弹出提示框
+        notification3.userInfo = ["type":"Readding"]
+        UIApplication.sharedApplication().scheduleLocalNotification(notification3)
     }
     
     func calculateBadgeNum (birthday:String) ->NSInteger

@@ -39,13 +39,14 @@
 		D068C5051BFC0A1100D69907 /* DMDate.m in Sources */ = {isa = PBXBuildFile; fileRef = D068C5041BFC0A1100D69907 /* DMDate.m */; };
 		D068C50A1BFC0A2D00D69907 /* NSDate+EarlyInTheMorning.m in Sources */ = {isa = PBXBuildFile; fileRef = D068C5071BFC0A2D00D69907 /* NSDate+EarlyInTheMorning.m */; };
 		D068C50B1BFC0A2D00D69907 /* NSString+DateValue.m in Sources */ = {isa = PBXBuildFile; fileRef = D068C5091BFC0A2D00D69907 /* NSString+DateValue.m */; };
+		D07100D71C34BA10008F43C0 /* ReadHeaderTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D07100D61C34BA10008F43C0 /* ReadHeaderTableViewCell.m */; };
 		D07ADA581BFEAD78003C91ED /* No05.caf in Resources */ = {isa = PBXBuildFile; fileRef = D07ADA571BFEAD78003C91ED /* No05.caf */; };
 		D07ADA5F1BFEAFAC003C91ED /* nosound.caf in Resources */ = {isa = PBXBuildFile; fileRef = D07ADA5E1BFEAFAC003C91ED /* nosound.caf */; };
 		D07ADA621BFEB691003C91ED /* HealthStoreManager.m in Sources */ = {isa = PBXBuildFile; fileRef = D07ADA611BFEB691003C91ED /* HealthStoreManager.m */; };
 		D07ADA631BFEB6A4003C91ED /* HealthStoreManager.m in Sources */ = {isa = PBXBuildFile; fileRef = D07ADA611BFEB691003C91ED /* HealthStoreManager.m */; };
 		D0ACECDD1C02F4DA00EB6E14 /* NSDate+EarlyInTheMorning.m in Sources */ = {isa = PBXBuildFile; fileRef = D068C5071BFC0A2D00D69907 /* NSDate+EarlyInTheMorning.m */; };
 		D0B3F4E31C3112E100A6133A /* THRead.m in Sources */ = {isa = PBXBuildFile; fileRef = D0B3F4E21C3112E100A6133A /* THRead.m */; };
-		D0B3F4E61C3116D100A6133A /* MD5Encode.m in Sources */ = {isa = PBXBuildFile; fileRef = D0B3F4E51C3116D100A6133A /* MD5Encode.m */; };
+		D0B3F4E61C3116D100A6133A /* NSString+NSData+md5sha1.m in Sources */ = {isa = PBXBuildFile; fileRef = D0B3F4E51C3116D100A6133A /* NSString+NSData+md5sha1.m */; };
 		D0B3F4E91C3117ED00A6133A /* THReadList.m in Sources */ = {isa = PBXBuildFile; fileRef = D0B3F4E81C3117ED00A6133A /* THReadList.m */; };
 		D0B3F4EC1C31259500A6133A /* ReadListTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = D0B3F4EB1C31259500A6133A /* ReadListTVC.m */; };
 		D0B3F4EF1C312C9200A6133A /* AddAndShowDataTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = D0B3F4EE1C312C9200A6133A /* AddAndShowDataTVC.m */; };
@@ -132,14 +133,16 @@
 		D068C5071BFC0A2D00D69907 /* NSDate+EarlyInTheMorning.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+EarlyInTheMorning.m"; sourceTree = "<group>"; };
 		D068C5081BFC0A2D00D69907 /* NSString+DateValue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+DateValue.h"; sourceTree = "<group>"; };
 		D068C5091BFC0A2D00D69907 /* NSString+DateValue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+DateValue.m"; sourceTree = "<group>"; };
+		D07100D51C34BA10008F43C0 /* ReadHeaderTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReadHeaderTableViewCell.h; sourceTree = "<group>"; };
+		D07100D61C34BA10008F43C0 /* ReadHeaderTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReadHeaderTableViewCell.m; sourceTree = "<group>"; };
 		D07ADA571BFEAD78003C91ED /* No05.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = No05.caf; sourceTree = "<group>"; };
 		D07ADA5E1BFEAFAC003C91ED /* nosound.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = nosound.caf; sourceTree = "<group>"; };
 		D07ADA601BFEB691003C91ED /* HealthStoreManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HealthStoreManager.h; sourceTree = "<group>"; };
 		D07ADA611BFEB691003C91ED /* HealthStoreManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HealthStoreManager.m; sourceTree = "<group>"; };
 		D0B3F4E11C3112E100A6133A /* THRead.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THRead.h; sourceTree = "<group>"; };
 		D0B3F4E21C3112E100A6133A /* THRead.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THRead.m; sourceTree = "<group>"; };
-		D0B3F4E41C3116D100A6133A /* MD5Encode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MD5Encode.h; sourceTree = "<group>"; };
-		D0B3F4E51C3116D100A6133A /* MD5Encode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MD5Encode.m; sourceTree = "<group>"; };
+		D0B3F4E41C3116D100A6133A /* NSString+NSData+md5sha1.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+NSData+md5sha1.h"; sourceTree = "<group>"; };
+		D0B3F4E51C3116D100A6133A /* NSString+NSData+md5sha1.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+NSData+md5sha1.m"; sourceTree = "<group>"; };
 		D0B3F4E71C3117ED00A6133A /* THReadList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THReadList.h; sourceTree = "<group>"; };
 		D0B3F4E81C3117ED00A6133A /* THReadList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THReadList.m; sourceTree = "<group>"; };
 		D0B3F4EA1C31259500A6133A /* ReadListTVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReadListTVC.h; sourceTree = "<group>"; };
@@ -255,6 +258,8 @@
 				D0B3F4F01C32153500A6133A /* ReadTableViewCell.h */,
 				D0B3F4F11C32153500A6133A /* ReadTableViewCell.m */,
 				D0B3F4FA1C32681900A6133A /* BalloonMarker.swift */,
+				D07100D51C34BA10008F43C0 /* ReadHeaderTableViewCell.h */,
+				D07100D61C34BA10008F43C0 /* ReadHeaderTableViewCell.m */,
 			);
 			path = view;
 			sourceTree = "<group>";
@@ -356,8 +361,8 @@
 		D0FF63571BA025DE00A00BAB /* Tool */ = {
 			isa = PBXGroup;
 			children = (
-				D0B3F4E41C3116D100A6133A /* MD5Encode.h */,
-				D0B3F4E51C3116D100A6133A /* MD5Encode.m */,
+				D0B3F4E41C3116D100A6133A /* NSString+NSData+md5sha1.h */,
+				D0B3F4E51C3116D100A6133A /* NSString+NSData+md5sha1.m */,
 				D03711AE1BFC7E2900014DFD /* UserDef.h */,
 				D03711AF1BFC7E2900014DFD /* UserDef.m */,
 				D068C5061BFC0A2D00D69907 /* NSDate+EarlyInTheMorning.h */,
@@ -569,6 +574,7 @@
 			files = (
 				D0B3F4E91C3117ED00A6133A /* THReadList.m in Sources */,
 				D0BD74871BAFEC7500017D36 /* NetWorkManager.swift in Sources */,
+				D07100D71C34BA10008F43C0 /* ReadHeaderTableViewCell.m in Sources */,
 				D0219D311BA116FE0007F00E /* THMode.swift in Sources */,
 				D0B3F4E31C3112E100A6133A /* THRead.m in Sources */,
 				D012CB391C1EA41B00872FB1 /* UINavCtrl.m in Sources */,
@@ -599,7 +605,7 @@
 				D04011531BFB0FD200656161 /* THDictionaryVC.swift in Sources */,
 				D0C33E631C03F8B00084F84A /* HealthTVC.m in Sources */,
 				D0219D371BA12B410007F00E /* THCell.swift in Sources */,
-				D0B3F4E61C3116D100A6133A /* MD5Encode.m in Sources */,
+				D0B3F4E61C3116D100A6133A /* NSString+NSData+md5sha1.m in Sources */,
 				D0FF63371BA020F600A00BAB /* AppDelegate.swift in Sources */,
 				D0219D3C1BA1560E0007F00E /* THWebView.swift in Sources */,
 				D0FD1E1A1BABF14800A94B73 /* THCollectionViewLayout.swift in Sources */,

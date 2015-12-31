@@ -677,7 +677,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="read_cell" id="G3l-jj-Rl4" customClass="ReadTableViewCell">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="read_cell" id="G3l-jj-Rl4" customClass="ReadTableViewCell">
                                 <rect key="frame" x="0.0" y="28" width="320" height="64"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="G3l-jj-Rl4" id="ijX-CU-hTc">
@@ -739,6 +739,64 @@
                                     <outlet property="lb_readPage" destination="Bsa-an-kx2" id="MYq-py-Z2R"/>
                                     <outlet property="v_readProgress" destination="NUj-MQ-jNt" id="1PY-ef-vVH"/>
                                     <outlet property="v_timeProgress" destination="cNV-9Q-rMR" id="CSx-xD-lEB"/>
+                                </connections>
+                            </tableViewCell>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="readheader_cell" rowHeight="100" id="Uaw-jy-28G" customClass="ReadHeaderTableViewCell">
+                                <rect key="frame" x="0.0" y="92" width="320" height="100"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Uaw-jy-28G" id="Bzy-Lr-NbD">
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="100"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XFj-yP-BMG">
+                                            <rect key="frame" x="8" y="8" width="304" height="84"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="正在阅读：N本" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="x6V-u5-fpP">
+                                                    <rect key="frame" x="8" y="8" width="288" height="15"/>
+                                                    <fontDescription key="fontDescription" name="HiraginoSans-W3" family="Hiragino Sans" pointSize="15"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="已经阅毕：N本" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bhz-VZ-s5l">
+                                                    <rect key="frame" x="8" y="35" width="288" height="15"/>
+                                                    <fontDescription key="fontDescription" name="HiraginoSans-W3" family="Hiragino Sans" pointSize="15"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="进度快：N本、进度慢：N本" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BdV-0H-rb6">
+                                                    <rect key="frame" x="8" y="61" width="288" height="15"/>
+                                                    <fontDescription key="fontDescription" name="HiraginoSans-W3" family="Hiragino Sans" pointSize="15"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <constraints>
+                                                <constraint firstItem="bhz-VZ-s5l" firstAttribute="leading" secondItem="x6V-u5-fpP" secondAttribute="leading" id="5Yp-PP-ZF4"/>
+                                                <constraint firstAttribute="bottom" secondItem="BdV-0H-rb6" secondAttribute="bottom" constant="8" id="Ack-gM-dp9"/>
+                                                <constraint firstItem="bhz-VZ-s5l" firstAttribute="centerY" secondItem="XFj-yP-BMG" secondAttribute="centerY" id="M3i-zv-aqJ"/>
+                                                <constraint firstAttribute="trailing" secondItem="x6V-u5-fpP" secondAttribute="trailing" constant="8" id="e1k-Fu-CS1"/>
+                                                <constraint firstItem="x6V-u5-fpP" firstAttribute="top" secondItem="XFj-yP-BMG" secondAttribute="top" constant="8" id="fuX-te-dsG"/>
+                                                <constraint firstItem="x6V-u5-fpP" firstAttribute="leading" secondItem="XFj-yP-BMG" secondAttribute="leading" constant="8" id="hQW-Ur-QuC"/>
+                                                <constraint firstItem="BdV-0H-rb6" firstAttribute="trailing" secondItem="bhz-VZ-s5l" secondAttribute="trailing" id="n9C-bL-y3Y"/>
+                                                <constraint firstItem="BdV-0H-rb6" firstAttribute="leading" secondItem="bhz-VZ-s5l" secondAttribute="leading" id="pZM-a6-bQo"/>
+                                                <constraint firstItem="bhz-VZ-s5l" firstAttribute="trailing" secondItem="x6V-u5-fpP" secondAttribute="trailing" id="rFO-ck-sT1"/>
+                                            </constraints>
+                                        </view>
+                                    </subviews>
+                                    <color key="backgroundColor" red="0.96999999999999997" green="0.96862745098039216" blue="0.96862745098039216" alpha="0.59999999999999998" colorSpace="calibratedRGB"/>
+                                    <constraints>
+                                        <constraint firstAttribute="leadingMargin" secondItem="XFj-yP-BMG" secondAttribute="leading" id="Z77-j9-o2i"/>
+                                        <constraint firstAttribute="bottomMargin" secondItem="XFj-yP-BMG" secondAttribute="bottom" id="dxG-Ru-01T"/>
+                                        <constraint firstAttribute="trailingMargin" secondItem="XFj-yP-BMG" secondAttribute="trailing" id="pQ2-KL-RHP"/>
+                                        <constraint firstAttribute="topMargin" secondItem="XFj-yP-BMG" secondAttribute="top" id="z0d-qQ-LEG"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="v_hadread" destination="bhz-VZ-s5l" id="IXC-Va-Jmf"/>
+                                    <outlet property="v_readding" destination="x6V-u5-fpP" id="Faj-3c-Dtg"/>
+                                    <outlet property="v_readprogress" destination="BdV-0H-rb6" id="yc0-Ws-cZy"/>
+                                    <outlet property="view" destination="XFj-yP-BMG" id="TkT-6E-KKT"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
