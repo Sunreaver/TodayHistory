@@ -15,7 +15,6 @@
 
 static NSMutableArray *s_data = nil;
 static BOOL s_bDataChange = NO;
-static NSMutableDictionary *s_readProgress = nil;
 
 @implementation THReadList
 
@@ -35,23 +34,6 @@ static NSMutableDictionary *s_readProgress = nil;
         }
     }
     return s_data;
-}
-
-+(NSMutableDictionary*)readProgress
-{
-    if (!s_readProgress)
-    {
-        s_readProgress = [NSMutableDictionary dictionary];
-        EGOCache *catch = [EGOCache globalCache];
-        for (NSString *key in [catch allKeys])
-        {
-            if ([key hasPrefix:@"com.readlist."])
-            {
-                [s_readProgress setValue:[catch objectForKey:key] forKey:key];
-            }
-        }
-    }
-    return s_readProgress;
 }
 
 +(void)storageData
@@ -100,7 +82,6 @@ static NSMutableDictionary *s_readProgress = nil;
     
     EGOCache *catch = [EGOCache globalCache];
     [catch removeCacheForKey:[NSString stringWithFormat:@"com.readlist.%@", rID]];
-    [[THReadList readProgress] removeObjectForKey:[NSString stringWithFormat:@"com.readlist.%@", rID]];
     [THReadList storageData];
     return NO;
 }
@@ -109,7 +90,6 @@ static NSMutableDictionary *s_readProgress = nil;
 {
     EGOCache *catch = [EGOCache globalCache];
     [catch removeCacheForKey:[NSString stringWithFormat:@"com.readlist.%@", read.rID]];
-    [[THReadList readProgress] removeObjectForKey:[NSString stringWithFormat:@"com.readlist.%@", read.rID]];
     
     [s_data removeObject:read];
     [THReadList storageData];
@@ -133,7 +113,7 @@ static NSMutableDictionary *s_readProgress = nil;
         
         NSInteger day = ([[NSDate date] earlyInTheMorning].timeIntervalSince1970 - read.startDate.timeIntervalSince1970)/24/3600;
         
-        for (int j = 0; j < newData.count; ++j)
+        for (NSInteger j = newData.count - 1; j >= 0 ; --j)
         {
             if (newData[j].curDay.integerValue == day)
             {
@@ -145,7 +125,6 @@ static NSMutableDictionary *s_readProgress = nil;
         THReadProgress *progress = [THReadProgress initWithCurPage:page CurDay:day];
         [newData addObject:progress];
         [catch setObject:newData forKey:[NSString stringWithFormat:@"com.readlist.%@", read.rID]];
-        [[THReadList readProgress] setValue:newData forKey:[NSString stringWithFormat:@"com.readlist.%@", read.rID]];
     });
     
     return YES;
@@ -153,7 +132,8 @@ static NSMutableDictionary *s_readProgress = nil;
 
 +(NSUInteger)cuePageProgress:(NSString*)rID
 {
-    NSArray<THReadProgress*> *arr = [THReadList readProgress][[NSString stringWithFormat:@"com.readlist.%@", rID]];
+    EGOCache *catch = [EGOCache globalCache];
+    NSArray<THReadProgress*> *arr = (NSArray*)[catch objectForKey:[NSString stringWithFormat:@"com.readlist.%@", rID]];
     
     if (arr && arr.count > 0)
     {
@@ -165,7 +145,8 @@ static NSMutableDictionary *s_readProgress = nil;
 
 +(NSUInteger)cueDayProgress:(NSString*)rID
 {
-    NSArray<THReadProgress*> *arr = [THReadList readProgress][[NSString stringWithFormat:@"com.readlist.%@", rID]];
+    EGOCache *catch = [EGOCache globalCache];
+    NSArray<THReadProgress*> *arr = (NSArray*)[catch objectForKey:[NSString stringWithFormat:@"com.readlist.%@", rID]];
     
     if (arr && arr.count > 0)
     {
@@ -177,7 +158,9 @@ static NSMutableDictionary *s_readProgress = nil;
 
 +(NSArray<THReadProgress*>*)getReadProgressFromReadID:(NSString *)rID
 {
-    NSArray<THReadProgress*> *arr = [THReadList readProgress][[NSString stringWithFormat:@"com.readlist.%@", rID]];
+    EGOCache *catch = [EGOCache globalCache];
+    NSArray<THReadProgress*> *arr = (NSArray*)[catch objectForKey:[NSString stringWithFormat:@"com.readlist.%@", rID]];
+    
     if (arr && arr.count > 0)
     {
         return arr;
@@ -188,7 +171,8 @@ static NSMutableDictionary *s_readProgress = nil;
 +(BOOL)DelReadProgressDataForLast:(THRead *)read
 {
     EGOCache *catch = [EGOCache globalCache];
-    NSArray *arr = (NSArray*)[THReadList readProgress][[NSString stringWithFormat:@"com.readlist.%@", read.rID]];
+    NSArray<THReadProgress*> *arr = (NSArray*)[catch objectForKey:[NSString stringWithFormat:@"com.readlist.%@", read.rID]];
+    
     if (arr && arr.count > 0)
     {
         NSMutableArray *newData = [NSMutableArray arrayWithArray:arr];
@@ -196,12 +180,10 @@ static NSMutableDictionary *s_readProgress = nil;
         if (newData.count == 0)
         {
             [catch removeCacheForKey:[NSString stringWithFormat:@"com.readlist.%@", read.rID]];
-            [[THReadList readProgress] removeObjectForKey:[NSString stringWithFormat:@"com.readlist.%@", read.rID]];
         }
         else
         {
             [catch setObject:newData forKey:[NSString stringWithFormat:@"com.readlist.%@", read.rID]];
-            [[THReadList readProgress] setValue:newData forKey:[NSString stringWithFormat:@"com.readlist.%@", read.rID]];
         }
         return YES;
     }

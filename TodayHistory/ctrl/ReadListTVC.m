@@ -312,8 +312,9 @@ UIAlertViewDelegate>
         NSIndexPath *ip = [self.tableView indexPathForCell:cell];
         THRead *read = [THReadList books][ip.row];
         
-        NSInteger curPage = [((ReadTableViewCell*)cell).lb_readPage.text integerValue];
-        if (curPage > 0) {
+        NSUInteger curPage = [((ReadTableViewCell*)cell).lb_readPage.text integerValue];
+        if (curPage > [THReadList cuePageProgress:read.rID])
+        {//有编辑过
             [THReadList EditPage:curPage Read:read];
         }
         [((ReadTableViewCell*)cell).lb_readPage setText:[NSString stringWithFormat:@"%@/%@", @(curPage), read.page]];
