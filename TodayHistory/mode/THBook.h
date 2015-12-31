@@ -7,19 +7,12 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "THReadBook.h"
 
-@interface THBook : NSObject<NSCoding>
-
-@property(nonatomic, retain) NSString *rID; //md5(bookname+page)
-@property(nonatomic, retain) NSString *bookName;
-@property(nonatomic, retain) NSNumber *page;
-@property(nonatomic, retain) NSNumber *deadline;
-@property(nonatomic, retain) NSDate *startDate; //默认今天
-
-+(instancetype)initWithBookName:(NSString*)name PageNum:(NSUInteger)page Deadline:(NSUInteger)day;
-
-@end
-
+/**
+ *  外部使用THBook
+ */
+typedef THRead THBook;
 
 @interface THReadProgress : NSObject<NSCoding>
 

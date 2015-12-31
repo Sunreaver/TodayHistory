@@ -40,6 +40,7 @@
 		D068C50A1BFC0A2D00D69907 /* NSDate+EarlyInTheMorning.m in Sources */ = {isa = PBXBuildFile; fileRef = D068C5071BFC0A2D00D69907 /* NSDate+EarlyInTheMorning.m */; };
 		D068C50B1BFC0A2D00D69907 /* NSString+DateValue.m in Sources */ = {isa = PBXBuildFile; fileRef = D068C5091BFC0A2D00D69907 /* NSString+DateValue.m */; };
 		D07100D71C34BA10008F43C0 /* ReadHeaderTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D07100D61C34BA10008F43C0 /* ReadHeaderTableViewCell.m */; };
+		D07100DA1C34DF99008F43C0 /* THReadBook.m in Sources */ = {isa = PBXBuildFile; fileRef = D07100D91C34DF99008F43C0 /* THReadBook.m */; };
 		D07ADA581BFEAD78003C91ED /* No05.caf in Resources */ = {isa = PBXBuildFile; fileRef = D07ADA571BFEAD78003C91ED /* No05.caf */; };
 		D07ADA5F1BFEAFAC003C91ED /* nosound.caf in Resources */ = {isa = PBXBuildFile; fileRef = D07ADA5E1BFEAFAC003C91ED /* nosound.caf */; };
 		D07ADA621BFEB691003C91ED /* HealthStoreManager.m in Sources */ = {isa = PBXBuildFile; fileRef = D07ADA611BFEB691003C91ED /* HealthStoreManager.m */; };
@@ -135,6 +136,8 @@
 		D068C5091BFC0A2D00D69907 /* NSString+DateValue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+DateValue.m"; sourceTree = "<group>"; };
 		D07100D51C34BA10008F43C0 /* ReadHeaderTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReadHeaderTableViewCell.h; sourceTree = "<group>"; };
 		D07100D61C34BA10008F43C0 /* ReadHeaderTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReadHeaderTableViewCell.m; sourceTree = "<group>"; };
+		D07100D81C34DF99008F43C0 /* THReadBook.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THReadBook.h; sourceTree = "<group>"; };
+		D07100D91C34DF99008F43C0 /* THReadBook.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THReadBook.m; sourceTree = "<group>"; };
 		D07ADA571BFEAD78003C91ED /* No05.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = No05.caf; sourceTree = "<group>"; };
 		D07ADA5E1BFEAFAC003C91ED /* nosound.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = nosound.caf; sourceTree = "<group>"; };
 		D07ADA601BFEB691003C91ED /* HealthStoreManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HealthStoreManager.h; sourceTree = "<group>"; };
@@ -229,6 +232,8 @@
 				D0219D301BA116FE0007F00E /* THMode.swift */,
 				D0B3F4E11C3112E100A6133A /* THBook.h */,
 				D0B3F4E21C3112E100A6133A /* THBook.m */,
+				D07100D81C34DF99008F43C0 /* THReadBook.h */,
+				D07100D91C34DF99008F43C0 /* THReadBook.m */,
 			);
 			path = mode;
 			sourceTree = "<group>";
@@ -582,6 +587,7 @@
 				D01E88091BA1708900DE9BE1 /* Colors.swift in Sources */,
 				D01E880B1BA17FCD00DE9BE1 /* Globle.swift in Sources */,
 				D01E881A1BA6785900DE9BE1 /* THTestVC.swift in Sources */,
+				D07100DA1C34DF99008F43C0 /* THReadBook.m in Sources */,
 				D0B3F4F21C32153500A6133A /* ReadTableViewCell.m in Sources */,
 				D068C50A1BFC0A2D00D69907 /* NSDate+EarlyInTheMorning.m in Sources */,
 				D01E88151BA271B300DE9BE1 /* ArcLayer.swift in Sources */,
