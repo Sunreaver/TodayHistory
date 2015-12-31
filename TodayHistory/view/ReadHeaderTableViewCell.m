@@ -8,7 +8,7 @@
 
 #import "ReadHeaderTableViewCell.h"
 #import "THReadList.h"
-#import "THRead.h"
+#import "THBook.h"
 
 @interface ReadHeaderTableViewCell ()
 @property (weak, nonatomic) IBOutlet UIView *view;
@@ -30,9 +30,9 @@
     NSInteger readding = 0;
     NSInteger readfast = 0;
     
-    for (THRead *read in [THReadList books]) {
+    for (THBook *read in [THReadList books]) {
         //有没有阅读完毕
-        if ([THReadList cuePageProgress:read.rID] >= read.page.unsignedIntegerValue)
+        if ([THReadList lastPageProgressForReadID:read.rID] >= read.page.unsignedIntegerValue)
         {
             ++readover;
             continue;
@@ -40,8 +40,8 @@
         
         ++readding;
         //进度是否快
-        NSUInteger cPage = [THReadList cuePageProgress:read.rID];
-        NSUInteger cDay = [THReadList cueDayProgress:read.rID];
+        NSUInteger cPage = [THReadList lastPageProgressForReadID:read.rID];
+        NSUInteger cDay = [THReadList lastDayProgressForReadID:read.rID];
         if (cPage != 0 &&
             (cDay == 0 || (double)cPage / (double)cDay >= read.page.doubleValue / read.deadline.doubleValue)) {
             ++readfast;

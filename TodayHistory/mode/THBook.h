@@ -1,5 +1,5 @@
 //
-//  THRead.h
+//  THBook.h
 //  TodayHistory
 //
 //  Created by 谭伟 on 15/12/28.
@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@interface THRead : NSObject<NSCoding>
+@interface THBook : NSObject<NSCoding>
 
 @property(nonatomic, retain) NSString *rID; //md5(bookname+page)
 @property(nonatomic, retain) NSString *bookName;
@@ -23,8 +23,8 @@
 
 @interface THReadProgress : NSObject<NSCoding>
 
-@property(nonatomic, retain) NSNumber *curPage;
-@property(nonatomic, retain) NSNumber *curDay;
+@property(nonatomic, retain) NSNumber *page;
+@property(nonatomic, retain) NSNumber *day;
 
 +(instancetype)initWithCurPage:(NSUInteger)page CurDay:(NSUInteger)day;
 

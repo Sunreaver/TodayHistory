@@ -8,10 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
-@class THRead;
+@class THBook;
 
 @interface ChartShowVC : UIViewController
 
-@property (nonatomic, retain) THRead *read;
+@property (nonatomic, retain) THBook *read;
 
 @end

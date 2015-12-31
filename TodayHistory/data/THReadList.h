@@ -8,21 +8,21 @@
 
 #import <Foundation/Foundation.h>
 
-@class THRead;
+@class THBook;
 @class THReadProgress;
 
 @interface THReadList : NSObject
 
-+(NSArray<THRead*> *)books;
++(NSArray<THBook*> *)books;
 
-+(BOOL)AddData:(THRead*)read;
++(BOOL)AddData:(THBook*)read;
 +(BOOL)DelDataWithID:(NSString*)rID;
-+(BOOL)DelData:(THRead *)read;
-+(BOOL)EditPage:(NSUInteger)page Read:(THRead*)read;
++(BOOL)DelData:(THBook *)read;
++(BOOL)EditPage:(NSUInteger)page Read:(THBook*)read;
 +(void)storageData;
-+(BOOL)DelReadProgressDataForLast:(THRead*)read;
++(BOOL)DelReadProgressDataForLast:(THBook*)read;
 
-+(NSUInteger)cueDayProgress:(NSString*)rID;
-+(NSUInteger)cuePageProgress:(NSString*)rID;
++(NSUInteger)lastDayProgressForReadID:(NSString*)rID;
++(NSUInteger)lastPageProgressForReadID:(NSString*)rID;
 +(NSArray<THReadProgress*>*)getReadProgressFromReadID:(NSString*)rID;
 @end

@@ -8,7 +8,7 @@
 
 #import "THReadList.h"
 #import "UserDef.h"
-#import "THRead.h"
+#import "THBook.h"
 #import "NSDate+EarlyInTheMorning.h"
 
 @import EGOCache;
@@ -18,7 +18,7 @@ static BOOL s_bDataChange = NO;
 
 @implementation THReadList
 
-+(NSArray<THRead*> *)books
++(NSArray<THBook*> *)books
 {
     if (!s_data)
     {
@@ -46,16 +46,16 @@ static BOOL s_bDataChange = NO;
     }
 }
 
-+(BOOL)AddData:(THRead *)read
++(BOOL)AddData:(THBook *)read
 {
     if (read.page.integerValue == 0 || read.deadline.integerValue == 0) {
         return NO;
     }
-    for (THRead *r in s_data)
+    for (THBook *r in s_data)
     {
         if ([r.rID isEqualToString:read.rID])
         {
-            THRead *rd = [THRead initWithBookName:[read.bookName stringByAppendingString:@"※"] PageNum:[read.page integerValue] Deadline:[read.deadline integerValue]];
+            THBook *rd = [THBook initWithBookName:[read.bookName stringByAppendingString:@"※"] PageNum:[read.page integerValue] Deadline:[read.deadline integerValue]];
             [THReadList AddData:rd];
             return YES;
         }
@@ -71,7 +71,7 @@ static BOOL s_bDataChange = NO;
 +(BOOL)DelDataWithID:(NSString *)rID
 {
     for (int i = 0; i < [THReadList books].count; ++i) {
-        THRead *read = [THReadList books][i];
+        THBook *read = [THReadList books][i];
         if ([read.rID isEqualToString:rID])
         {
             [s_data removeObjectAtIndex:i];
@@ -86,7 +86,7 @@ static BOOL s_bDataChange = NO;
     return NO;
 }
 
-+(BOOL)DelData:(THRead *)read
++(BOOL)DelData:(THBook *)read
 {
     EGOCache *catch = [EGOCache globalCache];
     [catch removeCacheForKey:[NSString stringWithFormat:@"com.readlist.%@", read.rID]];
@@ -96,7 +96,7 @@ static BOOL s_bDataChange = NO;
     return NO;
 }
 
-+(BOOL)EditPage:(NSUInteger)page Read:(THRead *)read
++(BOOL)EditPage:(NSUInteger)page Read:(THBook *)read
 {
     page = MIN(page, read.page.unsignedIntegerValue);
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
@@ -115,7 +115,7 @@ static BOOL s_bDataChange = NO;
         
         for (NSInteger j = newData.count - 1; j >= 0 ; --j)
         {
-            if (newData[j].curDay.integerValue == day)
+            if (newData[j].day.integerValue == day)
             {
                 [newData removeObjectAtIndex:j];
                 break;
@@ -130,27 +130,27 @@ static BOOL s_bDataChange = NO;
     return YES;
 }
 
-+(NSUInteger)cuePageProgress:(NSString*)rID
++(NSUInteger)lastPageProgressForReadID:(NSString*)rID
 {
     EGOCache *catch = [EGOCache globalCache];
     NSArray<THReadProgress*> *arr = (NSArray*)[catch objectForKey:[NSString stringWithFormat:@"com.readlist.%@", rID]];
     
     if (arr && arr.count > 0)
     {
-        return [arr lastObject].curPage.unsignedIntegerValue;
+        return [arr lastObject].page.unsignedIntegerValue;
     }
     
     return 0;
 }
 
-+(NSUInteger)cueDayProgress:(NSString*)rID
++(NSUInteger)lastDayProgressForReadID:(NSString*)rID
 {
     EGOCache *catch = [EGOCache globalCache];
     NSArray<THReadProgress*> *arr = (NSArray*)[catch objectForKey:[NSString stringWithFormat:@"com.readlist.%@", rID]];
     
     if (arr && arr.count > 0)
     {
-        return [arr lastObject].curDay.unsignedIntegerValue;
+        return [arr lastObject].day.unsignedIntegerValue;
     }
     
     return 0;
@@ -168,7 +168,7 @@ static BOOL s_bDataChange = NO;
     return nil;
 }
 
-+(BOOL)DelReadProgressDataForLast:(THRead *)read
++(BOOL)DelReadProgressDataForLast:(THBook *)read
 {
     EGOCache *catch = [EGOCache globalCache];
     NSArray<THReadProgress*> *arr = (NSArray*)[catch objectForKey:[NSString stringWithFormat:@"com.readlist.%@", read.rID]];

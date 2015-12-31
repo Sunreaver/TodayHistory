@@ -1,20 +1,20 @@
 //
-//  THRead.m
+//  THBook.m
 //  TodayHistory
 //
 //  Created by 谭伟 on 15/12/28.
 //  Copyright © 2015年 谭伟. All rights reserved.
 //
 
-#import "THRead.h"
+#import "THBook.h"
 #import "NSDate+EarlyInTheMorning.h"
 #import "NSString+NSData+md5sha1.h"
 
-@implementation THRead
+@implementation THBook
 
 +(instancetype)initWithBookName:(NSString *)name PageNum:(NSUInteger)page Deadline:(NSUInteger)day
 {
-    THRead *read = [[THRead alloc] init];
+    THBook *read = [[THBook alloc] init];
     read.bookName = name;
     read.page = @(page);
     read.startDate = [[NSDate date] earlyInTheMorning];
@@ -55,8 +55,8 @@
 +(instancetype)initWithCurPage:(NSUInteger)page CurDay:(NSUInteger)day
 {
     THReadProgress *readProgress = [[THReadProgress alloc] init];
-    readProgress.curPage = @(page);
-    readProgress.curDay = @(day);
+    readProgress.page = @(page);
+    readProgress.day = @(day);
     
     return readProgress;
 }
@@ -67,15 +67,15 @@
 {
     if (self = [super init])
     {
-        self.curDay = [aDecoder decodeObjectForKey:@"cd"];
-        self.curPage = [aDecoder decodeObjectForKey:@"cp"];
+        self.day = [aDecoder decodeObjectForKey:@"cd"];
+        self.page = [aDecoder decodeObjectForKey:@"cp"];
     }
     return self;
 }
 
 -(void)encodeWithCoder:(NSCoder *)aCoder
 {
-    [aCoder encodeObject:self.curDay forKey:@"cd"];
-    [aCoder encodeObject:self.curPage forKey:@"cp"];
+    [aCoder encodeObject:self.day forKey:@"cd"];
+    [aCoder encodeObject:self.page forKey:@"cp"];
 }
 @end

@@ -7,7 +7,7 @@
 //
 
 #import "ChartShowVC.h"
-#import "THRead.h"
+#import "THBook.h"
 #import "THReadList.h"
 #import "TodayHistory-Swift.h"
 #import <AssetsLibrary/AssetsLibrary.h>
@@ -164,12 +164,12 @@ typedef void (^SaveImageCompletion)(NSError *error);
         return;
     }
     
-    NSUInteger lastReadDay = data.lastObject.curDay.unsignedIntegerValue;
+    NSUInteger lastReadDay = data.lastObject.day.unsignedIntegerValue;
     lastReadDay = MAX(lastReadDay + 2, self.read.deadline.unsignedIntegerValue + 2);
     
     NSUInteger today = ([[NSDate date] earlyInTheMorning].timeIntervalSince1970 - self.read.startDate.timeIntervalSince1970)/24/3600;
-    if (today == data.lastObject.curDay.unsignedIntegerValue ||
-        data.lastObject.curPage.unsignedIntegerValue >= self.read.page.unsignedIntegerValue)
+    if (today == data.lastObject.day.unsignedIntegerValue ||
+        data.lastObject.page.unsignedIntegerValue >= self.read.page.unsignedIntegerValue)
     {//今天已经有数据
      //阅读已经完毕
         today = NSUIntegerMax;
@@ -186,13 +186,13 @@ typedef void (^SaveImageCompletion)(NSError *error);
     
     for (int i = 0; i < data.count; i++)
     {
-        [yVals addObject:[[ChartDataEntry alloc] initWithValue:data[i].curPage.unsignedIntegerValue
-                                                        xIndex:data[i].curDay.unsignedIntegerValue]];
+        [yVals addObject:[[ChartDataEntry alloc] initWithValue:data[i].page.unsignedIntegerValue
+                                                        xIndex:data[i].day.unsignedIntegerValue]];
     }
     
     if (today != NSUIntegerMax)
     {
-        [yVals addObject:[[ChartDataEntry alloc] initWithValue:data.lastObject.curPage.unsignedIntegerValue
+        [yVals addObject:[[ChartDataEntry alloc] initWithValue:data.lastObject.page.unsignedIntegerValue
                                                         xIndex:today]];
     }
     
@@ -216,7 +216,7 @@ typedef void (^SaveImageCompletion)(NSError *error);
                                                      xIndex:0.0]];
     //今日应该到的点
     today = ([[NSDate date] earlyInTheMorning].timeIntervalSince1970 - self.read.startDate.timeIntervalSince1970)/24/3600;
-    if (data.lastObject.curPage.unsignedIntegerValue < self.read.page.unsignedIntegerValue &&
+    if (data.lastObject.page.unsignedIntegerValue < self.read.page.unsignedIntegerValue &&
         today < self.read.deadline.integerValue)
     {//阅读未完毕
      //未超时
