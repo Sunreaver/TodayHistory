@@ -148,11 +148,15 @@ typedef void (^SaveImageCompletion)(NSError *error);
     //不显示右侧坐标
     _chartView.rightAxis.enabled = NO;
     
-    [_chartView.viewPortHandler setMaximumScaleY: 2.f];
-    [_chartView.viewPortHandler setMaximumScaleX: 2.f];
-    
     _chartView.legend.form = ChartLegendFormLine;
-    
+    if (self.read.page.unsignedIntegerValue > 400)
+    {
+        [_chartView.viewPortHandler setMaximumScaleY: self.read.page.doubleValue / 400.0];
+    }
+    else
+    {
+        [_chartView.viewPortHandler setMaximumScaleY: 1.f];
+    }
     [_chartView animateWithXAxisDuration:2.5 easingOption:ChartEasingOptionEaseInOutQuart];
 }
 
@@ -166,6 +170,7 @@ typedef void (^SaveImageCompletion)(NSError *error);
     
     NSUInteger lastReadDay = data.lastObject.day.unsignedIntegerValue;
     lastReadDay = MAX(lastReadDay + 2, self.read.deadline.unsignedIntegerValue + 2);
+    [_chartView.viewPortHandler setMaximumScaleX: (double)lastReadDay / 14.f];
     
     NSUInteger today = ([[NSDate date] earlyInTheMorning].timeIntervalSince1970 - self.read.startDate.timeIntervalSince1970)/24/3600;
     if (today == data.lastObject.day.unsignedIntegerValue ||

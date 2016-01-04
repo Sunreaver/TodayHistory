@@ -24,9 +24,10 @@
     self.iv_readover.transform = CGAffineTransformMakeRotation(10.0*M_PI/180);
     self.iv_readover.hidden = YES;
     
-    self.view.layer.shadowColor = [UIColor lightGrayColor].CGColor;
+    self.view.layer.shadowColor = [UIColor blackColor].CGColor;
     self.view.layer.shadowOffset = CGSizeMake(2, 2);
     self.view.layer.shadowOpacity = 0.2;
+    self.view.layer.shadowRadius = 5;
 }
 
 -(void)setReadProgress:(CGFloat)readProgress
@@ -97,7 +98,7 @@
     }
     else
     {
-        [v setBackgroundColor:[UIColor blackColor]];
+        [v setBackgroundColor:YEE_COLOR(0xFF2A363B)];
     }
 }
 @end
