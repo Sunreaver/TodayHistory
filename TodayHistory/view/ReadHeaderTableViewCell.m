@@ -8,7 +8,7 @@
 
 #import "ReadHeaderTableViewCell.h"
 #import "THReadList.h"
-#import "THBook.h"
+#import "THReadBook.h"
 
 @interface ReadHeaderTableViewCell ()
 @property (weak, nonatomic) IBOutlet UIView *view;
@@ -25,12 +25,15 @@
     self.view.layer.shadowColor = [UIColor lightGrayColor].CGColor;
     self.view.layer.shadowOffset = CGSizeMake(3, 3);
     self.view.layer.shadowOpacity = 0.2;
-    
+}
+
+-(void)updateData
+{
     NSInteger readover = 0;
     NSInteger readding = 0;
     NSInteger readfast = 0;
     
-    for (THBook *read in [THReadList books]) {
+    for (THRead *read in [THReadList books]) {
         //有没有阅读完毕
         if ([THReadList lastPageProgressForReadID:read.rID] >= read.page.unsignedIntegerValue)
         {

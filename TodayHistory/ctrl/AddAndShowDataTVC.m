@@ -7,7 +7,7 @@
 //
 
 #import "AddAndShowDataTVC.h"
-#import "THBook.h"
+#import "THReadBook.h"
 #import "THReadList.h"
 #import "UserDef.h"
 
@@ -53,7 +53,7 @@
         }
         else
         {
-            THBook *read = [THBook initWithBookName:self.tf_tip.text PageNum:[self.tf_pwd.text integerValue] Deadline:[self.tf_acc.text integerValue]];
+            THRead *read = [THRead initWithBookName:self.tf_tip.text PageNum:[self.tf_pwd.text integerValue] Deadline:[self.tf_acc.text integerValue]];
             [THReadList AddData:read];
             [self.navigationController popViewControllerAnimated:YES];
         }

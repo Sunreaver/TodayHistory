@@ -8,7 +8,7 @@
 
 #import "ReadListTVC.h"
 #import "THReadList.h"
-#import "THBook.h"
+#import "THReadBook.h"
 #import "ReadTableViewCell.h"
 #import "NSDate+EarlyInTheMorning.h"
 #import "UserDef.h"
@@ -73,8 +73,10 @@ UIAlertViewDelegate>
             });
         }
     } loadingView:loading];
-    [self.tableView dg_setPullToRefreshBackgroundColor:[UIColor colorWithRed:0.97 green:0.97 blue:0.97 alpha:1.0]];
+    [self.tableView dg_setPullToRefreshBackgroundColor:self.tableView.backgroundColor];
     [self.tableView dg_setPullToRefreshFillColor:self.navigationController.navigationBar.barTintColor];
+    
+    self.tableView.backgroundView = [[UIView alloc] init];
     
     self.needRefresh = YES;
 }
@@ -132,7 +134,7 @@ UIAlertViewDelegate>
 -(NSString*)makeShareData
 {
     NSMutableString *data = [NSMutableString stringWithFormat:@"\n************(%@)************", [[[NSDate date] earlyInTheMorning] yyyyMMddStringValue]];
-    for (THBook *read in [THReadList books])
+    for (THRead *read in [THReadList books])
     {
         [data appendString:@"\n\n"];
         [data appendFormat:@"《%@》（%@）\n", read.bookName, [read.startDate yyyyMMddStringValue]];
@@ -183,29 +185,19 @@ UIAlertViewDelegate>
     if (indexPath.section == 0)
     {
         ReadHeaderTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"readheader_cell" forIndexPath:indexPath];
-        cell.backgroundColor = [UIColor colorWithRed:0.97 green:0.97 blue:0.97 alpha:1.0];
+        [cell updateData];
         return cell;
     }
     ReadTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"read_cell" forIndexPath:indexPath];
     
-    THBook *read = [THReadList books][indexPath.row];
+    THRead *read = [THReadList books][indexPath.row];
     
     [cell.lb_bookName setText:[NSString stringWithFormat:@"《%@》", read.bookName]];
     [cell.lb_readPage setText:[NSString stringWithFormat:@"%@/%@", @([THReadList lastPageProgressForReadID:read.rID]), read.page]];
     
     cell.readProgress = (double)[THReadList lastPageProgressForReadID:read.rID] / [read.page doubleValue];
-    NSInteger day = [[NSDate date] earlyInTheMorning].timeIntervalSince1970 - read.startDate.timeIntervalSince1970;
-    day = day / 24 / 3600;
-    cell.timeProgress = (double)day / [read.deadline doubleValue];
-    
-    if (!(indexPath.row % 2))
-    {
-        [cell setBackgroundColor:self.tableView.backgroundColor];
-    }
-    else
-    {
-        [cell setBackgroundColor:[UIColor colorWithRed:0.97 green:0.97 blue:0.97 alpha:1.0]];
-    }
+    NSInteger day = [NSDate date].timeIntervalSince1970 - read.startDate.timeIntervalSince1970;
+    cell.timeProgress = (double)day/24/3600 / ([read.deadline doubleValue] + 1.0);
     
     [cell setLeftUtilityButtons:[self leftButtons] WithButtonWidth:64];
     [cell setRightUtilityButtons:[self rightButtons] WithButtonWidth:64];
@@ -254,7 +246,7 @@ UIAlertViewDelegate>
 - (void)swipeableTableViewCell:(SWTableViewCell *)cell didTriggerLeftUtilityButtonWithIndex:(NSInteger)index
 {
     NSIndexPath *ip = [self.tableView indexPathForCell:cell];
-    THBook *read = [THReadList books][ip.row];
+    THRead *read = [THReadList books][ip.row];
     if (index == 0)
     {//删除
         [cell hideUtilityButtonsAnimated:YES];
@@ -290,7 +282,7 @@ UIAlertViewDelegate>
 - (void)swipeableTableViewCell:(SWTableViewCell *)cell didTriggerRightUtilityButtonWithIndex:(NSInteger)index
 {//
     NSIndexPath *ip = [self.tableView indexPathForCell:cell];
-    THBook *read = [THReadList books][ip.row];
+    THRead *read = [THReadList books][ip.row];
     
     NSInteger curPage = [((ReadTableViewCell*)cell).lb_readPage.text integerValue];
 
@@ -310,20 +302,23 @@ UIAlertViewDelegate>
     if (state == kCellStateCenter && preState == kCellStateRight)
     {//有改变
         NSIndexPath *ip = [self.tableView indexPathForCell:cell];
-        THBook *read = [THReadList books][ip.row];
+        THRead *read = [THReadList books][ip.row];
         
         NSUInteger curPage = [((ReadTableViewCell*)cell).lb_readPage.text integerValue];
         if (curPage > [THReadList lastPageProgressForReadID:read.rID])
         {//有编辑过
             [THReadList EditPage:curPage Read:read];
         }
-        [((ReadTableViewCell*)cell).lb_readPage setText:[NSString stringWithFormat:@"%@/%@", @(curPage), read.page]];
-        ((ReadTableViewCell*)cell).readProgress = (double)curPage / [read.page doubleValue];
+        else
+        {
+            [((ReadTableViewCell*)cell).lb_readPage setText:[NSString stringWithFormat:@"%@/%@", @(curPage), read.page]];
+            ((ReadTableViewCell*)cell).readProgress = (double)curPage / [read.page doubleValue];
+        }
     }
     else if(state == kCellStateRight)
     {
         NSIndexPath *ip = [self.tableView indexPathForCell:cell];
-        THBook *read = [THReadList books][ip.row];
+        THRead *read = [THReadList books][ip.row];
         [((ReadTableViewCell*)cell).lb_readPage setText:[NSString stringWithFormat:@"%@", @([THReadList lastPageProgressForReadID:read.rID])]];
     }
     preState = state;
@@ -334,12 +329,13 @@ UIAlertViewDelegate>
     return YES;
 }
 
+/*
 -(BOOL)swipeableTableViewCell:(SWTableViewCell *)cell canSwipeToState:(SWCellState)state
 {
     if (state == kCellStateRight)
     {
         NSIndexPath *ip = [self.tableView indexPathForCell:cell];
-        THBook *read = [THReadList books][ip.row];
+        THRead *read = [THReadList books][ip.row];
         if ([THReadList lastPageProgressForReadID:read.rID] >= read.page.unsignedIntegerValue)
         {
             return NO;
@@ -347,6 +343,7 @@ UIAlertViewDelegate>
     }
     return YES;
 }
+*/
 
 #pragma mark -alertViewDelegate
 -(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
@@ -356,7 +353,7 @@ UIAlertViewDelegate>
         if (buttonIndex == 1)
         {
             NSIndexPath *ip = [self.tableView indexPathForCell:self.curCell];
-            THBook *read = [THReadList books][ip.row];
+            THRead *read = [THReadList books][ip.row];
             [THReadList DelData:read];
             [self.tableView deleteRowsAtIndexPaths:@[ip] withRowAnimation:UITableViewRowAnimationAutomatic];
         }

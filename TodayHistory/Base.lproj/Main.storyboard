@@ -675,7 +675,7 @@
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="64" sectionHeaderHeight="28" sectionFooterHeight="28" id="fMf-xQ-3sT">
                         <rect key="frame" x="0.0" y="64" width="320" height="416"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="0.94117647058823528" green="0.94117647058823528" blue="0.94117647058823528" alpha="1" colorSpace="calibratedRGB"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="read_cell" id="G3l-jj-Rl4" customClass="ReadTableViewCell">
                                 <rect key="frame" x="0.0" y="28" width="320" height="64"/>
@@ -684,61 +684,76 @@
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="64"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="read_over" translatesAutoresizingMaskIntoConstraints="NO" id="Bht-HF-EnO">
-                                            <rect key="frame" x="166" y="19" width="48" height="26"/>
+                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nUq-lB-oKt">
+                                            <rect key="frame" x="8" y="4" width="304" height="56"/>
+                                            <subviews>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="read_over" translatesAutoresizingMaskIntoConstraints="NO" id="Bht-HF-EnO">
+                                                    <rect key="frame" x="130" y="16" width="44" height="24"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" secondItem="Bht-HF-EnO" secondAttribute="height" multiplier="552:300" id="SLV-fL-jWM"/>
+                                                    </constraints>
+                                                </imageView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Lg7-w0-GfE">
+                                                    <rect key="frame" x="8" y="21" width="40" height="15"/>
+                                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                                    <fontDescription key="fontDescription" name="HiraginoSans-W3" family="Hiragino Sans" pointSize="15"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Bsa-an-kx2">
+                                                    <rect key="frame" x="256" y="21" width="40" height="15"/>
+                                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                                    <fontDescription key="fontDescription" name="HiraginoSans-W3" family="Hiragino Sans" pointSize="15"/>
+                                                    <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NUj-MQ-jNt">
+                                                    <rect key="frame" x="0.0" y="53" width="122" height="1"/>
+                                                    <color key="backgroundColor" red="0.0" green="0.40000000000000002" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="1" id="nfZ-z2-G0n"/>
+                                                    </constraints>
+                                                </view>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cNV-9Q-rMR">
+                                                    <rect key="frame" x="0.0" y="55" width="182" height="1"/>
+                                                    <color key="backgroundColor" red="0.98823529409999999" green="0.16078431369999999" blue="0.39607843139999999" alpha="1" colorSpace="calibratedRGB"/>
+                                                </view>
+                                            </subviews>
+                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             <constraints>
-                                                <constraint firstAttribute="width" secondItem="Bht-HF-EnO" secondAttribute="height" multiplier="552:300" id="SLV-fL-jWM"/>
+                                                <constraint firstItem="cNV-9Q-rMR" firstAttribute="height" secondItem="NUj-MQ-jNt" secondAttribute="height" id="14Z-vv-TDt"/>
+                                                <constraint firstAttribute="bottom" secondItem="cNV-9Q-rMR" secondAttribute="bottom" id="2nL-Pt-vKq"/>
+                                                <constraint firstItem="Bht-HF-EnO" firstAttribute="height" secondItem="nUq-lB-oKt" secondAttribute="height" multiplier="3:7" id="AQH-mf-Oye"/>
+                                                <constraint firstItem="Bht-HF-EnO" firstAttribute="centerX" secondItem="nUq-lB-oKt" secondAttribute="centerX" id="AZq-LG-ssB"/>
+                                                <constraint firstItem="Bht-HF-EnO" firstAttribute="centerY" secondItem="nUq-lB-oKt" secondAttribute="centerY" id="DaO-gF-Lck"/>
+                                                <constraint firstItem="Lg7-w0-GfE" firstAttribute="centerY" secondItem="nUq-lB-oKt" secondAttribute="centerY" id="JDN-WF-WLT"/>
+                                                <constraint firstItem="cNV-9Q-rMR" firstAttribute="width" secondItem="nUq-lB-oKt" secondAttribute="width" multiplier="60:100" placeholder="YES" identifier="1002" id="Pvv-34-v8W"/>
+                                                <constraint firstAttribute="trailing" secondItem="Bsa-an-kx2" secondAttribute="trailing" constant="8" id="WUs-jp-IZB"/>
+                                                <constraint firstItem="NUj-MQ-jNt" firstAttribute="leading" secondItem="nUq-lB-oKt" secondAttribute="leading" id="Ynx-Ey-HBL"/>
+                                                <constraint firstItem="Lg7-w0-GfE" firstAttribute="leading" secondItem="nUq-lB-oKt" secondAttribute="leading" constant="8" id="aEP-II-vbE"/>
+                                                <constraint firstItem="NUj-MQ-jNt" firstAttribute="width" secondItem="nUq-lB-oKt" secondAttribute="width" multiplier="40:100" placeholder="YES" identifier="1001" id="jCc-Ca-QFD"/>
+                                                <constraint firstItem="cNV-9Q-rMR" firstAttribute="leading" secondItem="NUj-MQ-jNt" secondAttribute="leading" id="jgi-h0-Ljl"/>
+                                                <constraint firstItem="Bsa-an-kx2" firstAttribute="centerY" secondItem="nUq-lB-oKt" secondAttribute="centerY" id="plZ-nZ-BZP"/>
+                                                <constraint firstItem="cNV-9Q-rMR" firstAttribute="top" secondItem="NUj-MQ-jNt" secondAttribute="bottom" constant="1" id="w3G-MS-2UY"/>
                                             </constraints>
-                                        </imageView>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Lg7-w0-GfE">
-                                            <rect key="frame" x="8" y="24" width="40" height="15"/>
-                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                            <fontDescription key="fontDescription" name="HiraginoSans-W3" family="Hiragino Sans" pointSize="15"/>
-                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Bsa-an-kx2">
-                                            <rect key="frame" x="254" y="25" width="40" height="15"/>
-                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                            <fontDescription key="fontDescription" name="HiraginoSans-W3" family="Hiragino Sans" pointSize="15"/>
-                                            <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
-                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cNV-9Q-rMR">
-                                            <rect key="frame" x="312" y="0.0" width="8" height="64"/>
-                                            <color key="backgroundColor" red="0.98823529409999999" green="0.16078431369999999" blue="0.39607843139999999" alpha="1" colorSpace="calibratedRGB"/>
-                                            <constraints>
-                                                <constraint firstAttribute="width" constant="8" id="Q1b-xn-7Av"/>
-                                            </constraints>
-                                        </view>
-                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NUj-MQ-jNt">
-                                            <rect key="frame" x="304" y="0.0" width="8" height="64"/>
-                                            <color key="backgroundColor" red="0.0" green="0.40000000000000002" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         </view>
                                     </subviews>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                     <constraints>
-                                        <constraint firstItem="Bsa-an-kx2" firstAttribute="centerY" secondItem="ijX-CU-hTc" secondAttribute="centerY" id="BC1-nW-xvy"/>
-                                        <constraint firstItem="cNV-9Q-rMR" firstAttribute="height" secondItem="ijX-CU-hTc" secondAttribute="height" multiplier="100:100" placeholder="YES" identifier="1002" id="KHb-aK-jYM"/>
-                                        <constraint firstItem="cNV-9Q-rMR" firstAttribute="leading" secondItem="NUj-MQ-jNt" secondAttribute="trailing" id="NIi-d6-KQe"/>
-                                        <constraint firstAttribute="trailing" secondItem="cNV-9Q-rMR" secondAttribute="trailing" id="Vk0-Nf-LS4"/>
-                                        <constraint firstItem="Bht-HF-EnO" firstAttribute="centerX" secondItem="ijX-CU-hTc" secondAttribute="centerX" constant="30" id="WyE-U3-d1b"/>
-                                        <constraint firstItem="Lg7-w0-GfE" firstAttribute="centerY" secondItem="ijX-CU-hTc" secondAttribute="centerY" id="YVO-gn-OVk"/>
-                                        <constraint firstItem="Bht-HF-EnO" firstAttribute="width" secondItem="ijX-CU-hTc" secondAttribute="width" multiplier="15:100" id="fqo-5j-Do8"/>
-                                        <constraint firstItem="NUj-MQ-jNt" firstAttribute="width" secondItem="cNV-9Q-rMR" secondAttribute="width" id="iN0-4z-cDM"/>
-                                        <constraint firstAttribute="bottom" secondItem="cNV-9Q-rMR" secondAttribute="bottom" id="j3b-3z-R46"/>
-                                        <constraint firstAttribute="bottom" secondItem="NUj-MQ-jNt" secondAttribute="bottom" id="kWc-UO-wK6"/>
-                                        <constraint firstItem="NUj-MQ-jNt" firstAttribute="height" secondItem="ijX-CU-hTc" secondAttribute="height" multiplier="100:100" placeholder="YES" identifier="1001" id="swz-W0-S5q"/>
-                                        <constraint firstItem="Bht-HF-EnO" firstAttribute="centerY" secondItem="ijX-CU-hTc" secondAttribute="centerY" id="xIp-vz-EwI"/>
-                                        <constraint firstItem="NUj-MQ-jNt" firstAttribute="leading" secondItem="Bsa-an-kx2" secondAttribute="trailing" constant="10" id="xjH-fn-pgL"/>
-                                        <constraint firstAttribute="leadingMargin" secondItem="Lg7-w0-GfE" secondAttribute="leading" id="y2c-3B-Itd"/>
+                                        <constraint firstAttribute="trailingMargin" secondItem="nUq-lB-oKt" secondAttribute="trailing" id="DDt-y3-WYl"/>
+                                        <constraint firstItem="nUq-lB-oKt" firstAttribute="top" secondItem="ijX-CU-hTc" secondAttribute="top" constant="4" id="MPs-iW-bhm"/>
+                                        <constraint firstAttribute="bottom" secondItem="nUq-lB-oKt" secondAttribute="bottom" constant="4" id="Yol-5a-D0o"/>
+                                        <constraint firstItem="nUq-lB-oKt" firstAttribute="leading" secondItem="ijX-CU-hTc" secondAttribute="leadingMargin" id="llX-Ve-bXZ"/>
                                     </constraints>
                                 </tableViewCellContentView>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <connections>
                                     <outlet property="iv_readover" destination="Bht-HF-EnO" id="lr2-Qs-G8g"/>
                                     <outlet property="lb_bookName" destination="Lg7-w0-GfE" id="OjU-HA-bpo"/>
                                     <outlet property="lb_readPage" destination="Bsa-an-kx2" id="MYq-py-Z2R"/>
                                     <outlet property="v_readProgress" destination="NUj-MQ-jNt" id="1PY-ef-vVH"/>
                                     <outlet property="v_timeProgress" destination="cNV-9Q-rMR" id="CSx-xD-lEB"/>
+                                    <outlet property="view" destination="nUq-lB-oKt" id="Lau-OA-8h8"/>
                                 </connections>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="readheader_cell" rowHeight="100" id="Uaw-jy-28G" customClass="ReadHeaderTableViewCell">
@@ -784,7 +799,7 @@
                                             </constraints>
                                         </view>
                                     </subviews>
-                                    <color key="backgroundColor" red="0.96999999999999997" green="0.96862745098039216" blue="0.96862745098039216" alpha="0.59999999999999998" colorSpace="calibratedRGB"/>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                     <constraints>
                                         <constraint firstAttribute="leadingMargin" secondItem="XFj-yP-BMG" secondAttribute="leading" id="Z77-j9-o2i"/>
                                         <constraint firstAttribute="bottomMargin" secondItem="XFj-yP-BMG" secondAttribute="bottom" id="dxG-Ru-01T"/>
@@ -792,6 +807,7 @@
                                         <constraint firstAttribute="topMargin" secondItem="XFj-yP-BMG" secondAttribute="top" id="z0d-qQ-LEG"/>
                                     </constraints>
                                 </tableViewCellContentView>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <connections>
                                     <outlet property="v_hadread" destination="bhz-VZ-s5l" id="IXC-Va-Jmf"/>
                                     <outlet property="v_readding" destination="x6V-u5-fpP" id="Faj-3c-Dtg"/>

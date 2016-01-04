@@ -10,6 +10,7 @@
 #import "UserDef.h"
 
 @interface ReadTableViewCell()
+@property (weak, nonatomic) IBOutlet UIView *view;
 @property (weak, nonatomic) IBOutlet UIView *v_timeProgress;
 @property (weak, nonatomic) IBOutlet UIView *v_readProgress;
 @property (weak, nonatomic) IBOutlet UIImageView *iv_readover;
@@ -20,11 +21,12 @@
 
 -(void)awakeFromNib
 {
-    self.v_timeProgress.backgroundColor = Google_Color1;
-    self.v_readProgress.backgroundColor = Google_Color3;
-    
     self.iv_readover.transform = CGAffineTransformMakeRotation(10.0*M_PI/180);
     self.iv_readover.hidden = YES;
+    
+    self.view.layer.shadowColor = [UIColor lightGrayColor].CGColor;
+    self.view.layer.shadowOffset = CGSizeMake(2, 2);
+    self.view.layer.shadowOpacity = 0.2;
 }
 
 -(void)setReadProgress:(CGFloat)readProgress
@@ -32,12 +34,12 @@
     readProgress = MAX(0.01, MIN(1.0, readProgress));
     _readProgress = readProgress;
     
-    [self removeConstraintForView:self.contentView WithID:@"1001"];
+    [self removeConstraintForView:self.view WithID:@"1001"];
     
-    NSLayoutConstraint *cns = [NSLayoutConstraint constraintWithItem:self.v_readProgress attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual toItem:self.contentView attribute:NSLayoutAttributeHeight multiplier:_readProgress constant:0];
+    NSLayoutConstraint *cns = [NSLayoutConstraint constraintWithItem:self.v_readProgress attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual toItem:self.view attribute:NSLayoutAttributeWidth multiplier:_readProgress constant:0];
     cns.identifier = @"1001";
     
-    [self.contentView addConstraint:cns];
+    [self.view addConstraint:cns];
     [self setColorForView:self.v_readProgress WithProgress:_readProgress];
     if (_readProgress >= 1.0)
     {
@@ -54,12 +56,12 @@
     timeProgress = MAX(0.01, MIN(1.0, timeProgress));
     _timeProgress = timeProgress;
     
-    [self removeConstraintForView:self.contentView WithID:@"1002"];
+    [self removeConstraintForView:self.view WithID:@"1002"];
     
-    NSLayoutConstraint *cns = [NSLayoutConstraint constraintWithItem:self.v_timeProgress attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual toItem:self.contentView attribute:NSLayoutAttributeHeight multiplier:_timeProgress constant:0];
+    NSLayoutConstraint *cns = [NSLayoutConstraint constraintWithItem:self.v_timeProgress attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual toItem:self.view attribute:NSLayoutAttributeWidth multiplier:_timeProgress constant:0];
     cns.identifier = @"1002";
     
-    [self.contentView addConstraint:cns];
+    [self.view addConstraint:cns];
     [self setColorForView:self.v_timeProgress WithProgress:_timeProgress];
 }
 

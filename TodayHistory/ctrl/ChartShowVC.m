@@ -7,7 +7,7 @@
 //
 
 #import "ChartShowVC.h"
-#import "THBook.h"
+#import "THReadBook.h"
 #import "THReadList.h"
 #import "TodayHistory-Swift.h"
 #import <AssetsLibrary/AssetsLibrary.h>

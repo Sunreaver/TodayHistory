@@ -19,3 +19,12 @@
 +(instancetype)initWithBookName:(NSString*)name PageNum:(NSUInteger)page Deadline:(NSUInteger)day;
 
 @end
+
+@interface THReadProgress : NSObject<NSCoding>
+
+@property(nonatomic, retain) NSNumber *page;
+@property(nonatomic, retain) NSNumber *day;
+
++(instancetype)initWithCurPage:(NSUInteger)page CurDay:(NSUInteger)day;
+
+@end

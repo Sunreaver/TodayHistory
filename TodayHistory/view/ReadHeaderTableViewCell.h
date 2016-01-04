@@ -10,4 +10,6 @@
 
 @interface ReadHeaderTableViewCell : UITableViewCell
 
+-(void)updateData;
+
 @end
