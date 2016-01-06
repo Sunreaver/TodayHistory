@@ -344,7 +344,7 @@
 -(void)refreshNewData
 {
     self.iWowTime = 90;
-
+    
     __weak __typeof(self)wself = self;
     [self.health getCoffeeWithDay:[NSDate dateWithTimeIntervalSinceNow:-14 * 24 * 3600] EndDay:[NSDate date]
             Block:^(BOOL success, NSInteger today, NSInteger sum) {

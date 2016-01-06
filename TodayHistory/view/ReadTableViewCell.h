@@ -15,4 +15,5 @@
 @property (weak, nonatomic) IBOutlet UILabel *lb_bookName;
 @property (weak, nonatomic) IBOutlet UILabel *lb_readPage;
 
+@property (nonatomic, assign) SWCellState preState;
 @end

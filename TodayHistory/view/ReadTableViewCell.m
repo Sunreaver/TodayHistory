@@ -9,7 +9,12 @@
 #import "ReadTableViewCell.h"
 #import "UserDef.h"
 
+//红橙黄绿青蓝紫
+static unsigned int rainbow[7] =
+{0xFFFF0000, 0xFFFFA500, 0xFFFFFF00, 0xFF00FF00, 0xFF007FFF, 0xFF0000FF, 0xFF8B00FF};
+
 @interface ReadTableViewCell()
+@property (weak, nonatomic) IBOutlet UIView *v_headRainbow;
 @property (weak, nonatomic) IBOutlet UIView *view;
 @property (weak, nonatomic) IBOutlet UIView *v_timeProgress;
 @property (weak, nonatomic) IBOutlet UIView *v_readProgress;
@@ -24,10 +29,15 @@
     self.iv_readover.transform = CGAffineTransformMakeRotation(10.0*M_PI/180);
     self.iv_readover.hidden = YES;
     
-    self.view.layer.shadowColor = [UIColor blackColor].CGColor;
+    self.view.layer.shadowColor = [UIColor lightGrayColor].CGColor;
     self.view.layer.shadowOffset = CGSizeMake(2, 2);
-    self.view.layer.shadowOpacity = 0.2;
+    self.view.layer.shadowOpacity = 0.3;
     self.view.layer.shadowRadius = 5;
+    
+//    [self.v_headRainbow setBackgroundColor:YEE_COLOR(rainbow[rand()%7])];
+    [self.v_headRainbow setBackgroundColor:YEE_COLOR(0xBF2A363B)];
+    
+    self.preState = kCellStateCenter;
 }
 
 -(void)setReadProgress:(CGFloat)readProgress

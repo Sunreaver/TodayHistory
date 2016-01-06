@@ -254,6 +254,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         notification2.category = "WorkoutWalk"
         UIApplication.sharedApplication().scheduleLocalNotification(notification2)
         
+        /*
         //注册读书提醒
         df.dateFormat = "yyyyMMdd"
         ds0 = df.stringFromDate(NSDate())
@@ -267,6 +268,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         notification3.alertBody = "每日一读!";//提示信息 弹出提示框
         notification3.userInfo = ["type":"Readding"]
         UIApplication.sharedApplication().scheduleLocalNotification(notification3)
+        */
     }
     
     func calculateBadgeNum (birthday:String) ->NSInteger

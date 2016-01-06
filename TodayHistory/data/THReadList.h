@@ -21,6 +21,7 @@
 +(BOOL)EditPage:(NSUInteger)page Read:(THRead*)read;
 +(void)storageData;
 +(BOOL)DelReadProgressDataForLast:(THRead*)read;
++(void)SortBooksAsReadProgress;
 
 +(NSUInteger)lastDayProgressForReadID:(NSString*)rID;
 +(NSUInteger)lastPageProgressForReadID:(NSString*)rID;

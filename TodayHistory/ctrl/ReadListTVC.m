@@ -162,7 +162,7 @@ UIAlertViewDelegate>
     {
         return 100;
     }
-    return 64;
+    return 72;
 }
 
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
@@ -264,9 +264,12 @@ UIAlertViewDelegate>
         [cell hideUtilityButtonsAnimated:YES];
         [THReadList DelReadProgressDataForLast:read];
         
+        [self.tableView reloadData];
+        /*
         NSUInteger curPage = [THReadList lastPageProgressForReadID:read.rID];
         [((ReadTableViewCell*)cell).lb_readPage setText:[NSString stringWithFormat:@"%@/%@", @(curPage), read.page]];
         ((ReadTableViewCell*)cell).readProgress = (double)(curPage) / [read.page doubleValue];
+         */
     }
     else if (index == 2)
     {//查看阅读曲线
@@ -298,8 +301,7 @@ UIAlertViewDelegate>
 
 - (void)swipeableTableViewCell:(SWTableViewCell *)cell scrollingToState:(SWCellState)state
 {
-    static SWCellState preState = kCellStateLeft;
-    if (state == kCellStateCenter && preState == kCellStateRight)
+    if (state == kCellStateCenter && ((ReadTableViewCell*)cell).preState == kCellStateRight)
     {//有改变
         NSIndexPath *ip = [self.tableView indexPathForCell:cell];
         THRead *read = [THReadList books][ip.row];
@@ -308,12 +310,14 @@ UIAlertViewDelegate>
         if (curPage > [THReadList lastPageProgressForReadID:read.rID])
         {//有编辑过
             [THReadList EditPage:curPage Read:read];
+            if (curPage >= read.page.unsignedIntegerValue)
+            {
+                [self.tableView reloadData];
+                goto END;
+            }
         }
-        else
-        {
-            [((ReadTableViewCell*)cell).lb_readPage setText:[NSString stringWithFormat:@"%@/%@", @(curPage), read.page]];
-            ((ReadTableViewCell*)cell).readProgress = (double)curPage / [read.page doubleValue];
-        }
+        [((ReadTableViewCell*)cell).lb_readPage setText:[NSString stringWithFormat:@"%@/%@", @(curPage), read.page]];
+        ((ReadTableViewCell*)cell).readProgress = (double)curPage / [read.page doubleValue];
     }
     else if(state == kCellStateRight)
     {
@@ -321,7 +325,9 @@ UIAlertViewDelegate>
         THRead *read = [THReadList books][ip.row];
         [((ReadTableViewCell*)cell).lb_readPage setText:[NSString stringWithFormat:@"%@", @([THReadList lastPageProgressForReadID:read.rID])]];
     }
-    preState = state;
+END:
+    ((ReadTableViewCell*)cell).preState = state;
+    return;
 }
 
 - (BOOL)swipeableTableViewCellShouldHideUtilityButtonsOnSwipe:(SWTableViewCell *)cell

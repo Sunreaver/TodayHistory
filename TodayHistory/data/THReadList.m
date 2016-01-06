@@ -13,7 +13,7 @@
 
 @import EGOCache;
 
-static NSMutableArray *s_data = nil;
+static NSMutableArray<THRead*> *s_data = nil;
 static BOOL s_bDataChange = NO;
 static NSMutableDictionary  *s_readProgress;
 
@@ -122,36 +122,42 @@ static NSMutableDictionary  *s_readProgress;
 +(BOOL)EditPage:(NSUInteger)page Read:(THRead *)read
 {
     page = MIN(page, read.page.unsignedIntegerValue);
-    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-        
-        NSMutableArray<THReadProgress*> *newData = [NSMutableArray array];
-        
-        NSString *key = [NSString stringWithFormat:@"com.readlist.%@", read.rID];
-        NSArray *arr = [THReadList readProgress][key];
-        if (arr)
+    
+    NSMutableArray<THReadProgress*> *newData = [NSMutableArray array];
+    
+    NSString *key = [NSString stringWithFormat:@"com.readlist.%@", read.rID];
+    NSArray *arr = [THReadList readProgress][key];
+    if (arr)
+    {
+        [newData addObjectsFromArray:arr];
+    }
+    
+    NSInteger day = ([[NSDate date] earlyInTheMorning].timeIntervalSince1970 - read.startDate.timeIntervalSince1970)/24/3600;
+    
+    for (NSInteger j = newData.count - 1; j >= 0 ; --j)
+    {
+        if (newData[j].day.integerValue == day)
         {
-            [newData addObjectsFromArray:arr];
+            [newData removeObjectAtIndex:j];
+            break;
         }
-        
-        NSInteger day = ([[NSDate date] earlyInTheMorning].timeIntervalSince1970 - read.startDate.timeIntervalSince1970)/24/3600;
-        
-        for (NSInteger j = newData.count - 1; j >= 0 ; --j)
-        {
-            if (newData[j].day.integerValue == day)
-            {
-                [newData removeObjectAtIndex:j];
-                break;
-            }
-        }
-        
-        THReadProgress *progress = [THReadProgress initWithCurPage:page CurDay:day];
-        [newData addObject:progress];
-        
-        [[THReadList readProgress] setValue:newData forKey:key];
-        EGOCache *catch = [EGOCache globalCache];
-        catch.defaultTimeoutInterval = 10 * 365 * 24 * 3600; //10年有效期
-        [catch setObject:newData forKey:key];
-    });
+    }
+    
+    THReadProgress *progress = [THReadProgress initWithCurPage:page CurDay:day];
+    [newData addObject:progress];
+    
+    [[THReadList readProgress] setValue:newData forKey:key];
+    EGOCache *catch = [EGOCache globalCache];
+    catch.defaultTimeoutInterval = 10 * 365 * 24 * 3600; //10年有效期
+    [catch setObject:newData forKey:key];
+    
+    //当已经读完，就重新排序
+    if (page == read.page.unsignedIntegerValue)
+    {
+        [THReadList SortBooksAsReadProgress];
+        s_bDataChange = YES;
+        [THReadList storageData];
+    }
     
     return YES;
 }
@@ -204,6 +210,7 @@ static NSMutableDictionary  *s_readProgress;
         EGOCache *catch = [EGOCache globalCache];
         
         NSMutableArray *newData = [NSMutableArray arrayWithArray:arr];
+        THReadProgress *rp = newData.lastObject;
         [newData removeLastObject];
         if (newData.count == 0)
         {
@@ -215,8 +222,42 @@ static NSMutableDictionary  *s_readProgress;
             [catch setObject:newData forKey:key];
             [[THReadList readProgress] setValue:newData forKey:key];
         }
+        
+        if (rp.page.unsignedIntegerValue >= read.page.unsignedIntegerValue)
+        {
+            [THReadList SortBooksAsReadProgress];
+            s_bDataChange = YES;
+            [THReadList storageData];
+        }
         return YES;
     }
     return NO;
+}
+
++(void)SortBooksAsReadProgress
+{
+    NSArray *sortArr = [[THReadList books] sortedArrayWithOptions:NSSortStable|NSSortConcurrent usingComparator:^NSComparisonResult(THRead*  _Nonnull obj1, THRead*  _Nonnull obj2) {
+        if (obj1.page.unsignedIntegerValue <= [THReadList lastPageProgressForReadID:obj1.rID] &&
+            obj2.page.unsignedIntegerValue > [THReadList lastPageProgressForReadID:obj2.rID])
+        {
+            return NSOrderedDescending;
+        }
+        else if (obj2.page.unsignedIntegerValue <= [THReadList lastPageProgressForReadID:obj2.rID] &&
+                 obj1.page.unsignedIntegerValue > [THReadList lastPageProgressForReadID:obj1.rID])
+        {
+            return NSOrderedAscending;
+        }
+        else if (obj1.startDate.timeIntervalSince1970 < obj2.startDate.timeIntervalSince1970)
+        {
+            return NSOrderedDescending;
+        }
+        else if (obj1.startDate.timeIntervalSince1970 > obj2.startDate.timeIntervalSince1970)
+        {
+            return NSOrderedAscending;
+        }
+        return NSOrderedSame;
+    }];
+    [s_data removeAllObjects];
+    [s_data addObjectsFromArray:sortArr];
 }
 @end
