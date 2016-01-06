@@ -712,7 +712,7 @@
                                                     <rect key="frame" x="0.0" y="53" width="182" height="2"/>
                                                     <color key="backgroundColor" red="0.98823529409999999" green="0.16078431369999999" blue="0.39607843139999999" alpha="1" colorSpace="calibratedRGB"/>
                                                 </view>
-                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yJ6-eF-Rq7">
+                                                <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yJ6-eF-Rq7">
                                                     <rect key="frame" x="-3" y="0.0" width="3" height="56"/>
                                                     <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                                     <constraints>

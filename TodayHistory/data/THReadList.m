@@ -14,7 +14,6 @@
 @import EGOCache;
 
 static NSMutableArray<THRead*> *s_data = nil;
-static BOOL s_bDataChange = NO;
 static NSMutableDictionary  *s_readProgress;
 
 @implementation THReadList
@@ -23,7 +22,6 @@ static NSMutableDictionary  *s_readProgress;
 {
     if (!s_data)
     {
-        s_bDataChange = NO;
         NSArray *arr = [NSKeyedUnarchiver unarchiveObjectWithFile:File_Path(@"com.tmp.readlist")];
         if (arr)
         {
@@ -57,11 +55,10 @@ static NSMutableDictionary  *s_readProgress;
 
 +(void)storageData
 {
-    if (s_bDataChange && s_data)
+    if (s_data)
     {
         NSData *data = [NSKeyedArchiver archivedDataWithRootObject:s_data];
         [data writeToFile:File_Path(@"com.tmp.readlist") atomically:YES];
-        s_bDataChange = NO;
     }
 }
 
@@ -80,7 +77,6 @@ static NSMutableDictionary  *s_readProgress;
         }
     }
     [s_data insertObject:read atIndex:0];
-    s_bDataChange = YES;
     
     [THReadList storageData];
     
@@ -94,7 +90,6 @@ static NSMutableDictionary  *s_readProgress;
         if ([read.rID isEqualToString:rID])
         {
             [s_data removeObjectAtIndex:i];
-            s_bDataChange = YES;
             break;
         }
     }
@@ -155,7 +150,6 @@ static NSMutableDictionary  *s_readProgress;
     if (page == read.page.unsignedIntegerValue)
     {
         [THReadList SortBooksAsReadProgress];
-        s_bDataChange = YES;
         [THReadList storageData];
     }
     
@@ -226,7 +220,6 @@ static NSMutableDictionary  *s_readProgress;
         if (rp.page.unsignedIntegerValue >= read.page.unsignedIntegerValue)
         {
             [THReadList SortBooksAsReadProgress];
-            s_bDataChange = YES;
             [THReadList storageData];
         }
         return YES;

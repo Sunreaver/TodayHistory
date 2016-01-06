@@ -258,18 +258,21 @@ UIAlertViewDelegate>
         [av show];
         av.tag = 999;
         self.curCell = cell;
+        
+        goto ReloadStatistics;
     }
     else if (index == 1)
     {//撤销本日阅读
         [cell hideUtilityButtonsAnimated:YES];
         [THReadList DelReadProgressDataForLast:read];
         
-        [self.tableView reloadData];
+        [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:1] withRowAnimation:UITableViewRowAnimationAutomatic];
         /*
         NSUInteger curPage = [THReadList lastPageProgressForReadID:read.rID];
         [((ReadTableViewCell*)cell).lb_readPage setText:[NSString stringWithFormat:@"%@/%@", @(curPage), read.page]];
         ((ReadTableViewCell*)cell).readProgress = (double)(curPage) / [read.page doubleValue];
          */
+        goto ReloadStatistics;
     }
     else if (index == 2)
     {//查看阅读曲线
@@ -280,6 +283,12 @@ UIAlertViewDelegate>
             [self.navigationController pushViewController:vc animated:YES];
         });
     }
+    
+    return;
+    
+ReloadStatistics:
+    [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationAutomatic];
+    return;
 }
 
 - (void)swipeableTableViewCell:(SWTableViewCell *)cell didTriggerRightUtilityButtonWithIndex:(NSInteger)index
@@ -310,9 +319,12 @@ UIAlertViewDelegate>
         if (curPage > [THReadList lastPageProgressForReadID:read.rID])
         {//有编辑过
             [THReadList EditPage:curPage Read:read];
+            
+            [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationAutomatic];
+            
             if (curPage >= read.page.unsignedIntegerValue)
             {
-                [self.tableView reloadData];
+                [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:1] withRowAnimation:UITableViewRowAnimationAutomatic];
                 goto END;
             }
         }

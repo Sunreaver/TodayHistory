@@ -31,7 +31,7 @@ static unsigned int rainbow[7] =
     
     self.view.layer.shadowColor = [UIColor lightGrayColor].CGColor;
     self.view.layer.shadowOffset = CGSizeMake(2, 2);
-    self.view.layer.shadowOpacity = 0.3;
+    self.view.layer.shadowOpacity = 0.2;
     self.view.layer.shadowRadius = 5;
     
 //    [self.v_headRainbow setBackgroundColor:YEE_COLOR(rainbow[rand()%7])];
@@ -111,4 +111,5 @@ static unsigned int rainbow[7] =
         [v setBackgroundColor:YEE_COLOR(0xFF2A363B)];
     }
 }
+
 @end
