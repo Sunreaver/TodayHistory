@@ -66,7 +66,8 @@ UIAlertViewDelegate>
     [self.tableView dg_addPullToRefreshWithActionHandler:^{
         __typeof(wself)sself = wself;
         if (sself) {
-            [sself.tableView reloadData];
+            [sself.tableView reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationAutomatic];
+            [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:1] withRowAnimation:UITableViewRowAnimationAutomatic];
             
             dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
                 [sself.tableView dg_stopLoading];
@@ -192,7 +193,8 @@ UIAlertViewDelegate>
     
     THRead *read = [THReadList books][indexPath.row];
     
-    [cell.lb_bookName setText:[NSString stringWithFormat:@"《%@》", read.bookName]];
+    NSString *author = read.author ? read.author : @"";
+    [cell.lb_bookName setText:[NSString stringWithFormat:@"《%@》%@", read.bookName, author]];
     [cell.lb_readPage setText:[NSString stringWithFormat:@"%@/%@", @([THReadList lastPageProgressForReadID:read.rID]), read.page]];
     
     cell.readProgress = (double)[THReadList lastPageProgressForReadID:read.rID] / [read.page doubleValue];

@@ -44,9 +44,10 @@
         ++readding;
         //进度是否快
         NSUInteger cPage = [THReadList lastPageProgressForReadID:read.rID];
-        NSUInteger cDay = [THReadList lastDayProgressForReadID:read.rID];
+        CGFloat cDay = [NSDate date].timeIntervalSince1970 - read.startDate.timeIntervalSince1970;
+        cDay = (double)cDay / 24 / 3600;
         if (cPage != 0 &&
-            (cDay == 0 || (double)cPage / (double)cDay >= read.page.doubleValue / read.deadline.doubleValue)) {
+            (cDay <= 0.0 || (double)cPage / (double)cDay >= read.page.doubleValue / read.deadline.doubleValue)) {
             ++readfast;
         }
     }

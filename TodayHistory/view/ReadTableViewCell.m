@@ -54,11 +54,11 @@ static unsigned int rainbow[7] =
     [self setColorForView:self.v_readProgress WithProgress:_readProgress];
     if (_readProgress >= 1.0)
     {
-        self.iv_readover.hidden = NO;
+        self.v_headRainbow.hidden = NO;
     }
     else
     {
-        self.iv_readover.hidden = YES;
+        self.v_headRainbow.hidden = YES;
     }
 }
 

@@ -861,7 +861,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="*书名" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="1y8-OJ-SUI">
+                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="*书名（用‘，空格’来分割书名、作者）" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="1y8-OJ-SUI">
                                                     <rect key="frame" x="8" y="0.0" width="304" height="43"/>
                                                     <fontDescription key="fontDescription" type="system" weight="thin" pointSize="14"/>
                                                     <textInputTraits key="textInputTraits"/>

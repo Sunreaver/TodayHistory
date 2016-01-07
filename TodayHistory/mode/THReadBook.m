@@ -14,12 +14,18 @@
 
 +(instancetype)initWithBookName:(NSString *)name PageNum:(NSUInteger)page Deadline:(NSUInteger)day
 {
+    return [THRead initWithBookName:name Author:nil PageNum:page Deadline:day];
+}
+
++(instancetype)initWithBookName:(NSString*)name Author:(NSString*)author PageNum:(NSUInteger)page Deadline:(NSUInteger)day
+{
     THRead *read = [[THRead alloc] init];
+    read.author = author;
     read.bookName = name;
     read.page = @(page);
     read.startDate = [[NSDate date] earlyInTheMorning];
     read.deadline = @(day);
-    read.rID = [[NSString stringWithFormat:@"%@+%@", read.bookName, read.page] md5_32];
+    read.rID = [[NSString stringWithFormat:@"%@+%@+%@", read.bookName, read.page, read.author] md5_32];
     
     return read;
 }
@@ -35,6 +41,7 @@
         self.page = [aDecoder decodeObjectForKey:@"pg"];
         self.startDate = [aDecoder decodeObjectForKey:@"sd"];
         self.deadline = [aDecoder decodeObjectForKey:@"dl"];
+        self.author = [aDecoder decodeObjectForKey:@"au"];
     }
     return self;
 }
@@ -46,6 +53,7 @@
     [aCoder encodeObject:self.page forKey:@"pg"];
     [aCoder encodeObject:self.startDate forKey:@"sd"];
     [aCoder encodeObject:self.deadline forKey:@"dl"];
+    [aCoder encodeObject:self.author forKey:@"au"];
 }
 @end
 

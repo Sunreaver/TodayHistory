@@ -53,7 +53,16 @@
         }
         else
         {
-            THRead *read = [THRead initWithBookName:self.tf_tip.text PageNum:[self.tf_pwd.text integerValue] Deadline:[self.tf_acc.text integerValue]];
+            NSArray<NSString*> *ar = [self.tf_tip.text componentsSeparatedByCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:@" ,，"]];
+            NSMutableString *author = [NSMutableString stringWithCapacity:self.tf_tip.text.length];
+            for (int i = 1; i < ar.count; ++i)
+            {
+                [author appendString:ar[i]];
+                [author appendString:@"，"];
+            }
+            [author deleteCharactersInRange:NSMakeRange(author.length - 1, 1)];
+            
+            THRead *read = [THRead initWithBookName:ar[0] Author:author PageNum:[self.tf_pwd.text integerValue] Deadline:[self.tf_acc.text integerValue]];
             [THReadList AddData:read];
             [self.navigationController popViewControllerAnimated:YES];
         }

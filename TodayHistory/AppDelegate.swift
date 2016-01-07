@@ -20,42 +20,42 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
         let tabbarCtrl = self.window!.rootViewController
-        let vc0 = tabbarCtrl?.childViewControllers[0]
-        let vc1 = tabbarCtrl?.childViewControllers[1]
-        let vc2 = tabbarCtrl?.childViewControllers[2]
-        let vc3 = tabbarCtrl?.childViewControllers[3]
-        let vc4 = tabbarCtrl?.childViewControllers[4]
-        vc0?.tabBarItem.image = IonIcons.imageWithIcon(ion_ios_calculator, size: 27.0, color: UIColor.blackColor())
-        vc0?.tabBarItem.selectedImage = IonIcons.imageWithIcon(ion_ios_calculator, size: 27.0, color: Colors.main)
-        vc0?.tabBarItem.title = "日期计算"
-        vc0?.tabBarItem.setTitleTextAttributes([NSForegroundColorAttributeName:Colors.main], forState: UIControlState.Selected)
-        vc0?.tabBarItem.setTitleTextAttributes([NSForegroundColorAttributeName:UIColor.blackColor()], forState: UIControlState.Normal)
+        let 💻 = tabbarCtrl?.childViewControllers[0]
+        let 📅 = tabbarCtrl?.childViewControllers[1]
+        let 📒 = tabbarCtrl?.childViewControllers[2]
+        let 💪 = tabbarCtrl?.childViewControllers[3]
+        let 👀 = tabbarCtrl?.childViewControllers[4]
+        💻?.tabBarItem.image = IonIcons.imageWithIcon(ion_ios_calculator, size: 27.0, color: UIColor.blackColor())
+        💻?.tabBarItem.selectedImage = IonIcons.imageWithIcon(ion_ios_calculator, size: 27.0, color: Colors.main)
+        💻?.tabBarItem.title = "日期计算"
+        💻?.tabBarItem.setTitleTextAttributes([NSForegroundColorAttributeName:Colors.main], forState: UIControlState.Selected)
+        💻?.tabBarItem.setTitleTextAttributes([NSForegroundColorAttributeName:UIColor.blackColor()], forState: UIControlState.Normal)
         
-        vc1?.tabBarItem.image = IonIcons.imageWithIcon(ion_ios_calendar, size: 27.0, color: UIColor.blackColor())
-        vc1?.tabBarItem.selectedImage = IonIcons.imageWithIcon(ion_ios_calendar, size: 27.0, color: Colors.main)
-        vc1?.tabBarItem.title = "历史今天"
-        vc1?.tabBarItem.setTitleTextAttributes([NSForegroundColorAttributeName:Colors.main], forState: UIControlState.Selected)
-        vc1?.tabBarItem.setTitleTextAttributes([NSForegroundColorAttributeName:UIColor.blackColor()], forState: UIControlState.Normal)
+        📅?.tabBarItem.image = IonIcons.imageWithIcon(ion_ios_calendar, size: 27.0, color: UIColor.blackColor())
+        📅?.tabBarItem.selectedImage = IonIcons.imageWithIcon(ion_ios_calendar, size: 27.0, color: Colors.main)
+        📅?.tabBarItem.title = "历史今天"
+        📅?.tabBarItem.setTitleTextAttributes([NSForegroundColorAttributeName:Colors.main], forState: UIControlState.Selected)
+        📅?.tabBarItem.setTitleTextAttributes([NSForegroundColorAttributeName:UIColor.blackColor()], forState: UIControlState.Normal)
         
-        vc2?.tabBarItem.image = IonIcons.imageWithIcon(ion_ios_book_outline, size: 27.0, color: UIColor.blackColor())
-        vc2?.tabBarItem.selectedImage = IonIcons.imageWithIcon(ion_ios_book_outline, size: 27.0, color: Colors.main)
-        vc2?.tabBarItem.title = "词典"
-        vc2?.tabBarItem.setTitleTextAttributes([NSForegroundColorAttributeName:Colors.main], forState: UIControlState.Selected)
-        vc2?.tabBarItem.setTitleTextAttributes([NSForegroundColorAttributeName:UIColor.blackColor()], forState: UIControlState.Normal)
+        📒?.tabBarItem.image = IonIcons.imageWithIcon(ion_ios_book_outline, size: 27.0, color: UIColor.blackColor())
+        📒?.tabBarItem.selectedImage = IonIcons.imageWithIcon(ion_ios_book_outline, size: 27.0, color: Colors.main)
+        📒?.tabBarItem.title = "词典"
+        📒?.tabBarItem.setTitleTextAttributes([NSForegroundColorAttributeName:Colors.main], forState: UIControlState.Selected)
+        📒?.tabBarItem.setTitleTextAttributes([NSForegroundColorAttributeName:UIColor.blackColor()], forState: UIControlState.Normal)
         
-        vc3?.tabBarItem.image = IonIcons.imageWithIcon(ion_ios_body, size: 27.0, color: UIColor.blackColor())
-        vc3?.tabBarItem.selectedImage = IonIcons.imageWithIcon(ion_ios_body, size: 27.0, color: Colors.main)
-        vc3?.tabBarItem.title = "健康"
-        vc3?.tabBarItem.setTitleTextAttributes([NSForegroundColorAttributeName:Colors.main], forState: UIControlState.Selected)
-        vc3?.tabBarItem.setTitleTextAttributes([NSForegroundColorAttributeName:UIColor.blackColor()], forState: UIControlState.Normal)
-                
-        (tabbarCtrl as! UITabBarController).selectedIndex = 3
+        💪?.tabBarItem.image = IonIcons.imageWithIcon(ion_ios_body, size: 27.0, color: UIColor.blackColor())
+        💪?.tabBarItem.selectedImage = IonIcons.imageWithIcon(ion_ios_body, size: 27.0, color: Colors.main)
+        💪?.tabBarItem.title = "健康"
+        💪?.tabBarItem.setTitleTextAttributes([NSForegroundColorAttributeName:Colors.main], forState: UIControlState.Selected)
+        💪?.tabBarItem.setTitleTextAttributes([NSForegroundColorAttributeName:UIColor.blackColor()], forState: UIControlState.Normal)
         
-        vc4?.tabBarItem.image = IonIcons.imageWithIcon(ion_arrow_graph_up_right, size: 27.0, color: UIColor.blackColor())
-        vc4?.tabBarItem.selectedImage = IonIcons.imageWithIcon(ion_arrow_graph_up_right, size: 27.0, color: Colors.main)
-        vc4?.tabBarItem.title = "读书"
-        vc4?.tabBarItem.setTitleTextAttributes([NSForegroundColorAttributeName:Colors.main], forState: UIControlState.Selected)
-        vc4?.tabBarItem.setTitleTextAttributes([NSForegroundColorAttributeName:UIColor.blackColor()], forState: UIControlState.Normal)
+        👀?.tabBarItem.image = IonIcons.imageWithIcon(ion_arrow_graph_up_right, size: 27.0, color: UIColor.blackColor())
+        👀?.tabBarItem.selectedImage = IonIcons.imageWithIcon(ion_arrow_graph_up_right, size: 27.0, color: Colors.main)
+        👀?.tabBarItem.title = "读书"
+        👀?.tabBarItem.setTitleTextAttributes([NSForegroundColorAttributeName:Colors.main], forState: UIControlState.Selected)
+        👀?.tabBarItem.setTitleTextAttributes([NSForegroundColorAttributeName:UIColor.blackColor()], forState: UIControlState.Normal)
+        
+        (tabbarCtrl as! UITabBarController).selectedIndex = 2
         
         self.window?.layer.masksToBounds = true
         self.window?.layer.cornerRadius = 5.0
