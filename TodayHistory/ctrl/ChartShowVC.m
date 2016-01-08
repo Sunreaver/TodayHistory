@@ -13,6 +13,7 @@
 #import <AssetsLibrary/AssetsLibrary.h>
 #import "UserDef.h"
 #import "NSDate+EarlyInTheMorning.h"
+#import "StrongWeakSelf.h"
 
 @import Charts;
 @import ionicons;
@@ -81,12 +82,12 @@ typedef void (^SaveImageCompletion)(NSError *error);
                                          UIActivityTypePostToVimeo,
                                          UIActivityTypeOpenInIBooks];
     
-    WEAK_SELF(weakself);
+    @weakify_self;
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         dispatch_sync(dispatch_get_main_queue(), ^{
-            STRONG_SELF(weakself, sself);
+            @strongify_self;
             //以模态的方式展现activityVC。
-            [sself presentViewController:activityVC animated:YES completion:nil];
+            [self presentViewController:activityVC animated:YES completion:nil];
         });
     });
 }

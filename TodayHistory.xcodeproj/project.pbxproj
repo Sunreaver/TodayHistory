@@ -157,6 +157,7 @@
 		D0BD74861BAFEC7500017D36 /* NetWorkManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetWorkManager.swift; sourceTree = "<group>"; };
 		D0C33E611C03F8B00084F84A /* HealthTVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HealthTVC.h; sourceTree = "<group>"; };
 		D0C33E621C03F8B00084F84A /* HealthTVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HealthTVC.m; sourceTree = "<group>"; };
+		D0CE9E8A1C3F9200006AE935 /* StrongWeakSelf.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StrongWeakSelf.h; sourceTree = "<group>"; };
 		D0FD1E151BABE9A800A94B73 /* CollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionViewController.swift; sourceTree = "<group>"; };
 		D0FD1E171BABECDC00A94B73 /* THCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = THCollectionViewCell.swift; sourceTree = "<group>"; };
 		D0FD1E191BABF14800A94B73 /* THCollectionViewLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = THCollectionViewLayout.swift; sourceTree = "<group>"; };
@@ -363,6 +364,7 @@
 			children = (
 				D0B3F4E41C3116D100A6133A /* NSString+NSData+md5sha1.h */,
 				D0B3F4E51C3116D100A6133A /* NSString+NSData+md5sha1.m */,
+				D0CE9E8A1C3F9200006AE935 /* StrongWeakSelf.h */,
 				D03711AE1BFC7E2900014DFD /* UserDef.h */,
 				D03711AF1BFC7E2900014DFD /* UserDef.m */,
 				D068C5061BFC0A2D00D69907 /* NSDate+EarlyInTheMorning.h */,

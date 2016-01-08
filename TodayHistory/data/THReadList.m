@@ -11,7 +11,10 @@
 #import "THReadBook.h"
 #import "NSDate+EarlyInTheMorning.h"
 
+#define READ_PROGRESS [THReadList readProgress]
+
 @import EGOCache;
+@import ReactiveCocoa;
 
 static NSMutableArray<THRead*> *s_data = nil;
 static NSMutableDictionary  *s_readProgress;
@@ -31,6 +34,15 @@ static NSMutableDictionary  *s_readProgress;
         {
             s_data = [NSMutableArray array];
         }
+        
+        void(^resave)(id) = ^(id x){
+            [THReadList storageData];
+        };
+        [[s_data rac_signalForSelector:@selector(insertObject:atIndex:)] subscribeNext:resave];
+        [[s_data rac_signalForSelector:@selector(addObject:)] subscribeNext:resave];
+        [[s_data rac_signalForSelector:@selector(removeObject:)] subscribeNext:resave];
+        [[s_data rac_signalForSelector:@selector(removeObjectAtIndex:)] subscribeNext:resave];
+        [[s_data rac_signalForSelector:@selector(addObjectsFromArray:)] subscribeNext:resave];
     }
     return s_data;
 }
@@ -49,6 +61,20 @@ static NSMutableDictionary  *s_readProgress;
                 [s_readProgress setValue:[catch objectForKey:key] forKey:key];
             }
         }
+        
+        //删除
+        [[s_readProgress rac_signalForSelector:@selector(removeObjectForKey:)] subscribeNext:^(RACTuple *key) {
+            [[EGOCache globalCache] removeCacheForKey:key.first];
+        }];
+        //修改
+        [[s_readProgress rac_signalForSelector:@selector(setValue:forKey:)] subscribeNext:^(RACTuple *vk) {
+            [EGOCache globalCache].defaultTimeoutInterval = 10 * 365 * 24 * 3600; //10年有效期
+            [[EGOCache globalCache] setObject:vk.first forKey:vk.second];
+        }];
+        [[s_readProgress rac_signalForSelector:@selector(setObject:forKey:)] subscribeNext:^(RACTuple *vk) {
+            [EGOCache globalCache].defaultTimeoutInterval = 10 * 365 * 24 * 3600; //10年有效期
+            [[EGOCache globalCache] setObject:vk.first forKey:vk.second];
+        }];
     }
     return s_readProgress;
 }
@@ -78,8 +104,6 @@ static NSMutableDictionary  *s_readProgress;
     }
     [s_data insertObject:read atIndex:0];
     
-    [THReadList storageData];
-    
     return YES;
 }
 
@@ -95,22 +119,16 @@ static NSMutableDictionary  *s_readProgress;
     }
     
     NSString *key = [NSString stringWithFormat:@"com.readlist.%@", rID];
-    EGOCache *catch = [EGOCache globalCache];
-    [catch removeCacheForKey:key];
-    [[THReadList readProgress] removeObjectForKey:key];
-    [THReadList storageData];
+    [READ_PROGRESS removeObjectForKey:key];
     return NO;
 }
 
 +(BOOL)DelData:(THRead *)read
 {
     NSString *key = [NSString stringWithFormat:@"com.readlist.%@", read.rID];
-    EGOCache *catch = [EGOCache globalCache];
-    [catch removeCacheForKey:key];
-    [[THReadList readProgress] removeObjectForKey:key];
+    [READ_PROGRESS removeObjectForKey:key];
     
     [s_data removeObject:read];
-    [THReadList storageData];
     return NO;
 }
 
@@ -121,7 +139,7 @@ static NSMutableDictionary  *s_readProgress;
     NSMutableArray<THReadProgress*> *newData = [NSMutableArray array];
     
     NSString *key = [NSString stringWithFormat:@"com.readlist.%@", read.rID];
-    NSArray *arr = [THReadList readProgress][key];
+    NSArray *arr = READ_PROGRESS[key];
     if (arr)
     {
         [newData addObjectsFromArray:arr];
@@ -141,16 +159,12 @@ static NSMutableDictionary  *s_readProgress;
     THReadProgress *progress = [THReadProgress initWithCurPage:page CurDay:day];
     [newData addObject:progress];
     
-    [[THReadList readProgress] setValue:newData forKey:key];
-    EGOCache *catch = [EGOCache globalCache];
-    catch.defaultTimeoutInterval = 10 * 365 * 24 * 3600; //10年有效期
-    [catch setObject:newData forKey:key];
+    [READ_PROGRESS setValue:newData forKey:key];
     
     //当已经读完，就重新排序
     if (page == read.page.unsignedIntegerValue)
     {
         [THReadList SortBooksAsReadProgress];
-        [THReadList storageData];
     }
     
     return YES;
@@ -159,7 +173,7 @@ static NSMutableDictionary  *s_readProgress;
 +(NSUInteger)lastPageProgressForReadID:(NSString*)rID
 {
     NSString *key = [NSString stringWithFormat:@"com.readlist.%@", rID];
-    NSArray<THReadProgress*> *arr = [THReadList readProgress][key];
+    NSArray<THReadProgress*> *arr = READ_PROGRESS[key];
     
     if (arr && arr.count > 0)
     {
@@ -172,7 +186,7 @@ static NSMutableDictionary  *s_readProgress;
 +(NSUInteger)lastDayProgressForReadID:(NSString*)rID
 {
     NSString *key = [NSString stringWithFormat:@"com.readlist.%@", rID];
-    NSArray<THReadProgress*> *arr = [THReadList readProgress][key];
+    NSArray<THReadProgress*> *arr = READ_PROGRESS[key];
     
     if (arr && arr.count > 0)
     {
@@ -185,7 +199,7 @@ static NSMutableDictionary  *s_readProgress;
 +(NSArray<THReadProgress*>*)getReadProgressFromReadID:(NSString *)rID
 {
     NSString *key = [NSString stringWithFormat:@"com.readlist.%@", rID];
-    NSArray<THReadProgress*> *arr = [THReadList readProgress][key];
+    NSArray<THReadProgress*> *arr = READ_PROGRESS[key];
     
     if (arr && arr.count > 0)
     {
@@ -197,30 +211,25 @@ static NSMutableDictionary  *s_readProgress;
 +(BOOL)DelReadProgressDataForLast:(THRead *)read
 {
     NSString *key = [NSString stringWithFormat:@"com.readlist.%@", read.rID];
-    NSArray<THReadProgress*> *arr = [THReadList readProgress][key];
+    NSArray<THReadProgress*> *arr = READ_PROGRESS[key];
     
     if (arr && arr.count > 0)
     {
-        EGOCache *catch = [EGOCache globalCache];
-        
         NSMutableArray *newData = [NSMutableArray arrayWithArray:arr];
         THReadProgress *rp = newData.lastObject;
         [newData removeLastObject];
         if (newData.count == 0)
         {
-            [catch removeCacheForKey:key];
-            [[THReadList readProgress] removeObjectForKey:key];
+            [READ_PROGRESS removeObjectForKey:key];
         }
         else
         {
-            [catch setObject:newData forKey:key];
-            [[THReadList readProgress] setValue:newData forKey:key];
+            [READ_PROGRESS setValue:newData forKey:key];
         }
         
         if (rp.page.unsignedIntegerValue >= read.page.unsignedIntegerValue)
         {
             [THReadList SortBooksAsReadProgress];
-            [THReadList storageData];
         }
         return YES;
     }

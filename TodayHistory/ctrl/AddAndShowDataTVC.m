@@ -60,7 +60,9 @@
                 [author appendString:ar[i]];
                 [author appendString:@"，"];
             }
-            [author deleteCharactersInRange:NSMakeRange(author.length - 1, 1)];
+            if (author.length > 0) {
+                [author deleteCharactersInRange:NSMakeRange(author.length - 1, 1)];
+            }
             
             THRead *read = [THRead initWithBookName:ar[0] Author:author PageNum:[self.tf_pwd.text integerValue] Deadline:[self.tf_acc.text integerValue]];
             [THReadList AddData:read];

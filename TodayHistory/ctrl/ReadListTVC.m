@@ -15,14 +15,14 @@
 #import "ChartShowVC.h"
 #import "GetViewCtrlFromStoryboard.h"
 #import "ReadHeaderTableViewCell.h"
+#import "StrongWeakSelf.h"
 
 @import DGElasticPullToRefresh_CanStartLoading;
 @import ionicons;
 @import SWTableViewCell;
+@import ReactiveCocoa;
 
-@interface ReadListTVC()<SWTableViewCellDelegate,
-UIAlertViewDelegate>
-@property (nonatomic, retain) UITableViewCell *curCell;//删除记录
+@interface ReadListTVC()<SWTableViewCellDelegate>
 @property (nonatomic, assign) BOOL needRefresh;
 
 @end
@@ -43,7 +43,6 @@ UIAlertViewDelegate>
                                                                 target:self
                                                                 action:@selector(AddData)];
     self.navigationItem.rightBarButtonItem = rightBar;
-    
     
     //左右按钮
     UIImage *share = [IonIcons imageWithIcon:ion_share
@@ -122,12 +121,12 @@ UIAlertViewDelegate>
                                          UIActivityTypePostToWeibo,
                                          UIActivityTypePostToTencentWeibo];
     
-    WEAK_SELF(weakself);
+    @weakify_self
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         dispatch_sync(dispatch_get_main_queue(), ^{
-            STRONG_SELF(weakself, sself);
+            @strongify_self
             //以模态的方式展现activityVC。
-            [sself presentViewController:activityVC animated:YES completion:nil];
+            [self presentViewController:activityVC animated:YES completion:nil];
         });
     });
 }
@@ -259,9 +258,16 @@ UIAlertViewDelegate>
                                            otherButtonTitles:@"删除", nil];
         [av show];
         av.tag = 999;
-        self.curCell = cell;
         
-        goto ReloadStatistics;
+        [[av rac_buttonClickedSignal] subscribeNext:^(NSNumber *x) {
+            if (x.integerValue == 1)
+            {
+                NSIndexPath *ip = [self.tableView indexPathForCell:cell];
+                THRead *read = [THReadList books][ip.row];
+                [THReadList DelData:read];
+                [self.tableView deleteRowsAtIndexPaths:@[ip] withRowAnimation:UITableViewRowAnimationAutomatic];
+            }
+        }];
     }
     else if (index == 1)
     {//撤销本日阅读
@@ -364,19 +370,4 @@ END:
     return YES;
 }
 */
-
-#pragma mark -alertViewDelegate
--(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
-{
-    if (alertView.tag == 999)
-    {
-        if (buttonIndex == 1)
-        {
-            NSIndexPath *ip = [self.tableView indexPathForCell:self.curCell];
-            THRead *read = [THReadList books][ip.row];
-            [THReadList DelData:read];
-            [self.tableView deleteRowsAtIndexPaths:@[ip] withRowAnimation:UITableViewRowAnimationAutomatic];
-        }
-    }
-}
 @end
