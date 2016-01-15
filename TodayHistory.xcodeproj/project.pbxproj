@@ -58,6 +58,7 @@
 		D0FD1E161BABE9A800A94B73 /* CollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0FD1E151BABE9A800A94B73 /* CollectionViewController.swift */; };
 		D0FD1E181BABECDC00A94B73 /* THCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0FD1E171BABECDC00A94B73 /* THCollectionViewCell.swift */; };
 		D0FD1E1A1BABF14800A94B73 /* THCollectionViewLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0FD1E191BABF14800A94B73 /* THCollectionViewLayout.swift */; };
+		D0FD5B461C489BB1008856C8 /* UILabel+Roll.m in Sources */ = {isa = PBXBuildFile; fileRef = D0FD5B451C489BB1008856C8 /* UILabel+Roll.m */; };
 		D0FF63371BA020F600A00BAB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0FF63361BA020F600A00BAB /* AppDelegate.swift */; };
 		D0FF633C1BA020F600A00BAB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D0FF633A1BA020F600A00BAB /* Main.storyboard */; };
 		D0FF633E1BA020F600A00BAB /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D0FF633D1BA020F600A00BAB /* Images.xcassets */; };
@@ -161,6 +162,8 @@
 		D0FD1E151BABE9A800A94B73 /* CollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionViewController.swift; sourceTree = "<group>"; };
 		D0FD1E171BABECDC00A94B73 /* THCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = THCollectionViewCell.swift; sourceTree = "<group>"; };
 		D0FD1E191BABF14800A94B73 /* THCollectionViewLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = THCollectionViewLayout.swift; sourceTree = "<group>"; };
+		D0FD5B441C489BB1008856C8 /* UILabel+Roll.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UILabel+Roll.h"; sourceTree = "<group>"; };
+		D0FD5B451C489BB1008856C8 /* UILabel+Roll.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UILabel+Roll.m"; sourceTree = "<group>"; };
 		D0FF63311BA020F600A00BAB /* TodayHistory.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TodayHistory.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D0FF63351BA020F600A00BAB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D0FF63361BA020F600A00BAB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -261,6 +264,8 @@
 				D0B3F4FA1C32681900A6133A /* BalloonMarker.swift */,
 				D07100D51C34BA10008F43C0 /* ReadHeaderTableViewCell.h */,
 				D07100D61C34BA10008F43C0 /* ReadHeaderTableViewCell.m */,
+				D0FD5B441C489BB1008856C8 /* UILabel+Roll.h */,
+				D0FD5B451C489BB1008856C8 /* UILabel+Roll.m */,
 			);
 			path = view;
 			sourceTree = "<group>";
@@ -600,6 +605,7 @@
 				D0219D411BA156930007F00E /* GetViewCtrlFromStoryboard.m in Sources */,
 				D068C5021BFC09FB00D69907 /* RootTVC.m in Sources */,
 				D0FD1E161BABE9A800A94B73 /* CollectionViewController.swift in Sources */,
+				D0FD5B461C489BB1008856C8 /* UILabel+Roll.m in Sources */,
 				D01E880D1BA1927300DE9BE1 /* THMainView.swift in Sources */,
 				D0B3F4EC1C31259500A6133A /* ReadListTVC.m in Sources */,
 				D0B3F4FB1C32681900A6133A /* BalloonMarker.swift in Sources */,

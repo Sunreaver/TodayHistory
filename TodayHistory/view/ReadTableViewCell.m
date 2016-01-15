@@ -8,6 +8,7 @@
 
 #import "ReadTableViewCell.h"
 #import "UserDef.h"
+#import "UILabel+Roll.h"
 
 //红橙黄绿青蓝紫
 static unsigned int rainbow[7] =
@@ -19,6 +20,7 @@ static unsigned int rainbow[7] =
 @property (weak, nonatomic) IBOutlet UIView *v_timeProgress;
 @property (weak, nonatomic) IBOutlet UIView *v_readProgress;
 @property (weak, nonatomic) IBOutlet UIImageView *iv_readover;
+@property (weak, nonatomic) IBOutlet UILabel *lb_bookname;
 
 @end
 
@@ -38,6 +40,11 @@ static unsigned int rainbow[7] =
     [self.v_headRainbow setBackgroundColor:YEE_COLOR(0xBF2A363B)];
     
     self.preState = kCellStateCenter;
+}
+
+-(void)RollBookNameIfCan
+{
+    [self.lb_bookName RollIfCanWithOriWidth:self.view.frame.size.width - 8];
 }
 
 -(void)setReadProgress:(CGFloat)readProgress

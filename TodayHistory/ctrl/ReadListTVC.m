@@ -88,6 +88,36 @@
         [self.tableView reloadData];
         self.needRefresh = NO;
     }
+    
+//    [self test];
+}
+
+- (void)test
+{
+    RACSignal *signalA = [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
+        double delayInSeconds = 2.0;
+        dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delayInSeconds * NSEC_PER_SEC));
+        dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
+            [subscriber sendNext:@"A"];
+        });
+        return nil;
+    }];
+    
+    RACSignal *signalB = [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
+        [subscriber sendNext:@"B"];
+        [subscriber sendNext:@"Another B"];
+        [subscriber sendCompleted];
+        return nil;
+    }];
+    
+    RAC(self, needRefresh) = [RACSignal merge:@[signalA, signalB]];
+    
+//    [self rac_liftSelector:@selector(doA:withB:) withSignals:signalA, signalB, nil];
+}
+
+- (void)doA:(NSString *)A withB:(NSString *)B
+{
+    NSLog(@"A:%@ and B:%@", A, B);
 }
 
 -(UIStatusBarStyle)preferredStatusBarStyle
@@ -205,6 +235,12 @@
     cell.delegate = self;
     
     return cell;
+}
+
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    ReadTableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+    [cell RollBookNameIfCan];
 }
 
 - (NSArray *)rightButtons

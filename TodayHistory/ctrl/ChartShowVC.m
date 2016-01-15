@@ -20,6 +20,9 @@
 
 typedef void (^SaveImageCompletion)(NSError *error);
 
+static const CGFloat x_minScale = 11.f;
+static const CGFloat y_minScale = 400.f;
+
 @interface ChartShowVC()<ChartViewDelegate>
 @property (weak, nonatomic) IBOutlet LineChartView *chartView;
 
@@ -150,14 +153,7 @@ typedef void (^SaveImageCompletion)(NSError *error);
     _chartView.rightAxis.enabled = NO;
     
     _chartView.legend.form = ChartLegendFormLine;
-    if (self.read.page.unsignedIntegerValue > 400)
-    {
-        [_chartView.viewPortHandler setMaximumScaleY: self.read.page.doubleValue / 400.0];
-    }
-    else
-    {
-        [_chartView.viewPortHandler setMaximumScaleY: 1.f];
-    }
+    [_chartView.viewPortHandler setMaximumScaleY: MAX(1.f, self.read.page.doubleValue / y_minScale)];
     [_chartView animateWithXAxisDuration:2.5 easingOption:ChartEasingOptionEaseInOutQuart];
 }
 
@@ -171,7 +167,7 @@ typedef void (^SaveImageCompletion)(NSError *error);
     
     NSUInteger lastReadDay = data.lastObject.day.unsignedIntegerValue;
     lastReadDay = MAX(lastReadDay + 2, self.read.deadline.unsignedIntegerValue + 2);
-    [_chartView.viewPortHandler setMaximumScaleX: (double)lastReadDay / 14.f];
+    [_chartView.viewPortHandler setMaximumScaleX: (double)lastReadDay / x_minScale];
     
     NSUInteger today = ([[NSDate date] earlyInTheMorning].timeIntervalSince1970 - self.read.startDate.timeIntervalSince1970)/24/3600;
     if (today == data.lastObject.day.unsignedIntegerValue ||
@@ -223,9 +219,11 @@ typedef void (^SaveImageCompletion)(NSError *error);
     //今日应该到的点
     today = ([[NSDate date] earlyInTheMorning].timeIntervalSince1970 - self.read.startDate.timeIntervalSince1970)/24/3600;
     if (data.lastObject.page.unsignedIntegerValue < self.read.page.unsignedIntegerValue &&
-        today < self.read.deadline.integerValue)
+        today < self.read.deadline.integerValue &&
+        ABS(self.read.page.doubleValue * today / self.read.deadline.integerValue - data.lastObject.page.doubleValue) > 10)
     {//阅读未完毕
      //未超时
+     //预期与实际差距在10页以上
         [yVals1 addObject:[[ChartDataEntry alloc] initWithValue:self.read.page.doubleValue * today / self.read.deadline.integerValue
                                                          xIndex:today]];
     }

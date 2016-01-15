@@ -47,7 +47,7 @@ static NSMutableDictionary  *s_readProgress;
     return s_data;
 }
 
-+(NSMutableDictionary*)readProgress
++(NSMutableDictionary<NSString*, NSArray<THReadProgress*>*>*)readProgress
 {
     if (!s_readProgress)
     {
@@ -90,14 +90,16 @@ static NSMutableDictionary  *s_readProgress;
 
 +(BOOL)AddData:(THRead *)read
 {
-    if (read.page.integerValue == 0 || read.deadline.integerValue == 0) {
+    if (read.page.integerValue == 0 || read.deadline.integerValue == 0)
+    {
         return NO;
     }
     for (THRead *r in s_data)
     {
         if ([r.rID isEqualToString:read.rID])
         {
-            THRead *rd = [THRead initWithBookName:[read.bookName stringByAppendingString:@"※"] PageNum:[read.page integerValue] Deadline:[read.deadline integerValue]];
+            NSString *auther = read.author ? read.author : @"";
+            THRead *rd = [THRead initWithBookName:read.bookName Author:[auther stringByAppendingString:@"※"] PageNum:[read.page integerValue] Deadline:[read.deadline integerValue]];
             [THReadList AddData:rd];
             return YES;
         }

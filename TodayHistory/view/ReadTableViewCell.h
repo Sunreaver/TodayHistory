@@ -16,4 +16,6 @@
 @property (weak, nonatomic) IBOutlet UILabel *lb_readPage;
 
 @property (nonatomic, assign) SWCellState preState;
+
+-(void)RollBookNameIfCan;
 @end

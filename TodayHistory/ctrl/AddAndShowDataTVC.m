@@ -53,7 +53,7 @@
         }
         else
         {
-            NSArray<NSString*> *ar = [self.tf_tip.text componentsSeparatedByCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:@" ,，"]];
+            NSArray<NSString*> *ar = [self.tf_tip.text componentsSeparatedByCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:@",，"]];
             NSMutableString *author = [NSMutableString stringWithCapacity:self.tf_tip.text.length];
             for (int i = 1; i < ar.count; ++i)
             {

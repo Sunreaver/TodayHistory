@@ -78,6 +78,13 @@ UITextFieldDelegate>
     
     [self.tf_day setDelegate:self];
     [self initView];
+    
+    
+}
+
+- (void)doA:(NSString *)A withB:(NSString *)B
+{
+    NSLog(@"A:%@ and B:%@", A, B);
 }
 
 -(void)viewDidAppear:(BOOL)animated
