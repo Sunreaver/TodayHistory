@@ -20,7 +20,7 @@ static unsigned int rainbow[7] =
 @property (weak, nonatomic) IBOutlet UIView *v_timeProgress;
 @property (weak, nonatomic) IBOutlet UIView *v_readProgress;
 @property (weak, nonatomic) IBOutlet UIImageView *iv_readover;
-@property (weak, nonatomic) IBOutlet UILabel *lb_bookname;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *layout_w_constant;
 
 @end
 
@@ -66,6 +66,14 @@ static unsigned int rainbow[7] =
     else
     {
         self.v_headRainbow.hidden = YES;
+        if (_readProgress > 0.25)
+        {
+            self.layout_w_constant.constant = 0;
+        }
+        else
+        {
+            self.layout_w_constant.constant = 15;
+        }
     }
 }
 

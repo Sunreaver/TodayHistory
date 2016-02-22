@@ -8,6 +8,7 @@
 
 import UIKit
 import ionicons
+import ReactiveCocoa
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -25,40 +26,40 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let 📒 = tabbarCtrl?.childViewControllers[2]
         let 💪 = tabbarCtrl?.childViewControllers[3]
         let 👀 = tabbarCtrl?.childViewControllers[4]
-        💻?.tabBarItem.image = IonIcons.imageWithIcon(ion_ios_calculator, size: 27.0, color: UIColor.blackColor())
-        💻?.tabBarItem.selectedImage = IonIcons.imageWithIcon(ion_ios_calculator, size: 27.0, color: Colors.main)
+        💻?.tabBarItem.image = IonIcons.imageWithIcon(ion_ios_calculator_outline, size: 27.0, color: UIColor.blackColor())
+        💻?.tabBarItem.selectedImage = IonIcons.imageWithIcon(ion_ios_calculator_outline, size: 27.0, color: Colors.google0)
         💻?.tabBarItem.title = "日期计算"
-        💻?.tabBarItem.setTitleTextAttributes([NSForegroundColorAttributeName:Colors.main], forState: UIControlState.Selected)
+        💻?.tabBarItem.setTitleTextAttributes([NSForegroundColorAttributeName:Colors.google0], forState: UIControlState.Selected)
         💻?.tabBarItem.setTitleTextAttributes([NSForegroundColorAttributeName:UIColor.blackColor()], forState: UIControlState.Normal)
         
-        📅?.tabBarItem.image = IonIcons.imageWithIcon(ion_ios_calendar, size: 27.0, color: UIColor.blackColor())
-        📅?.tabBarItem.selectedImage = IonIcons.imageWithIcon(ion_ios_calendar, size: 27.0, color: Colors.main)
+        📅?.tabBarItem.image = IonIcons.imageWithIcon(ion_ios_calendar_outline, size: 27.0, color: UIColor.blackColor())
+        📅?.tabBarItem.selectedImage = IonIcons.imageWithIcon(ion_ios_calendar_outline, size: 27.0, color: Colors.google0)
         📅?.tabBarItem.title = "历史今天"
-        📅?.tabBarItem.setTitleTextAttributes([NSForegroundColorAttributeName:Colors.main], forState: UIControlState.Selected)
+        📅?.tabBarItem.setTitleTextAttributes([NSForegroundColorAttributeName:Colors.google0], forState: UIControlState.Selected)
         📅?.tabBarItem.setTitleTextAttributes([NSForegroundColorAttributeName:UIColor.blackColor()], forState: UIControlState.Normal)
         
         📒?.tabBarItem.image = IonIcons.imageWithIcon(ion_ios_book_outline, size: 27.0, color: UIColor.blackColor())
-        📒?.tabBarItem.selectedImage = IonIcons.imageWithIcon(ion_ios_book_outline, size: 27.0, color: Colors.main)
+        📒?.tabBarItem.selectedImage = IonIcons.imageWithIcon(ion_ios_book_outline, size: 27.0, color: Colors.google0)
         📒?.tabBarItem.title = "词典"
-        📒?.tabBarItem.setTitleTextAttributes([NSForegroundColorAttributeName:Colors.main], forState: UIControlState.Selected)
+        📒?.tabBarItem.setTitleTextAttributes([NSForegroundColorAttributeName:Colors.google0], forState: UIControlState.Selected)
         📒?.tabBarItem.setTitleTextAttributes([NSForegroundColorAttributeName:UIColor.blackColor()], forState: UIControlState.Normal)
         
-        💪?.tabBarItem.image = IonIcons.imageWithIcon(ion_ios_body, size: 27.0, color: UIColor.blackColor())
-        💪?.tabBarItem.selectedImage = IonIcons.imageWithIcon(ion_ios_body, size: 27.0, color: Colors.main)
+        💪?.tabBarItem.image = IonIcons.imageWithIcon(ion_ios_body_outline, size: 27.0, color: UIColor.blackColor())
+        💪?.tabBarItem.selectedImage = IonIcons.imageWithIcon(ion_ios_body_outline, size: 27.0, color: Colors.google0)
         💪?.tabBarItem.title = "健康"
-        💪?.tabBarItem.setTitleTextAttributes([NSForegroundColorAttributeName:Colors.main], forState: UIControlState.Selected)
+        💪?.tabBarItem.setTitleTextAttributes([NSForegroundColorAttributeName:Colors.google0], forState: UIControlState.Selected)
         💪?.tabBarItem.setTitleTextAttributes([NSForegroundColorAttributeName:UIColor.blackColor()], forState: UIControlState.Normal)
         
         👀?.tabBarItem.image = IonIcons.imageWithIcon(ion_arrow_graph_up_right, size: 27.0, color: UIColor.blackColor())
-        👀?.tabBarItem.selectedImage = IonIcons.imageWithIcon(ion_arrow_graph_up_right, size: 27.0, color: Colors.main)
+        👀?.tabBarItem.selectedImage = IonIcons.imageWithIcon(ion_arrow_graph_up_right, size: 27.0, color: Colors.google0)
         👀?.tabBarItem.title = "读书"
-        👀?.tabBarItem.setTitleTextAttributes([NSForegroundColorAttributeName:Colors.main], forState: UIControlState.Selected)
+        👀?.tabBarItem.setTitleTextAttributes([NSForegroundColorAttributeName:Colors.google0], forState: UIControlState.Selected)
         👀?.tabBarItem.setTitleTextAttributes([NSForegroundColorAttributeName:UIColor.blackColor()], forState: UIControlState.Normal)
         
-        (tabbarCtrl as! UITabBarController).selectedIndex = 2
+        (tabbarCtrl as! UITabBarController).selectedIndex = 4
         
         self.window?.layer.masksToBounds = true
-        self.window?.layer.cornerRadius = 5.0
+        self.window?.layer.cornerRadius = 10.0
 
         return true
     }
@@ -123,13 +124,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             }
             else if identifier == "NoDrinkcoffee"
             {
-                let av:UIAlertView = UIAlertView(title: "今天多少", message: "加油", delegate: nil, cancelButtonTitle: "0mg", otherButtonTitles: "10mg", "20mg", "40mg", "50mg");
-                av.tag = 999
-                let tabbarCtrl = self.window?.rootViewController
-                let rootvc = tabbarCtrl!.childViewControllers[3] as! UINavigationController
-                let roottvc:UIViewController = rootvc.topViewController!
-                av.delegate = roottvc
+                let av:UIAlertView = UIAlertView(title: "今天多少", message: "加油", delegate: nil, cancelButtonTitle: "0mg", otherButtonTitles: "10mg", "20mg", "30mg", "40mg");
                 av.show()
+                
+                av.rac_buttonClickedSignal().subscribeNext({ (index) -> Void in
+                    let g = 0.01 * Double(index.intValue)
+                    self.health.setCoffeeWithDay(NSDate(timeIntervalSinceNow: -2*60), quantity: g, block: { (result, today, sum) -> Void in
+                        if !result
+                        {
+                            let av:UIAlertView = UIAlertView(title: "注意", message: "写入失败", delegate: nil, cancelButtonTitle: "朕知道啦")
+                            av.show()
+                        }
+                    })
+                })
             }
             else if identifier == "WalkHome"
             {
@@ -228,7 +235,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         ds0 = df.stringFromDate(NSDate())
         df.dateFormat = "yyyyMMdd HH:mm:ss"
         let notification1:UILocalNotification = UILocalNotification()
-        fireString = ds0.stringByAppendingString(" 16:00:00")
+        fireString = ds0.stringByAppendingString(" 16:05:30")
         notification1.fireDate = df.dateFromString(fireString)
         notification1.repeatInterval = NSCalendarUnit.Day//循环次数，kCFCalendarUnitWeekday一周一次
         notification1.soundName = "No05.caf";//声音，可以换成alarm.soundName = @"myMusic.caf"

@@ -133,7 +133,9 @@
                                 <constraints>
                                     <constraint firstAttribute="width" constant="100" id="zmu-IB-e9C"/>
                                 </constraints>
-                                <state key="normal" title="查询词义"/>
+                                <state key="normal" title="查询词义">
+                                    <color key="titleColor" red="0.25882352939999997" green="0.52156862749999999" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
                                 <connections>
                                     <action selector="OnSearch:" destination="uwG-a0-6Gc" eventType="touchUpInside" id="i60-BN-v6D"/>
                                 </connections>
@@ -356,6 +358,7 @@
                                 <segment title="天数"/>
                                 <segment title="日期"/>
                             </segments>
+                            <color key="tintColor" red="0.25882352939999997" green="0.52156862749999999" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
                             <connections>
                                 <action selector="OnSelectType:" destination="Zzd-tU-aHe" eventType="valueChanged" id="2Dg-hw-WHa"/>
                             </connections>
@@ -653,7 +656,7 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="Je8-Zt-6ya">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
-                        <color key="barTintColor" red="1" green="0.40000000600000002" blue="0.40000000600000002" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="barTintColor" red="0.25882352941176467" green="0.52156862745098043" blue="0.95686274509803915" alpha="1" colorSpace="calibratedRGB"/>
                         <textAttributes key="titleTextAttributes">
                             <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <color key="textShadowColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -711,6 +714,13 @@
                                                     <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="24.5" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GAj-eA-Ayd">
+                                                    <rect key="frame" x="65" y="37" width="22" height="11"/>
+                                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                                    <fontDescription key="fontDescription" name="Menlo-Italic" family="Menlo" pointSize="9"/>
+                                                    <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NUj-MQ-jNt">
                                                     <rect key="frame" x="0.0" y="50" width="122" height="2"/>
                                                     <color key="backgroundColor" red="0.0" green="0.40000000000000002" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -744,6 +754,7 @@
                                                 <constraint firstAttribute="bottom" secondItem="yJ6-eF-Rq7" secondAttribute="bottom" id="A5e-9Q-zIq"/>
                                                 <constraint firstItem="Bht-HF-EnO" firstAttribute="height" secondItem="nUq-lB-oKt" secondAttribute="height" multiplier="3:7" id="AQH-mf-Oye"/>
                                                 <constraint firstItem="Bht-HF-EnO" firstAttribute="centerY" secondItem="nUq-lB-oKt" secondAttribute="centerY" id="DaO-gF-Lck"/>
+                                                <constraint firstItem="GAj-eA-Ayd" firstAttribute="centerX" secondItem="NUj-MQ-jNt" secondAttribute="centerX" constant="15" id="H0O-Fe-1YH"/>
                                                 <constraint firstItem="Bsa-an-kx2" firstAttribute="leading" secondItem="Bht-HF-EnO" secondAttribute="trailing" constant="8" id="IqE-ib-okt"/>
                                                 <constraint firstAttribute="trailing" secondItem="3oi-Kg-YKe" secondAttribute="trailing" constant="8" id="JRf-Mi-hud"/>
                                                 <constraint firstItem="cNV-9Q-rMR" firstAttribute="width" secondItem="nUq-lB-oKt" secondAttribute="width" multiplier="60:100" placeholder="YES" identifier="1002" id="Pvv-34-v8W"/>
@@ -755,6 +766,7 @@
                                                 <constraint firstItem="Bsa-an-kx2" firstAttribute="top" secondItem="nUq-lB-oKt" secondAttribute="top" constant="1" id="gsQ-0f-NgB"/>
                                                 <constraint firstItem="NUj-MQ-jNt" firstAttribute="width" secondItem="nUq-lB-oKt" secondAttribute="width" multiplier="40:100" placeholder="YES" identifier="1001" id="jCc-Ca-QFD"/>
                                                 <constraint firstItem="cNV-9Q-rMR" firstAttribute="leading" secondItem="NUj-MQ-jNt" secondAttribute="leading" id="jgi-h0-Ljl"/>
+                                                <constraint firstItem="NUj-MQ-jNt" firstAttribute="top" secondItem="GAj-eA-Ayd" secondAttribute="bottom" constant="2" id="uNI-mX-cSz"/>
                                                 <constraint firstItem="cNV-9Q-rMR" firstAttribute="top" secondItem="NUj-MQ-jNt" secondAttribute="bottom" constant="1" id="w3G-MS-2UY"/>
                                                 <constraint firstItem="3oi-Kg-YKe" firstAttribute="top" secondItem="nUq-lB-oKt" secondAttribute="top" id="x0z-Sb-SJh"/>
                                             </constraints>
@@ -771,9 +783,10 @@
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <connections>
                                     <outlet property="iv_readover" destination="Bht-HF-EnO" id="lr2-Qs-G8g"/>
-                                    <outlet property="lb_bookName" destination="Lg7-w0-GfE" id="OjU-HA-bpo"/>
-                                    <outlet property="lb_bookname" destination="Lg7-w0-GfE" id="bi1-rc-d6c"/>
+                                    <outlet property="layout_w_constant" destination="H0O-Fe-1YH" id="iao-7t-sK4"/>
+                                    <outlet property="lb_bookName" destination="Lg7-w0-GfE" id="uPP-Wj-Qmg"/>
                                     <outlet property="lb_readPage" destination="Bsa-an-kx2" id="MYq-py-Z2R"/>
+                                    <outlet property="lb_readSpeed" destination="GAj-eA-Ayd" id="9ly-ue-THH"/>
                                     <outlet property="v_headRainbow" destination="yJ6-eF-Rq7" id="Hjn-yd-Zc3"/>
                                     <outlet property="v_readProgress" destination="NUj-MQ-jNt" id="1PY-ef-vVH"/>
                                     <outlet property="v_timeProgress" destination="cNV-9Q-rMR" id="CSx-xD-lEB"/>
@@ -958,7 +971,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
-                                            <color key="backgroundColor" red="1" green="0.40000000600000002" blue="0.40000000600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                            <color key="backgroundColor" red="0.25882352939999997" green="0.52156862749999999" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                 </cells>

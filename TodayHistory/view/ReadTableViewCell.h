@@ -14,6 +14,7 @@
 @property(nonatomic, assign) CGFloat timeProgress;
 @property (weak, nonatomic) IBOutlet UILabel *lb_bookName;
 @property (weak, nonatomic) IBOutlet UILabel *lb_readPage;
+@property (weak, nonatomic) IBOutlet UILabel *lb_readSpeed;
 
 @property (nonatomic, assign) SWCellState preState;
 

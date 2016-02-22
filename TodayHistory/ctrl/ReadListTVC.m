@@ -156,18 +156,19 @@
         dispatch_sync(dispatch_get_main_queue(), ^{
             @strongify_self
             //以模态的方式展现activityVC。
-            [self presentViewController:activityVC animated:YES completion:nil];
+            [self presentViewController:activityVC animated:YES completion:^{
+            }];
         });
     });
 }
 
 -(NSString*)makeShareData
 {
-    NSMutableString *data = [NSMutableString stringWithFormat:@"\n************(%@)************", [[[NSDate date] earlyInTheMorning] yyyyMMddStringValue]];
+    NSMutableString *data = [NSMutableString stringWithFormat:@"\n************(读书进度%@)************", [[[NSDate date] earlyInTheMorning] yyyyMMddStringValue]];
     for (THRead *read in [THReadList books])
     {
         [data appendString:@"\n\n"];
-        [data appendFormat:@"《%@》（%@）\n", read.bookName, [read.startDate yyyyMMddStringValue]];
+        [data appendFormat:@"《%@》, %@,（%@）\n", read.bookName, read.author, [read.startDate yyyyMMddStringValue]];
         [data appendFormat:@"进度: %@/%@页;\n", @([THReadList lastPageProgressForReadID:read.rID]), read.page];
         [data appendFormat:@"用时: %@/%@天; ", @([THReadList lastDayProgressForReadID:read.rID]), read.deadline];
     }
@@ -222,13 +223,7 @@
     
     THRead *read = [THReadList books][indexPath.row];
     
-    NSString *author = read.author ? read.author : @"";
-    [cell.lb_bookName setText:[NSString stringWithFormat:@"《%@》%@", read.bookName, author]];
-    [cell.lb_readPage setText:[NSString stringWithFormat:@"%@/%@", @([THReadList lastPageProgressForReadID:read.rID]), read.page]];
-    
-    cell.readProgress = (double)[THReadList lastPageProgressForReadID:read.rID] / [read.page doubleValue];
-    NSInteger day = [NSDate date].timeIntervalSince1970 - read.startDate.timeIntervalSince1970;
-    cell.timeProgress = (double)day/24/3600 / ([read.deadline doubleValue] + 1.0);
+    [self reloadCell:cell WithRead:read];
     
     [cell setLeftUtilityButtons:[self leftButtons] WithButtonWidth:64];
     [cell setRightUtilityButtons:[self rightButtons] WithButtonWidth:64];
@@ -363,17 +358,9 @@ ReloadStatistics:
         if (curPage > [THReadList lastPageProgressForReadID:read.rID])
         {//有编辑过
             [THReadList EditPage:curPage Read:read];
-            
             [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationAutomatic];
-            
-            if (curPage >= read.page.unsignedIntegerValue)
-            {
-                [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:1] withRowAnimation:UITableViewRowAnimationAutomatic];
-                goto END;
-            }
         }
-        [((ReadTableViewCell*)cell).lb_readPage setText:[NSString stringWithFormat:@"%@/%@", @(curPage), read.page]];
-        ((ReadTableViewCell*)cell).readProgress = (double)curPage / [read.page doubleValue];
+        [self reloadCell:(ReadTableViewCell*)cell WithRead:read];
     }
     else if(state == kCellStateRight)
     {
@@ -389,6 +376,25 @@ END:
 - (BOOL)swipeableTableViewCellShouldHideUtilityButtonsOnSwipe:(SWTableViewCell *)cell
 {
     return YES;
+}
+
+-(void)reloadCell:(ReadTableViewCell*)cell WithRead:(THRead*)read
+{
+    NSString *author = read.author ? read.author : @"";
+    [cell.lb_bookName setText:[NSString stringWithFormat:@"《%@》%@", read.bookName, author]];
+    [cell.lb_readPage setText:[NSString stringWithFormat:@"%@/%@", @([THReadList lastPageProgressForReadID:read.rID]), read.page]];
+    
+    cell.readProgress = (double)[THReadList lastPageProgressForReadID:read.rID] / [read.page doubleValue];
+    NSInteger day = [NSDate date].timeIntervalSince1970 - read.startDate.timeIntervalSince1970;
+    cell.timeProgress = (double)day/24/3600 / ([read.deadline doubleValue] + 1.0);
+    if ([THReadList lastPageProgressForReadID:read.rID] > 0)
+    {
+        cell.lb_readSpeed.text = [NSString stringWithFormat:@"%0.2lf", (double)[THReadList lastPageProgressForReadID:read.rID]/(double)([THReadList getReadProgressFromReadID:read.rID].count)];
+    }
+    else
+    {
+        cell.lb_readSpeed.text = @"";
+    }
 }
 
 /*

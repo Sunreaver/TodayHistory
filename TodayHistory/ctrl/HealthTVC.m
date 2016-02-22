@@ -15,7 +15,7 @@
 @import ionicons;
 @import MBProgressHUD;
 
-@interface HealthTVC () <UIAlertViewDelegate>
+@interface HealthTVC ()
 @property (weak, nonatomic) IBOutlet UIButton *btn_safe;
 @property (weak, nonatomic) IBOutlet UIButton *btn_unsafe;
 @property (weak, nonatomic) IBOutlet UIButton *btn_coffee;
@@ -99,6 +99,10 @@
     } loadingView:loading];
     [self.tableView dg_setPullToRefreshBackgroundColor:self.tableView.backgroundColor];
     [self.tableView dg_setPullToRefreshFillColor:self.navigationController.navigationBar.barTintColor];
+    
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        [self.tableView dg_startLoading];
+    });
 }
 
 -(void)viewDidAppear:(BOOL)animated
@@ -107,8 +111,6 @@
     
     self.lb_thing1.textColor = [UIColor grayColor];
     self.lb_coffee.textColor = [UIColor grayColor];
-
-    [self.tableView dg_startLoading];
 }
 
 -(UIStatusBarStyle)preferredStatusBarStyle
@@ -239,13 +241,11 @@
     NSInteger i = self.iWowTime;
     if (sender.tag == 1)
     {//add
-        i += 30;
-        i = MIN(120, i);
+        i = MIN(120, i + 30);
     }
     else if (sender.tag == 2)
     {//reduce
-        i -= 30;
-        i = MAX(30, i);
+        i = MAX(30, i - 30);
     }
     self.iWowTime = i;
 }
@@ -413,6 +413,7 @@
     [hud hide:YES afterDelay:1.0];
 }
 
+/*
 -(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
     if (alertView.tag == 999)
@@ -454,5 +455,6 @@
     }
 
 }
+ */
 
 @end

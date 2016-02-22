@@ -220,10 +220,10 @@ static const CGFloat y_minScale = 400.f;
     today = ([[NSDate date] earlyInTheMorning].timeIntervalSince1970 - self.read.startDate.timeIntervalSince1970)/24/3600;
     if (data.lastObject.page.unsignedIntegerValue < self.read.page.unsignedIntegerValue &&
         today < self.read.deadline.integerValue &&
-        ABS(self.read.page.doubleValue * today / self.read.deadline.integerValue - data.lastObject.page.doubleValue) > 10)
+        ABS(self.read.page.doubleValue * today / self.read.deadline.integerValue - data.lastObject.page.doubleValue) > 30)
     {//阅读未完毕
      //未超时
-     //预期与实际差距在10页以上
+     //预期与实际差距在30页以上
         [yVals1 addObject:[[ChartDataEntry alloc] initWithValue:self.read.page.doubleValue * today / self.read.deadline.integerValue
                                                          xIndex:today]];
     }
