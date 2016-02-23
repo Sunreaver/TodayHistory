@@ -14,6 +14,7 @@ import JSONKit
 {
     optional func todayHistoryRequestData(todays:NSArray, page:Int, sender:NetWorkManager)
     optional func dictionaryRequestData(word:NSDictionary, sender:NetWorkManager)
+    optional func uploadReadProcess(Result:NSDictionary, sender:NetWorkManager)
 }
 
 class NetWorkManager: NSObject {
@@ -80,6 +81,38 @@ class NetWorkManager: NSObject {
         afnetworks.addObject(manager)
     }
     
+    func SaveReadProcess(Data d:NSString, Host h:NSString)
+    {
+        let manager = AFHTTPRequestOperationManager()
+        
+        manager.requestSerializer = AFJSONRequestSerializer()
+        manager.requestSerializer.setValue("application/json", forHTTPHeaderField: "Accept")
+        manager.requestSerializer.setValue("application/json; charset=utf-8", forHTTPHeaderField: "Content-Type")
+        manager.requestSerializer.timeoutInterval = NetWorkManager.TimeOutInterval
+        
+        let url = String(format: "http://%@:6061/uploadreadprocess", h)
+        
+        manager.POST(url,
+            parameters: ["readprocess":d, "bb":"b", "cc":(1)],
+            success: { (operation: AFHTTPRequestOperation!, responseObject: AnyObject!) -> Void in
+                
+                self.afnetworks.removeObject(manager)
+                if let responseData = responseObject as? NSData,
+                    let responseDict = responseData.objectFromJSONData(),
+                    let result = responseDict as? NSDictionary
+                {
+                    self.delegate?.uploadReadProcess?(result, sender: self)
+                }
+                else
+                {
+                    self.delegate?.uploadReadProcess?(["status":500, "msg":"上传失败"], sender: self)
+                }
+            }) { (op, er) -> Void in
+                self.delegate?.uploadReadProcess?(["status":404, "msg":"没有服务器"], sender: self)
+        }
+        afnetworks.addObject(manager)
+    }
+    
     
     /**
      获取词典
@@ -91,7 +124,9 @@ class NetWorkManager: NSObject {
     func getDictionaryWithWords(Words w:NSString)
     {
         let manager = AFHTTPRequestOperationManager()
-        manager.responseSerializer = AFHTTPResponseSerializer()
+        manager.requestSerializer = AFHTTPRequestSerializer()
+        manager.requestSerializer.setValue("application/json", forHTTPHeaderField: "Accept")
+        manager.requestSerializer.setValue("application/json; charset=utf-8", forHTTPHeaderField: "Content-Type")
         manager.requestSerializer.timeoutInterval = NetWorkManager.TimeOutInterval
         
         var url = "http://brisk.eu.org/api/xhzd.php"

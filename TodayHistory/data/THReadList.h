@@ -8,6 +8,8 @@
 
 #import <Foundation/Foundation.h>
 
+typedef void(^uploadResultBlock)(BOOL result, NSString *msg);
+
 @class THRead;
 @class THReadProgress;
 
@@ -22,6 +24,7 @@
 +(void)storageData;
 +(BOOL)DelReadProgressDataForLast:(THRead*)read;
 +(void)SortBooksAsReadProgress;
+-(void)UploadDataWithHost:(NSString*)host resultBlock:(uploadResultBlock)block;
 
 +(NSUInteger)lastDayProgressForReadID:(NSString*)rID;
 +(NSUInteger)lastPageProgressForReadID:(NSString*)rID;

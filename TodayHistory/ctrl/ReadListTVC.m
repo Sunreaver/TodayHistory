@@ -21,13 +21,24 @@
 @import ionicons;
 @import SWTableViewCell;
 @import ReactiveCocoa;
+@import MBProgressHUD;
 
 @interface ReadListTVC()<SWTableViewCellDelegate>
 @property (nonatomic, assign) BOOL needRefresh;
+@property (nonatomic, retain) THReadList *upload;
 
 @end
 
 @implementation ReadListTVC
+
+-(THReadList*)upload
+{
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        _upload = [[THReadList alloc] init];
+    });
+    return _upload;
+}
 
 -(void)viewDidLoad
 {
@@ -133,33 +144,41 @@
 
 -(void)ShareData
 {
-    //添加数据
-    NSString *textToShare = [self makeShareData];
+//    //添加数据
+//    NSString *textToShare = [self makeShareData];
+//
+//    NSArray *activityItems = @[textToShare];
+//    
+//    UIActivityViewController *activityVC = [[UIActivityViewController alloc] initWithActivityItems:activityItems applicationActivities:nil];
+//    
+//    activityVC.excludedActivityTypes = @[UIActivityTypeAssignToContact,
+//                                         UIActivityTypeSaveToCameraRoll,
+//                                         UIActivityTypeAddToReadingList,
+//                                         UIActivityTypePostToFlickr,
+//                                         UIActivityTypePostToVimeo,
+//                                         UIActivityTypeOpenInIBooks,
+//                                         UIActivityTypePostToTwitter,
+//                                         UIActivityTypePostToFacebook,
+//                                         UIActivityTypePostToWeibo,
+//                                         UIActivityTypePostToTencentWeibo];
+//    
+//    @weakify_self
+//    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+//        dispatch_sync(dispatch_get_main_queue(), ^{
+//            @strongify_self
+//            //以模态的方式展现activityVC。
+//            [self presentViewController:activityVC animated:YES completion:^{
+//            }];
+//        });
+//    });
     
-    NSArray *activityItems = @[textToShare];
+    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    hud.labelText = @"上传中";
     
-    UIActivityViewController *activityVC = [[UIActivityViewController alloc] initWithActivityItems:activityItems applicationActivities:nil];
-    
-    activityVC.excludedActivityTypes = @[UIActivityTypeAssignToContact,
-                                         UIActivityTypeSaveToCameraRoll,
-                                         UIActivityTypeAddToReadingList,
-                                         UIActivityTypePostToFlickr,
-                                         UIActivityTypePostToVimeo,
-                                         UIActivityTypeOpenInIBooks,
-                                         UIActivityTypePostToTwitter,
-                                         UIActivityTypePostToFacebook,
-                                         UIActivityTypePostToWeibo,
-                                         UIActivityTypePostToTencentWeibo];
-    
-    @weakify_self
-    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-        dispatch_sync(dispatch_get_main_queue(), ^{
-            @strongify_self
-            //以模态的方式展现activityVC。
-            [self presentViewController:activityVC animated:YES completion:^{
-            }];
-        });
-    });
+    [self.upload UploadDataWithHost:@"192.168.0.105" resultBlock:^(BOOL result, NSString *msg) {
+        hud.labelText = msg == nil ? @"上传失败" : msg;
+        [hud hide:YES afterDelay:1.0];
+    }];
 }
 
 -(NSString*)makeShareData

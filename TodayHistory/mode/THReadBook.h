@@ -19,6 +19,7 @@
 
 +(instancetype)initWithBookName:(NSString*)name PageNum:(NSUInteger)page Deadline:(NSUInteger)day;
 +(instancetype)initWithBookName:(NSString*)name Author:(NSString*)author PageNum:(NSUInteger)page Deadline:(NSUInteger)day;
+-(NSDictionary*)dictinary;
 
 
 @end
@@ -29,5 +30,6 @@
 @property(nonatomic, retain) NSNumber *day;
 
 +(instancetype)initWithCurPage:(NSUInteger)page CurDay:(NSUInteger)day;
+-(NSDictionary*)dictinary;
 
 @end

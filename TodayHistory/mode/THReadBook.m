@@ -30,6 +30,19 @@
     return read;
 }
 
+-(NSDictionary*)dictinary
+{
+    id author = self.author == nil ? @"" : self.author;
+    return @{
+             @"bookID":self.rID,
+             @"bookName":self.bookName,
+             @"bookAuthor":author,
+             @"bookPage":self.page,
+             @"startTime":@(self.startDate.timeIntervalSince1970),
+             @"deadLine":self.deadline
+             };
+}
+
 #pragma mark -NSCoding
 
 -(instancetype)initWithCoder:(NSCoder *)aDecoder
@@ -66,6 +79,14 @@
     readProgress.day = @(day);
     
     return readProgress;
+}
+
+-(NSDictionary*)dictinary
+{
+    return @{
+             @"page":self.page,
+             @"day":self.day
+             };
 }
 
 #pragma mark -NSCoding
