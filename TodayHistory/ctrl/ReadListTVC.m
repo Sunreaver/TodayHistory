@@ -56,14 +56,21 @@
     self.navigationItem.rightBarButtonItem = rightBar;
     
     //左右按钮
-    UIImage *share = [IonIcons imageWithIcon:ion_share
+    UIImage *share1 = [IonIcons imageWithIcon:ion_share
                                       size:27
-                                     color:[UIColor whiteColor]];
-    UIBarButtonItem *leftbar = [[UIBarButtonItem alloc] initWithImage:share
+                                        color:[UIColor whiteColor]];
+    UIImage *share2 = [IonIcons imageWithIcon:ion_shuffle
+                                        size:27
+                                       color:[UIColor whiteColor]];
+    UIBarButtonItem *leftbar1 = [[UIBarButtonItem alloc] initWithImage:share1
                                                                  style:UIBarButtonItemStyleDone
                                                                 target:self
                                                                 action:@selector(ShareData)];
-    self.navigationItem.leftBarButtonItem = leftbar;
+    UIBarButtonItem *leftbar2 = [[UIBarButtonItem alloc] initWithImage:share2
+                                                                 style:UIBarButtonItemStyleDone
+                                                                target:self
+                                                                action:@selector(uploadShare)];
+    self.navigationItem.leftBarButtonItems = @[leftbar1, leftbar2];
     
     //去除shadowImage
     [self.navigationController.navigationBar setBackgroundImage:[UIImage new] forBarMetrics:UIBarMetricsDefault];
@@ -144,41 +151,61 @@
 
 -(void)ShareData
 {
-//    //添加数据
-//    NSString *textToShare = [self makeShareData];
-//
-//    NSArray *activityItems = @[textToShare];
-//    
-//    UIActivityViewController *activityVC = [[UIActivityViewController alloc] initWithActivityItems:activityItems applicationActivities:nil];
-//    
-//    activityVC.excludedActivityTypes = @[UIActivityTypeAssignToContact,
-//                                         UIActivityTypeSaveToCameraRoll,
-//                                         UIActivityTypeAddToReadingList,
-//                                         UIActivityTypePostToFlickr,
-//                                         UIActivityTypePostToVimeo,
-//                                         UIActivityTypeOpenInIBooks,
-//                                         UIActivityTypePostToTwitter,
-//                                         UIActivityTypePostToFacebook,
-//                                         UIActivityTypePostToWeibo,
-//                                         UIActivityTypePostToTencentWeibo];
-//    
-//    @weakify_self
-//    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-//        dispatch_sync(dispatch_get_main_queue(), ^{
-//            @strongify_self
-//            //以模态的方式展现activityVC。
-//            [self presentViewController:activityVC animated:YES completion:^{
-//            }];
-//        });
-//    });
+    //添加数据
+    NSString *textToShare = [self makeShareData];
+
+    NSArray *activityItems = @[textToShare];
     
-    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-    hud.labelText = @"上传中";
+    UIActivityViewController *activityVC = [[UIActivityViewController alloc] initWithActivityItems:activityItems applicationActivities:nil];
     
-    [self.upload UploadDataWithHost:@"192.168.0.105" resultBlock:^(BOOL result, NSString *msg) {
-        hud.labelText = msg == nil ? @"上传失败" : msg;
-        [hud hide:YES afterDelay:1.0];
+    activityVC.excludedActivityTypes = @[UIActivityTypeAssignToContact,
+                                         UIActivityTypeSaveToCameraRoll,
+                                         UIActivityTypeAddToReadingList,
+                                         UIActivityTypePostToFlickr,
+                                         UIActivityTypePostToVimeo,
+                                         UIActivityTypeOpenInIBooks,
+                                         UIActivityTypePostToTwitter,
+                                         UIActivityTypePostToFacebook,
+                                         UIActivityTypePostToWeibo,
+                                         UIActivityTypePostToTencentWeibo];
+    
+    @weakify_self
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        dispatch_sync(dispatch_get_main_queue(), ^{
+            @strongify_self
+            //以模态的方式展现activityVC。
+            [self presentViewController:activityVC animated:YES completion:^{
+            }];
+        });
+    });
+    
+}
+
+-(void)uploadShare
+{
+    UIAlertView *av = [[UIAlertView alloc] initWithTitle:@"服务器地址"
+                                                 message:nil
+                                                delegate:nil
+                                       cancelButtonTitle:@"取消"
+                                       otherButtonTitles:@"确认", nil];
+    [av.rac_buttonClickedSignal subscribeNext:^(id x) {
+        if ([x integerValue] == 1)
+        {
+            MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+            hud.labelText = @"上传中";
+            
+            NSString *host = [av textFieldAtIndex:0].text;
+            
+            [self.upload UploadDataWithHost:host resultBlock:^(BOOL result, NSString *msg) {
+                hud.labelText = msg == nil ? @"上传失败" : msg;
+                [hud hide:YES afterDelay:1.0];
+            }];
+        }
     }];
+    av.alertViewStyle = UIAlertViewStylePlainTextInput;
+    [av textFieldAtIndex:0].text = @"192.168.0.";
+    [av textFieldAtIndex:0].keyboardType = UIKeyboardTypeNumbersAndPunctuation;
+    [av show];
 }
 
 -(NSString*)makeShareData

@@ -34,7 +34,7 @@ func UploadReadprocess(ctx *macaron.Context) {
 	e = json.Unmarshal(b, &data)
 	if e != nil {
 		fmt.Println(e.Error())
-		ctx.JSON(500, JSON_ERROR)
+		ctx.JSON(501, JSON_ERROR)
 		return
 	}
 	fmt.Println(data.Read)
@@ -42,14 +42,11 @@ func UploadReadprocess(ctx *macaron.Context) {
 	var form []mode.Book
 	e = json.Unmarshal([]byte(data.Read), &form)
 	if e != nil {
-		ctx.JSON(500, JSON_ERROR)
+		ctx.JSON(502, JSON_ERROR)
 		return
 	}
 
-	ctx.JSON(200, map[string]interface{}{
-		"status": 200,
-		"msg":    "上传成功",
-	})
+	saveData(ctx, form)
 }
 
 func UploadReadprocessGet(ctx *macaron.Context) {
@@ -62,13 +59,35 @@ func UploadReadprocessGet(ctx *macaron.Context) {
 		return
 	}
 
+	saveData(ctx, form)
+}
+
+func saveData(ctx *macaron.Context, form []mode.Book) {
+
+	add := 0
+	update := 0
+	eNum := 0
+
 	for _, v := range form {
-		fmt.Println(v.Name)
+		m, err := v.SaveDB()
+		if err == nil {
+			if m == mode.Add {
+				add++
+			} else if m == mode.Update {
+				update++
+			}
+		} else {
+			eNum++
+		}
 	}
 
 	ctx.JSON(200, map[string]interface{}{
 		"status": 200,
 		"msg":    "上传成功",
-		"body":   form,
+		"body": map[string]int{
+			"add":    add,
+			"update": update,
+			"err":    eNum,
+		},
 	})
 }
