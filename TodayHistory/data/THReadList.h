@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-typedef void(^uploadResultBlock)(BOOL result, NSString *msg);
+typedef void(^uploadResultBlock)(NSDictionary *dic);
 
 @class THRead;
 @class THReadProgress;

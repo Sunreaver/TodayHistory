@@ -36,3 +36,16 @@ func (b *Book) SaveDB() (int, error) {
 		return Update, nil
 	}
 }
+
+func GetReadprocess() ([]Book, error) {
+	m := mongo.Copy()
+	defer m.Close()
+
+	var books []Book
+	e := m.DB(dbName).C(dbProcess).Find(bson.M{}).All(&books)
+	if e != nil {
+		return nil, e
+	}
+
+	return books, nil
+}

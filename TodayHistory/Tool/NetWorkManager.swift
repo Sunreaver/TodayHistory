@@ -90,16 +90,14 @@ class NetWorkManager: NSObject {
         manager.requestSerializer.setValue("application/json; charset=utf-8", forHTTPHeaderField: "Content-Type")
         manager.requestSerializer.timeoutInterval = NetWorkManager.TimeOutInterval
         
-        let url = String(format: "http://%@:6061/uploadreadprocess", h)
+        let url = String(format: "http://%@/uploadreadprocess", h)
         
         manager.POST(url,
             parameters: ["readprocess":d, "bb":"b", "cc":(1)],
             success: { (operation: AFHTTPRequestOperation!, responseObject: AnyObject!) -> Void in
                 
                 self.afnetworks.removeObject(manager)
-                if let responseData = responseObject as? NSData,
-                    let responseDict = responseData.objectFromJSONData(),
-                    let result = responseDict as? NSDictionary
+                if let result = responseObject as? NSDictionary
                 {
                     self.delegate?.uploadReadProcess?(result, sender: self)
                 }

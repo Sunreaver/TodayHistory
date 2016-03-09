@@ -307,14 +307,7 @@ static NSMutableDictionary  *s_readProgress;
 
 -(void)uploadReadProcess:(NSDictionary *)Result sender:(NetWorkManager *)sender
 {
-    if ([Result[@"status"] integerValue] == 200)
-    {
-        self.block(YES, @"上传成功");
-    }
-    else
-    {
-        self.block(NO, Result[@"msg"]);
-    }
+    self.block(Result);
     [self.nets removeObject:sender];
 }
 @end

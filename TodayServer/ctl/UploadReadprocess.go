@@ -17,6 +17,10 @@ var (
 		"status": 500,
 		"msg":    "解析参数失败",
 	}
+	DB_ERROR = map[string]interface{}{
+		"status": 500,
+		"msg":    "读取数据库失败",
+	}
 )
 
 type UploadForm struct {
@@ -37,7 +41,6 @@ func UploadReadprocess(ctx *macaron.Context) {
 		ctx.JSON(501, JSON_ERROR)
 		return
 	}
-	fmt.Println(data.Read)
 
 	var form []mode.Book
 	e = json.Unmarshal([]byte(data.Read), &form)
@@ -62,6 +65,21 @@ func UploadReadprocessGet(ctx *macaron.Context) {
 	saveData(ctx, form)
 }
 
+func ReadprocessGet(ctx *macaron.Context) {
+
+	books, e := mode.GetReadprocess()
+	if e != nil {
+		ctx.JSON(200, DB_ERROR)
+		return
+	}
+
+	ctx.JSON(200, map[string]interface{}{
+		"status": 200,
+		"msg":    "OK",
+		"body":   books,
+	})
+}
+
 func saveData(ctx *macaron.Context, form []mode.Book) {
 
 	add := 0
@@ -80,6 +98,7 @@ func saveData(ctx *macaron.Context, form []mode.Book) {
 			eNum++
 		}
 	}
+	fmt.Printf("add=%d,update=%d,err=%d\r\n", add, update, eNum)
 
 	ctx.JSON(200, map[string]interface{}{
 		"status": 200,

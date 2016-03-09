@@ -196,9 +196,19 @@
             
             NSString *host = [av textFieldAtIndex:0].text;
             
-            [self.upload UploadDataWithHost:host resultBlock:^(BOOL result, NSString *msg) {
-                hud.labelText = msg == nil ? @"上传失败" : msg;
-                [hud hide:YES afterDelay:1.0];
+            [self.upload UploadDataWithHost:host resultBlock:^(NSDictionary *dic) {
+                hud.labelText = dic[@"msg"];
+                
+                if (dic[@"status"] && [dic[@"status"] integerValue] == 200) {
+                    NSString *msg = [NSString stringWithFormat:@"Add：%@ Update：%@ Err：%@",
+                                     dic[@"body"][@"add"], dic[@"body"][@"update"], dic[@"body"][@"err"]];
+                    hud.detailsLabelText = msg;
+                    [hud hide:YES afterDelay:2.0];
+                }
+                else
+                {
+                    [hud hide:YES afterDelay:1.0];
+                }
             }];
         }
     }];

@@ -4,6 +4,30 @@
 		"selected_items":
 		[
 			[
+				"json",
+				"JSON	 ƒ"
+			],
+			[
+				"htmlset",
+				"HTMLSetString	string, error ƒ"
+			],
+			[
+				"html",
+				"HTMLString	string, error ƒ"
+			],
+			[
+				"htm",
+				"HTMLString	string, error ƒ"
+			],
+			[
+				"con",
+				"Context	struct ʈ"
+			],
+			[
+				"prin",
+				"Printf	n int, err error ƒ"
+			],
+			[
 				"book",
 				"BookDatabase	struct ʈ"
 			],
@@ -42,20 +66,19 @@
 			[
 				"ma",
 				"Marshal	[]byte, error ƒ"
-			],
-			[
-				"prin",
-				"Println	n int, err error ƒ"
 			]
 		]
 	},
 	"buffers":
 	[
 		{
+			"contents": "package ctl\n\nimport (\n	\"encoding/json\"\n	\"fmt\"\n\n	\"../mode\"\n	\"gopkg.in/macaron.v1\"\n)\n\nvar (\n	FORM_ERROR = map[string]interface{}{\n		\"status\": 500,\n		\"msg\":    \"推送的参数错误\",\n	}\n	JSON_ERROR = map[string]interface{}{\n		\"status\": 500,\n		\"msg\":    \"解析参数失败\",\n	}\n	DB_ERROR = map[string]interface{}{\n		\"status\": 500,\n		\"msg\":    \"读取数据库失败\",\n	}\n)\n\ntype UploadForm struct {\n	Read string `json:\"readprocess\"`\n}\n\nfunc UploadReadprocess(ctx *macaron.Context) {\n	b, e := ctx.Req.Body().Bytes()\n	if e != nil {\n		ctx.JSON(500, FORM_ERROR)\n		return\n	}\n\n	var data UploadForm\n	e = json.Unmarshal(b, &data)\n	if e != nil {\n		fmt.Println(e.Error())\n		ctx.JSON(501, JSON_ERROR)\n		return\n	}\n\n	var form []mode.Book\n	e = json.Unmarshal([]byte(data.Read), &form)\n	if e != nil {\n		ctx.JSON(502, JSON_ERROR)\n		return\n	}\n\n	saveData(ctx, form)\n}\n\nfunc UploadReadprocessGet(ctx *macaron.Context) {\n	body := ctx.Query(\"readprocess\")\n\n	var form []mode.Book\n	e := json.Unmarshal([]byte(body), &form)\n	if e != nil {\n		ctx.JSON(500, JSON_ERROR)\n		return\n	}\n\n	saveData(ctx, form)\n}\n\nfunc ReadprocessGet(ctx *macaron.Context) {\n\n	books, e := mode.GetReadprocess()\n	if e != nil {\n		ctx.JSON(200, DB_ERROR)\n		return\n	}\n\n	ctx.JSON(200, map[string]interface{}{\n		\"status\": 200,\n		\"msg\":    \"OK\",\n		\"body\":   books,\n	})\n}\n\nfunc saveData(ctx *macaron.Context, form []mode.Book) {\n\n	add := 0\n	update := 0\n	eNum := 0\n\n	for _, v := range form {\n		m, err := v.SaveDB()\n		if err == nil {\n			if m == mode.Add {\n				add++\n			} else if m == mode.Update {\n				update++\n			}\n		} else {\n			eNum++\n		}\n	}\n	fmt.Printf(\"add=%d,update=%d,err=%d\\r\\n\", add, update, eNum)\n\n	ctx.JSON(200, map[string]interface{}{\n		\"status\": 200,\n		\"msg\":    \"上传成功\",\n		\"body\": map[string]int{\n			\"add\":    add,\n			\"update\": update,\n			\"err\":    eNum,\n		},\n	})\n}\n",
 			"file": "ctl/UploadReadprocess.go",
+			"file_size": 1824,
+			"file_write_time": 1456368607000000,
 			"settings":
 			{
-				"buffer_size": 1425,
+				"buffer_size": 1776,
 				"line_ending": "Unix"
 			}
 		},
@@ -63,7 +86,15 @@
 			"file": "main.go",
 			"settings":
 			{
-				"buffer_size": 289,
+				"buffer_size": 442,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "text.go",
+			"settings":
+			{
+				"buffer_size": 2210,
 				"line_ending": "Unix"
 			}
 		},
@@ -71,7 +102,7 @@
 			"file": "mode/ReadprocessMode.go",
 			"settings":
 			{
-				"buffer_size": 927,
+				"buffer_size": 1138,
 				"line_ending": "Unix"
 			}
 		},
@@ -82,14 +113,50 @@
 				"buffer_size": 327,
 				"line_ending": "Unix"
 			}
+		},
+		{
+			"file": "mode/text.go",
+			"settings":
+			{
+				"buffer_size": 2210,
+				"line_ending": "Unix"
+			}
 		}
 	],
 	"build_system": "",
 	"command_palette":
 	{
-		"height": 87.0,
+		"height": 67.0,
 		"selected_items":
 		[
+			[
+				"remove package",
+				"Package Control: Remove Package"
+			],
+			[
+				"upgrade packages",
+				"Package Control: Upgrade/Overwrite All Packages"
+			],
+			[
+				"list pack",
+				"Package Control: List Packages"
+			],
+			[
+				"removep",
+				"GoSublime: Add/Remove package"
+			],
+			[
+				"instal",
+				"Package Control: Advanced Install Package"
+			],
+			[
+				"insta",
+				"Package Control: Install Package"
+			],
+			[
+				"packin",
+				"Package Control: Install Package"
+			],
 			[
 				"install",
 				"Package Control: Install Package"
@@ -116,6 +183,8 @@
 	},
 	"file_history":
 	[
+		"/Users/theone/Documents/mark.md",
+		"/Users/theone/Library/Application Support/Sublime Text 2/Packages/User/MarkdownPreview.sublime-settings",
 		"/Users/theone/Library/Application Support/Sublime Text 2/Packages/User/GoSublime.sublime-settings",
 		"/Users/theone/Library/Application Support/Sublime Text 2/Packages/GoSublime/GoSublime.sublime-settings",
 		"/Users/theone/Documents/untitled.c",
@@ -164,7 +233,7 @@
 	"groups":
 	[
 		{
-			"selected": 2,
+			"selected": 1,
 			"sheets":
 			[
 				{
@@ -172,15 +241,15 @@
 					"file": "ctl/UploadReadprocess.go",
 					"settings":
 					{
-						"buffer_size": 1425,
+						"buffer_size": 1776,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								1224,
-								1224
+								329,
+								329
 							]
 						],
 						"settings":
@@ -199,15 +268,15 @@
 					"file": "main.go",
 					"settings":
 					{
-						"buffer_size": 289,
+						"buffer_size": 442,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								262,
-								262
+								90,
+								90
 							]
 						],
 						"settings":
@@ -223,18 +292,18 @@
 				},
 				{
 					"buffer": 2,
-					"file": "mode/ReadprocessMode.go",
+					"file": "text.go",
 					"settings":
 					{
-						"buffer_size": 927,
+						"buffer_size": 2210,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								730,
-								730
+								12,
+								12
 							]
 						],
 						"settings":
@@ -243,13 +312,40 @@
 							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 131.0,
+						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
 				},
 				{
 					"buffer": 3,
+					"file": "mode/ReadprocessMode.go",
+					"settings":
+					{
+						"buffer_size": 1138,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1067,
+								1067
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/GoSublime/syntax/GoSublime-Go.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 4,
 					"file": "mode/init.go",
 					"settings":
 					{
@@ -274,6 +370,33 @@
 						"zoom_level": 1.0
 					},
 					"type": "text"
+				},
+				{
+					"buffer": 5,
+					"file": "mode/text.go",
+					"settings":
+					{
+						"buffer_size": 2210,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								12,
+								12
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/GoSublime/syntax/GoSublime-Go.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
 				}
 			]
 		}
@@ -284,7 +407,7 @@
 	},
 	"input":
 	{
-		"height": 0.0
+		"height": 35.0
 	},
 	"layout":
 	{
