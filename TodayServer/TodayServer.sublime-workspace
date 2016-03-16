@@ -4,6 +4,10 @@
 		"selected_items":
 		[
 			[
+				"ht",
+				"HTML	 ƒ"
+			],
+			[
 				"json",
 				"JSON	 ƒ"
 			],
@@ -86,7 +90,7 @@
 			"file": "main.go",
 			"settings":
 			{
-				"buffer_size": 442,
+				"buffer_size": 520,
 				"line_ending": "Unix"
 			}
 		},
@@ -94,7 +98,7 @@
 			"file": "text.go",
 			"settings":
 			{
-				"buffer_size": 2210,
+				"buffer_size": 0,
 				"line_ending": "Unix"
 			}
 		},
@@ -183,6 +187,8 @@
 	},
 	"file_history":
 	[
+		"/Users/theone/Documents/git/TodayHistory/TodayServer/public/main/index.html",
+		"/Users/theone/Documents/git/TodayHistory/TodayServer/public/index.html",
 		"/Users/theone/Documents/mark.md",
 		"/Users/theone/Library/Application Support/Sublime Text 2/Packages/User/MarkdownPreview.sublime-settings",
 		"/Users/theone/Library/Application Support/Sublime Text 2/Packages/User/GoSublime.sublime-settings",
@@ -209,6 +215,7 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"charset",
 			"newSelectCheatLogFrom",
 			"RoomPowerPostForm",
 			"ObjectIdHex",
@@ -233,7 +240,7 @@
 	"groups":
 	[
 		{
-			"selected": 1,
+			"selected": 0,
 			"sheets":
 			[
 				{
@@ -248,8 +255,8 @@
 						"selection":
 						[
 							[
-								329,
-								329
+								1329,
+								1329
 							]
 						],
 						"settings":
@@ -258,7 +265,7 @@
 							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 0.0,
+						"translation.y": 1452.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
@@ -268,15 +275,15 @@
 					"file": "main.go",
 					"settings":
 					{
-						"buffer_size": 442,
+						"buffer_size": 520,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								90,
-								90
+								277,
+								277
 							]
 						],
 						"settings":
@@ -295,15 +302,15 @@
 					"file": "text.go",
 					"settings":
 					{
-						"buffer_size": 2210,
+						"buffer_size": 0,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								12,
-								12
+								0,
+								0
 							]
 						],
 						"settings":
