@@ -2,6 +2,12 @@ Podfile.lock
 
 *.sublime*
 *.swp
+*.zip
+
+
+#执行文件
+TodayServer/TodayServer
+
 
 # Xcode
 #
